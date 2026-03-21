@@ -16,6 +16,5 @@
     "cta_secondary_url": { "type": "string", "default": "#" },
     "variant": { "type": "string", "default": "dark" }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
-  "render": "file:./render.blade.php"
+  "supports": { "align": ["full"], "html": false, "anchor": true }
 }

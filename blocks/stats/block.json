@@ -11,6 +11,5 @@
     "items": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light" }
   },
-  "supports": { "align": ["full"], "html": false },
-  "render": "file:./render.blade.php"
+  "supports": { "align": ["full"], "html": false }
 }

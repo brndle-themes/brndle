@@ -23,6 +23,5 @@
     "align": ["full"],
     "html": false,
     "anchor": true
-  },
-  "render": "file:./render.blade.php"
+  }
 }

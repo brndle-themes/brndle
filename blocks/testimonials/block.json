@@ -12,6 +12,5 @@
     "title": { "type": "string", "default": "" },
     "items": { "type": "array", "default": [] }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
-  "render": "file:./render.blade.php"
+  "supports": { "align": ["full"], "html": false, "anchor": true }
 }

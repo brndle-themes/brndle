@@ -14,6 +14,5 @@
     "plans": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light" }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
-  "render": "file:./render.blade.php"
+  "supports": { "align": ["full"], "html": false, "anchor": true }
 }
