@@ -1,19 +1,19 @@
 @php($a = $attributes)
 
-<section class="py-24 md:py-32 bg-white">
+<section class="py-24 md:py-32 bg-[var(--color-surface-primary)]">
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <div class="max-w-3xl mx-auto text-center mb-16 reveal">
         @if($a['eyebrow'])
-          <p class="text-sm font-semibold text-accent uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
+          <p class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
         @endif
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">{!! $a['title'] !!}</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-[var(--color-text-primary)]">{!! $a['title'] !!}</h2>
       </div>
     @endif
 
     <div class="grid md:grid-cols-{{ min(count($a['items'] ?? []), 3) }} gap-6">
       @foreach(($a['items'] ?? []) as $item)
-        <div class="p-8 rounded-2xl bg-surface-secondary border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-300 reveal">
+        <div class="p-8 rounded-2xl bg-[var(--color-surface-secondary)] border border-[var(--color-surface-tertiary)] hover:border-[var(--color-text-tertiary)] hover:shadow-lg transition-all duration-300 reveal">
           {{-- Stars --}}
           <div class="flex items-center gap-1 mb-4">
             @for($i = 0; $i < ($item['stars'] ?? 5); $i++)
@@ -21,7 +21,7 @@
             @endfor
           </div>
 
-          <p class="text-text-secondary leading-relaxed mb-6">"{{ $item['quote'] ?? '' }}"</p>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed mb-6">"{{ $item['quote'] ?? '' }}"</p>
 
           <div class="flex items-center gap-3">
             @if(isset($item['avatar']))
@@ -33,8 +33,8 @@
               </div>
             @endif
             <div>
-              <div class="text-sm font-semibold text-text-primary">{{ $item['name'] ?? '' }}</div>
-              <div class="text-xs text-text-tertiary">{{ $item['role'] ?? '' }}</div>
+              <div class="text-sm font-semibold text-[var(--color-text-primary)]">{{ $item['name'] ?? '' }}</div>
+              <div class="text-xs text-[var(--color-text-tertiary)]">{{ $item['role'] ?? '' }}</div>
             </div>
           </div>
         </div>
