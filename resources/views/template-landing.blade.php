@@ -7,7 +7,7 @@
 
 @section('content')
   @while(have_posts())
-    @php(the_post())
+    @php the_post() @endphp
     {!! the_content() !!}
   @endwhile
 @endsection

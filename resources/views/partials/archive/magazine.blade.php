@@ -2,7 +2,7 @@
 @php $postIndex = 0; @endphp
 
 @while(have_posts())
-    @php(the_post())
+    @php the_post() @endphp
   @if($postIndex === 0)
     {{-- Hero / Featured Post --}}
     <article @php(post_class('group'))>

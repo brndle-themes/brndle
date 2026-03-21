@@ -2,8 +2,8 @@
 
 @section('content')
   @while(have_posts())
-    @php(the_post())
     @php
+      the_post();
       $allowedSingle = ['standard', 'hero-immersive', 'sidebar', 'editorial', 'cinematic', 'presentation', 'split', 'minimal-dark'];
       $layout = in_array($singleLayout, $allowedSingle) ? $singleLayout : 'standard';
     @endphp

@@ -72,7 +72,7 @@
           {{ __('Table of Contents', 'brndle') }}
         </summary>
         <div class="px-4 pb-4">
-          @include('partials.components.toc')
+          @include('partials.components.table-of-contents')
         </div>
       </details>
     </div>
@@ -125,7 +125,7 @@
     <aside class="hidden lg:block">
       <div class="lg:sticky lg:top-24 lg:self-start space-y-8">
         {{-- TOC --}}
-        @includeWhen($singleShowToc, 'partials.components.toc')
+        @includeWhen($singleShowToc, 'partials.components.table-of-contents')
 
         {{-- Author box --}}
         @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
@@ -142,7 +142,7 @@
   @endif
 
   {{-- Post navigation --}}
-  @includeWhen($singleShowPostNav, 'partials.components.post-nav')
+  @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
 
   {{-- Related posts --}}
   @includeWhen($singleShowRelatedPosts, 'partials.components.related-posts')

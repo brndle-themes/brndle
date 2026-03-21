@@ -131,7 +131,7 @@
     @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
 
     {{-- Post navigation --}}
-    @includeWhen($singleShowPostNav, 'partials.components.post-nav')
+    @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
 
     {{-- Related posts --}}
     @includeWhen($singleShowRelatedPosts, 'partials.components.related-posts')

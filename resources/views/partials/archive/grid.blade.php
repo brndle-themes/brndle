@@ -1,7 +1,7 @@
 {{-- Grid Layout: 3-column card grid (Stripe/Figma pattern) --}}
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
   @while(have_posts())
-    @php(the_post())
+    @php the_post() @endphp
     <article @php(post_class('group'))>
       <a href="{{ get_permalink() }}" class="block rounded-2xl overflow-hidden border border-[var(--color-surface-tertiary)] bg-[var(--color-surface-primary)] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
         <div class="aspect-[3/2] overflow-hidden">
