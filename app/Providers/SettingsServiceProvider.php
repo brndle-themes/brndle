@@ -385,7 +385,7 @@ class SettingsServiceProvider
         );
 
         wp_localize_script('brndle-admin', 'brndleAdmin', [
-            'restUrl' => rest_url('brndle/v1/'),
+            'restUrl' => rest_url('brndle/v1/settings'),
             'nonce'   => wp_create_nonce('wp_rest'),
         ]);
 
