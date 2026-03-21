@@ -2,6 +2,10 @@
 
 @section('content')
   @while(have_posts()) @php(the_post())
-    @includeFirst(['partials.content-single-' . get_post_type(), 'partials.content-single'])
+    @php
+      $allowedSingle = ['standard', 'hero-immersive', 'sidebar', 'editorial', 'cinematic', 'presentation', 'split', 'minimal-dark'];
+      $layout = in_array($singleLayout, $allowedSingle) ? $singleLayout : 'standard';
+    @endphp
+    @include('partials.single.' . $layout)
   @endwhile
 @endsection

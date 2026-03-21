@@ -10,6 +10,7 @@ class Post extends Composer
         'partials.page-header',
         'partials.content',
         'partials.content-*',
+        'partials.single.*',
     ];
 
     public function title(): string
