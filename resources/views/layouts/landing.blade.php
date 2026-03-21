@@ -21,9 +21,13 @@
         {{ __('Skip to content', 'brndle') }}
       </a>
 
+      @include('sections.header')
+
       <main id="main">
         @yield('content')
       </main>
+
+      @include('sections.footer')
     </div>
 
     @if($showDarkModeToggle)
