@@ -8,7 +8,7 @@ if (! process.env.APP_URL) {
 }
 
 export default defineConfig({
-  base: '/app/themes/brndle/public/build/',
+  base: '/wp-content/themes/brndle/public/build/',
   plugins: [
     tailwindcss(),
     laravel({

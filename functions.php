@@ -15,7 +15,7 @@ use Roots\Acorn\Application;
 */
 
 if (! file_exists($composer = __DIR__.'/vendor/autoload.php')) {
-    wp_die(__('Error locating autoloader. Please run <code>composer install</code>.', 'brndle'));
+    wp_die(__('Brndle theme files are incomplete. Please re-upload the theme from the official distribution zip file.', 'brndle'));
 }
 
 require $composer;
