@@ -24,4 +24,11 @@ class App extends Composer
 
         return $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : null;
     }
+
+    public function siteLogoDark(): ?string
+    {
+        $logo_id = \Brndle\Settings\Settings::get('site_logo_dark');
+
+        return $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : null;
+    }
 }
