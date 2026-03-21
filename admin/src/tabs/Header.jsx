@@ -12,6 +12,8 @@ export default function Header( { settings, onChange } ) {
 					{ label: 'Sticky', value: 'sticky' },
 					{ label: 'Solid', value: 'solid' },
 					{ label: 'Transparent', value: 'transparent' },
+					{ label: 'Centered', value: 'centered' },
+					{ label: 'Minimal', value: 'minimal' },
 				] }
 				onChange={ ( v ) => onChange( 'header_style', v ) }
 				__nextHasNoMarginBottom

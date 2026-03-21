@@ -69,6 +69,9 @@ add_action('after_setup_theme', function () {
     register_nav_menus([
         'primary_navigation' => __('Primary Navigation', 'brndle'),
         'footer_navigation' => __('Footer Navigation', 'brndle'),
+        'footer_col_1' => __('Footer Column 1', 'brndle'),
+        'footer_col_2' => __('Footer Column 2', 'brndle'),
+        'footer_col_3' => __('Footer Column 3', 'brndle'),
     ]);
 
     // Disable default block patterns

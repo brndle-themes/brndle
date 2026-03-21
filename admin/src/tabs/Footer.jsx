@@ -12,6 +12,8 @@ export default function Footer( { settings, onChange } ) {
 				options={ [
 					{ label: 'Dark', value: 'dark' },
 					{ label: 'Light', value: 'light' },
+					{ label: 'Columns', value: 'columns' },
+					{ label: 'Minimal', value: 'minimal' },
 				] }
 				onChange={ ( v ) => onChange( 'footer_style', v ) }
 				__nextHasNoMarginBottom
