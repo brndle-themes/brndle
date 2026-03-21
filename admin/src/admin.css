@@ -1,0 +1,390 @@
+.brndle-admin {
+	max-width: 960px;
+	margin: 20px auto;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.brndle-admin-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 24px;
+	border-bottom: 1px solid #e0e0e0;
+	background: #fafafa;
+}
+
+.brndle-admin-title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.brndle-admin-title h1 {
+	font-size: 18px;
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+}
+
+.brndle-logo {
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #6366f1, #a855f7, #06b6d4);
+	color: white;
+	font-weight: 900;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.brndle-admin-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.brndle-tab-content {
+	padding: 24px;
+}
+
+.brndle-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+}
+
+/* Toggle Row */
+.brndle-toggle-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.brndle-toggle-row:last-child {
+	border-bottom: none;
+}
+
+.brndle-toggle-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.brndle-toggle-label {
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.brndle-toggle-desc {
+	font-size: 12px;
+	color: #757575;
+}
+
+/* Color Scheme Selector */
+.brndle-scheme-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.brndle-scheme-card {
+	position: relative;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 12px;
+	cursor: pointer;
+	transition: all 0.15s;
+	text-align: center;
+	background: #fff;
+}
+
+.brndle-scheme-card:hover {
+	border-color: #999;
+}
+
+.brndle-scheme-card.selected {
+	border-color: var(--wp-admin-theme-color, #3858e9);
+	box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+}
+
+.brndle-scheme-preview {
+	height: 48px;
+	border-radius: 4px;
+	margin-bottom: 8px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid #f0f0f0;
+}
+
+.brndle-scheme-preview-header {
+	height: 8px;
+}
+
+.brndle-scheme-preview-body {
+	flex: 1;
+	background: #fafafa;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+}
+
+.brndle-scheme-preview-cta {
+	width: 40px;
+	height: 12px;
+	border-radius: 3px;
+}
+
+.brndle-scheme-name {
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.brndle-scheme-check {
+	position: absolute;
+	top: 4px;
+	right: 6px;
+	font-size: 12px;
+	color: var(--wp-admin-theme-color, #3858e9);
+	font-weight: bold;
+}
+
+.brndle-custom-color-picker {
+	margin: 16px 0;
+	max-width: 280px;
+}
+
+/* Font Pair Selector */
+.brndle-font-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.brndle-font-card {
+	position: relative;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 16px;
+	cursor: pointer;
+	transition: all 0.15s;
+	background: #fff;
+	text-align: left;
+}
+
+.brndle-font-card:hover {
+	border-color: #999;
+}
+
+.brndle-font-card.selected {
+	border-color: var(--wp-admin-theme-color, #3858e9);
+	box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+}
+
+.brndle-font-heading-sample {
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 4px;
+	line-height: 1.2;
+}
+
+.brndle-font-body-sample {
+	font-size: 13px;
+	color: #666;
+	line-height: 1.5;
+	margin-bottom: 8px;
+}
+
+.brndle-font-meta {
+	font-size: 11px;
+	color: #999;
+}
+
+.brndle-font-check {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	font-size: 14px;
+	color: var(--wp-admin-theme-color, #3858e9);
+	font-weight: bold;
+}
+
+/* Layout Selector */
+.brndle-layout-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.brndle-layout-card {
+	position: relative;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 12px;
+	cursor: pointer;
+	transition: all 0.15s;
+	text-align: center;
+	background: #fff;
+}
+
+.brndle-layout-card:hover {
+	border-color: #999;
+}
+
+.brndle-layout-card.selected {
+	border-color: var(--wp-admin-theme-color, #3858e9);
+	box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+}
+
+.brndle-layout-icon {
+	width: 100%;
+	height: 64px;
+	margin-bottom: 8px;
+	background: #f5f5f5;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.brndle-layout-name {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.brndle-layout-desc {
+	font-size: 11px;
+	color: #999;
+	margin-top: 2px;
+}
+
+.brndle-layout-check {
+	position: absolute;
+	top: 4px;
+	right: 6px;
+	font-size: 12px;
+	color: var(--wp-admin-theme-color, #3858e9);
+	font-weight: bold;
+}
+
+/* Swatch bar */
+.brndle-swatch-bar {
+	display: flex;
+	gap: 8px;
+	padding: 12px 0;
+}
+
+.brndle-swatch {
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	border: 1px solid #e0e0e0;
+}
+
+/* Section headers */
+.brndle-section-title {
+	font-size: 15px;
+	font-weight: 600;
+	margin: 24px 0 12px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.brndle-section-title:first-child {
+	margin-top: 0;
+}
+
+/* Logo upload */
+.brndle-logo-upload {
+	margin-bottom: 16px;
+}
+
+.brndle-logo-upload-area {
+	margin-top: 8px;
+}
+
+.brndle-logo-preview {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.brndle-logo-preview img {
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	padding: 4px;
+	background: #fafafa;
+}
+
+.brndle-logo-actions {
+	display: flex;
+	gap: 8px;
+}
+
+/* Tab panel overrides for a cleaner look */
+.brndle-admin .components-tab-panel__tabs {
+	border-bottom: 1px solid #e0e0e0;
+	background: #fafafa;
+	padding: 0 16px;
+}
+
+.brndle-admin .components-tab-panel__tabs button {
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 16px;
+}
+
+/* WordPress component spacing fixes */
+.brndle-tab-content .components-base-control {
+	margin-bottom: 16px;
+}
+
+.brndle-tab-content .components-base-control:last-child {
+	margin-bottom: 0;
+}
+
+/* Snackbar positioning */
+.brndle-admin .components-snackbar {
+	position: fixed;
+	bottom: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+	.brndle-admin {
+		margin: 10px;
+		border-radius: 0;
+	}
+
+	.brndle-admin-header {
+		flex-direction: column;
+		gap: 12px;
+		align-items: flex-start;
+	}
+
+	.brndle-scheme-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.brndle-font-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.brndle-layout-grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
