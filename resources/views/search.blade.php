@@ -6,17 +6,19 @@
 
     @if(! have_posts())
       <div class="py-12 text-center">
-        <p class="text-lg text-text-secondary">{{ __('No results found.', 'brndle') }}</p>
+        <p class="text-lg text-[var(--color-text-secondary)]">{{ __('No results found.', 'brndle') }}</p>
         {!! get_search_form(false) !!}
       </div>
+    @else
+      @include('partials.archive.list')
     @endif
 
-    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @while(have_posts()) @php(the_post())
-        @include('partials.content-search')
-      @endwhile
+    <div class="mt-16">
+      {!! get_the_posts_pagination([
+        'mid_size' => 2,
+        'prev_text' => __('&larr; Previous', 'brndle'),
+        'next_text' => __('Next &rarr;', 'brndle'),
+      ]) !!}
     </div>
-
-    {!! get_the_posts_navigation() !!}
   </div>
 @endsection
