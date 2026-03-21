@@ -39,18 +39,20 @@ class SettingsServiceProvider
     }
 
     /**
-     * Register the Brndle settings page under Appearance.
+     * Register the Brndle settings page as a top-level admin menu.
      *
      * @return void
      */
     public function registerAdminPage(): void
     {
-        add_theme_page(
+        add_menu_page(
             __('Brndle Settings', 'brndle'),
             __('Brndle', 'brndle'),
             'manage_options',
             'brndle-settings',
-            [$this, 'renderAdminPage']
+            [$this, 'renderAdminPage'],
+            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect width="20" height="20" rx="4" fill="url(#g)"/><text x="10" y="14.5" text-anchor="middle" fill="white" font-family="Arial" font-weight="900" font-size="11">B</text></svg>'),
+            59 // Position: after Comments (25), before Appearance (60)
         );
     }
 
@@ -367,7 +369,7 @@ class SettingsServiceProvider
      */
     public function enqueueAdminAssets(string $hookSuffix): void
     {
-        if ($hookSuffix !== 'appearance_page_brndle-settings') {
+        if ($hookSuffix !== 'toplevel_page_brndle-settings') {
             return;
         }
 

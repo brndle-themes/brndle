@@ -156,3 +156,13 @@ remove_action('wp_head', 'wp_generator');
 // Remove RSD/wlwmanifest
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
+
+/**
+ * Register page templates.
+ */
+add_filter('theme_page_templates', function ($templates) {
+    $templates['template-landing'] = __('Landing Page', 'brndle');
+    $templates['template-canvas'] = __('Full Canvas', 'brndle');
+    $templates['template-transparent'] = __('Transparent Header', 'brndle');
+    return $templates;
+});
