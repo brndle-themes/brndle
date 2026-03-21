@@ -17,5 +17,14 @@ class ThemeServiceProvider extends SageServiceProvider
 
         $this->app->make(BlockServiceProvider::class)->boot();
         $this->app->make(SettingsServiceProvider::class)->boot();
+
+        // Compatibility
+        \Brndle\Compatibility\Yoast::boot();
+        \Brndle\Compatibility\WooCommerce::boot();
+        \Brndle\Compatibility\WPML::boot();
+
+        // Onboarding
+        \Brndle\Onboarding\SetupNotice::boot();
+        \Brndle\Onboarding\StarterContent::boot();
     }
 }
