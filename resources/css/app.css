@@ -7,6 +7,7 @@
 @theme {
   /* Typography */
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-heading: 'Inter', system-ui, -apple-system, sans-serif;
   --font-family-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Brand Colors — override per client via child theme or config */
@@ -16,13 +17,13 @@
   --color-accent-subtle: #eef2ff;
 
   /* Surface Colors */
-  --color-surface-primary: #ffffff;
+  --color-surface-primary: #fafafa;
   --color-surface-secondary: #f8fafc;
   --color-surface-tertiary: #f1f5f9;
   --color-surface-inverse: #080B16;
 
   /* Text Colors */
-  --color-text-primary: #0f172a;
+  --color-text-primary: #171717;
   --color-text-secondary: #475569;
   --color-text-tertiary: #94a3b8;
   --color-text-inverse: #f8fafc;
@@ -48,7 +49,95 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Scroll-driven reveal animations */
+/* Heading font utility */
+.font-heading {
+  font-family: var(--font-family-heading);
+}
+
+/* ========================================================================
+   Dark Mode Layer
+   ======================================================================== */
+
+/* Smooth transitions for theme switching */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode surfaces — fallback defaults
+   (Settings::cssVariables() in <head> overrides these with scheme-specific values) */
+[data-theme="dark"] {
+  --color-surface-primary: #0c1222;
+  --color-surface-secondary: #111827;
+  --color-surface-tertiary: #1a2234;
+  --color-surface-inverse: #f8fafc;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-text-inverse: #0f172a;
+  color-scheme: dark;
+}
+
+/* System preference fallback */
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] {
+    --color-surface-primary: #0c1222;
+    --color-surface-secondary: #111827;
+    --color-surface-tertiary: #1a2234;
+    --color-surface-inverse: #f8fafc;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
+    --color-text-inverse: #0f172a;
+    color-scheme: dark;
+  }
+}
+
+/* ========================================================================
+   Dark Mode Prose Overrides
+   ======================================================================== */
+
+[data-theme="dark"] .prose {
+  --tw-prose-body: var(--color-text-secondary);
+  --tw-prose-headings: var(--color-text-primary);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-text-primary);
+  --tw-prose-counters: var(--color-text-tertiary);
+  --tw-prose-bullets: var(--color-text-tertiary);
+  --tw-prose-hr: var(--color-surface-tertiary);
+  --tw-prose-quotes: var(--color-text-secondary);
+  --tw-prose-quote-borders: var(--color-accent);
+  --tw-prose-captions: var(--color-text-tertiary);
+  --tw-prose-code: var(--color-text-primary);
+  --tw-prose-pre-code: #e2e8f0;
+  --tw-prose-pre-bg: var(--color-surface-secondary);
+  --tw-prose-th-borders: var(--color-surface-tertiary);
+  --tw-prose-td-borders: var(--color-surface-tertiary);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] .prose {
+    --tw-prose-body: var(--color-text-secondary);
+    --tw-prose-headings: var(--color-text-primary);
+    --tw-prose-links: var(--color-accent);
+    --tw-prose-bold: var(--color-text-primary);
+    --tw-prose-counters: var(--color-text-tertiary);
+    --tw-prose-bullets: var(--color-text-tertiary);
+    --tw-prose-hr: var(--color-surface-tertiary);
+    --tw-prose-quotes: var(--color-text-secondary);
+    --tw-prose-quote-borders: var(--color-accent);
+    --tw-prose-captions: var(--color-text-tertiary);
+    --tw-prose-code: var(--color-text-primary);
+    --tw-prose-pre-code: #e2e8f0;
+    --tw-prose-pre-bg: var(--color-surface-secondary);
+    --tw-prose-th-borders: var(--color-surface-tertiary);
+    --tw-prose-td-borders: var(--color-surface-tertiary);
+  }
+}
+
+/* ========================================================================
+   Scroll-driven Reveal Animations
+   ======================================================================== */
+
 @supports (animation-timeline: view()) {
   .reveal {
     opacity: 0;
@@ -66,6 +155,20 @@
 @supports not (animation-timeline: view()) {
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ========================================================================
+   Reduced Motion Support
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; animation: none; }
+  html { transition: none !important; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* ========================================================================
+   Utilities
+   ======================================================================== */
 
 /* Gradient text utility */
 .gradient-text {
@@ -88,3 +191,15 @@
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+/* ========================================================================
+   Dark Mode Utilities
+   ======================================================================== */
+
+/* Slightly reduce image brightness in dark mode */
+[data-theme="dark"] img { opacity: 0.9; }
+[data-theme="dark"] .shadow-glow { --shadow-glow: 0 0 40px var(--color-accent-muted); }
+
+/* Dark mode scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #475569; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: var(--color-surface-primary); }
