@@ -3,7 +3,7 @@
   $isDark = ($a['variant'] ?? 'dark') === 'dark';
 @endphp
 
-<section class="relative min-h-screen flex items-center overflow-hidden {{ $isDark ? 'bg-surface-inverse text-white' : 'bg-surface-primary text-text-primary' }} noise">
+<section class="relative min-h-screen flex items-center overflow-hidden text-white noise" style="background-color: {{ $isDark ? '#080B16' : 'var(--color-surface-primary)' }}">
   {{-- Ambient --}}
   <div class="absolute inset-0 overflow-hidden">
     <div class="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
