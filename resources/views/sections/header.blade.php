@@ -399,6 +399,345 @@
 </script>
 
 {{-- ============================================================
+     STYLE: SPLIT — Two-row header (logo + nav separated)
+     ============================================================ --}}
+@elseif($style === 'split')
+<header id="brndle-header" class="relative z-50 bg-surface-primary" aria-label="Site header">
+  {{-- Top row: logo + search + CTA --}}
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    {{-- Logo --}}
+    <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
+      @if(!empty($siteLogo))
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+      @else
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
+        </div>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+      @endif
+    </a>
+
+    {{-- Right side: search icon + dark mode + CTA --}}
+    <div class="flex items-center gap-3">
+      {{-- Search icon --}}
+      <button type="button" class="hidden md:flex items-center justify-center w-10 h-10 text-text-secondary hover:text-text-primary transition-colors" aria-label="Search" onclick="document.dispatchEvent(new CustomEvent('brndle:search-open'))">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+        </svg>
+      </button>
+
+      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        <div class="hidden md:block">
+          @include('partials.components.dark-mode-toggle')
+        </div>
+      @endif
+
+      @if(!empty($headerCtaText))
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
+           class="hidden md:inline-flex px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+          {{ $headerCtaText }}
+        </a>
+      @endif
+
+      {{-- Mobile toggle --}}
+      <button id="brndle-menu-btn" type="button"
+              class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
+              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {{-- Bottom row: centered nav --}}
+  <div class="hidden md:block border-t border-surface-tertiary/50">
+    <nav class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-center" aria-label="Main navigation">
+      @if(has_nav_menu('primary_navigation'))
+        {!! wp_nav_menu([
+          'theme_location' => 'primary_navigation',
+          'menu_class' => 'flex items-center gap-8',
+          'container' => false,
+          'echo' => false,
+          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_after' => '</span>',
+        ]) !!}
+      @endif
+    </nav>
+  </div>
+
+  {{-- Mobile menu --}}
+  <div id="brndle-mobile-menu" class="overflow-hidden transition-all duration-300 max-h-0 md:hidden bg-surface-primary border-t border-surface-tertiary/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
+      @if(has_nav_menu('primary_navigation'))
+        {!! wp_nav_menu([
+          'theme_location' => 'primary_navigation',
+          'menu_class' => 'space-y-1',
+          'container' => false,
+          'echo' => false,
+          'link_before' => '<span class="block text-sm font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
+          'link_after' => '</span>',
+        ]) !!}
+      @endif
+      @if(!empty($headerCtaText))
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-sm font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+          {{ $headerCtaText }}
+        </a>
+      @endif
+      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        <div class="pt-2">
+          @include('partials.components.dark-mode-toggle')
+        </div>
+      @endif
+    </div>
+  </div>
+</header>
+
+<script>
+(function(){
+  var btn=document.getElementById('brndle-menu-btn');
+  var menu=document.getElementById('brndle-mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('max-h-[400px]');
+    menu.classList.toggle('max-h-0');
+    btn.setAttribute('aria-expanded',open);
+  });
+})();
+</script>
+
+{{-- ============================================================
+     STYLE: BANNER — Announcement bar + sticky header
+     ============================================================ --}}
+@elseif($style === 'banner')
+@php
+  $bannerText = $headerBannerText ?? 'Free shipping on all orders';
+@endphp
+<div id="brndle-banner" class="relative z-50 bg-accent text-white text-center text-sm py-2 px-6 transition-all" role="banner" aria-label="Announcement">
+  <div class="max-w-7xl mx-auto flex items-center justify-center gap-4">
+    <span class="font-medium">{{ $bannerText }}</span>
+    <button id="brndle-banner-close" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="Dismiss announcement">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<header id="brndle-header" class="sticky top-0 z-50 bg-surface-primary/80 backdrop-blur-xl border-b border-surface-tertiary/50 transition-all" aria-label="Site header">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+    {{-- Logo --}}
+    <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
+      @if(!empty($siteLogo))
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+      @else
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
+        </div>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+      @endif
+    </a>
+
+    {{-- Desktop Navigation --}}
+    @if(has_nav_menu('primary_navigation'))
+      <div class="hidden md:flex items-center gap-8">
+        {!! wp_nav_menu([
+          'theme_location' => 'primary_navigation',
+          'menu_class' => 'flex items-center gap-8',
+          'container' => false,
+          'echo' => false,
+          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_after' => '</span>',
+        ]) !!}
+      </div>
+    @endif
+
+    {{-- Right side --}}
+    <div class="hidden md:flex items-center gap-3">
+      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        @include('partials.components.dark-mode-toggle')
+      @endif
+
+      @if(!empty($headerCtaText))
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
+           class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+          {{ $headerCtaText }}
+        </a>
+      @endif
+    </div>
+
+    {{-- Mobile toggle --}}
+    <button id="brndle-menu-btn" type="button"
+            class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+      </svg>
+    </button>
+  </nav>
+
+  {{-- Mobile menu --}}
+  <div id="brndle-mobile-menu" class="overflow-hidden transition-all duration-300 max-h-0 md:hidden bg-surface-primary border-t border-surface-tertiary/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
+      @if(has_nav_menu('primary_navigation'))
+        {!! wp_nav_menu([
+          'theme_location' => 'primary_navigation',
+          'menu_class' => 'space-y-1',
+          'container' => false,
+          'echo' => false,
+          'link_before' => '<span class="block text-sm font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
+          'link_after' => '</span>',
+        ]) !!}
+      @endif
+      @if(!empty($headerCtaText))
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-sm font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+          {{ $headerCtaText }}
+        </a>
+      @endif
+      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        <div class="pt-2">
+          @include('partials.components.dark-mode-toggle')
+        </div>
+      @endif
+    </div>
+  </div>
+</header>
+
+<script>
+(function(){
+  var banner=document.getElementById('brndle-banner');
+  var closeBtn=document.getElementById('brndle-banner-close');
+  if(!banner||!closeBtn)return;
+  if(localStorage.getItem('brndle_banner_hidden')==='1'){banner.style.display='none';return;}
+  closeBtn.addEventListener('click',function(){
+    banner.style.display='none';
+    localStorage.setItem('brndle_banner_hidden','1');
+  });
+})();
+(function(){
+  var btn=document.getElementById('brndle-menu-btn');
+  var menu=document.getElementById('brndle-mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('max-h-[400px]');
+    menu.classList.toggle('max-h-0');
+    btn.setAttribute('aria-expanded',open);
+  });
+})();
+</script>
+
+{{-- ============================================================
+     STYLE: GLASS — Glassmorphism fixed header for dark heroes
+     ============================================================ --}}
+@elseif($style === 'glass')
+<header id="brndle-header" class="fixed top-0 inset-x-0 z-50 transition-all" aria-label="Site header">
+  {{-- Gradient top border --}}
+  <div class="h-px bg-gradient-to-r from-accent via-accent/50 to-transparent"></div>
+
+  <div class="bg-white/10 backdrop-blur-2xl backdrop-saturate-150" id="brndle-glass-bg">
+    <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+      {{-- Logo --}}
+      <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
+        @if(!empty($siteLogo))
+          <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
+        @else
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
+          </div>
+          <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
+        @endif
+      </a>
+
+      {{-- Desktop Navigation --}}
+      @if(has_nav_menu('primary_navigation'))
+        <div class="hidden md:flex items-center gap-8">
+          {!! wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'menu_class' => 'flex items-center gap-8',
+            'container' => false,
+            'echo' => false,
+            'link_before' => '<span class="text-[13px] font-medium text-white/70 hover:text-white transition-colors">',
+            'link_after' => '</span>',
+          ]) !!}
+        </div>
+      @endif
+
+      {{-- Right side --}}
+      <div class="hidden md:flex items-center gap-3">
+        @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+          @include('partials.components.dark-mode-toggle')
+        @endif
+
+        @if(!empty($headerCtaText))
+          <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
+             class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25 transition-all">
+            {{ $headerCtaText }}
+          </a>
+        @endif
+      </div>
+
+      {{-- Mobile toggle --}}
+      <button id="brndle-menu-btn" type="button"
+              class="md:hidden flex items-center justify-center w-10 h-10 text-white/80"
+              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </nav>
+
+    {{-- Mobile menu --}}
+    <div id="brndle-mobile-menu" class="overflow-hidden transition-all duration-300 max-h-0 md:hidden border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
+        @if(has_nav_menu('primary_navigation'))
+          {!! wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'menu_class' => 'space-y-1',
+            'container' => false,
+            'echo' => false,
+            'link_before' => '<span class="block text-sm font-medium text-white/60 hover:text-white py-2.5 transition-colors">',
+            'link_after' => '</span>',
+          ]) !!}
+        @endif
+        @if(!empty($headerCtaText))
+          <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-sm font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+            {{ $headerCtaText }}
+          </a>
+        @endif
+        @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+          <div class="pt-2">
+            @include('partials.components.dark-mode-toggle')
+          </div>
+        @endif
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+(function(){
+  var bg=document.getElementById('brndle-glass-bg');
+  if(!bg)return;
+  window.addEventListener('scroll',function(){
+    var o=Math.min(window.scrollY/200,0.85);
+    bg.style.backgroundColor='rgba(0,0,0,'+o+')';
+  },{passive:true});
+})();
+(function(){
+  var btn=document.getElementById('brndle-menu-btn');
+  var menu=document.getElementById('brndle-mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('max-h-[400px]');
+    menu.classList.toggle('max-h-0');
+    btn.setAttribute('aria-expanded',open);
+  });
+})();
+</script>
+
+{{-- ============================================================
      STYLE: STICKY (default) — Glassmorphism sticky header
      ============================================================ --}}
 @else

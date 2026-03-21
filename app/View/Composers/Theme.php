@@ -56,6 +56,11 @@ class Theme extends Composer
         return Settings::get('header_cta_url', '');
     }
 
+    public function headerBannerText(): string
+    {
+        return Settings::get('header_banner_text', 'Free shipping on all orders');
+    }
+
     // ── Footer ───────────────────────────────────────────────
 
     public function footerStyle(): string

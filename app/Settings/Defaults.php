@@ -47,6 +47,7 @@ class Defaults
             'header_style' => 'sticky',
             'header_cta_text' => '',
             'header_cta_url' => '',
+            'header_banner_text' => 'Free shipping on all orders',
             'header_mobile_style' => 'slide',
 
             // ── Footer ──────────────────────────────────────────

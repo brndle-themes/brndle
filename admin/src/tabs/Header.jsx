@@ -14,10 +14,24 @@ export default function Header( { settings, onChange } ) {
 					{ label: 'Transparent', value: 'transparent' },
 					{ label: 'Centered', value: 'centered' },
 					{ label: 'Minimal', value: 'minimal' },
+					{ label: 'Split', value: 'split' },
+					{ label: 'Banner', value: 'banner' },
+					{ label: 'Glass', value: 'glass' },
 				] }
 				onChange={ ( v ) => onChange( 'header_style', v ) }
 				__nextHasNoMarginBottom
 			/>
+
+			{ settings.header_style === 'banner' && (
+				<TextControl
+					label="Banner Text"
+					value={ settings.header_banner_text || '' }
+					onChange={ ( v ) => onChange( 'header_banner_text', v ) }
+					placeholder="Free shipping on all orders"
+					help="Announcement text displayed in the top banner bar."
+					__nextHasNoMarginBottom
+				/>
+			) }
 
 			<h3 className="brndle-section-title">Call to Action</h3>
 
