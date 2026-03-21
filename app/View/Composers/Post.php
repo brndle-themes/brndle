@@ -11,6 +11,7 @@ class Post extends Composer
         'partials.content',
         'partials.content-*',
         'partials.single.*',
+        'partials.archive.*',
     ];
 
     public function title(): string

@@ -376,6 +376,9 @@ class SettingsServiceProvider
             ? require $assetFile
             : ['dependencies' => [], 'version' => wp_get_theme()->get('Version')];
 
+        // Enqueue WordPress media library for logo uploads
+        wp_enqueue_media();
+
         wp_enqueue_script(
             'brndle-admin',
             get_theme_file_uri('admin/build/index.js'),

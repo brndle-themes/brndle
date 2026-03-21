@@ -115,15 +115,17 @@ add_action('widgets_init', function () {
 });
 
 /**
- * Remove WordPress bloat for performance.
+ * Remove WordPress bloat for performance (conditional on settings).
  */
 add_action('wp_enqueue_scripts', function () {
-    // Remove emoji scripts
-    remove_action('wp_head', 'print_emoji_detection_script', 7);
-    remove_action('wp_print_styles', 'print_emoji_styles');
+    if (\Brndle\Settings\Settings::get('perf_remove_emoji', true)) {
+        remove_action('wp_head', 'print_emoji_detection_script', 7);
+        remove_action('wp_print_styles', 'print_emoji_styles');
+    }
 
-    // Remove wp-embed
-    wp_dequeue_script('wp-embed');
+    if (\Brndle\Settings\Settings::get('perf_remove_embed', true)) {
+        wp_dequeue_script('wp-embed');
+    }
 
     // Remove global styles (block library CSS) on landing pages
     if (is_page_template('template-landing')) {
@@ -132,6 +134,11 @@ add_action('wp_enqueue_scripts', function () {
         wp_dequeue_style('wp-block-library-theme');
         wp_dequeue_style('classic-theme-styles');
     }
+});
+
+// Conditional lazy loading
+add_filter('wp_lazy_loading_enabled', function () {
+    return (bool) \Brndle\Settings\Settings::get('perf_lazy_images', true);
 });
 
 // Remove oEmbed discovery
