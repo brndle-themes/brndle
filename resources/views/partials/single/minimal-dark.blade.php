@@ -6,16 +6,16 @@
 @includeWhen($singleShowProgressBar, 'partials.components.reading-progress')
 
 <div data-theme="dark">
-  <article @php(post_class('h-entry bg-[var(--color-surface-primary)] text-[var(--color-text-primary)]'))>
+  <article @php(post_class('h-entry bg-surface-primary text-text-primary'))>
 
     {{-- Header --}}
     <header class="max-w-[640px] mx-auto px-6 pt-32 pb-12 space-y-8">
       {{-- Category + date in monospace --}}
-      <div class="flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider uppercase text-[var(--color-text-tertiary)]">
+      <div class="flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider uppercase text-text-tertiary">
         @if($category = get_the_category())
           <a
             href="{{ get_category_link($category[0]->term_id) }}"
-            class="text-[var(--color-accent)] hover:opacity-80 transition-opacity"
+            class="text-accent hover:opacity-80 transition-opacity"
           >
             {{ $category[0]->name }}
           </a>
@@ -30,7 +30,7 @@
         @endif
       </div>
 
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-[var(--color-text-primary)] [text-wrap:balance] p-name">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
         {!! $title !!}
       </h1>
 
@@ -46,14 +46,14 @@
         >
         <a
           href="{{ get_author_posts_url(get_the_author_meta('ID')) }}"
-          class="font-mono text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors p-author h-card"
+          class="font-mono text-sm text-text-secondary hover:text-accent transition-colors p-author h-card"
         >
           {{ get_the_author() }}
         </a>
       </div>
 
       {{-- Thin divider --}}
-      <div class="border-t border-[var(--color-surface-tertiary)]"></div>
+      <div class="border-t border-surface-tertiary"></div>
     </header>
 
     {{-- Featured image: no rounded corners, no shadows --}}
@@ -72,12 +72,12 @@
     <div class="max-w-[640px] mx-auto px-6 e-content">
       <div class="minimal-dark-content prose prose-lg prose-invert max-w-none
         prose-headings:font-bold prose-headings:tracking-tight
-        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline
         prose-img:rounded-none
-        prose-pre:bg-transparent prose-pre:border prose-pre:border-[var(--color-surface-tertiary)]
-        prose-code:text-[var(--color-text-primary)]
-        prose-blockquote:border-[var(--color-surface-tertiary)]
-        prose-blockquote:text-[var(--color-text-secondary)]">
+        prose-pre:bg-transparent prose-pre:border prose-pre:border-surface-tertiary
+        prose-code:text-text-primary
+        prose-blockquote:border-surface-tertiary
+        prose-blockquote:text-text-secondary">
         @php(the_content())
       </div>
     </div>
@@ -110,12 +110,12 @@
 
     {{-- Tags --}}
     @if($tags = get_the_tags())
-      <div class="max-w-[640px] mx-auto px-6 mt-16 pt-8 border-t border-[var(--color-surface-tertiary)]">
+      <div class="max-w-[640px] mx-auto px-6 mt-16 pt-8 border-t border-surface-tertiary">
         <div class="flex flex-wrap gap-2">
           @foreach($tags as $tag)
             <a
               href="{{ get_tag_link($tag->term_id) }}"
-              class="px-3 py-1 font-mono text-xs tracking-wider rounded-none border border-[var(--color-surface-tertiary)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+              class="px-3 py-1 font-mono text-xs tracking-wider rounded-none border border-surface-tertiary text-text-secondary hover:border-accent hover:text-accent transition-colors"
             >
               {{ $tag->name }}
             </a>

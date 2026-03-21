@@ -11,19 +11,19 @@
   <div class="lg:grid lg:grid-cols-2 lg:min-h-screen">
 
     {{-- Left panel: sticky info --}}
-    <div class="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center bg-[var(--color-surface-secondary)] border-r border-[var(--color-accent)]/10">
+    <div class="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center bg-surface-secondary border-r border-accent/10">
       <div class="px-8 lg:px-12 py-16 lg:py-0">
         {{-- Category --}}
         @if($category = get_the_category())
           <a
             href="{{ get_category_link($category[0]->term_id) }}"
-            class="inline-block text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)] hover:opacity-80 transition-opacity"
+            class="inline-block text-xs font-semibold uppercase tracking-wider text-accent hover:opacity-80 transition-opacity"
           >
             {{ $category[0]->name }}
           </a>
         @endif
 
-        <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-[var(--color-text-primary)] [text-wrap:balance] p-name">
+        <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
           {!! $title !!}
         </h1>
 
@@ -41,11 +41,11 @@
             <div>
               <a
                 href="{{ get_author_posts_url(get_the_author_meta('ID')) }}"
-                class="block font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors p-author h-card"
+                class="block font-medium text-text-primary hover:text-accent transition-colors p-author h-card"
               >
                 {{ get_the_author() }}
               </a>
-              <div class="flex items-center gap-2 text-xs text-[var(--color-text-tertiary)]">
+              <div class="flex items-center gap-2 text-xs text-text-tertiary">
                 <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
                   {{ get_the_date() }}
                 </time>
@@ -64,7 +64,7 @@
             @foreach($tags as $tag)
               <a
                 href="{{ get_tag_link($tag->term_id) }}"
-                class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-surface-primary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-colors"
+                class="px-3 py-1 text-xs font-medium rounded-full bg-surface-primary text-text-secondary hover:bg-accent-subtle hover:text-accent transition-colors"
               >
                 {{ $tag->name }}
               </a>
@@ -87,7 +87,7 @@
     </div>
 
     {{-- Right panel: scrollable content --}}
-    <div class="bg-[var(--color-surface-primary)]">
+    <div class="bg-surface-primary">
       {{-- Featured image for mobile (above content) --}}
       @if(has_post_thumbnail())
         <div class="lg:hidden px-6 pt-8">
@@ -106,7 +106,7 @@
       <div class="max-w-[700px] px-8 py-16 e-content">
         <div class="prose prose-lg max-w-none
           prose-headings:font-bold prose-headings:tracking-tight
-          prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+          prose-a:text-accent prose-a:no-underline hover:prose-a:underline
           prose-img:rounded-xl">
           @php(the_content())
         </div>

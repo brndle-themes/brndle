@@ -68,25 +68,25 @@
     </header>
 
     {{-- Content section rises above hero --}}
-    <div class="relative z-10 bg-[var(--color-surface-primary)] -mt-20 rounded-t-3xl pt-16">
+    <div class="relative z-10 bg-surface-primary -mt-20 rounded-t-3xl pt-16">
   @else
     {{-- Fallback: dark gradient header when no featured image --}}
-    <header class="relative bg-[var(--color-surface-inverse)] py-20">
+    <header class="relative bg-surface-inverse py-20">
       <div class="max-w-4xl mx-auto px-6">
         @if($category = get_the_category())
           <a
             href="{{ get_category_link($category[0]->term_id) }}"
-            class="inline-block text-xs font-semibold uppercase tracking-wider text-[var(--color-text-inverse)]/70 hover:text-[var(--color-text-inverse)] transition-colors"
+            class="inline-block text-xs font-semibold uppercase tracking-wider text-text-inverse/70 hover:text-text-inverse transition-colors"
           >
             {{ $category[0]->name }}
           </a>
         @endif
 
-        <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-[var(--color-text-inverse)] [text-wrap:balance] p-name">
+        <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-text-inverse [text-wrap:balance] p-name">
           {!! $title !!}
         </h1>
 
-        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-inverse)]/60">
+        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-text-inverse/60">
           <div class="flex items-center gap-2">
             @php($avatar = get_avatar_url(get_the_author_meta('ID'), ['size' => 40]))
             <img
@@ -98,7 +98,7 @@
             >
             <a
               href="{{ get_author_posts_url(get_the_author_meta('ID')) }}"
-              class="font-medium text-[var(--color-text-inverse)] hover:opacity-80 transition-opacity p-author h-card"
+              class="font-medium text-text-inverse hover:opacity-80 transition-opacity p-author h-card"
             >
               {{ get_the_author() }}
             </a>
@@ -115,14 +115,14 @@
       </div>
     </header>
 
-    <div class="bg-[var(--color-surface-primary)] pt-16">
+    <div class="bg-surface-primary pt-16">
   @endif
 
     {{-- Content --}}
     <div class="max-w-[700px] mx-auto px-6 e-content">
       <div class="prose prose-lg max-w-none
         prose-headings:font-bold prose-headings:tracking-tight
-        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline
         prose-img:rounded-xl">
         @php(the_content())
       </div>
@@ -139,12 +139,12 @@
 
     {{-- Tags --}}
     @if($tags = get_the_tags())
-      <div class="max-w-[700px] mx-auto px-6 mt-12 pt-8 border-t border-[var(--color-surface-tertiary)]">
+      <div class="max-w-[700px] mx-auto px-6 mt-12 pt-8 border-t border-surface-tertiary">
         <div class="flex flex-wrap gap-2">
           @foreach($tags as $tag)
             <a
               href="{{ get_tag_link($tag->term_id) }}"
-              class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-surface-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-colors"
+              class="px-3 py-1 text-xs font-medium rounded-full bg-surface-secondary text-text-secondary hover:bg-accent-subtle hover:text-accent transition-colors"
             >
               {{ $tag->name }}
             </a>

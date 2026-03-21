@@ -12,17 +12,17 @@
     @if($category = get_the_category())
       <a
         href="{{ get_category_link($category[0]->term_id) }}"
-        class="inline-block text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)] hover:opacity-80 transition-opacity"
+        class="inline-block text-xs font-semibold uppercase tracking-wider text-accent hover:opacity-80 transition-opacity"
       >
         {{ $category[0]->name }}
       </a>
     @endif
 
-    <h1 class="mt-4 text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-[var(--color-text-primary)] [text-wrap:balance] p-name">
+    <h1 class="mt-4 text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
       {!! $title !!}
     </h1>
 
-    <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-tertiary)]">
+    <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-text-tertiary">
       <div class="flex items-center gap-2">
         @php($avatar = get_avatar_url(get_the_author_meta('ID'), ['size' => 40]))
         <img
@@ -34,7 +34,7 @@
         >
         <a
           href="{{ get_author_posts_url(get_the_author_meta('ID')) }}"
-          class="font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors p-author h-card"
+          class="font-medium text-text-primary hover:text-accent transition-colors p-author h-card"
         >
           {{ get_the_author() }}
         </a>
@@ -67,8 +67,8 @@
   {{-- Mobile TOC (collapsible) --}}
   @if($singleShowToc)
     <div class="lg:hidden max-w-[700px] mx-auto px-6 mb-8">
-      <details class="rounded-xl border border-[var(--color-surface-tertiary)] bg-[var(--color-surface-secondary)]">
-        <summary class="px-4 py-3 text-sm font-semibold text-[var(--color-text-primary)] cursor-pointer select-none">
+      <details class="rounded-xl border border-surface-tertiary bg-surface-secondary">
+        <summary class="px-4 py-3 text-sm font-semibold text-text-primary cursor-pointer select-none">
           {{ __('Table of Contents', 'brndle') }}
         </summary>
         <div class="px-4 pb-4">
@@ -86,7 +86,7 @@
       <div class="max-w-[700px] e-content">
         <div class="prose prose-lg max-w-none
           prose-headings:font-bold prose-headings:tracking-tight
-          prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+          prose-a:text-accent prose-a:no-underline hover:prose-a:underline
           prose-img:rounded-xl">
           @php(the_content())
         </div>
@@ -103,12 +103,12 @@
 
       {{-- Tags --}}
       @if($tags = get_the_tags())
-        <div class="max-w-[700px] mt-12 pt-8 border-t border-[var(--color-surface-tertiary)]">
+        <div class="max-w-[700px] mt-12 pt-8 border-t border-surface-tertiary">
           <div class="flex flex-wrap gap-2">
             @foreach($tags as $tag)
               <a
                 href="{{ get_tag_link($tag->term_id) }}"
-                class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-surface-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-colors"
+                class="px-3 py-1 text-xs font-medium rounded-full bg-surface-secondary text-text-secondary hover:bg-accent-subtle hover:text-accent transition-colors"
               >
                 {{ $tag->name }}
               </a>

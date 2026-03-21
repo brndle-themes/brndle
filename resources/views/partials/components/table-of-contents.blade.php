@@ -15,8 +15,8 @@
 
 @if(!empty($matches))
   <nav class="brndle-toc" aria-label="{{ __('Table of Contents', 'brndle') }}">
-    <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--color-text-tertiary)] mb-4">{{ __('On this page', 'brndle') }}</h2>
-    <ol class="space-y-2 text-sm text-[var(--color-text-secondary)]" id="brndle-toc-list">
+    <h2 class="text-sm font-bold uppercase tracking-widest text-text-tertiary mb-4">{{ __('On this page', 'brndle') }}</h2>
+    <ol class="space-y-2 text-sm text-text-secondary" id="brndle-toc-list">
       @php $inH3 = false; @endphp
       @foreach($matches as $heading)
         @if($heading[1] == '2')
@@ -25,7 +25,7 @@
             @php $inH3 = false; @endphp
           @endif
           <li>
-            <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-1 hover:text-[var(--color-accent)] transition-colors" data-target="{{ $heading[2] }}">
+            <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-1 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">
               {{ wp_strip_all_tags($heading[3]) }}
             </a>
         @elseif($heading[1] == '3')
@@ -34,7 +34,7 @@
             @php $inH3 = true; @endphp
           @endif
             <li>
-              <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-0.5 hover:text-[var(--color-accent)] transition-colors" data-target="{{ $heading[2] }}">
+              <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-0.5 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">
                 {{ wp_strip_all_tags($heading[3]) }}
               </a>
             </li>
@@ -60,9 +60,9 @@
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting){
-          links.forEach(function(l){l.classList.remove('text-[var(--color-accent)]','font-medium');});
+          links.forEach(function(l){l.classList.remove('text-accent','font-medium');});
           var active=document.querySelector('.brndle-toc-link[data-target="'+e.target.id+'"]');
-          if(active){active.classList.add('text-[var(--color-accent)]','font-medium');}
+          if(active){active.classList.add('text-accent','font-medium');}
         }
       });
     },{rootMargin:'-80px 0px -60% 0px',threshold:0});

@@ -6,7 +6,7 @@
   $authorAvatar = get_avatar_url($authorId, ['size' => 112]);
 @endphp
 
-<div class="p-6 rounded-2xl bg-[var(--color-surface-secondary)] border border-[var(--color-surface-tertiary)]">
+<div class="p-6 rounded-2xl bg-surface-secondary border border-surface-tertiary">
   <div class="flex items-start gap-4">
     <img
       src="{{ $authorAvatar }}"
@@ -16,11 +16,11 @@
       decoding="async"
     >
     <div>
-      <a href="{{ $authorUrl }}" class="font-bold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors">
+      <a href="{{ $authorUrl }}" class="font-bold text-text-primary hover:text-accent transition-colors">
         {{ $authorName }}
       </a>
       @if($authorBio)
-        <p class="mt-1 text-sm text-[var(--color-text-secondary)] leading-relaxed">
+        <p class="mt-1 text-sm text-text-secondary leading-relaxed">
           {{ $authorBio }}
         </p>
       @endif

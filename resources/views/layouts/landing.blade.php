@@ -13,7 +13,7 @@
     {{-- No JS loaded for landing pages — zero JS --}}
   </head>
 
-  <body @php(body_class('font-sans antialiased bg-[var(--color-surface-primary)] text-[var(--color-text-primary)]'))>
+  <body @php(body_class('font-sans antialiased bg-surface-primary text-text-primary'))>
     @php(wp_body_open())
 
     <div id="app">

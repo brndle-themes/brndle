@@ -10,7 +10,7 @@
 
     @if(! have_posts())
       <div class="py-12 text-center">
-        <p class="text-lg text-[var(--color-text-secondary)]">{{ __('No posts found.', 'brndle') }}</p>
+        <p class="text-lg text-text-secondary">{{ __('No posts found.', 'brndle') }}</p>
         {!! get_search_form(false) !!}
       </div>
     @else
