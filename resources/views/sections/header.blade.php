@@ -121,7 +121,7 @@
           'menu_class' => 'flex items-center gap-1',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="px-4 py-1.5 text-[13px] font-medium text-text-secondary hover:text-text-primary hover:bg-surface-secondary rounded-full transition-all">',
+          'link_before' => '<span class="px-4 py-1.5 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-secondary rounded-full transition-all">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -137,7 +137,7 @@
     {{-- CTA --}}
     @if(!empty($headerCtaText))
       <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-         class="hidden md:inline-flex px-5 py-1.5 text-[13px] font-semibold rounded-full bg-accent text-white hover:opacity-90 transition-opacity">
+         class="hidden md:inline-flex px-5 py-1.5 text-sm font-semibold rounded-full bg-accent text-white hover:opacity-90 transition-opacity">
         {{ $headerCtaText }}
       </a>
     @endif
@@ -219,7 +219,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-[13px] font-medium text-white/80 hover:text-white transition-colors">',
+          'link_before' => '<span class="text-sm font-medium text-white/80 hover:text-white transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -233,7 +233,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-[13px] font-semibold rounded-lg border border-white/30 text-white hover:bg-white/10 transition-all">
+           class="px-5 py-2 text-sm font-semibold rounded-lg border border-white/30 text-white hover:bg-white/10 transition-all">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -328,7 +328,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_before' => '<span class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -342,7 +342,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -435,7 +435,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="hidden md:inline-flex px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="hidden md:inline-flex px-5 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -460,7 +460,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_before' => '<span class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       @endif
@@ -548,7 +548,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_before' => '<span class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -562,7 +562,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -658,7 +658,7 @@
             'menu_class' => 'flex items-center gap-8',
             'container' => false,
             'echo' => false,
-            'link_before' => '<span class="text-[13px] font-medium text-white/70 hover:text-white transition-colors">',
+            'link_before' => '<span class="text-sm font-medium text-white/70 hover:text-white transition-colors">',
             'link_after' => '</span>',
           ]) !!}
         </div>
@@ -672,7 +672,7 @@
 
         @if(!empty($headerCtaText))
           <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-             class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25 transition-all">
+             class="px-5 py-2 text-sm font-semibold rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25 transition-all">
             {{ $headerCtaText }}
           </a>
         @endif
@@ -764,7 +764,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">',
+          'link_before' => '<span class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -778,7 +778,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-[13px] font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif

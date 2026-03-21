@@ -56,6 +56,28 @@
 }
 
 /* ========================================================================
+   Global Link Reset — Remove WordPress default underlines
+   Underlines only on hover or inside .prose content blocks
+   ======================================================================== */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Only prose (blog content) gets underlined links */
+.prose a {
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================================================
    Dark Mode Layer
    ======================================================================== */
 
