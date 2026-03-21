@@ -1,7 +1,7 @@
 {{-- Minimal Layout: Author-forward, clean typography (Medium pattern) --}}
 <div class="max-w-3xl mx-auto space-y-10">
   @while(have_posts())
-    @php the_post() @endphp
+    @php(the_post())
     <article @php(post_class('group pb-10 border-b border-[var(--color-surface-tertiary)] last:border-b-0'))>
       <a href="{{ get_permalink() }}" class="block">
         {{-- Author row --}}
