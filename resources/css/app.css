@@ -136,6 +136,26 @@ html {
 }
 
 /* ========================================================================
+   Always-Dark Sections (hero, CTA — never flip with dark/light mode)
+   Like Stripe/Linear/Vercel: hero stays dark in both modes.
+   In dark mode, slightly lighter shade for subtle contrast against page bg.
+   ======================================================================== */
+
+.brndle-section-dark {
+  background-color: #080B16 !important;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .brndle-section-dark {
+  background-color: #0f1629 !important; /* slightly lighter than dark mode page bg (#0c1222) */
+}
+
+.brndle-section-dark .text-text-secondary,
+.brndle-section-dark .text-text-tertiary {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================================================
    Scroll-driven Reveal Animations
    ======================================================================== */
 
