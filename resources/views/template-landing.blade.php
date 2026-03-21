@@ -6,7 +6,8 @@
 @extends('layouts.landing')
 
 @section('content')
-  @while(have_posts()) @php(the_post())
+  @while(have_posts())
+    @php(the_post())
     {!! the_content() !!}
   @endwhile
 @endsection

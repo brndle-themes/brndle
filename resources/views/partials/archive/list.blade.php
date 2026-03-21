@@ -1,6 +1,7 @@
 {{-- List Layout: Horizontal cards, single column (Notion/Intercom pattern) --}}
 <div class="space-y-8">
-  @while(have_posts()) @php(the_post())
+  @while(have_posts())
+    @php(the_post())
     <article @php(post_class('group'))>
       <a href="{{ get_permalink() }}" class="flex flex-col md:flex-row gap-6 pb-8 border-b border-[var(--color-surface-tertiary)] last:border-b-0">
         {{-- Thumbnail --}}

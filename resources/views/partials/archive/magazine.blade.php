@@ -1,7 +1,8 @@
 {{-- Magazine Layout: Featured hero + grid (Linear/Apple pattern) --}}
 @php $postIndex = 0; @endphp
 
-@while(have_posts()) @php(the_post())
+@while(have_posts())
+    @php(the_post())
   @if($postIndex === 0)
     {{-- Hero / Featured Post --}}
     <article @php(post_class('group'))>

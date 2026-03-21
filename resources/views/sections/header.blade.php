@@ -33,10 +33,17 @@
           >
         @endif
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--color-accent)] via-[var(--color-accent-light)] to-cyan-400 flex items-center justify-center shadow-lg shadow-[var(--color-accent)]/20">
-          <span class="text-white text-sm font-black">B</span>
-        </div>
-        <span class="text-lg font-bold tracking-tight {{ $logoTextClass }}">{!! $siteName !!}</span>
+        {{-- Default Brndle SVG logo --}}
+        <img
+          src="{{ get_theme_file_uri('resources/images/logo-light.svg') }}"
+          alt="{{ $siteName }}"
+          class="h-8 dark:hidden [data-theme=dark]:hidden"
+        >
+        <img
+          src="{{ get_theme_file_uri('resources/images/logo-dark.svg') }}"
+          alt="{{ $siteName }}"
+          class="h-8 hidden dark:block [data-theme=dark]:block"
+        >
       @endif
     </a>
 

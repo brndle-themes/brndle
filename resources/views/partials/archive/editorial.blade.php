@@ -1,6 +1,7 @@
 {{-- Editorial Layout: Text-only, chronological (Vercel blog pattern) --}}
 <div class="space-y-0">
-  @while(have_posts()) @php(the_post())
+  @while(have_posts())
+    @php(the_post())
     <article @php(post_class('py-6 border-b border-[var(--color-surface-tertiary)] last:border-b-0'))>
       <a href="{{ get_permalink() }}" class="block group">
         <h2 class="text-xl font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition-colors">
