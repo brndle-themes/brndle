@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/testimonials",
+  "title": "Testimonials Section",
+  "category": "brndle-sections",
+  "description": "Customer testimonials in a card grid layout.",
+  "keywords": ["testimonials", "reviews", "social-proof"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "items": { "type": "array", "default": [] }
+  },
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "render": "file:./render.blade.php"
+}

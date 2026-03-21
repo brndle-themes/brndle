@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/faq",
+  "title": "FAQ Section",
+  "category": "brndle-sections",
+  "description": "Frequently asked questions with CSS-only accordion.",
+  "keywords": ["faq", "questions", "accordion"],
+  "textdomain": "brndle",
+  "attributes": {
+    "title": { "type": "string", "default": "Frequently asked questions" },
+    "items": { "type": "array", "default": [] }
+  },
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "render": "file:./render.blade.php"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/stats",
+  "title": "Stats Section",
+  "category": "brndle-sections",
+  "description": "Key metrics and statistics in a row.",
+  "keywords": ["stats", "numbers", "metrics"],
+  "textdomain": "brndle",
+  "attributes": {
+    "items": { "type": "array", "default": [] },
+    "variant": { "type": "string", "default": "light" }
+  },
+  "supports": { "align": ["full"], "html": false },
+  "render": "file:./render.blade.php"
+}

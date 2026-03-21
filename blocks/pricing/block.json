@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/pricing",
+  "title": "Pricing Section",
+  "category": "brndle-sections",
+  "description": "Pricing table with 2-3 plans, featured plan highlight, and feature lists.",
+  "keywords": ["pricing", "plans", "table"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "plans": { "type": "array", "default": [] },
+    "variant": { "type": "string", "default": "light" }
+  },
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "render": "file:./render.blade.php"
+}

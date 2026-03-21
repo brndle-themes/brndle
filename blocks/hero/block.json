@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/hero",
+  "title": "Hero Section",
+  "category": "brndle-sections",
+  "description": "Full-width hero section with eyebrow, headline, subtitle, CTAs, image, and logo strip.",
+  "keywords": ["hero", "banner", "landing"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "cta_primary": { "type": "string", "default": "" },
+    "cta_primary_url": { "type": "string", "default": "#" },
+    "cta_secondary": { "type": "string", "default": "" },
+    "cta_secondary_url": { "type": "string", "default": "#" },
+    "image": { "type": "string", "default": "" },
+    "variant": { "type": "string", "default": "dark", "enum": ["dark", "light", "gradient"] },
+    "logos": { "type": "array", "default": [] }
+  },
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.blade.php"
+}

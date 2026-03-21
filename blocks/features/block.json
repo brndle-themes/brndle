@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/features",
+  "title": "Features Section",
+  "category": "brndle-sections",
+  "description": "Alternating feature rows with image, title, description, and bullet points.",
+  "keywords": ["features", "benefits", "showcase"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "features": { "type": "array", "default": [] },
+    "variant": { "type": "string", "default": "light", "enum": ["light", "dark", "subtle"] }
+  },
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "render": "file:./render.blade.php"
+}

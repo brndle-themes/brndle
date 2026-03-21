@@ -1,0 +1,48 @@
+{
+  "name": "brndle/brndle",
+  "type": "wordpress-theme",
+  "license": "GPL-2.0-or-later",
+  "description": "Enterprise WordPress theme with AI-powered landing pages, Blade templating, and Tailwind CSS.",
+  "homepage": "https://brndle.com/",
+  "authors": [
+    {
+      "name": "Brndle",
+      "homepage": "https://github.com/brndle"
+    }
+  ],
+  "keywords": [
+    "wordpress",
+    "theme",
+    "blade",
+    "tailwind",
+    "enterprise"
+  ],
+  "support": {
+    "issues": "https://github.com/brndle/brndle/issues",
+    "forum": "https://github.com/brndle/brndle/discussions"
+  },
+  "autoload": {
+    "psr-4": {
+      "Brndle\\": "app/"
+    }
+  },
+  "require": {
+    "php": ">=8.2",
+    "roots/acorn": "^5.0"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.20"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+    ]
+  }
+}
