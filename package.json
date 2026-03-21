@@ -10,6 +10,8 @@
     "build": "vite build",
     "admin:build": "wp-scripts build --webpack-src-dir=admin/src --output-path=admin/build --config=admin/webpack.config.cjs",
     "admin:start": "wp-scripts start --webpack-src-dir=admin/src --output-path=admin/build --config=admin/webpack.config.cjs",
+    "blocks:build": "wp-scripts build --webpack-src-dir=blocks/src --output-path=blocks/build --config=blocks/webpack.config.cjs",
+    "blocks:start": "wp-scripts start --webpack-src-dir=blocks/src --output-path=blocks/build --config=blocks/webpack.config.cjs",
     "translate": "npm run translate:pot && npm run translate:update",
     "translate:pot": "wp i18n make-pot . ./resources/lang/brndle.pot --include=\"theme.json,blocks,app,resources\"",
     "translate:update": "for file in ./resources/lang/*.po; do wp i18n update-po ./resources/lang/brndle.pot $file; done",

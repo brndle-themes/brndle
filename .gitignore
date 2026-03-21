@@ -3,4 +3,6 @@
 /public/build/
 /admin/build/
 !/admin/build/.gitkeep
+/blocks/build/
+!/blocks/build/.gitkeep
 .env

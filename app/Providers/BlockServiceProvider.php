@@ -29,6 +29,29 @@ class BlockServiceProvider
 
     public function registerBlocks(): void
     {
+        // Enqueue editor script for all blocks
+        $asset_file = get_theme_file_path('blocks/build/index.asset.php');
+        if (file_exists($asset_file)) {
+            $asset = require $asset_file;
+            wp_register_script(
+                'brndle-blocks-editor',
+                get_theme_file_uri('blocks/build/index.js'),
+                $asset['dependencies'] ?? [],
+                $asset['version'] ?? false,
+                true
+            );
+
+            $style_path = get_theme_file_path('blocks/build/index.css');
+            if (file_exists($style_path)) {
+                wp_register_style(
+                    'brndle-blocks-editor-style',
+                    get_theme_file_uri('blocks/build/index.css'),
+                    [],
+                    $asset['version'] ?? false
+                );
+            }
+        }
+
         foreach ($this->blocks as $block) {
             $path = get_theme_file_path("blocks/{$block}");
 
@@ -39,6 +62,8 @@ class BlockServiceProvider
             $viewName = "blocks.{$block}";
 
             register_block_type($path, [
+                'editor_script' => 'brndle-blocks-editor',
+                'editor_style' => 'brndle-blocks-editor-style',
                 'render_callback' => function (array $attributes, string $content) use ($viewName) {
                     // Render through Acorn's Blade engine
                     if (function_exists('Roots\\view')) {

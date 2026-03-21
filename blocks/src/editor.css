@@ -1,0 +1,11 @@
+.wp-block-brndle-hero,
+.wp-block-brndle-stats,
+.wp-block-brndle-features,
+.wp-block-brndle-testimonials,
+.wp-block-brndle-pricing,
+.wp-block-brndle-cta,
+.wp-block-brndle-faq,
+.wp-block-brndle-logos {
+	max-width: 100%;
+	margin: 0;
+}
