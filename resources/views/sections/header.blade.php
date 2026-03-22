@@ -1,5 +1,6 @@
 @php
   $style = $headerStyle ?? 'sticky';
+  $toggleInHeader = ($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header';
 @endphp
 
 {{-- ============================================================
@@ -63,7 +64,7 @@
         {{ $headerCtaText }}
       </a>
     @endif
-    @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+    @if($toggleInHeader)
       <div class="mt-8">
         @include('partials.components.dark-mode-toggle')
       </div>
@@ -128,7 +129,7 @@
     @endif
 
     {{-- Dark mode toggle --}}
-    @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+    @if($toggleInHeader)
       <div class="hidden md:block">
         @include('partials.components.dark-mode-toggle')
       </div>
@@ -170,7 +171,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -227,7 +228,7 @@
 
     {{-- Right side --}}
     <div class="hidden md:flex items-center gap-3">
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         @include('partials.components.dark-mode-toggle')
       @endif
 
@@ -267,7 +268,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -336,7 +337,7 @@
 
     {{-- Right side --}}
     <div class="hidden md:flex items-center gap-3">
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         @include('partials.components.dark-mode-toggle')
       @endif
 
@@ -376,7 +377,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -427,7 +428,7 @@
         </svg>
       </button>
 
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="hidden md:block">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -485,7 +486,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -556,7 +557,7 @@
 
     {{-- Right side --}}
     <div class="hidden md:flex items-center gap-3">
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         @include('partials.components.dark-mode-toggle')
       @endif
 
@@ -596,7 +597,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>
@@ -666,7 +667,7 @@
 
       {{-- Right side --}}
       <div class="hidden md:flex items-center gap-3">
-        @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        @if($toggleInHeader)
           @include('partials.components.dark-mode-toggle')
         @endif
 
@@ -706,7 +707,7 @@
             {{ $headerCtaText }}
           </a>
         @endif
-        @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+        @if($toggleInHeader)
           <div class="pt-2">
             @include('partials.components.dark-mode-toggle')
           </div>
@@ -772,7 +773,7 @@
 
     {{-- Right side --}}
     <div class="hidden md:flex items-center gap-3">
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         @include('partials.components.dark-mode-toggle')
       @endif
 
@@ -812,7 +813,7 @@
           {{ $headerCtaText }}
         </a>
       @endif
-      @if(($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header')
+      @if($toggleInHeader)
         <div class="pt-2">
           @include('partials.components.dark-mode-toggle')
         </div>

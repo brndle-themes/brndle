@@ -3,7 +3,7 @@
   Description: Header overlays the content with transparent background. Perfect for pages with dark hero sections.
 --}}
 
-@php($hasDarkMode = (is_callable($showDarkModeToggle) ? $showDarkModeToggle() : $showDarkModeToggle) || (is_callable($darkModeDefault) ? $darkModeDefault() : $darkModeDefault) !== 'light')
+@php($hasDarkMode = $showDarkModeToggle || $darkModeDefault !== 'light')
 <!doctype html>
 <html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $darkModeDefault }}">
   <head>
