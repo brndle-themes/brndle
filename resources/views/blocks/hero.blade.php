@@ -35,14 +35,14 @@
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
         @if($a['cta_primary'])
-          <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-semibold rounded-xl focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isDark ? 'bg-white text-text-primary hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]' : 'bg-surface-inverse text-white hover:opacity-90' }} transition-all duration-300 hover:-translate-y-0.5">
+          <a href="{{ esc_url($a['cta_primary_url']) }}" {!! $isDark ? 'style="color:#0a0a0a"' : '' !!} class="group inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-semibold rounded-xl focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isDark ? 'bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]' : 'bg-surface-inverse text-white hover:opacity-90' }} transition-all duration-300 hover:-translate-y-0.5">
             {{ $a['cta_primary'] }}
             <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         @endif
 
         @if($a['cta_secondary'])
-          <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-medium rounded-xl border focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isDark ? 'border-white/[0.1] text-white/70 hover:bg-white/[0.04]' : 'border-surface-tertiary text-text-secondary hover:bg-surface-secondary' }} transition-all duration-300">
+          <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-medium rounded-xl border focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isDark ? 'border-white/20 text-white/80 hover:bg-white/5 hover:border-white/30' : 'border-surface-tertiary text-text-secondary hover:bg-surface-secondary' }} transition-all duration-300">
             {{ $a['cta_secondary'] }}
           </a>
         @endif
