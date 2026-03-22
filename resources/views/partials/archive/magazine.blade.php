@@ -6,10 +6,10 @@
   @if($postIndex === 0)
     {{-- Hero / Featured Post --}}
     <article @php(post_class('group'))>
-      <a href="{{ get_permalink() }}" class="block rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary hover:shadow-lg transition-all duration-300">
+      <a href="{{ get_permalink() }}" class="block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg transition-all duration-300">
         <div class="grid lg:grid-cols-2 gap-0">
           {{-- Image --}}
-          <div class="aspect-[4/3] overflow-hidden">
+          <div class="aspect-[4/3] overflow-hidden rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none">
             @include('partials.components.post-thumbnail', [
               'size' => 'brndle-hero',
               'priority' => true,
@@ -20,7 +20,7 @@
           {{-- Content --}}
           <div class="p-8 lg:p-10 flex flex-col justify-center">
             @if($category = get_the_category())
-              <span class="text-xs font-semibold uppercase tracking-wider text-accent">{{ $category[0]->name }}</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">{!! esc_html($category[0]->name) !!}</span>
             @endif
 
             <h2 class="mt-3 text-3xl font-bold text-text-primary leading-tight group-hover:text-accent transition-colors">
@@ -51,8 +51,8 @@
   @else
     {{-- Remaining posts: grid cards --}}
     <article @php(post_class('group'))>
-      <a href="{{ get_permalink() }}" class="block rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <div class="aspect-[3/2] overflow-hidden">
+      <a href="{{ get_permalink() }}" class="block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <div class="aspect-[3/2] overflow-hidden rounded-t-2xl">
           @include('partials.components.post-thumbnail', [
             'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
           ])
@@ -60,7 +60,7 @@
 
         <div class="p-6">
           @if($category = get_the_category())
-            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{{ $category[0]->name }}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{!! esc_html($category[0]->name) !!}</span>
           @endif
 
           <h2 class="mt-2 text-lg font-bold text-text-primary leading-snug group-hover:text-accent transition-colors">

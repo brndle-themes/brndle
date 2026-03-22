@@ -256,6 +256,57 @@ html {
 }
 
 /* ========================================================================
+   Pagination
+   ======================================================================== */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a,
+.nav-links span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav-links a {
+  background: var(--color-surface-secondary);
+  color: var(--color-text-secondary);
+}
+
+.nav-links a:hover {
+  background: var(--color-surface-tertiary);
+  color: var(--color-text-primary);
+}
+
+.nav-links .current {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.nav-links .dots {
+  background: transparent;
+  color: var(--color-text-tertiary);
+}
+
+.nav-links .prev,
+.nav-links .next {
+  font-weight: 600;
+}
+
+/* ========================================================================
    RTL Support
    ======================================================================== */
 
