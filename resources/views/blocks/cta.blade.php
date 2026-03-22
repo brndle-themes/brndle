@@ -15,14 +15,14 @@
 
     <div class="mt-10 flex flex-wrap justify-center gap-4">
       @if($a['cta_primary'])
-        <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-8 py-4 text-[0.95rem] font-semibold rounded-xl bg-white text-slate-900 transition-all duration-300 hover:shadow-[0_0_50px_rgba(255,255,255,0.12)] hover:-translate-y-0.5">
+        <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-8 py-4 text-[0.95rem] font-semibold rounded-xl bg-white text-text-primary transition-all duration-300 hover:shadow-[0_0_50px_rgba(255,255,255,0.12)] hover:-translate-y-0.5 focus:outline-2 focus:outline-offset-2 focus:outline-white">
           {{ $a['cta_primary'] }}
           <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       @endif
 
       @if($a['cta_secondary'])
-        <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-8 py-4 text-[0.95rem] font-medium rounded-xl border border-white/15 text-white/80 hover:bg-white/5 hover:border-white/25 transition-all duration-300">
+        <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-8 py-4 text-[0.95rem] font-medium rounded-xl border border-white/15 text-white/80 hover:bg-white/5 hover:border-white/25 transition-all duration-300 focus:outline-2 focus:outline-offset-2 focus:outline-white">
           {{ $a['cta_secondary'] }}
         </a>
       @endif

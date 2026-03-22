@@ -16,6 +16,8 @@ export default function LayoutSelector( {
 					<button
 						key={ option.key }
 						type="button"
+						aria-label={ `Select ${ option.name } layout` }
+						aria-pressed={ selected === option.key }
 						className={ `brndle-layout-card${
 							selected === option.key ? ' selected' : ''
 						}` }

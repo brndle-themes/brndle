@@ -85,6 +85,8 @@ export default function ColorSchemeSelector( {
 					<button
 						key={ preset.key }
 						type="button"
+						aria-label={ `Select ${ preset.name } color scheme` }
+						aria-pressed={ ! useCustom && selectedScheme === preset.key }
 						className={ `brndle-scheme-card${
 							! useCustom && selectedScheme === preset.key
 								? ' selected'

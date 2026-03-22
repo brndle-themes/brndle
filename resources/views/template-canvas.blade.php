@@ -19,6 +19,8 @@
   <body @php(body_class('font-sans antialiased bg-surface-primary text-text-primary'))>
     @php(wp_body_open())
 
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold">{{ __('Skip to content', 'brndle') }}</a>
+
     <main id="main">
       @while(have_posts())
         @php(the_post())

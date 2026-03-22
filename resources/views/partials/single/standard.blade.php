@@ -59,7 +59,7 @@
       prose-a:text-accent prose-a:no-underline hover:prose-a:underline
       prose-img:rounded-xl
       prose-p:leading-relaxed
-      prose-pre:bg-surface-inverse prose-pre:text-slate-300
+      prose-pre:bg-surface-inverse prose-pre:text-white/80
       prose-blockquote:border-l-[var(--color-accent)] prose-blockquote:text-text-secondary
       prose-code:text-accent
       prose-strong:text-text-primary">

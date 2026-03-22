@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from '@wordpress/element';
 import { Button, Spinner, TabPanel, Snackbar } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import { fetchSettings, saveSettings, resetSettings } from './api';
 import SiteIdentity from './tabs/SiteIdentity';
 import Colors from './tabs/Colors';
@@ -36,21 +37,20 @@ export default function App() {
 				setSettings( s );
 				setLoading( false );
 			} )
-			.catch( () => {
+			.catch( ( err ) => {
 				setNotice( {
 					status: 'error',
-					message: 'Failed to load settings.',
+					message: err.message || __( 'Failed to load settings.', 'brndle' ),
 				} );
 				setLoading( false );
 			} );
 	}, [] );
 
 	useEffect( () => {
+		if ( ! dirty ) return;
 		const handler = ( e ) => {
-			if ( dirty ) {
-				e.preventDefault();
-				e.returnValue = '';
-			}
+			e.preventDefault();
+			e.returnValue = '';
 		};
 		window.addEventListener( 'beforeunload', handler );
 		return () => window.removeEventListener( 'beforeunload', handler );
@@ -67,7 +67,7 @@ export default function App() {
 			const result = await saveSettings( settings );
 			setSettings( result.settings );
 			setDirty( false );
-			setNotice( { status: 'success', message: 'Settings saved.' } );
+			setNotice( { status: 'success', message: __( 'Settings saved.', 'brndle' ) } );
 		} catch ( err ) {
 			setNotice( { status: 'error', message: err.message } );
 		}
@@ -77,7 +77,7 @@ export default function App() {
 	const handleReset = async () => {
 		if (
 			! window.confirm(
-				'Reset all settings to defaults? This cannot be undone.'
+				__( 'Reset all settings to defaults? This cannot be undone.', 'brndle' )
 			)
 		)
 			return;
@@ -88,7 +88,7 @@ export default function App() {
 			setDirty( false );
 			setNotice( {
 				status: 'success',
-				message: 'Settings reset to defaults.',
+				message: __( 'Settings reset to defaults.', 'brndle' ),
 			} );
 		} catch ( err ) {
 			setNotice( { status: 'error', message: err.message } );
@@ -117,7 +117,7 @@ export default function App() {
 						onClick={ handleReset }
 						disabled={ saving }
 					>
-						Reset to Defaults
+						{ __( 'Reset to Defaults', 'brndle' ) }
 					</Button>
 					<Button
 						variant="primary"
@@ -125,7 +125,7 @@ export default function App() {
 						disabled={ ! dirty || saving }
 						isBusy={ saving }
 					>
-						{ saving ? 'Saving...' : 'Save Changes' }
+						{ saving ? __( 'Saving...', 'brndle' ) : __( 'Save Changes', 'brndle' ) }
 					</Button>
 				</div>
 			</div>

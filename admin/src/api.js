@@ -1,10 +1,20 @@
 const { restUrl, nonce } = window.brndleAdmin || {};
 
+if ( ! restUrl || ! nonce ) {
+	// eslint-disable-next-line no-console
+	console.error( 'Brndle: Missing REST API configuration. Admin scripts may not be loaded correctly.' );
+}
+
 export async function fetchSettings() {
 	const res = await fetch( restUrl, {
 		headers: { 'X-WP-Nonce': nonce },
 	} );
-	if ( ! res.ok ) throw new Error( 'Failed to load settings' );
+	if ( ! res.ok ) {
+		if ( res.status === 403 ) throw new Error( 'Permission denied. Please refresh and try again.' );
+		if ( res.status === 404 ) throw new Error( 'Settings endpoint not found. Theme may need reactivation.' );
+		if ( res.status >= 500 ) throw new Error( 'Server error. Please try again later.' );
+		throw new Error( 'Failed to load settings' );
+	}
 	return res.json();
 }
 
@@ -22,6 +32,7 @@ export async function saveSettings( settings ) {
 			throw new Error(
 				'Session expired. Please refresh the page.'
 			);
+		if ( res.status >= 500 ) throw new Error( 'Server error. Please try again later.' );
 		throw new Error( 'Save failed: ' + res.statusText );
 	}
 	return res.json();
@@ -32,6 +43,9 @@ export async function resetSettings() {
 		method: 'DELETE',
 		headers: { 'X-WP-Nonce': nonce },
 	} );
-	if ( ! res.ok ) throw new Error( 'Reset failed' );
+	if ( ! res.ok ) {
+		if ( res.status === 403 ) throw new Error( 'Session expired. Please refresh the page.' );
+		throw new Error( 'Reset failed' );
+	}
 	return res.json();
 }

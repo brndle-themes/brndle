@@ -9,15 +9,15 @@
     @endif
 
     <div class="space-y-4 reveal">
-      @foreach(($a['items'] ?? []) as $item)
-        <details class="group rounded-2xl border border-surface-tertiary bg-surface-primary overflow-hidden hover:border-text-tertiary transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer px-6 py-5 text-left">
+      @foreach(($a['items'] ?? []) as $i => $item)
+        <details class="group rounded-2xl border border-surface-tertiary bg-surface-primary overflow-hidden hover:border-text-tertiary transition-colors" id="faq-{{ $i }}">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-answer-{{ $i }}">
             <span class="text-[15px] font-semibold text-text-primary pr-8">{{ $item['question'] ?? '' }}</span>
-            <svg class="w-5 h-5 text-text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg class="w-5 h-5 text-text-tertiary shrink-0 transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+          <div class="px-6 pb-5 text-text-secondary leading-relaxed" id="faq-answer-{{ $i }}">
             {{ $item['answer'] ?? '' }}
           </div>
         </details>

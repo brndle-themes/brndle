@@ -12,5 +12,5 @@
     "companies": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light" }
   },
-  "supports": { "align": ["full"], "html": false }
+  "supports": { "align": ["full"], "html": false, "anchor": true }
 }

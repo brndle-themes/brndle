@@ -1,10 +1,16 @@
 import { Button, TextControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 function LogoUpload( { label, value, onSelect, onRemove } ) {
 	const openMediaLibrary = () => {
+		if ( ! window.wp?.media ) {
+			// eslint-disable-next-line no-alert
+			window.alert( __( 'Media library not available. Please refresh the page.', 'brndle' ) );
+			return;
+		}
 		const frame = wp.media( {
 			title: `Select ${ label }`,
-			button: { text: 'Use this image' },
+			button: { text: __( 'Use this image', 'brndle' ) },
 			multiple: false,
 			library: { type: 'image' },
 		} );

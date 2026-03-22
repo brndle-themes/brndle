@@ -25,12 +25,14 @@
     <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
   </svg>
 </button>
+<div id="brndle-theme-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 (function(){
   var btn=document.getElementById('brndle-dark-toggle');
   var sun=document.getElementById('brndle-icon-sun');
   var moon=document.getElementById('brndle-icon-moon');
+  var announce=document.getElementById('brndle-theme-announce');
   if(!btn||!sun||!moon)return;
   function update(){
     var isDark=document.documentElement.getAttribute('data-theme')==='dark';
@@ -45,6 +47,13 @@
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('brndle-theme',next);
     update();
+    if(announce)announce.textContent=next==='dark'?'Dark mode enabled':'Light mode enabled';
+  });
+  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){
+    if(!localStorage.getItem('brndle-theme')){
+      document.documentElement.setAttribute('data-theme',e.matches?'dark':'light');
+      update();
+    }
   });
 })();
 </script>
