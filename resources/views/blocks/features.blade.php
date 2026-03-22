@@ -16,7 +16,8 @@
 
     <div class="space-y-24">
       @foreach(($a['features'] ?? []) as $i => $feature)
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal {{ $i % 2 !== 0 ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
+        @php($hasImage = !empty($feature['image']))
+        <div class="grid {{ $hasImage ? 'lg:grid-cols-2 gap-12 lg:gap-20' : 'max-w-3xl' }} items-center reveal {{ $hasImage && $i % 2 !== 0 ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
           <div>
             @if(!empty($feature['icon']) && strlen($feature['icon']) > 1 && !str_contains($feature['icon'], 'u20'))
               <div class="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mb-6">
