@@ -14,7 +14,20 @@ class Post extends Composer
         'partials.archive.*',
     ];
 
-    public function title(): string
+    public function override(): array
+    {
+        return [
+            'title' => $this->resolveTitle(),
+            'readingTime' => $this->resolveReadingTime(),
+            'pagination' => wp_link_pages([
+                'echo' => 0,
+                'before' => '<p>' . __('Pages:', 'brndle'),
+                'after' => '</p>',
+            ]),
+        ];
+    }
+
+    private function resolveTitle(): string
     {
         if ($this->view->name() !== 'partials.page-header') {
             return get_the_title();
@@ -46,24 +59,20 @@ class Post extends Composer
         return get_the_title();
     }
 
-    public function readingTime(): string
+    private function resolveReadingTime(): string
     {
-        $content = get_the_content();
-        $word_count = str_word_count(strip_tags($content));
+        $post = get_post();
+        if (! $post) {
+            return '';
+        }
+
+        // Use raw content — no filters, no block rendering
+        $word_count = str_word_count(strip_tags($post->post_content));
         $minutes = max(1, ceil($word_count / 250));
 
         return sprintf(
             _n('%d min read', '%d min read', $minutes, 'brndle'),
             $minutes
         );
-    }
-
-    public function pagination(): string
-    {
-        return wp_link_pages([
-            'echo' => 0,
-            'before' => '<p>'.__('Pages:', 'brndle'),
-            'after' => '</p>',
-        ]);
     }
 }
