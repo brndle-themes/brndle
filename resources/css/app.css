@@ -231,6 +231,31 @@ html {
 }
 
 /* ========================================================================
+   WordPress Admin Bar Offset
+   ======================================================================== */
+
+.admin-bar #brndle-header {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar #brndle-header {
+    top: 46px;
+  }
+}
+
+/* Reading progress bar */
+.admin-bar #brndle-progress {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar #brndle-progress {
+    top: 46px;
+  }
+}
+
+/* ========================================================================
    RTL Support
    ======================================================================== */
 
