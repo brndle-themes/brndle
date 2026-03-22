@@ -1,6 +1,7 @@
 {
   "name": "brndle",
   "private": true,
+  "license": "GPL-2.0-or-later",
   "engines": {
     "node": ">=20.0.0"
   },

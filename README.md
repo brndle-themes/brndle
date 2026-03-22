@@ -1,142 +1,167 @@
 # Brndle
 
-Enterprise WordPress theme with AI-powered landing pages, Blade templating, and Tailwind CSS.
+Free, open-source WordPress theme for agencies. One theme, unlimited client sites.
 
-**Zero page builders. Zero JavaScript bloat. Lighthouse 100.**
+**12 color schemes. 8 font pairs. 8 header styles. 6 footer styles. Dark mode. AI landing pages. Lighthouse 100.**
 
-## Stack
+Built on [Sage](https://roots.io/sage/) + [Acorn](https://roots.io/acorn/) (Laravel Blade + Tailwind CSS v4 + Vite 7).
 
-- [Sage](https://roots.io/sage/) architecture (Blade + Acorn)
-- [Tailwind CSS](https://tailwindcss.com/) v4 for styling
-- [Vite](https://vitejs.dev/) for builds with HMR
-- WordPress Block API for section components
-- REST API for AI-powered page generation
+## What's Included
+
+### Design System
+
+| Category | Options |
+|----------|---------|
+| **Color Schemes** | Sapphire, Indigo, Cobalt, Trust, Commerce, Signal, Coral, Aubergine, Midnight, Stone, Carbon, Neutral |
+| **Font Pairs** | System UI, Inter, Geist Sans, IBM Plex, DM Sans, Editorial, Magazine, Humanist |
+| **Header Styles** | Sticky, Solid, Transparent, Centered, Minimal, Split, Banner, Glass |
+| **Footer Styles** | Dark, Light, Columns, Minimal, Big, Stacked |
+| **Archive Layouts** | Grid, List, Magazine, Editorial, Minimal |
+| **Post Layouts** | Standard, Hero Immersive, Sidebar, Editorial, Cinematic, Presentation, Split, Minimal Dark |
+| **Page Templates** | Default, Landing Page, Full Canvas, Transparent Header |
+| **Dark Mode** | Toggle, system preference, or disabled entirely |
+
+### Landing Page Blocks
+
+8 custom Gutenberg blocks for building landing pages — all server-side rendered, zero JavaScript.
+
+| Block | Description |
+|-------|-------------|
+| `brndle/hero` | Full-width hero with eyebrow, CTAs, product image, logo strip |
+| `brndle/stats` | Key metrics row (e.g. "100 Lighthouse Score", "0 KB JS") |
+| `brndle/features` | Alternating feature sections with images and bullet points |
+| `brndle/testimonials` | Customer testimonial cards with avatars and star ratings |
+| `brndle/pricing` | 2-3 column pricing table with featured plan highlighting |
+| `brndle/cta` | Call-to-action banner with primary/secondary buttons |
+| `brndle/faq` | Accessible accordion FAQ with ARIA attributes |
+| `brndle/logos` | Trust bar with company logos or text names |
+
+### Admin Panel
+
+Settings panel at **Brndle** in the WP admin sidebar with tabs:
+
+- **Site Identity** — Logo (light/dark), social links
+- **Colors** — 12 presets + custom accent color
+- **Dark Mode** — Toggle on/off, position, default mode
+- **Typography** — 8 font pairs, base size, heading scale
+- **Header** — 8 styles, CTA button, mobile menu, announcement banner
+- **Footer** — 6 styles, copyright, column menus, social links
+- **Blog Archive** — Layout, posts per page, sidebar, category filter
+- **Single Post** — Layout, progress bar, reading time, author box, related posts, TOC
+- **Performance** — Remove emoji/embed scripts, lazy images, preload fonts
+
+All settings accessible via REST API at `brndle/v1/settings` (GET/POST/DELETE) with import/export.
+
+### Plugin Compatibility
+
+Built-in support for:
+- **Yoast SEO / RankMath** — Breadcrumbs, fallback JSON-LD schema
+- **WooCommerce** — Gallery zoom/lightbox/slider, theme-consistent wrappers
+- **WPML / Polylang** — Automatic hreflang tags
 
 ## Requirements
 
-- PHP >= 8.2
-- Node >= 20
-- Composer
-- WordPress >= 6.6
+- WordPress 6.6+
+- PHP 8.2+
+- Node 20+ (for development)
+- Composer (for development)
 
 ## Installation
 
-```bash
-# Clone
-git clone https://github.com/brndle/brndle.git wp-content/themes/brndle
+### From Release Zip
 
-# Install dependencies
+1. Download `brndle-x.x.x.zip` from [Releases](https://github.com/brndle-themes/brndle/releases)
+2. Go to **Appearance → Themes → Add New → Upload Theme**
+3. Upload the zip and activate
+
+No build tools needed — the release zip includes compiled assets.
+
+### From Source (Development)
+
+```bash
+git clone https://github.com/brndle-themes/brndle.git wp-content/themes/brndle
 cd wp-content/themes/brndle
 composer install
 npm install
-
-# Build assets
-npm run build
-
-# Activate the theme in WordPress
+npm run build && npm run admin:build && npm run blocks:build
 ```
+
+Activate the theme in WordPress.
 
 ## Development
 
 ```bash
-npm run dev    # Start Vite dev server with HMR
-npm run build  # Production build
+npm run dev              # Vite dev server with HMR
+npm run build            # Production frontend build (Tailwind + Vite)
+npm run admin:build      # Admin settings panel (React + webpack)
+npm run blocks:build     # Block editor scripts (React + webpack)
 ```
+
+After modifying Blade templates, clear the compiled view cache:
+
+```bash
+rm -rf wp-content/cache/acorn/framework/views/*
+```
+
+### Building a Release
+
+```bash
+./bin/release.sh 1.0.0
+```
+
+Creates `brndle-1.0.0.zip` with compiled assets, no source files or dev dependencies.
 
 ## Architecture
 
 ```
 brndle/
-├── app/                    # PHP application layer
-│   ├── Providers/          # Service providers
-│   ├── View/Composers/     # View data injection
-│   ├── Blocks/             # Block registration
-│   ├── setup.php           # Theme setup + WP bloat removal
-│   └── filters.php         # WordPress filters
-├── blocks/                 # Gutenberg block definitions
-│   ├── hero/               # block.json + render.blade.php
-│   ├── features/
-│   ├── pricing/
-│   ├── testimonials/
-│   ├── cta/
-│   ├── faq/
-│   ├── logos/
-│   └── stats/
+├── app/
+│   ├── Compatibility/     # Yoast, WooCommerce, WPML support
+│   ├── Onboarding/        # Setup notice + starter content
+│   ├── Providers/         # ThemeServiceProvider, BlockServiceProvider, SettingsServiceProvider
+│   ├── Settings/          # Settings, Defaults, ColorPalette, FontPairs, Sanitizer
+│   ├── View/Composers/    # App, Post, Theme (Blade data injection)
+│   ├── setup.php          # Theme setup, nav menus, image sizes
+│   └── filters.php        # WordPress filters
+├── admin/src/             # React admin settings panel (9 tabs)
+├── blocks/                # block.json definitions (8 blocks)
+├── blocks/src/            # Block editor JS (ServerSideRender + InspectorControls)
 ├── resources/
-│   ├── views/              # Blade templates
-│   │   ├── layouts/        # Master layouts (app, landing)
-│   │   ├── sections/       # Header, footer
-│   │   └── partials/       # Content partials
-│   ├── css/app.css         # Tailwind + design tokens
-│   └── js/app.js           # Minimal JS
-├── composer.json           # Acorn + PHP deps
-├── package.json            # Vite + Tailwind
-└── vite.config.js          # Build config
+│   ├── views/             # Blade templates
+│   │   ├── layouts/       # app.blade.php, landing.blade.php
+│   │   ├── sections/      # header.blade.php, footer.blade.php
+│   │   ├── blocks/        # Server-rendered block views
+│   │   └── partials/      # Components, archive layouts, post layouts
+│   ├── css/app.css        # Tailwind v4 + theme tokens + dark mode
+│   └── js/                # Minimal JS (app.js, editor.js)
+├── bin/release.sh         # Release zip builder
+├── style.css              # WordPress theme header
+├── functions.php          # Acorn bootstrap
+└── theme.json             # Block editor settings
 ```
 
-## AI Landing Page Creation
+### Key Patterns
 
-Create landing pages via the WordPress REST API:
-
-```bash
-curl -X POST https://your-site.com/wp-json/wp/v2/pages \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Product Launch",
-    "status": "draft",
-    "template": "template-landing",
-    "content": "<!-- wp:brndle/hero {\"title\":\"Ship faster\",\"subtitle\":\"Enterprise tools that work.\",\"cta_primary\":\"Get Started\"} /-->\n\n<!-- wp:brndle/features {\"title\":\"Features\",\"features\":[{\"title\":\"AI Powered\",\"description\":\"Smart automation.\"}]} /-->"
-  }'
-```
-
-## Available Blocks
-
-| Block | Description |
-|-------|-------------|
-| `brndle/hero` | Full-width hero with eyebrow, CTA, image, logos |
-| `brndle/features` | Alternating feature rows with images |
-| `brndle/pricing` | 2-3 column pricing table |
-| `brndle/testimonials` | Customer testimonial cards |
-| `brndle/cta` | Call-to-action banner |
-| `brndle/faq` | CSS-only accordion FAQ |
-| `brndle/logos` | Trust bar with company logos |
-| `brndle/stats` | Key metrics/numbers row |
-
-## Settings
-
-The Brndle Settings panel (`Appearance > Brndle Settings`) provides 9 tabs:
-
-| Tab | Description |
-|-----|-------------|
-| Colors | Brand primary/secondary colors with 12 preset palettes |
-| Typography | 8 curated font pairs (headings + body) |
-| Header | Layout style, sticky behavior, CTA button |
-| Footer | Column layout, copyright text, social links |
-| Blog Archive | 5 archive layouts (grid, list, masonry, cards, minimal) |
-| Single Post | 8 single post layouts with reading time, author box, related posts |
-| Performance | Asset optimization, lazy loading, preconnect |
-| Advanced | Custom CSS/JS injection, code placement |
-| Import/Export | Backup and restore all settings as JSON |
-
-Settings are available via the REST API at `brndle/v1/settings` (GET/POST/DELETE) with import/export endpoints.
+- **Blade syntax**: Use `@php(func())` for single-line, `@php ... @endphp` for multi-line
+- **CSS colors**: Use Tailwind theme utilities (`bg-surface-primary`, `text-accent`) — never `text-[var(--color-*)]`
+- **Dark sections**: Use `brndle-section-dark` class — always dark regardless of dark mode toggle
+- **Blocks**: Render via `render_callback` in BlockServiceProvider, views in `resources/views/blocks/`
+- **Settings**: `Settings::get('key', default)` — stored in `wp_options` key `brndle_settings`
 
 ## Developer Hooks
 
-All settings and output can be customized via WordPress filter hooks:
-
 | Hook | Description |
 |------|-------------|
-| `brndle/settings` | Filter all resolved settings before use |
-| `brndle/color_presets` | Add or modify the available color presets |
-| `brndle/color_palette` | Modify the generated CSS color palette |
-| `brndle/font_pairs` | Add or modify the available font pairs |
-| `brndle/css_variables` | Inject custom CSS variables into the root stylesheet |
-| `brndle/archive_layout` | Override the archive layout programmatically |
-| `brndle/single_layout` | Override the single post layout per-post |
-| `brndle/settings_defaults` | Modify the default settings values |
+| `brndle/settings` | Filter all resolved settings |
+| `brndle/color_presets` | Add or modify color presets |
+| `brndle/color_palette` | Modify generated CSS color palette |
+| `brndle/font_pairs` | Add or modify font pairs |
+| `brndle/css_variables` | Inject custom CSS variables |
+| `brndle/archive_layout` | Override archive layout |
+| `brndle/single_layout` | Override single post layout |
+| `brndle/settings_defaults` | Modify default settings |
 
-### Example: Add a Custom Color Preset
+### Example: Custom Color Preset
 
 ```php
 add_filter('brndle/color_presets', function (array $presets): array {
@@ -149,72 +174,25 @@ add_filter('brndle/color_presets', function (array $presets): array {
 });
 ```
 
-### Example: Override Archive Layout for a Category
+## AI Landing Pages
 
-```php
-add_filter('brndle/archive_layout', function (string $layout): string {
-    if (is_category('news')) {
-        return 'list';
-    }
-    return $layout;
-});
+Brndle integrates with [Claude Code](https://claude.ai/claude-code) to generate complete landing pages from a text description. Pages are created as standard WordPress block markup — no lock-in.
+
+```bash
+# In Claude Code, from the theme directory:
+/brndle-pages
 ```
 
-## Plugin Compatibility
+Or create pages via the REST API:
 
-Brndle includes built-in compatibility layers for popular plugins:
-
-### Yoast SEO / RankMath
-
-- Automatic breadcrumb support when either plugin is active
-- Fallback Article JSON-LD schema when no SEO plugin is detected
-- Schema includes headline, dates, author, publisher, image, and description
-
-### WooCommerce
-
-- Full `woocommerce` theme support with product gallery zoom, lightbox, and slider
-- WooCommerce content wrapped in Brndle's layout container (`max-w-7xl`)
-- Default WooCommerce wrappers replaced with theme-consistent markup
-
-### WPML / Polylang
-
-- Automatic `hreflang` tag output when WPML or Polylang is active
-- Proper alternate link tags for all available languages
-
-## Color Schemes
-
-12 built-in color presets:
-
-| Preset | Primary | Secondary |
-|--------|---------|-----------|
-| Indigo Night | `#6366f1` | `#1e1b4b` |
-| Ocean | `#0ea5e9` | `#0c4a6e` |
-| Forest | `#22c55e` | `#14532d` |
-| Sunset | `#f97316` | `#7c2d12` |
-| Rose | `#f43f5e` | `#4c0519` |
-| Violet | `#8b5cf6` | `#2e1065` |
-| Amber | `#f59e0b` | `#78350f` |
-| Teal | `#14b8a6` | `#134e4a` |
-| Slate | `#64748b` | `#0f172a` |
-| Zinc | `#71717a` | `#18181b` |
-| Stone | `#78716c` | `#1c1917` |
-| Neutral | `#737373` | `#171717` |
-
-## Font Pairs
-
-8 curated font combinations:
-
-| Pair | Heading | Body | Source |
-|------|---------|------|--------|
-| Modern | Inter | Inter | Google Fonts |
-| Classic | Playfair Display | Source Sans 3 | Google Fonts |
-| Technical | JetBrains Mono | Inter | Google Fonts |
-| Editorial | Cormorant Garamond | Proza Libre | Google Fonts |
-| Geometric | Poppins | Work Sans | Google Fonts |
-| Humanist | Nunito | Merriweather | Google Fonts |
-| Minimal | DM Sans | DM Sans | Google Fonts |
-| System | System UI | System UI | System Stack |
+```bash
+curl -X POST https://your-site.com/wp-json/wp/v2/pages \
+  -H "Authorization: Bearer TOKEN" \
+  -d '{"title":"Launch Page","status":"draft","content":"<!-- wp:brndle/hero {\"title\":\"Ship faster\"} /-->"}'
+```
 
 ## License
 
-GPL-2.0-or-later
+GPL-2.0-or-later — same license as WordPress.
+
+Free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
