@@ -18,7 +18,7 @@
       @foreach(($a['features'] ?? []) as $i => $feature)
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal {{ $i % 2 !== 0 ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
           <div>
-            @if(isset($feature['icon']))
+            @if(!empty($feature['icon']) && strlen($feature['icon']) > 1 && !str_contains($feature['icon'], 'u20'))
               <div class="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mb-6">
                 <span class="text-accent text-2xl" aria-hidden="true">{!! $feature['icon'] !!}</span>
               </div>
