@@ -230,6 +230,19 @@ html {
   pointer-events: none;
 }
 
+/* ========================================================================
+   RTL Support
+   ======================================================================== */
+
+[dir="rtl"] .group-hover\:translate-x-1:is(:where(.group):hover *) {
+  --tw-translate-x: -0.25rem;
+}
+
+[dir="rtl"] .prose blockquote {
+  border-left: none;
+  border-right: 4px solid var(--color-accent);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

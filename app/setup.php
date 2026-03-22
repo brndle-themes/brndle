@@ -79,8 +79,10 @@ add_action('after_setup_theme', function () {
 
     // Standard theme supports
     add_theme_support('title-tag');
+    add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
     add_theme_support('responsive-embeds');
+    add_theme_support('wp-block-styles');
     add_theme_support('html5', [
         'caption',
         'comment-form',

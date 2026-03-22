@@ -3,13 +3,15 @@
 # Brndle Theme Release Builder
 #
 # Usage:
-#   ./bin/release.sh           # builds brndle-0.1.0.zip
-#   ./bin/release.sh 1.2.3     # builds brndle-1.2.3.zip
+#   ./bin/release.sh 1.0.0    # builds brndle-1.0.0.zip
+#   ./bin/release.sh           # uses version from style.css
 #
-# Prerequisites:
-#   - Node.js >= 20, npm
-#   - PHP >= 8.2, Composer
-#   - zip command
+# What it does:
+#   1. Installs production dependencies (Composer + npm)
+#   2. Builds all assets (frontend, admin, blocks)
+#   3. Generates .pot translation file
+#   4. Bumps version in style.css
+#   5. Creates a clean distribution zip
 #
 set -euo pipefail
 
@@ -19,7 +21,7 @@ THEME_SLUG="brndle"
 # ── Version ──────────────────────────────────────────────────
 VERSION="${1:-}"
 if [ -z "$VERSION" ]; then
-    VERSION=$(grep -oP 'Version:\s*\K[^\s]+' "$THEME_DIR/style.css")
+    VERSION=$(grep 'Version:' "$THEME_DIR/style.css" | head -1 | sed 's/.*Version:[[:space:]]*//' | tr -d '[:space:]')
 fi
 echo "==> Building ${THEME_SLUG} v${VERSION}"
 
@@ -39,55 +41,69 @@ echo "==> Node $(node -v), PHP ${PHP_VER}, Composer $(composer --version --short
 
 cd "$THEME_DIR"
 
-# ── Step 1: Install dependencies ─────────────────────────────
+# ── Step 1: Update version ───────────────────────────────────
+if [ -n "${1:-}" ]; then
+    sed -i.bak "s/^Version:.*/Version:            ${VERSION}/" "$THEME_DIR/style.css"
+    rm -f "$THEME_DIR/style.css.bak"
+    echo "==> Updated style.css version to ${VERSION}"
+fi
+
+# ── Step 2: Install dependencies ─────────────────────────────
 echo "==> Installing Composer dependencies (production)..."
 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 echo "==> Installing npm dependencies..."
 npm ci --ignore-scripts 2>/dev/null || npm install
 
-# ── Step 2: Build frontend assets ────────────────────────────
-echo "==> Building Vite assets (public/build/)..."
+# ── Step 3: Build all assets ─────────────────────────────────
+echo "==> Building Vite assets (frontend CSS/JS)..."
 npm run build
 
-echo "==> Building admin panel (admin/build/)..."
+echo "==> Building admin panel (React)..."
 npm run admin:build
 
-echo "==> Building blocks (blocks/build/)..."
+echo "==> Building editor blocks (React)..."
 npm run blocks:build
 
-# ── Step 3: Remove Vite hot file if present ──────────────────
+# ── Step 4: Generate .pot file ───────────────────────────────
+echo "==> Generating translation file..."
+mkdir -p "$THEME_DIR/resources/lang"
+if command -v wp >/dev/null 2>&1; then
+    wp i18n make-pot "$THEME_DIR" "$THEME_DIR/resources/lang/brndle.pot" \
+        --slug=brndle \
+        --domain=brndle \
+        --include="theme.json,blocks,app,resources" \
+        --skip-audit \
+        2>/dev/null && echo "==> .pot file generated" || echo "==> WARN: wp i18n failed, skipping .pot"
+else
+    echo "==> WARN: WP-CLI not found, skipping .pot generation"
+    echo "   Install WP-CLI and run: wp i18n make-pot . resources/lang/brndle.pot"
+fi
+
+# ── Step 5: Remove dev artifacts ─────────────────────────────
 rm -f "$THEME_DIR/public/hot"
 
-# ── Step 4: Verify build artifacts ───────────────────────────
+# ── Step 6: Verify build artifacts ───────────────────────────
 ERRORS=0
 
-if [ ! -f "$THEME_DIR/public/build/manifest.json" ]; then
-    echo "ERROR: public/build/manifest.json missing"
-    ERRORS=$((ERRORS + 1))
-fi
+for required in \
+    "public/build/manifest.json" \
+    "public/build/assets/theme.json" \
+    "admin/build/index.js" \
+    "blocks/build/index.js" \
+    "vendor/roots/acorn" \
+    "style.css" \
+    "functions.php" \
+    "index.php" \
+    "screenshot.png" \
+    "LICENSE"; do
+    if [ ! -e "$THEME_DIR/$required" ]; then
+        echo "ERROR: ${required} missing"
+        ERRORS=$((ERRORS + 1))
+    fi
+done
 
-if [ ! -f "$THEME_DIR/public/build/assets/theme.json" ]; then
-    echo "ERROR: public/build/assets/theme.json missing"
-    ERRORS=$((ERRORS + 1))
-fi
-
-if [ ! -f "$THEME_DIR/admin/build/index.js" ]; then
-    echo "ERROR: admin/build/index.js missing"
-    ERRORS=$((ERRORS + 1))
-fi
-
-if [ ! -f "$THEME_DIR/blocks/build/index.js" ]; then
-    echo "ERROR: blocks/build/index.js missing"
-    ERRORS=$((ERRORS + 1))
-fi
-
-if [ ! -d "$THEME_DIR/vendor/roots/acorn" ]; then
-    echo "ERROR: vendor/roots/acorn missing"
-    ERRORS=$((ERRORS + 1))
-fi
-
-# Check all 8 block.json files exist
+# Check all 8 block.json files
 for block in hero logos stats features testimonials pricing cta faq; do
     if [ ! -f "$THEME_DIR/blocks/${block}/block.json" ]; then
         echo "ERROR: blocks/${block}/block.json missing"
@@ -99,17 +115,9 @@ if [ "$ERRORS" -gt 0 ]; then
     echo "==> ${ERRORS} error(s) found. Aborting."
     exit 1
 fi
-
 echo "==> All build artifacts verified."
 
-# ── Step 5: Update version in style.css if specified ─────────
-if [ -n "${1:-}" ]; then
-    sed -i.bak "s/^Version:.*/Version:            ${VERSION}/" "$THEME_DIR/style.css"
-    rm -f "$THEME_DIR/style.css.bak"
-    echo "==> Updated style.css version to ${VERSION}"
-fi
-
-# ── Step 6: Create zip ───────────────────────────────────────
+# ── Step 7: Create distribution zip ──────────────────────────
 BUILD_DIR=$(mktemp -d)
 DIST_DIR="${BUILD_DIR}/${THEME_SLUG}"
 ZIP_NAME="${THEME_SLUG}-${VERSION}.zip"
@@ -118,7 +126,6 @@ ZIP_PATH="${THEME_DIR}/${ZIP_NAME}"
 echo "==> Assembling release in ${DIST_DIR}..."
 mkdir -p "$DIST_DIR"
 
-# Copy everything except exclusions
 rsync -a \
     --exclude='node_modules' \
     --exclude='.git' \
@@ -131,7 +138,8 @@ rsync -a \
     --exclude='.phpunit*' \
     --exclude='phpunit.xml*' \
     --exclude='pint.json' \
-    --exclude='*.md' \
+    --exclude='CLAUDE.md' \
+    --exclude='.claude/' \
     --exclude='docs/' \
     --exclude='tests/' \
     --exclude='bin/' \
@@ -150,38 +158,40 @@ rsync -a \
     --exclude='*.map' \
     --exclude='*.bak' \
     --exclude="${ZIP_NAME}" \
+    --exclude='brndle-*.zip' \
     "$THEME_DIR/" "$DIST_DIR/"
 
 echo "==> Creating ${ZIP_NAME}..."
 cd "$BUILD_DIR"
 zip -rq "$ZIP_PATH" "$THEME_SLUG"
 
-# ── Step 7: Cleanup ──────────────────────────────────────────
+# ── Step 8: Cleanup ──────────────────────────────────────────
 rm -rf "$BUILD_DIR"
 
-# ── Step 8: Report ───────────────────────────────────────────
+# ── Step 9: Report ───────────────────────────────────────────
 ZIP_SIZE=$(du -sh "$ZIP_PATH" | cut -f1)
+FILE_COUNT=$(zipinfo -t "$ZIP_PATH" 2>/dev/null | grep -o '[0-9]* files' || echo "unknown")
 echo ""
 echo "============================================"
-echo "  Release: ${ZIP_NAME}"
-echo "  Size:    ${ZIP_SIZE}"
-echo "  Path:    ${ZIP_PATH}"
+echo "  Brndle v${VERSION}"
+echo "  File: ${ZIP_NAME}"
+echo "  Size: ${ZIP_SIZE} (${FILE_COUNT})"
+echo "  Path: ${ZIP_PATH}"
 echo "============================================"
 echo ""
-echo "Contents include:"
-echo "  - vendor/ (Acorn + dependencies)"
-echo "  - public/build/ (Vite CSS/JS/theme.json)"
-echo "  - admin/build/ (Settings panel)"
-echo "  - blocks/build/ (Editor blocks)"
-echo "  - blocks/*/block.json (8 blocks)"
-echo "  - resources/views/ (Blade templates)"
-echo "  - resources/images/ (Logos)"
-echo "  - app/ (PHP application code)"
-echo "  - style.css, functions.php, index.php, theme.json"
-echo "  - screenshot.png"
+echo "  Included:"
+echo "    app/            PHP application code"
+echo "    admin/build/    Settings panel (compiled)"
+echo "    blocks/         Block definitions + compiled JS"
+echo "    public/build/   Frontend CSS/JS (compiled)"
+echo "    resources/      Blade templates, images, translations"
+echo "    vendor/         Acorn + PHP dependencies"
+echo "    style.css       Theme header (v${VERSION})"
+echo "    LICENSE          GPL-2.0"
+echo "    README.md        Documentation"
 echo ""
-echo "Excluded:"
-echo "  - node_modules, source JS/CSS, config files"
-echo "  - docs, tests, build tooling"
+echo "  Excluded:"
+echo "    Source JS/CSS, node_modules, config files,"
+echo "    build tooling, tests, CLAUDE.md"
 echo ""
-echo "==> Done! Upload ${ZIP_NAME} to WordPress."
+echo "==> Upload ${ZIP_NAME} to any WordPress site."

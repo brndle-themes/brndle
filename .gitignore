@@ -6,3 +6,4 @@
 /blocks/build/
 !/blocks/build/.gitkeep
 .env
+brndle-*.zip
