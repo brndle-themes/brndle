@@ -1,10 +1,13 @@
+@php($hasDarkMode = (is_callable($showDarkModeToggle) ? $showDarkModeToggle() : $showDarkModeToggle) || (is_callable($darkModeDefault) ? $darkModeDefault() : $darkModeDefault) !== 'light')
 <!doctype html>
 <html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $darkModeDefault }}">
   <head>
     <meta charset="utf-8">
+    @if($hasDarkMode)
     <script>
     (function(){var t=localStorage.getItem('brndle-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}})();
     </script>
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
@@ -30,7 +33,7 @@
       @include('sections.footer')
     </div>
 
-    @if($showDarkModeToggle)
+    @if($hasDarkMode)
       @include('partials.components.dark-mode-toggle')
     @endif
 

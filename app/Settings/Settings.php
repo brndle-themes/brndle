@@ -221,10 +221,19 @@ class Settings
 
         // Build minified CSS.
         $rootStr = self::buildBlock(':root', $root);
-        $darkStr = self::buildBlock('[data-theme="dark"]', $dark);
-        $systemStr = '@media(prefers-color-scheme:dark){' . self::buildBlock('[data-theme="system"]', $dark) . '}';
 
-        $css = $rootStr . $darkStr . $systemStr;
+        // Skip dark mode CSS when dark mode is fully disabled (toggle off + default light).
+        $toggle = (bool) self::get('dark_mode_toggle', true);
+        $default = self::get('dark_mode_default', 'light');
+        $darkModeEnabled = $toggle || $default !== 'light';
+
+        if ($darkModeEnabled) {
+            $darkStr = self::buildBlock('[data-theme="dark"]', $dark);
+            $systemStr = '@media(prefers-color-scheme:dark){' . self::buildBlock('[data-theme="system"]', $dark) . '}';
+            $css = $rootStr . $darkStr . $systemStr;
+        } else {
+            $css = $rootStr;
+        }
 
         /** @var string */
         return apply_filters('brndle/css_variables', $css);

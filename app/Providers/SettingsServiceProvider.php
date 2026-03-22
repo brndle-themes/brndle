@@ -51,7 +51,7 @@ class SettingsServiceProvider
             'manage_options',
             'brndle-settings',
             [$this, 'renderAdminPage'],
-            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect width="20" height="20" rx="4" fill="url(#g)"/><text x="10" y="14.5" text-anchor="middle" fill="white" font-family="Arial" font-weight="900" font-size="11">B</text></svg>'),
+            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none"><path d="M4 2h7a5 5 0 0 1 3.5 1.5A4.5 4.5 0 0 1 16 7a4 4 0 0 1-1.2 2.8A5 5 0 0 1 16.5 14a4.5 4.5 0 0 1-1.5 3.5A5 5 0 0 1 12 18H4V2Zm3 2.5v4.5h4a2.5 2.5 0 0 0 2.5-2.2A2.5 2.5 0 0 0 11 4.5H7Zm0 7v4h5a2.5 2.5 0 0 0 2.5-2 2.5 2.5 0 0 0-2.5-2H7Z" fill="black"/></svg>'),
             59 // Position: after Comments (25), before Appearance (60)
         );
     }
