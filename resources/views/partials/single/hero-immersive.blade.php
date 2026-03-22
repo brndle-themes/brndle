@@ -30,7 +30,7 @@
             href="{{ get_category_link($category[0]->term_id) }}"
             class="inline-block text-xs font-semibold uppercase tracking-wider text-white/80 hover:text-white transition-colors"
           >
-            {{ $category[0]->name }}
+            {!! esc_html($category[0]->name) !!}
           </a>
         @endif
 
@@ -78,7 +78,7 @@
             href="{{ get_category_link($category[0]->term_id) }}"
             class="inline-block text-xs font-semibold uppercase tracking-wider text-text-inverse/70 hover:text-text-inverse transition-colors"
           >
-            {{ $category[0]->name }}
+            {!! esc_html($category[0]->name) !!}
           </a>
         @endif
 
