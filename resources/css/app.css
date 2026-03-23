@@ -307,6 +307,45 @@ html {
 }
 
 /* ========================================================================
+   Custom Hero Button (for wp:html blocks where Tailwind arbitrary values fail)
+   ======================================================================== */
+
+/* Hero green CTA — targets links by href since wp_kses strips classes from wp:html blocks */
+.brndle-section-dark a[href*="open-source"] {
+  background-color: #00ff88 !important;
+  color: #0a0a0a !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.brndle-section-dark a[href*="open-source"]:hover {
+  background-color: #00cc6a !important;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+/* Hero ghost button */
+.brndle-section-dark a[href*="contact"] {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.925rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s;
+}
+.brndle-section-dark a[href*="contact"]:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================================================
    RTL Support
    ======================================================================== */
 
