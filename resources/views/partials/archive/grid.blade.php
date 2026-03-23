@@ -4,9 +4,9 @@
     @php(the_post())
     <article @php(post_class('group'))>
       <a href="{{ get_permalink() }}" class="block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <div class="aspect-[3/2] overflow-hidden rounded-t-2xl">
+        <div class="aspect-video overflow-hidden rounded-t-2xl bg-surface-secondary">
           @include('partials.components.post-thumbnail', [
-            'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+            'class' => 'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500',
           ])
         </div>
 

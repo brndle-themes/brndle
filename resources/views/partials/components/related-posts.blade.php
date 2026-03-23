@@ -20,10 +20,10 @@
       @foreach($related as $post)
         @php setup_postdata($post); @endphp
         <a href="{{ get_permalink($post) }}" class="group block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          <div class="aspect-[16/10] overflow-hidden rounded-t-2xl bg-surface-secondary">
+          <div class="aspect-video overflow-hidden rounded-t-2xl bg-surface-secondary">
             @if(has_post_thumbnail($post))
               {!! get_the_post_thumbnail($post, 'medium_large', [
-                'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                'class' => 'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500',
                 'loading' => 'lazy',
                 'decoding' => 'async',
               ]) !!}
