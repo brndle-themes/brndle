@@ -124,22 +124,26 @@
       {{-- Post-content sections inside right column --}}
       <div class="px-8 pb-16 space-y-0">
         {{-- Social share --}}
-        @includeWhen($singleShowSocialShare, 'partials.components.social-share')
+        <div class="max-w-[700px] mx-auto px-6 mt-8">
+    @includeWhen($singleShowSocialShare, 'partials.components.social-share')
+  </div>
 
         {{-- Author box --}}
-        @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
+        <div class="max-w-[700px] mx-auto px-6 mt-10">
+    @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
+  </div>
       </div>
     </div>
 
-  </div>
-
   {{-- Full-width sections below the split --}}
   {{-- Post navigation --}}
-  @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
+  <div class="max-w-[700px] mx-auto px-6 mt-10">
+    @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
+  </div>
 
+  <div class="max-w-5xl mx-auto px-6 mt-16 mb-16">
   {{-- Related posts --}}
   @includeWhen($singleShowRelatedPosts, 'partials.components.related-posts')
-
   {{-- Comments --}}
   @php(comments_template())
 

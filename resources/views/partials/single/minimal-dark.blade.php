@@ -125,17 +125,23 @@
     @endif
 
     {{-- Social share --}}
+    <div class="max-w-[700px] mx-auto px-6 mt-8">
     @includeWhen($singleShowSocialShare, 'partials.components.social-share')
+  </div>
 
     {{-- Author box --}}
+    <div class="max-w-[700px] mx-auto px-6 mt-10">
     @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
+  </div>
 
     {{-- Post navigation --}}
+    <div class="max-w-[700px] mx-auto px-6 mt-10">
     @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
+  </div>
 
+  <div class="max-w-5xl mx-auto px-6 mt-16 mb-16">
     {{-- Related posts --}}
     @includeWhen($singleShowRelatedPosts, 'partials.components.related-posts')
-
     {{-- Comments --}}
     <div class="pb-16">
       @php(comments_template())

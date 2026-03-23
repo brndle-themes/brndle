@@ -118,7 +118,9 @@
       @endif
 
       {{-- Social share --}}
-      @includeWhen($singleShowSocialShare, 'partials.components.social-share')
+      <div class="max-w-[700px] mx-auto px-6 mt-8">
+    @includeWhen($singleShowSocialShare, 'partials.components.social-share')
+  </div>
     </div>
 
     {{-- Right column: sidebar (desktop only) --}}
@@ -128,11 +130,11 @@
         @includeWhen($singleShowToc, 'partials.components.table-of-contents')
 
         {{-- Author box --}}
-        @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
+        <div class="max-w-[700px] mx-auto px-6 mt-10">
+    @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
+  </div>
       </div>
     </aside>
-
-  </div>
 
   {{-- Author box for mobile (shown below content on small screens) --}}
   @if($singleShowAuthorBox)
@@ -142,11 +144,13 @@
   @endif
 
   {{-- Post navigation --}}
-  @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
+  <div class="max-w-[700px] mx-auto px-6 mt-10">
+    @includeWhen($singleShowPostNav, 'partials.components.post-navigation')
+  </div>
 
+  <div class="max-w-5xl mx-auto px-6 mt-16 mb-16">
   {{-- Related posts --}}
   @includeWhen($singleShowRelatedPosts, 'partials.components.related-posts')
-
   {{-- Comments --}}
   @php(comments_template())
 
