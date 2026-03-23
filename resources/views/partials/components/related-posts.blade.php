@@ -19,27 +19,27 @@
     <div class="grid md:grid-cols-3 gap-6">
       @foreach($related as $post)
         @php setup_postdata($post); @endphp
-        <a href="{{ get_permalink($post) }}" class="group block rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary hover:shadow-lg transition-all duration-300">
-          <div class="aspect-[3/2] overflow-hidden">
+        <a href="{{ get_permalink($post) }}" class="group block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="aspect-[16/10] overflow-hidden rounded-t-2xl bg-surface-secondary">
             @if(has_post_thumbnail($post))
-              {!! get_the_post_thumbnail($post, 'brndle-card', [
+              {!! get_the_post_thumbnail($post, 'medium_large', [
                 'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
                 'loading' => 'lazy',
                 'decoding' => 'async',
               ]) !!}
             @else
-              <div class="w-full h-full bg-gradient-to-br from-[var(--color-surface-tertiary)] to-[var(--color-surface-secondary)] flex items-center justify-center">
+              <div class="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
                 @if($cat = get_the_category($post->ID))
-                  <span class="text-lg font-bold text-accent opacity-30">{{ $cat[0]->name }}</span>
+                  <span class="text-sm font-bold text-accent/30 uppercase tracking-wider">{!! esc_html($cat[0]->name) !!}</span>
                 @endif
               </div>
             @endif
           </div>
-          <div class="p-4">
-            <h3 class="font-semibold text-text-primary group-hover:text-accent transition-colors line-clamp-2">
-              {{ get_the_title($post) }}
+          <div class="p-5">
+            <h3 class="font-semibold text-text-primary group-hover:text-accent transition-colors leading-snug line-clamp-2">
+              {!! get_the_title($post) !!}
             </h3>
-            <time class="block mt-2 text-sm text-text-tertiary" datetime="{{ get_the_date('c', $post) }}">
+            <time class="block mt-2 text-xs text-text-tertiary" datetime="{{ get_the_date('c', $post) }}">
               {{ get_the_date('', $post) }}
             </time>
           </div>
