@@ -3,6 +3,7 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
+    "appearanceTools": true,
     "layout": {
       "contentSize": "48rem",
       "wideSize": "80rem"
@@ -19,20 +20,34 @@
       "defaultPalette": false,
       "duotone": []
     },
-    "custom": {
-      "spacing": {},
-      "typography": {
-        "font-size": {},
-        "line-height": {}
-      }
-    },
     "spacing": {
       "padding": true,
-      "units": ["px", "%", "em", "rem", "vw", "vh"]
+      "margin": true,
+      "blockGap": true,
+      "units": ["px", "%", "em", "rem", "vw", "vh"],
+      "spacingSizes": [
+        { "slug": "10", "size": "0.25rem", "name": "3XS" },
+        { "slug": "20", "size": "0.5rem", "name": "2XS" },
+        { "slug": "30", "size": "1rem", "name": "XS" },
+        { "slug": "40", "size": "1.5rem", "name": "S" },
+        { "slug": "50", "size": "2rem", "name": "M" },
+        { "slug": "60", "size": "3rem", "name": "L" },
+        { "slug": "70", "size": "5rem", "name": "XL" },
+        { "slug": "80", "size": "8rem", "name": "2XL" }
+      ]
     },
     "typography": {
       "defaultFontSizes": false,
-      "customFontSize": false
+      "customFontSize": true,
+      "fluid": true,
+      "fontSizes": [
+        { "slug": "small", "size": "0.875rem", "name": "Small" },
+        { "slug": "medium", "size": "1rem", "name": "Medium" },
+        { "slug": "large", "size": "1.25rem", "name": "Large" },
+        { "slug": "x-large", "size": "1.75rem", "name": "X-Large" },
+        { "slug": "xx-large", "size": "2.5rem", "name": "2X-Large" },
+        { "slug": "hero", "size": "clamp(2.5rem, 5vw, 4.5rem)", "name": "Hero" }
+      ]
     }
   }
 }

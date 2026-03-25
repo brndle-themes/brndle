@@ -6,10 +6,11 @@
 @source "../../blocks/**/*.blade.php";
 
 @theme {
-  /* Typography */
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Typography — --font-sans overrides Tailwind's default so font-sans utility
+     picks up the theme font. --font-family-heading is custom for .font-heading. */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-family-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Brand Colors — override per client via child theme or config */
   --color-accent: #6366f1;
@@ -86,23 +87,10 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode surfaces — fallback defaults
-   (Settings::cssVariables() in <head> overrides these with scheme-specific values) */
-[data-theme="dark"] {
-  --color-surface-primary: #0c1222;
-  --color-surface-secondary: #111827;
-  --color-surface-tertiary: #1a2234;
-  --color-surface-inverse: #f8fafc;
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
-  --color-text-inverse: #0f172a;
-  color-scheme: dark;
-}
-
-/* System preference fallback */
-@media (prefers-color-scheme: dark) {
-  [data-theme="system"] {
+/* Dark mode surfaces — fallback defaults (inside @layer so the unlayered
+   PHP <style id="brndle-css-vars"> always wins via CSS cascade priority) */
+@layer theme {
+  [data-theme="dark"] {
     --color-surface-primary: #0c1222;
     --color-surface-secondary: #111827;
     --color-surface-tertiary: #1a2234;
@@ -112,6 +100,23 @@ html {
     --color-text-tertiary: #64748b;
     --color-text-inverse: #0f172a;
     color-scheme: dark;
+  }
+}
+
+/* System preference fallback */
+@layer theme {
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"] {
+      --color-surface-primary: #0c1222;
+      --color-surface-secondary: #111827;
+      --color-surface-tertiary: #1a2234;
+      --color-surface-inverse: #f8fafc;
+      --color-text-primary: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-text-inverse: #0f172a;
+      color-scheme: dark;
+    }
   }
 }
 
@@ -356,6 +361,34 @@ html {
 [dir="rtl"] .prose blockquote {
   border-left: none;
   border-right: 4px solid var(--color-accent);
+}
+
+/* ========================================================================
+   Block Alignment Support
+   ======================================================================== */
+
+.alignwide {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull {
+  max-width: none;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.is-layout-constrained > .alignfull {
+  left: auto;
+  right: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 /* Custom scrollbar */

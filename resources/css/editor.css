@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+/* Brndle custom classes for editor fidelity */
+.brndle-section-dark {
+  background-color: #080B16;
+  color: #ffffff;
+}
+
+.brndle-section-dark .text-text-secondary,
+.brndle-section-dark .text-text-tertiary {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #a855f7 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.noise::after {
+  display: none;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
