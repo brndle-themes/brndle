@@ -12,5 +12,6 @@ import './how-it-works';
 import './lead-form';
 
 import './comparison-table';
+import './team';
 import './editor.css';
 import './page-meta-sidebar';

@@ -9,7 +9,8 @@
 .wp-block-brndle-content-image-split,
 .wp-block-brndle-how-it-works,
 .wp-block-brndle-lead-form,
-.wp-block-brndle-comparison-table {
+.wp-block-brndle-comparison-table,
+.wp-block-brndle-team {
 	max-width: 100%;
 	margin: 0;
 }

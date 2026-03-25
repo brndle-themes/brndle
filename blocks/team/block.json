@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/team",
+  "title": "Team",
+  "category": "brndle-sections",
+  "description": "Team member cards with photo, name, role, bio, and optional social links.",
+  "keywords": ["team", "people", "staff", "about"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "members": { "type": "array", "default": [] },
+    "columns": { "type": "string", "default": "3", "enum": ["2", "3", "4"] },
+    "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
+  },
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+}

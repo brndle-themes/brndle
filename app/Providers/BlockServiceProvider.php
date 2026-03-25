@@ -23,6 +23,7 @@ class BlockServiceProvider
         'how-it-works',
         'lead-form',
         'comparison-table',
+        'team',
     ];
 
     public function boot(): void
