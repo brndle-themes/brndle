@@ -22,6 +22,7 @@ class BlockServiceProvider
         'content-image-split',
         'how-it-works',
         'lead-form',
+        'comparison-table',
     ];
 
     public function boot(): void

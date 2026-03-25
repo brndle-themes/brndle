@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/comparison-table",
+  "title": "Comparison Table",
+  "category": "brndle-sections",
+  "description": "Feature comparison grid with checkmark/x columns and optional highlighted plan column.",
+  "keywords": ["comparison", "table", "features", "pricing", "versus"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "columns": { "type": "array", "default": [] },
+    "rows": { "type": "array", "default": [] },
+    "highlight_column": { "type": "number", "default": -1 },
+    "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
+  },
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+}

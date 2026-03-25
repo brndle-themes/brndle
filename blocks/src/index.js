@@ -11,5 +11,6 @@ import './content-image-split';
 import './how-it-works';
 import './lead-form';
 
+import './comparison-table';
 import './editor.css';
 import './page-meta-sidebar';
