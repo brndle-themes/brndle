@@ -28,12 +28,28 @@ class Theme extends Composer
     protected static $views = ['*'];
 
     /**
+     * Per-request cache to avoid recomputing on every Blade include.
+     * Keyed by post ID (or 'global') so per-page meta is isolated.
+     *
+     * @var array<string, array<string, mixed>>
+     */
+    private static array $cachedData = [];
+
+    /**
      * Data to pass to all views.
      *
      * @return array<string, mixed>
      */
     public function override(): array
     {
+        $cacheKey = is_singular() ? get_the_ID() : 'global';
+        if (isset(self::$cachedData[$cacheKey])) {
+            return self::$cachedData[$cacheKey];
+        }
+
+        $pageMeta = fn (string $key, string $default) => (is_singular('page') && ($v = get_post_meta(get_the_ID(), $key, true)) !== '') ? $v : $default;
+        $pageMetaBool = fn (string $key) => is_singular('page') && (bool) get_post_meta(get_the_ID(), $key, true);
+
         $links = Settings::get('social_links', []);
 
         $copyright = Settings::get('footer_copyright', '');
@@ -41,26 +57,30 @@ class Theme extends Composer
             $copyright = '&copy; ' . date('Y') . ' ' . get_bloginfo('name', 'display') . '. All rights reserved.';
         }
 
-        return [
+        self::$cachedData[$cacheKey] = [
             // Dark Mode
             'darkModeDefault' => Settings::get('dark_mode_default', 'light'),
             'showDarkModeToggle' => (bool) Settings::get('dark_mode_toggle', true),
             'darkModeTogglePosition' => Settings::get('dark_mode_toggle_position', 'bottom-right'),
 
             // Header
-            'headerStyle' => Settings::get('header_style', 'sticky'),
+            'headerStyle' => $pageMeta('_brndle_header_style', Settings::get('header_style', 'sticky')),
+            'hideHeader' => $pageMetaBool('_brndle_hide_header'),
             'headerCtaText' => Settings::get('header_cta_text', ''),
             'headerCtaUrl' => Settings::get('header_cta_url', ''),
             'headerBannerText' => Settings::get('header_banner_text', 'Free shipping on all orders'),
+            'headerMobileStyle' => Settings::get('header_mobile_style', 'slide'),
 
             // Footer
-            'footerStyle' => Settings::get('footer_style', 'dark'),
+            'footerStyle' => $pageMeta('_brndle_footer_style', Settings::get('footer_style', 'dark')),
+            'hideFooter' => $pageMetaBool('_brndle_hide_footer'),
             'footerColumns' => (int) Settings::get('footer_columns', 3),
             'footerCopyright' => $copyright,
             'footerShowSocial' => (bool) Settings::get('footer_show_social', true),
 
             // Archive
             'archiveLayout' => apply_filters('brndle/archive_layout', Settings::get('archive_layout', 'grid')),
+            'archiveShowSidebar' => (bool) Settings::get('archive_show_sidebar', false),
             'archiveShowCategoryFilter' => (bool) Settings::get('archive_show_category_filter', true),
 
             // Single Post
@@ -73,9 +93,14 @@ class Theme extends Composer
             'singleShowToc' => (bool) Settings::get('single_show_toc', false),
             'singleShowPostNav' => (bool) Settings::get('single_show_post_nav', true),
 
+            // Page overrides
+            'pageBodyClass' => is_singular('page') ? get_post_meta(get_the_ID(), '_brndle_body_class', true) : '',
+
             // Social Links
             'socialLinks' => is_array($links) ? array_filter($links, fn ($url) => ! empty($url)) : [],
         ];
+
+        return self::$cachedData[$cacheKey];
     }
 }
 

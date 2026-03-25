@@ -8,3 +8,4 @@ import './faq';
 import './logos';
 
 import './editor.css';
+import './page-meta-sidebar';

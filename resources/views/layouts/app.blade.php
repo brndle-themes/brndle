@@ -23,7 +23,9 @@
         {{ __('Skip to content', 'brndle') }}
       </a>
 
-      @include('sections.header')
+      @unless($hideHeader ?? false)
+        @include('sections.header')
+      @endunless
 
       <main id="main" class="main">
         @yield('content')
@@ -35,7 +37,9 @@
         </aside>
       @endif
 
-      @include('sections.footer')
+      @unless($hideFooter ?? false)
+        @include('sections.footer')
+      @endunless
     </div>
 
     @if($hasDarkMode)

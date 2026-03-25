@@ -16,6 +16,7 @@ class ThemeServiceProvider extends SageServiceProvider
         parent::boot();
 
         $this->app->make(BlockServiceProvider::class)->boot();
+        $this->app->make(\Brndle\Providers\PageMetaServiceProvider::class)->boot();
         $this->app->make(SettingsServiceProvider::class)->boot();
 
         // Compatibility
