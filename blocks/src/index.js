@@ -9,6 +9,7 @@ import './logos';
 
 import './content-image-split';
 import './how-it-works';
+import './lead-form';
 
 import './editor.css';
 import './page-meta-sidebar';
