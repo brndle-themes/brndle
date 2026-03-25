@@ -5,7 +5,8 @@
 .wp-block-brndle-pricing,
 .wp-block-brndle-cta,
 .wp-block-brndle-faq,
-.wp-block-brndle-logos {
+.wp-block-brndle-logos,
+.wp-block-brndle-content-image-split {
 	max-width: 100%;
 	margin: 0;
 }

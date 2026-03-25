@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/content-image-split",
+  "title": "Content + Image",
+  "category": "brndle-sections",
+  "description": "Side-by-side content and image section with flexible layout options.",
+  "keywords": ["split", "image", "content", "media", "text"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "description": { "type": "string", "default": "" },
+    "bullets": { "type": "array", "default": [] },
+    "image": { "type": "string", "default": "" },
+    "image_alt": { "type": "string", "default": "" },
+    "image_position": { "type": "string", "default": "right", "enum": ["left", "right"] },
+    "cta_text": { "type": "string", "default": "" },
+    "cta_url": { "type": "string", "default": "#" },
+    "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
+  },
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+}

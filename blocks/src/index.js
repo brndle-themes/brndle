@@ -7,5 +7,7 @@ import './cta';
 import './faq';
 import './logos';
 
+import './content-image-split';
+
 import './editor.css';
 import './page-meta-sidebar';
