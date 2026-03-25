@@ -20,6 +20,7 @@ class BlockServiceProvider
         'cta',
         'faq',
         'content-image-split',
+        'how-it-works',
     ];
 
     public function boot(): void
