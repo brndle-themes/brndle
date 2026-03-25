@@ -24,6 +24,7 @@ class BlockServiceProvider
         'lead-form',
         'comparison-table',
         'team',
+        'video-embed',
     ];
 
     public function boot(): void
