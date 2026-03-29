@@ -29,12 +29,24 @@
 
       <div class="reveal">
         <form
-          action="{{ esc_url($a['form_action'] ?: '#') }}"
+          @if(!empty($a['form_action']))
+            action="{{ $a['form_action'] }}"
+          @endif
           method="post"
           class="{{ $isInline ? 'flex flex-wrap gap-3 items-end' : 'space-y-4' }}"
           data-brndle-lead-form
-          data-success="{{ esc_attr($a['success_message'] ?? '') }}"
+          data-success="{{ esc_attr($a['success_message'] ?: __('Thank you! Your submission has been received.', 'brndle')) }}"
+          @if(empty($a['form_action']))
+            data-brndle-endpoint="{{ rest_url('brndle/v1/forms/submit') }}"
+            data-mailchimp-list="{{ esc_attr($a['mailchimp_list_id'] ?? '') }}"
+          @endif
         >
+          @if(empty($a['form_action']))
+            <input type="hidden" name="_brndle_nonce" value="{{ wp_create_nonce('brndle_form_submit') }}">
+            <div style="position:absolute;left:-9999px" aria-hidden="true">
+              <input type="text" name="_brndle_hp" tabindex="-1" autocomplete="off">
+            </div>
+          @endif
           @foreach($fields as $loop_index => $field)
             @php($fieldId = 'brndle-field-' . sanitize_title($field['label'] ?? 'field') . '-' . $loop_index)
             <div class="{{ $isInline ? 'flex-1 min-w-[200px]' : '' }}">
@@ -78,4 +90,51 @@
       </div>
     </div>
   </div>
+
+  @if(empty($a['form_action']))
+  <script>
+  (function(){
+    document.querySelectorAll('[data-brndle-lead-form][data-brndle-endpoint]').forEach(function(form){
+      if(form._brndleBound)return;
+      form._brndleBound=true;
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var btn=form.querySelector('[type="submit"]');
+        var orig=btn.textContent;
+        btn.disabled=true;
+        btn.textContent='Sending...';
+        var data={};
+        new FormData(form).forEach(function(v,k){data[k]=v});
+        data._source_url=window.location.href;
+        if(form.dataset.mailchimpList)data._mailchimp_list=form.dataset.mailchimpList;
+        fetch(form.dataset.brndleEndpoint,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(data)
+        })
+        .then(function(r){return r.json()})
+        .then(function(res){
+          if(res.success){
+            while(form.firstChild)form.removeChild(form.firstChild);
+            var p=document.createElement('p');
+            p.className='text-center py-6 text-lg font-medium';
+            p.textContent=form.dataset.success;
+            form.appendChild(p);
+          }else{
+            btn.disabled=false;
+            btn.textContent=orig;
+            var err=form.querySelector('.brndle-form-error');
+            if(!err){err=document.createElement('p');err.className='brndle-form-error text-sm text-red-400 mt-2';form.appendChild(err)}
+            err.textContent=res.message||'Something went wrong.';
+          }
+        })
+        .catch(function(){
+          btn.disabled=false;
+          btn.textContent=orig;
+        });
+      });
+    });
+  })();
+  </script>
+  @endif
 </section>

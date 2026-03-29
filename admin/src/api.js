@@ -1,4 +1,4 @@
-const { restUrl, cacheUrl, nonce } = window.brndleAdmin || {};
+const { restUrl, cacheUrl, formsUrl, nonce } = window.brndleAdmin || {};
 
 if ( ! restUrl || ! nonce ) {
 	// eslint-disable-next-line no-console
@@ -60,4 +60,35 @@ export async function purgeCache() {
 		throw new Error( 'Cache purge failed' );
 	}
 	return res.json();
+}
+
+export async function fetchSubmissions( page = 1, perPage = 20, search = '' ) {
+	const params = new URLSearchParams( { page, per_page: perPage } );
+	if ( search ) params.set( 'search', search );
+	const res = await fetch( formsUrl + '/submissions?' + params, {
+		headers: { 'X-WP-Nonce': nonce },
+	} );
+	if ( ! res.ok ) throw new Error( 'Failed to load submissions' );
+	return res.json();
+}
+
+export async function deleteSubmission( id ) {
+	const res = await fetch( formsUrl + '/submissions/' + id, {
+		method: 'DELETE',
+		headers: { 'X-WP-Nonce': nonce },
+	} );
+	if ( ! res.ok ) throw new Error( 'Delete failed' );
+	return res.json();
+}
+
+export async function fetchMailchimpLists() {
+	const res = await fetch( formsUrl + '/mailchimp/lists', {
+		headers: { 'X-WP-Nonce': nonce },
+	} );
+	if ( ! res.ok ) throw new Error( 'Failed to fetch lists' );
+	return res.json();
+}
+
+export function getExportUrl() {
+	return formsUrl + '/submissions/export?_wpnonce=' + nonce;
 }

@@ -11,6 +11,7 @@ import Footer from './tabs/Footer';
 import BlogArchive from './tabs/BlogArchive';
 import SinglePost from './tabs/SinglePost';
 import Performance from './tabs/Performance';
+import Forms from './tabs/Forms';
 
 const TAB_CONFIG = [
 	{ name: 'site-identity', title: 'Site Identity', Component: SiteIdentity },
@@ -22,6 +23,7 @@ const TAB_CONFIG = [
 	{ name: 'blog-archive', title: 'Blog Archive', Component: BlogArchive },
 	{ name: 'single-post', title: 'Single Post', Component: SinglePost },
 	{ name: 'performance', title: 'Performance', Component: Performance },
+	{ name: 'forms', title: 'Forms', Component: Forms },
 ];
 
 export default function App() {

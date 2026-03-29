@@ -84,12 +84,20 @@ registerBlockType( 'brndle/lead-form', {
 							}
 						/>
 						<TextControl
-							label="Form Action URL"
+							label="Form Action URL (optional)"
 							value={ attributes.form_action }
 							onChange={ ( v ) =>
 								setAttributes( { form_action: v } )
 							}
-							help="Leave empty for default handling"
+							help="Leave empty to use built-in form handler with Mailchimp, webhook, and email notifications. Only set this if you want to POST to an external endpoint."
+						/>
+						<TextControl
+							label="Mailchimp List ID (optional)"
+							value={ attributes.mailchimp_list_id }
+							onChange={ ( v ) =>
+								setAttributes( { mailchimp_list_id: v } )
+							}
+							help="Override the global Mailchimp list for this form. Leave empty to use the list configured in Brndle > Forms settings."
 						/>
 						<SelectControl
 							label="Layout"

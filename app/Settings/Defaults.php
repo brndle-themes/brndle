@@ -78,6 +78,14 @@ class Defaults
             'perf_lazy_images' => true,
             'perf_preload_fonts' => true,
             'perf_remove_global_styles' => false,
+
+            // ── Forms & Integrations ───────────────────────────
+            'mailchimp_api_key'        => '',
+            'mailchimp_list_id'        => '',
+            'form_webhook_url'         => '',
+            'form_notification_email'  => '',
+            'form_store_submissions'   => true,
+            'form_email_notifications' => true,
         ];
 
         /** @var array<string, mixed> */
@@ -120,6 +128,8 @@ class Defaults
             'perf_lazy_images',
             'perf_preload_fonts',
             'perf_remove_global_styles',
+            'form_store_submissions',
+            'form_email_notifications',
         ];
     }
 
@@ -160,6 +170,19 @@ class Defaults
             'site_logo_light',
             'site_logo_dark',
             'header_cta_url',
+            'form_webhook_url',
+        ];
+    }
+
+    /**
+     * Keys that hold email values.
+     *
+     * @return string[]
+     */
+    public static function emailKeys(): array
+    {
+        return [
+            'form_notification_email',
         ];
     }
 

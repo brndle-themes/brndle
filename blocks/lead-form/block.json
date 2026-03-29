@@ -15,6 +15,7 @@
     "button_text": { "type": "string", "default": "Get Started" },
     "success_message": { "type": "string", "default": "Thanks! We'll be in touch." },
     "form_action": { "type": "string", "default": "" },
+    "mailchimp_list_id": { "type": "string", "default": "" },
     "layout": { "type": "string", "default": "stacked", "enum": ["stacked", "inline", "split"] },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark", "accent"] }
   },

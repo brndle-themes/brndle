@@ -27,6 +27,7 @@ class Sanitizer
         return match (true) {
             in_array($key, Defaults::colorKeys(), true) => self::sanitizeColor($value),
             in_array($key, Defaults::urlKeys(), true) => self::sanitizeUrl($value),
+            in_array($key, Defaults::emailKeys(), true) => self::sanitizeEmail($value),
             in_array($key, Defaults::htmlKeys(), true) => self::sanitizeHtml($value),
             in_array($key, Defaults::boolKeys(), true) => self::sanitizeBool($value),
             in_array($key, Defaults::intKeys(), true) => self::sanitizeInt($value),
@@ -83,6 +84,21 @@ class Sanitizer
         }
 
         return esc_url_raw($value);
+    }
+
+    /**
+     * Sanitize an email value.
+     *
+     * @param  mixed  $value
+     * @return string
+     */
+    private static function sanitizeEmail(mixed $value): string
+    {
+        if (! is_string($value)) {
+            return '';
+        }
+
+        return sanitize_email($value);
     }
 
     /**
