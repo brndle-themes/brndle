@@ -146,7 +146,6 @@ rsync -a \
     --exclude='vite.config.js' \
     --exclude='package.json' \
     --exclude='package-lock.json' \
-    --exclude='composer.json' \
     --exclude='composer.lock' \
     --exclude='admin/src/' \
     --exclude='admin/webpack.config.cjs' \
