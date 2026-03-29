@@ -24,7 +24,7 @@
           </div>
         @endif
 
-        <h1 class="{{ $a['image'] ? 'text-[clamp(3.5rem,7vw,5rem)]' : 'text-[clamp(3.5rem,8vw,6rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
+        <h1 class="{{ $a['image'] ? 'text-[clamp(2.5rem,5vw,4rem)]' : 'text-[clamp(3rem,7vw,5rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
           {!! wp_kses_post($a['title']) !!}
         </h1>
 
