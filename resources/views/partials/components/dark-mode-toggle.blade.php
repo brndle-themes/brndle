@@ -8,6 +8,7 @@
   };
 @endphp
 
+@if($showDarkModeToggle ?? false)
 <button
   type="button"
   id="brndle-dark-toggle"
@@ -26,6 +27,7 @@
   </svg>
 </button>
 <div id="brndle-theme-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+@endif
 
 <script>
 (function(){
