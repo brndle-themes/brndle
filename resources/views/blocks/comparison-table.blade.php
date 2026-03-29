@@ -25,10 +25,10 @@
         <table class="w-full border-collapse text-sm">
           <thead>
             <tr>
-              <th class="text-left p-4 font-semibold {{ $isDark ? 'text-white/50' : 'text-text-tertiary' }} w-56 min-w-[14rem]"></th>
+              <th scope="col" class="text-left p-4 font-semibold {{ $isDark ? 'text-white/50' : 'text-text-tertiary' }} w-56 min-w-[14rem]"></th>
               @foreach($columns as $ci => $col)
                 @php($isHL = $ci === $highlight)
-                <th class="p-4 text-center font-bold {{ $isHL ? 'bg-accent text-on-accent rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
+                <th scope="col" class="p-4 text-center font-bold min-w-[8rem] {{ $isHL ? 'bg-accent text-on-accent rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
                   <div class="text-base font-bold">{{ $col['label'] ?? '' }}</div>
                   @if(!empty($col['sublabel']))
                     <div class="text-xs {{ $isHL ? 'text-white/70' : ($isDark ? 'text-white/50' : 'text-text-tertiary') }} font-normal mt-0.5">{{ $col['sublabel'] }}</div>
@@ -41,7 +41,7 @@
             @foreach($rows as $ri => $row)
               @php($isLast = $ri === count($rows) - 1)
               <tr class="{{ $isDark ? 'border-b border-white/[0.06]' : 'border-b border-surface-tertiary' }} {{ $isLast ? 'border-b-0' : '' }}">
-                <td class="p-4 {{ $isDark ? 'text-white/80' : 'text-text-primary' }} font-medium">{{ $row['feature'] ?? '' }}</td>
+                <th scope="row" class="p-4 text-left {{ $isDark ? 'text-white/80' : 'text-text-primary' }} font-medium">{{ $row['feature'] ?? '' }}</th>
                 @foreach($columns as $ci => $col)
                   @php
                     $isHL = $ci === $highlight;

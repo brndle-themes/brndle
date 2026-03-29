@@ -4,7 +4,7 @@
   <div class="max-w-7xl mx-auto px-6">
     @php($items = $a['items'] ?? [])
     @php($statCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3', 'md:grid-cols-4'])
-    <div class="grid grid-cols-2 {{ $statCols[min(count($items), 4) - 1] ?? 'md:grid-cols-4' }} gap-8 md:gap-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 {{ $statCols[max(min(count($items), 4) - 1, 0)] ?? 'md:grid-cols-4' }} gap-8 md:gap-12">
       @foreach($items as $stat)
         <div class="text-center reveal">
           <div class="text-4xl md:text-5xl font-bold tracking-tight" aria-label="{{ ($stat['value'] ?? '') . ' ' . ($stat['label'] ?? '') }}">{{ $stat['value'] ?? '' }}</div>

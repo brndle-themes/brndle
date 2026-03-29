@@ -1,6 +1,9 @@
-@php($a = $attributes)
+@php
+  $a = $attributes;
+  $isDark = ($a['variant'] ?? 'light') === 'dark';
+@endphp
 
-<section class="py-24 md:py-32 bg-surface-primary">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <div class="max-w-3xl mx-auto text-center mb-16 reveal">
@@ -13,7 +16,8 @@
 
     @php($testimonialItems = $a['items'] ?? [])
     @php($testimonialCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3'])
-    <div class="grid {{ $testimonialCols[min(count($testimonialItems), 3) - 1] ?? 'md:grid-cols-3' }} gap-6">
+    @if(!empty($testimonialItems))
+    <div class="grid {{ $testimonialCols[max(min(count($testimonialItems), 3) - 1, 0)] ?? 'md:grid-cols-3' }} gap-6">
       @foreach($testimonialItems as $item)
         <figure class="p-8 rounded-2xl bg-surface-secondary border border-surface-tertiary hover:border-text-tertiary hover:shadow-lg transition-all duration-300 reveal">
           {{-- Stars --}}
@@ -41,5 +45,6 @@
         </figure>
       @endforeach
     </div>
+    @endif
   </div>
 </section>

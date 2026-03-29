@@ -59,7 +59,7 @@
                 @if(isset($heroicons[$feature['icon']]))
                   <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">{!! $heroicons[$feature['icon']] !!}</svg>
                 @else
-                  <span class="text-accent text-2xl" aria-hidden="true">{!! $feature['icon'] !!}</span>
+                  <span class="text-accent text-2xl" aria-hidden="true">{{ $feature['icon'] }}</span>
                 @endif
               </div>
             @endif

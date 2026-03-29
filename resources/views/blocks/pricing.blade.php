@@ -45,6 +45,7 @@
             </button>
           @endforeach
         </div>
+        <div class="sr-only" aria-live="polite" data-billing-announce="{{ $toggleId }}"></div>
       @endif
     </div>
 
@@ -116,7 +117,7 @@
     @if($hasGroups)
     <script>
     (function(){
-      var tid='{{ $toggleId }}';
+      var tid={!! json_encode($toggleId) !!};
       var btns=document.querySelectorAll('[data-toggle="'+tid+'"]');
       var grid=document.querySelector('[data-pricing-grid="'+tid+'"]');
       if(!btns.length||!grid) return;
@@ -147,6 +148,8 @@
           var cols=Math.min(Math.max(visible,1),3);
           grid.classList.remove('md:grid-cols-1','md:grid-cols-2','md:grid-cols-3');
           grid.classList.add('md:grid-cols-'+cols);
+          var announce=document.querySelector('[data-billing-announce="'+tid+'"]');
+          if(announce){announce.textContent='Showing '+group+' plans';}
         });
       });
     })();

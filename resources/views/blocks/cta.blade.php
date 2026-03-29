@@ -10,7 +10,7 @@
     <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! wp_kses_post($a['title']) !!}</h2>
 
     @if($a['subtitle'])
-      <p class="mt-5 text-lg text-white/70 max-w-xl mx-auto">{{ $a['subtitle'] }}</p>
+      <p class="mt-5 text-lg {{ ($a['variant'] ?? 'dark') === 'dark' ? 'text-white/70' : 'text-on-accent/70' }} max-w-xl mx-auto">{{ $a['subtitle'] }}</p>
     @endif
 
     <div class="mt-10 flex flex-wrap justify-center gap-4">

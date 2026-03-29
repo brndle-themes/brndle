@@ -35,10 +35,11 @@
           data-brndle-lead-form
           data-success="{{ esc_attr($a['success_message'] ?? '') }}"
         >
-          @foreach($fields as $field)
+          @foreach($fields as $loop_index => $field)
+            @php($fieldId = 'brndle-field-' . sanitize_title($field['label'] ?? 'field') . '-' . $loop_index)
             <div class="{{ $isInline ? 'flex-1 min-w-[200px]' : '' }}">
               @if(!$isInline)
-                <label class="block text-sm font-medium mb-1.5 {{ $isDark || $isAccent ? 'text-white/90' : 'text-text-primary' }}">
+                <label for="{{ $fieldId }}" class="block text-sm font-medium mb-1.5 {{ $isDark || $isAccent ? 'text-white/90' : 'text-text-primary' }}">
                   {{ $field['label'] ?? '' }}
                   @if($field['required'] ?? false) <span class="text-red-400">*</span> @endif
                 </label>
@@ -46,19 +47,23 @@
 
               @if(($field['type'] ?? 'text') === 'textarea')
                 <textarea
+                  id="{{ $fieldId }}"
                   name="{{ sanitize_title($field['label'] ?? 'field') }}"
                   placeholder="{{ esc_attr($field['placeholder'] ?? '') }}"
                   {{ ($field['required'] ?? false) ? 'required' : '' }}
                   rows="4"
                   class="w-full px-4 py-3 rounded-xl border {{ $inputClass }} focus:outline-2 focus:outline-accent transition-colors"
+                  @if($isInline) aria-label="{{ $field['label'] ?? '' }}" @endif
                 ></textarea>
               @else
                 <input
+                  id="{{ $fieldId }}"
                   type="{{ esc_attr($field['type'] ?? 'text') }}"
                   name="{{ sanitize_title($field['label'] ?? 'field') }}"
                   placeholder="{{ esc_attr($field['placeholder'] ?? ($isInline ? ($field['label'] ?? '') : '')) }}"
                   {{ ($field['required'] ?? false) ? 'required' : '' }}
                   class="w-full px-4 py-3 rounded-xl border {{ $inputClass }} focus:outline-2 focus:outline-accent transition-colors"
+                  @if($isInline) aria-label="{{ $field['label'] ?? '' }}" @endif
                 >
               @endif
             </div>

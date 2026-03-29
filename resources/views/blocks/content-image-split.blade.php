@@ -25,7 +25,7 @@
         @endif
         @if($a['cta_text'])
           <div class="mt-8">
-            <a href="{{ esc_url($a['cta_url']) }}" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-accent text-on-accent hover:opacity-90 transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
+            <a href="{{ esc_url($a['cta_url'] ?: '#') }}" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-accent text-on-accent hover:opacity-90 transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
               {{ $a['cta_text'] }}
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>

@@ -17,15 +17,15 @@
         @if($a['eyebrow'])
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm mb-8">
             <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span class="relative rounded-full h-2 w-2 bg-accent"></span>
+              <span class="animate-ping absolute h-full w-full rounded-full bg-accent opacity-75" aria-hidden="true"></span>
+              <span class="relative rounded-full h-2 w-2 bg-accent" aria-hidden="true"></span>
             </span>
             <span class="text-sm font-medium {{ $isDark ? 'text-white/70' : 'text-text-secondary' }}">{{ $a['eyebrow'] }}</span>
           </div>
         @endif
 
         <h1 class="{{ $a['image'] ? 'text-[clamp(3.5rem,7vw,5rem)]' : 'text-[clamp(3.5rem,8vw,6rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
-          {!! $a['title'] !!}
+          {!! wp_kses_post($a['title']) !!}
         </h1>
 
         @if($a['subtitle'])

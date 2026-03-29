@@ -8,16 +8,22 @@
 
   $embedUrl = '';
   if ($videoType === 'youtube' && $videoUrl) {
-    preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^&?\s]+)/', $videoUrl, $m);
+    preg_match('/(?:youtu\.be\/|(?:m\.)?youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|live\/))([^&?\s]+)/', $videoUrl, $m);
     $vid = $m[1] ?? '';
     if ($vid) {
       $embedUrl = "https://www.youtube-nocookie.com/embed/{$vid}?rel=0&modestbranding=1&autoplay={$autoplay}&controls={$controls}";
+      if ($autoplay) {
+        $embedUrl .= '&mute=1';
+      }
     }
   } elseif ($videoType === 'vimeo' && $videoUrl) {
     preg_match('/vimeo\.com\/(?:video\/)?(\d+)/', $videoUrl, $m);
     $vid = $m[1] ?? '';
     if ($vid) {
       $embedUrl = "https://player.vimeo.com/video/{$vid}?autoplay={$autoplay}";
+      if ($autoplay) {
+        $embedUrl .= '&muted=1';
+      }
     }
   }
 
@@ -60,6 +66,7 @@
             {{ $autoplay ? 'autoplay muted playsinline' : '' }}
             @if(!empty($a['poster'])) poster="{{ esc_url($a['poster']) }}" @endif
             preload="metadata"
+            aria-label="{{ wp_strip_all_tags($a['title'] ?? __('Video', 'brndle')) }}"
           >
             <source src="{{ esc_url($videoUrl) }}" type="video/mp4">
           </video>

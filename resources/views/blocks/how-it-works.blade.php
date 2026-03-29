@@ -45,11 +45,11 @@
         @endforeach
       </div>
     @else
-      <div class="grid {{ $stepCols[min(count($steps), 4) - 1] ?? 'md:grid-cols-3' }} gap-8">
+      <div class="grid {{ $stepCols[max(min(count($steps), 4) - 1, 0)] ?? 'md:grid-cols-3' }} gap-8">
         @foreach($steps as $i => $step)
           <div class="relative text-center reveal">
             @if($i < count($steps) - 1)
-              <div class="hidden md:block absolute top-5 h-px {{ $isDark ? 'bg-white/10' : 'bg-surface-tertiary' }}" style="left: calc(50% + 28px); width: calc(100% - 56px);"></div>
+              <div class="hidden md:block absolute top-5 h-px {{ $isDark ? 'bg-white/10' : 'bg-surface-tertiary' }}" style="left: calc(50% + 28px); width: calc(100% - 56px);" aria-hidden="true"></div>
             @endif
             <div class="relative z-10 w-12 h-12 rounded-full bg-accent text-on-accent flex items-center justify-center text-lg font-bold mx-auto mb-4">
               @if(!empty($step['icon']))
