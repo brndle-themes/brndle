@@ -22,20 +22,20 @@ class BlockPatternServiceProvider
     public function registerPatterns(): void
     {
         $patterns = [
-            'saas-product'         => 'SaaS Product Page',
-            'professional-services'=> 'Professional Services',
-            'lead-generation'      => 'Lead Generation',
-            'product-launch'       => 'Product Launch',
-            'promotional-campaign' => 'Promotional Campaign',
-            'ecommerce-product'    => 'E-commerce Product',
-            'portfolio-agency'     => 'Portfolio / Agency',
+            'saas-product'         => __('SaaS Product Page', 'brndle'),
+            'professional-services'=> __('Professional Services', 'brndle'),
+            'lead-generation'      => __('Lead Generation', 'brndle'),
+            'product-launch'       => __('Product Launch', 'brndle'),
+            'promotional-campaign' => __('Promotional Campaign', 'brndle'),
+            'ecommerce-product'    => __('E-commerce Product', 'brndle'),
+            'portfolio-agency'     => __('Portfolio / Agency', 'brndle'),
         ];
 
         foreach ($patterns as $slug => $title) {
             $method = 'pattern' . str_replace(' ', '', ucwords(str_replace('-', ' ', $slug)));
             if (method_exists($this, $method)) {
                 register_block_pattern("brndle/{$slug}", [
-                    'title'      => __($title, 'brndle'),
+                    'title'      => $title,
                     'categories' => [$this->category],
                     'blockTypes' => ['brndle/hero'],
                     'content'    => $this->{$method}(),
@@ -59,12 +59,12 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Now in Public Beta',
-                'title' => 'Ship better software,<br>10x faster',
-                'subtitle' => 'Streamline your entire development workflow — from planning to deployment — in one unified platform trusted by 5,000+ engineering teams.',
-                'cta_primary' => 'Start Free Trial',
+                'eyebrow' => __('Now in Public Beta', 'brndle'),
+                'title' => __('Ship better software,<br>10x faster', 'brndle'),
+                'subtitle' => __('Streamline your entire development workflow — from planning to deployment — in one unified platform trusted by 5,000+ engineering teams.', 'brndle'),
+                'cta_primary' => __('Start Free Trial', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'Watch Demo',
+                'cta_secondary' => __('Watch Demo', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
                 'logos' => ['Stripe', 'Notion', 'Vercel', 'Linear', 'Figma'],
@@ -72,68 +72,68 @@ class BlockPatternServiceProvider
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'dark',
                 'items' => [
-                    ['value' => '5,000+', 'label' => 'Engineering Teams'],
-                    ['value' => '99.9%', 'label' => 'Uptime SLA'],
-                    ['value' => '4.2s', 'label' => 'Avg Deploy Time'],
-                    ['value' => '$0', 'label' => 'Setup Cost'],
+                    ['value' => '5,000+', 'label' => __('Engineering Teams', 'brndle')],
+                    ['value' => '99.9%', 'label' => __('Uptime SLA', 'brndle')],
+                    ['value' => '4.2s', 'label' => __('Avg Deploy Time', 'brndle')],
+                    ['value' => '$0', 'label' => __('Setup Cost', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Core Platform',
-                'title' => 'Everything your team needs to ship faster',
+                'eyebrow' => __('Core Platform', 'brndle'),
+                'title' => __('Everything your team needs to ship faster', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Smart CI/CD Pipelines', 'description' => 'Automatic parallel builds, intelligent caching, and zero-config deploys that just work.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Real-time Collaboration', 'description' => 'Code reviews, pair programming, and shared environments — built for distributed teams.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'One-click Environments', 'description' => 'Spin up production-identical preview environments for every branch and pull request.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Smart CI/CD Pipelines', 'brndle'), 'description' => __('Automatic parallel builds, intelligent caching, and zero-config deploys that just work.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Real-time Collaboration', 'brndle'), 'description' => __('Code reviews, pair programming, and shared environments — built for distributed teams.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('One-click Environments', 'brndle'), 'description' => __('Spin up production-identical preview environments for every branch and pull request.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/how-it-works', [
-                'eyebrow' => 'Get Started in Minutes',
-                'title' => 'From signup to first deploy in under 10 minutes',
+                'eyebrow' => __('Get Started in Minutes', 'brndle'),
+                'title' => __('From signup to first deploy in under 10 minutes', 'brndle'),
                 'layout' => 'horizontal',
                 'variant' => 'light',
                 'steps' => [
-                    ['title' => 'Connect Your Repo', 'description' => 'Link your GitHub, GitLab, or Bitbucket in one click.', 'icon' => ''],
-                    ['title' => 'Configure Pipeline', 'description' => 'Use our visual editor or drop in your existing YAML.', 'icon' => ''],
-                    ['title' => 'Deploy with Confidence', 'description' => 'Push to main and watch your pipeline run automatically.', 'icon' => ''],
+                    ['title' => __('Connect Your Repo', 'brndle'), 'description' => __('Link your GitHub, GitLab, or Bitbucket in one click.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Configure Pipeline', 'brndle'), 'description' => __('Use our visual editor or drop in your existing YAML.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Deploy with Confidence', 'brndle'), 'description' => __('Push to main and watch your pipeline run automatically.', 'brndle'), 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'eyebrow' => 'Loved by engineers',
-                'title' => 'Teams that switched never looked back',
+                'eyebrow' => __('Loved by engineers', 'brndle'),
+                'title' => __('Teams that switched never looked back', 'brndle'),
                 'items' => [
-                    ['name' => 'Sarah Chen', 'role' => 'VP Engineering, Acme Corp', 'quote' => 'We cut our deploy time from 45 minutes to under 5. The ROI was obvious within the first week.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Marcus Rodriguez', 'role' => 'CTO, ScaleUp', 'quote' => 'Finally a platform that does not fight you. Our team adopted it in two days with zero training.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Priya Patel', 'role' => 'Lead DevOps, TechFlow', 'quote' => 'The preview environments alone justified the switch. QA cycles dropped by 60%.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Sarah Chen', 'brndle'), 'role' => __('VP Engineering, Acme Corp', 'brndle'), 'quote' => __('We cut our deploy time from 45 minutes to under 5. The ROI was obvious within the first week.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Marcus Rodriguez', 'brndle'), 'role' => __('CTO, ScaleUp', 'brndle'), 'quote' => __('Finally a platform that does not fight you. Our team adopted it in two days with zero training.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Priya Patel', 'brndle'), 'role' => __('Lead DevOps, TechFlow', 'brndle'), 'quote' => __('The preview environments alone justified the switch. QA cycles dropped by 60%.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/pricing', [
-                'eyebrow' => 'Simple Pricing',
-                'title' => 'Start free, scale as you grow',
+                'eyebrow' => __('Simple Pricing', 'brndle'),
+                'title' => __('Start free, scale as you grow', 'brndle'),
                 'variant' => 'light',
                 'plans' => [
-                    ['name' => 'Starter', 'description' => 'For small teams getting started', 'price' => '$0', 'period' => '/mo', 'features' => ['3 team members', '500 CI minutes/mo', 'Community support'], 'cta_text' => 'Get Started Free', 'cta_url' => '#', 'featured' => false, 'badge' => ''],
-                    ['name' => 'Pro', 'description' => 'For growing engineering teams', 'price' => '$49', 'period' => '/mo', 'features' => ['Unlimited members', '5,000 CI minutes/mo', 'Preview environments', 'Priority support'], 'cta_text' => 'Start Free Trial', 'cta_url' => '#', 'featured' => true, 'badge' => 'Most Popular'],
-                    ['name' => 'Enterprise', 'description' => 'For large organizations', 'price' => 'Custom', 'period' => '', 'features' => ['Everything in Pro', 'Unlimited CI minutes', 'SSO/SAML', 'SLA guarantee', 'Dedicated support'], 'cta_text' => 'Contact Sales', 'cta_url' => '#', 'featured' => false, 'badge' => ''],
+                    ['name' => __('Starter', 'brndle'), 'description' => __('For small teams getting started', 'brndle'), 'price' => '$0', 'period' => __('/mo', 'brndle'), 'features' => [__('3 team members', 'brndle'), __('500 CI minutes/mo', 'brndle'), __('Community support', 'brndle')], 'cta_text' => __('Get Started Free', 'brndle'), 'cta_url' => '#', 'featured' => false, 'badge' => ''],
+                    ['name' => __('Pro', 'brndle'), 'description' => __('For growing engineering teams', 'brndle'), 'price' => '$49', 'period' => __('/mo', 'brndle'), 'features' => [__('Unlimited members', 'brndle'), __('5,000 CI minutes/mo', 'brndle'), __('Preview environments', 'brndle'), __('Priority support', 'brndle')], 'cta_text' => __('Start Free Trial', 'brndle'), 'cta_url' => '#', 'featured' => true, 'badge' => __('Most Popular', 'brndle')],
+                    ['name' => __('Enterprise', 'brndle'), 'description' => __('For large organizations', 'brndle'), 'price' => __('Custom', 'brndle'), 'period' => '', 'features' => [__('Everything in Pro', 'brndle'), __('Unlimited CI minutes', 'brndle'), __('SSO/SAML', 'brndle'), __('SLA guarantee', 'brndle'), __('Dedicated support', 'brndle')], 'cta_text' => __('Contact Sales', 'brndle'), 'cta_url' => '#', 'featured' => false, 'badge' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/faq', [
-                'title' => 'Frequently asked questions',
+                'title' => __('Frequently asked questions', 'brndle'),
                 'items' => [
-                    ['question' => 'Is there really a free tier?', 'answer' => 'Yes. The Starter plan is free forever with no credit card required. It includes 3 team members and 500 CI minutes per month.'],
-                    ['question' => 'Can I migrate from my current CI/CD?', 'answer' => 'Absolutely. We support importing from GitHub Actions, GitLab CI, CircleCI, and Jenkins. Most teams migrate in under an hour.'],
-                    ['question' => 'What happens if I exceed my plan limits?', 'answer' => 'We will notify you before you hit your limit. You can upgrade at any time, and we prorate the difference.'],
-                    ['question' => 'Do you offer annual billing?', 'answer' => 'Yes — save 20% with annual billing on all paid plans.'],
-                    ['question' => 'What is your cancellation policy?', 'answer' => 'Cancel anytime with no penalties. Your data is retained for 30 days after cancellation.'],
+                    ['question' => __('Is there really a free tier?', 'brndle'), 'answer' => __('Yes. The Starter plan is free forever with no credit card required. It includes 3 team members and 500 CI minutes per month.', 'brndle')],
+                    ['question' => __('Can I migrate from my current CI/CD?', 'brndle'), 'answer' => __('Absolutely. We support importing from GitHub Actions, GitLab CI, CircleCI, and Jenkins. Most teams migrate in under an hour.', 'brndle')],
+                    ['question' => __('What happens if I exceed my plan limits?', 'brndle'), 'answer' => __('We will notify you before you hit your limit. You can upgrade at any time, and we prorate the difference.', 'brndle')],
+                    ['question' => __('Do you offer annual billing?', 'brndle'), 'answer' => __('Yes — save 20% with annual billing on all paid plans.', 'brndle')],
+                    ['question' => __('What is your cancellation policy?', 'brndle'), 'answer' => __('Cancel anytime with no penalties. Your data is retained for 30 days after cancellation.', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/cta', [
-                'title' => 'Ready to ship 10x faster?',
-                'subtitle' => 'Join 5,000 engineering teams already using the platform. Free forever, no credit card required.',
-                'cta_primary' => 'Start Free Trial',
+                'title' => __('Ready to ship 10x faster?', 'brndle'),
+                'subtitle' => __('Join 5,000 engineering teams already using the platform. Free forever, no credit card required.', 'brndle'),
+                'cta_primary' => __('Start Free Trial', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'Talk to Sales',
+                'cta_secondary' => __('Talk to Sales', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
             ]);
@@ -145,82 +145,82 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Management Consulting',
-                'title' => 'We solve the problems that slow your business',
-                'subtitle' => 'Strategic consulting for mid-market companies. We embed with your team, diagnose the root cause, and build the systems to fix it permanently.',
-                'cta_primary' => 'Book a Discovery Call',
+                'eyebrow' => __('Management Consulting', 'brndle'),
+                'title' => __('We solve the problems that slow your business', 'brndle'),
+                'subtitle' => __('Strategic consulting for mid-market companies. We embed with your team, diagnose the root cause, and build the systems to fix it permanently.', 'brndle'),
+                'cta_primary' => __('Book a Discovery Call', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'See Our Work',
+                'cta_secondary' => __('See Our Work', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'light',
                 'items' => [
-                    ['value' => '14 years', 'label' => 'In Business'],
-                    ['value' => '$2.4B', 'label' => 'Revenue Impacted'],
-                    ['value' => '97%', 'label' => 'Client Retention'],
-                    ['value' => '300+', 'label' => 'Engagements'],
+                    ['value' => '14 years', 'label' => __('In Business', 'brndle')],
+                    ['value' => '$2.4B', 'label' => __('Revenue Impacted', 'brndle')],
+                    ['value' => '97%', 'label' => __('Client Retention', 'brndle')],
+                    ['value' => '300+', 'label' => __('Engagements', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/content-image-split', [
-                'eyebrow' => 'Our Approach',
-                'title' => 'Diagnosis before prescription',
-                'description' => 'Most consultants arrive with a predetermined playbook. We spend the first two weeks listening, mapping, and measuring before recommending a single change.',
-                'bullets' => ['Cross-functional interviews with 15-40 stakeholders', 'Quantitative analysis of your operational data', 'Benchmarking against 50+ comparable businesses', 'Written diagnosis report before any engagement begins'],
+                'eyebrow' => __('Our Approach', 'brndle'),
+                'title' => __('Diagnosis before prescription', 'brndle'),
+                'description' => __('Most consultants arrive with a predetermined playbook. We spend the first two weeks listening, mapping, and measuring before recommending a single change.', 'brndle'),
+                'bullets' => [__('Cross-functional interviews with 15-40 stakeholders', 'brndle'), __('Quantitative analysis of your operational data', 'brndle'), __('Benchmarking against 50+ comparable businesses', 'brndle'), __('Written diagnosis report before any engagement begins', 'brndle')],
                 'image' => '',
                 'image_position' => 'right',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Service Lines',
-                'title' => 'We specialize in three areas',
+                'eyebrow' => __('Service Lines', 'brndle'),
+                'title' => __('We specialize in three areas', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Operations & Supply Chain', 'description' => 'Reduce waste, increase throughput, and build resilient operations that scale.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Revenue Growth Strategy', 'description' => 'Find and fix the bottlenecks between your product and your customers.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Organizational Design', 'description' => 'Build the team structure, processes, and culture that match your growth stage.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Operations & Supply Chain', 'brndle'), 'description' => __('Reduce waste, increase throughput, and build resilient operations that scale.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Revenue Growth Strategy', 'brndle'), 'description' => __('Find and fix the bottlenecks between your product and your customers.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Organizational Design', 'brndle'), 'description' => __('Build the team structure, processes, and culture that match your growth stage.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/team', [
-                'eyebrow' => 'Your Team',
-                'title' => 'Senior practitioners, not junior analysts',
-                'subtitle' => 'Every engagement is led by a principal with 15+ years of operating experience.',
+                'eyebrow' => __('Your Team', 'brndle'),
+                'title' => __('Senior practitioners, not junior analysts', 'brndle'),
+                'subtitle' => __('Every engagement is led by a principal with 15+ years of operating experience.', 'brndle'),
                 'columns' => '3',
                 'variant' => 'light',
                 'members' => [
-                    ['name' => 'David Kim', 'role' => 'Managing Partner', 'bio' => 'Former COO at a $500M logistics company. 20 years in operations.', 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
-                    ['name' => 'Rachel Torres', 'role' => 'Revenue Strategy Lead', 'bio' => 'Built and scaled sales orgs from $5M to $100M ARR at three SaaS companies.', 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
-                    ['name' => 'James Okonkwo', 'role' => 'Org Design Principal', 'bio' => 'Former CHRO. Specializes in post-acquisition integration and culture transformation.', 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
+                    ['name' => __('David Kim', 'brndle'), 'role' => __('Managing Partner', 'brndle'), 'bio' => __('Former COO at a $500M logistics company. 20 years in operations.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
+                    ['name' => __('Rachel Torres', 'brndle'), 'role' => __('Revenue Strategy Lead', 'brndle'), 'bio' => __('Built and scaled sales orgs from $5M to $100M ARR at three SaaS companies.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
+                    ['name' => __('James Okonkwo', 'brndle'), 'role' => __('Org Design Principal', 'brndle'), 'bio' => __('Former CHRO. Specializes in post-acquisition integration and culture transformation.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'eyebrow' => 'Client Results',
-                'title' => 'Measurable outcomes, not just advice',
+                'eyebrow' => __('Client Results', 'brndle'),
+                'title' => __('Measurable outcomes, not just advice', 'brndle'),
                 'items' => [
-                    ['name' => 'Lisa Chang', 'role' => 'CEO, Meridian Logistics', 'quote' => 'They found $4.2M in annual savings we did not know existed. The diagnosis alone was worth the engagement fee.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Robert Hayes', 'role' => 'CFO, Apex Manufacturing', 'quote' => 'Revenue grew 40% in the first year after implementing their recommendations. No consultant has ever delivered like this.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Anika Desai', 'role' => 'COO, BrightPath Health', 'quote' => 'They embedded with our team for 12 weeks and left us with systems that still work three years later.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Lisa Chang', 'brndle'), 'role' => __('CEO, Meridian Logistics', 'brndle'), 'quote' => __('They found $4.2M in annual savings we did not know existed. The diagnosis alone was worth the engagement fee.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Robert Hayes', 'brndle'), 'role' => __('CFO, Apex Manufacturing', 'brndle'), 'quote' => __('Revenue grew 40% in the first year after implementing their recommendations. No consultant has ever delivered like this.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Anika Desai', 'brndle'), 'role' => __('COO, BrightPath Health', 'brndle'), 'quote' => __('They embedded with our team for 12 weeks and left us with systems that still work three years later.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/how-it-works', [
-                'title' => 'How an engagement works',
+                'title' => __('How an engagement works', 'brndle'),
                 'layout' => 'vertical',
                 'variant' => 'light',
                 'steps' => [
-                    ['title' => 'Discovery Call', 'description' => 'A 30-minute conversation to understand your situation and determine if we are a good fit.', 'icon' => ''],
-                    ['title' => 'Diagnostic Phase', 'description' => 'Two weeks of interviews, data analysis, and benchmarking. You receive a written report.', 'icon' => ''],
-                    ['title' => 'Solution Design', 'description' => 'We present 2-3 options with projected ROI and implementation timelines.', 'icon' => ''],
-                    ['title' => 'Implementation', 'description' => 'Our team embeds with yours to execute the plan and transfer knowledge.', 'icon' => ''],
-                    ['title' => 'Handover', 'description' => 'Documentation, training, and a 90-day support period to ensure sustainability.', 'icon' => ''],
+                    ['title' => __('Discovery Call', 'brndle'), 'description' => __('A 30-minute conversation to understand your situation and determine if we are a good fit.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Diagnostic Phase', 'brndle'), 'description' => __('Two weeks of interviews, data analysis, and benchmarking. You receive a written report.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Solution Design', 'brndle'), 'description' => __('We present 2-3 options with projected ROI and implementation timelines.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Implementation', 'brndle'), 'description' => __('Our team embeds with yours to execute the plan and transfer knowledge.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Handover', 'brndle'), 'description' => __('Documentation, training, and a 90-day support period to ensure sustainability.', 'brndle'), 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/cta', [
-                'title' => 'Let us diagnose your biggest constraint',
-                'subtitle' => 'The discovery call is free. If we can not help, we will tell you who can.',
-                'cta_primary' => 'Book Discovery Call',
+                'title' => __('Let us diagnose your biggest constraint', 'brndle'),
+                'subtitle' => __('The discovery call is free. If we can not help, we will tell you who can.', 'brndle'),
+                'cta_primary' => __('Book Discovery Call', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'Download Case Study',
+                'cta_secondary' => __('Download Case Study', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
             ]);
@@ -232,56 +232,56 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Free Report',
-                'title' => 'The 7 sales mistakes costing you $500K in lost revenue',
-                'subtitle' => 'Download our data-backed report based on interviews with 1,200 B2B sales leaders. Includes benchmarks, playbooks, and a 30-day action plan.',
-                'cta_primary' => 'Download Free Report',
+                'eyebrow' => __('Free Report', 'brndle'),
+                'title' => __('The 7 sales mistakes costing you $500K in lost revenue', 'brndle'),
+                'subtitle' => __('Download our data-backed report based on interviews with 1,200 B2B sales leaders. Includes benchmarks, playbooks, and a 30-day action plan.', 'brndle'),
+                'cta_primary' => __('Download Free Report', 'brndle'),
                 'cta_primary_url' => '#lead-form',
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/logos', [
-                'title' => 'Featured in',
+                'title' => __('Featured in', 'brndle'),
                 'companies' => ['Forbes', 'Harvard Business Review', 'Sales Hacker', 'G2', 'Gartner'],
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'light',
                 'items' => [
-                    ['value' => '1,200+', 'label' => 'Sales Leaders Surveyed'],
-                    ['value' => '$1.2M', 'label' => 'Avg Revenue Impact'],
-                    ['value' => '47%', 'label' => 'Pipeline Increase'],
-                    ['value' => '3.1x', 'label' => 'ROI Within 90 Days'],
+                    ['value' => '1,200+', 'label' => __('Sales Leaders Surveyed', 'brndle')],
+                    ['value' => '$1.2M', 'label' => __('Avg Revenue Impact', 'brndle')],
+                    ['value' => '47%', 'label' => __('Pipeline Increase', 'brndle')],
+                    ['value' => '3.1x', 'label' => __('ROI Within 90 Days', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/content-image-split', [
-                'eyebrow' => 'What is Inside',
-                'title' => '93 pages of data your competitors do not have',
-                'bullets' => ['The 7 pipeline killers and how to fix each one', 'Benchmark data segmented by company size and industry', 'Step-by-step outbound playbook used by top performers', 'Tool stack recommendations with vendor comparisons'],
+                'eyebrow' => __('What is Inside', 'brndle'),
+                'title' => __('93 pages of data your competitors do not have', 'brndle'),
+                'bullets' => [__('The 7 pipeline killers and how to fix each one', 'brndle'), __('Benchmark data segmented by company size and industry', 'brndle'), __('Step-by-step outbound playbook used by top performers', 'brndle'), __('Tool stack recommendations with vendor comparisons', 'brndle')],
                 'image' => '',
                 'image_position' => 'right',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'title' => 'What sales leaders are saying',
+                'title' => __('What sales leaders are saying', 'brndle'),
                 'items' => [
-                    ['name' => 'Mark Sullivan', 'role' => 'VP Sales, CloudScale', 'quote' => 'This report changed how we approach outbound. Pipeline is up 52% since we implemented the framework.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Jennifer Wu', 'role' => 'CRO, DataBridge', 'quote' => 'The benchmarks alone saved us months of guessing. Best free resource I have found in B2B sales.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Alex Petrov', 'role' => 'Head of Sales, NovaTech', 'quote' => 'We went from 12 to 19 SQLs per month using the playbook in chapter 4. Concrete, actionable advice.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Mark Sullivan', 'brndle'), 'role' => __('VP Sales, CloudScale', 'brndle'), 'quote' => __('This report changed how we approach outbound. Pipeline is up 52% since we implemented the framework.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Jennifer Wu', 'brndle'), 'role' => __('CRO, DataBridge', 'brndle'), 'quote' => __('The benchmarks alone saved us months of guessing. Best free resource I have found in B2B sales.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Alex Petrov', 'brndle'), 'role' => __('Head of Sales, NovaTech', 'brndle'), 'quote' => __('We went from 12 to 19 SQLs per month using the playbook in chapter 4. Concrete, actionable advice.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/lead-form', [
-                'eyebrow' => 'Get Instant Access',
-                'title' => 'Download the free report',
-                'subtitle' => 'Join 12,000 sales leaders who have already used this framework.',
+                'eyebrow' => __('Get Instant Access', 'brndle'),
+                'title' => __('Download the free report', 'brndle'),
+                'subtitle' => __('Join 12,000 sales leaders who have already used this framework.', 'brndle'),
                 'layout' => 'split',
                 'variant' => 'dark',
                 'fields' => [
-                    ['label' => 'Full Name', 'type' => 'text', 'required' => true, 'placeholder' => 'Jane Smith'],
-                    ['label' => 'Work Email', 'type' => 'email', 'required' => true, 'placeholder' => 'jane@company.com'],
-                    ['label' => 'Company', 'type' => 'text', 'required' => true, 'placeholder' => 'Acme Inc'],
+                    ['label' => __('Full Name', 'brndle'), 'type' => 'text', 'required' => true, 'placeholder' => __('Jane Smith', 'brndle')],
+                    ['label' => __('Work Email', 'brndle'), 'type' => 'email', 'required' => true, 'placeholder' => 'jane@company.com'],
+                    ['label' => __('Company', 'brndle'), 'type' => 'text', 'required' => true, 'placeholder' => __('Acme Inc', 'brndle')],
                 ],
-                'button_text' => 'Send Me the Report',
-                'success_message' => 'Check your inbox — the report is on its way!',
+                'button_text' => __('Send Me the Report', 'brndle'),
+                'success_message' => __('Check your inbox — the report is on its way!', 'brndle'),
             ]);
     }
 
@@ -291,18 +291,18 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Launching Soon',
-                'title' => 'Introducing Pulse — the AI analytics co-pilot',
-                'subtitle' => 'Pulse connects to every data source in your stack and answers your business questions in plain English. No SQL. No dashboards. Just answers.',
-                'cta_primary' => 'Join the Waitlist',
+                'eyebrow' => __('Launching Soon', 'brndle'),
+                'title' => __('Introducing Pulse — the AI analytics co-pilot', 'brndle'),
+                'subtitle' => __('Pulse connects to every data source in your stack and answers your business questions in plain English. No SQL. No dashboards. Just answers.', 'brndle'),
+                'cta_primary' => __('Join the Waitlist', 'brndle'),
                 'cta_primary_url' => '#waitlist',
-                'cta_secondary' => 'Watch the Demo',
+                'cta_secondary' => __('Watch the Demo', 'brndle'),
                 'cta_secondary_url' => '#demo',
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/video-embed', [
-                'eyebrow' => 'See It In Action',
-                'title' => 'Three minutes is all it takes',
+                'eyebrow' => __('See It In Action', 'brndle'),
+                'title' => __('Three minutes is all it takes', 'brndle'),
                 'video_type' => 'youtube',
                 'video_url' => '',
                 'aspect_ratio' => '16/9',
@@ -310,51 +310,51 @@ class BlockPatternServiceProvider
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Built Different',
-                'title' => 'Analytics that actually answers your questions',
+                'eyebrow' => __('Built Different', 'brndle'),
+                'title' => __('Analytics that actually answers your questions', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Natural Language Queries', 'description' => 'Ask questions in plain English. No SQL required. Get answers in seconds, not hours.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Automated Insight Reports', 'description' => 'Wake up to a daily briefing of what changed in your metrics and why.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Proactive Anomaly Alerts', 'description' => 'Get notified before small dips become big problems. AI-powered anomaly detection.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Natural Language Queries', 'brndle'), 'description' => __('Ask questions in plain English. No SQL required. Get answers in seconds, not hours.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Automated Insight Reports', 'brndle'), 'description' => __('Wake up to a daily briefing of what changed in your metrics and why.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Proactive Anomaly Alerts', 'brndle'), 'description' => __('Get notified before small dips become big problems. AI-powered anomaly detection.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'dark',
                 'items' => [
-                    ['value' => '< 2min', 'label' => 'Time to First Insight'],
-                    ['value' => '200+', 'label' => 'Native Integrations'],
-                    ['value' => '99.5%', 'label' => 'Query Accuracy'],
-                    ['value' => '5,000', 'label' => 'Beta Waitlist'],
+                    ['value' => '< 2min', 'label' => __('Time to First Insight', 'brndle')],
+                    ['value' => '200+', 'label' => __('Native Integrations', 'brndle')],
+                    ['value' => '99.5%', 'label' => __('Query Accuracy', 'brndle')],
+                    ['value' => '5,000', 'label' => __('Beta Waitlist', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/how-it-works', [
-                'title' => 'Up and running in one afternoon',
+                'title' => __('Up and running in one afternoon', 'brndle'),
                 'layout' => 'horizontal',
                 'variant' => 'light',
                 'steps' => [
-                    ['title' => 'Connect Your Data', 'description' => 'One-click integrations with Postgres, BigQuery, Snowflake, and 200+ more.', 'icon' => ''],
-                    ['title' => 'Ask Your First Question', 'description' => 'Type a question like you would ask a colleague. Get an answer with charts.', 'icon' => ''],
-                    ['title' => 'Share with Your Team', 'description' => 'Save answers as dashboards, schedule email reports, or share via Slack.', 'icon' => ''],
+                    ['title' => __('Connect Your Data', 'brndle'), 'description' => __('One-click integrations with Postgres, BigQuery, Snowflake, and 200+ more.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Ask Your First Question', 'brndle'), 'description' => __('Type a question like you would ask a colleague. Get an answer with charts.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Share with Your Team', 'brndle'), 'description' => __('Save answers as dashboards, schedule email reports, or share via Slack.', 'brndle'), 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'title' => 'What beta users are saying',
+                'title' => __('What beta users are saying', 'brndle'),
                 'items' => [
-                    ['name' => 'Emily Park', 'role' => 'Head of Analytics, Revamp', 'quote' => 'I replaced three BI tools with Pulse. My team now spends time on decisions, not dashboards.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Dan Foster', 'role' => 'CEO, MetricLab', 'quote' => 'The anomaly alerts caught a pricing bug that would have cost us $80K. Paid for itself day one.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Emily Park', 'brndle'), 'role' => __('Head of Analytics, Revamp', 'brndle'), 'quote' => __('I replaced three BI tools with Pulse. My team now spends time on decisions, not dashboards.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Dan Foster', 'brndle'), 'role' => __('CEO, MetricLab', 'brndle'), 'quote' => __('The anomaly alerts caught a pricing bug that would have cost us $80K. Paid for itself day one.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/lead-form', [
-                'eyebrow' => 'Limited Beta Access',
-                'title' => 'Join 5,000 teams on the waitlist',
+                'eyebrow' => __('Limited Beta Access', 'brndle'),
+                'title' => __('Join 5,000 teams on the waitlist', 'brndle'),
                 'layout' => 'stacked',
                 'variant' => 'dark',
                 'fields' => [
-                    ['label' => 'Work Email', 'type' => 'email', 'required' => true, 'placeholder' => 'you@company.com'],
+                    ['label' => __('Work Email', 'brndle'), 'type' => 'email', 'required' => true, 'placeholder' => 'you@company.com'],
                 ],
-                'button_text' => 'Claim My Spot',
-                'success_message' => 'You are on the list! We will reach out within 48 hours.',
+                'button_text' => __('Claim My Spot', 'brndle'),
+                'success_message' => __('You are on the list! We will reach out within 48 hours.', 'brndle'),
             ]);
     }
 
@@ -364,71 +364,71 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Black Friday — 60% Off Ends Sunday',
-                'title' => 'Professional tools at startup prices',
-                'subtitle' => 'One weekend only: get lifetime access to our complete design system, component library, and Figma kit for a one-time payment.',
-                'cta_primary' => 'Claim 60% Off — $79',
+                'eyebrow' => __('Black Friday — 60% Off Ends Sunday', 'brndle'),
+                'title' => __('Professional tools at startup prices', 'brndle'),
+                'subtitle' => __('One weekend only: get lifetime access to our complete design system, component library, and Figma kit for a one-time payment.', 'brndle'),
+                'cta_primary' => __('Claim 60% Off — $79', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'See What is Included',
+                'cta_secondary' => __('See What is Included', 'brndle'),
                 'cta_secondary_url' => '#features',
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'dark',
                 'items' => [
-                    ['value' => '8,000+', 'label' => 'Designers'],
-                    ['value' => '600+', 'label' => 'Components'],
-                    ['value' => '4.9/5', 'label' => 'Average Rating'],
-                    ['value' => '$79', 'label' => 'One-Time Price'],
+                    ['value' => '8,000+', 'label' => __('Designers', 'brndle')],
+                    ['value' => '600+', 'label' => __('Components', 'brndle')],
+                    ['value' => '4.9/5', 'label' => __('Average Rating', 'brndle')],
+                    ['value' => '$79', 'label' => __('One-Time Price', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Everything Included',
-                'title' => 'Not a subscription. Own it forever.',
+                'eyebrow' => __('Everything Included', 'brndle'),
+                'title' => __('Not a subscription. Own it forever.', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Complete Design System', 'description' => '600+ production-ready components with variants, states, and responsive breakpoints.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Figma Component Kit', 'description' => 'Auto-layout components with design tokens that sync with your codebase.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Developer Handoff Files', 'description' => 'React, Vue, and Tailwind code for every component. Copy-paste ready.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Complete Design System', 'brndle'), 'description' => __('600+ production-ready components with variants, states, and responsive breakpoints.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Figma Component Kit', 'brndle'), 'description' => __('Auto-layout components with design tokens that sync with your codebase.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Developer Handoff Files', 'brndle'), 'description' => __('React, Vue, and Tailwind code for every component. Copy-paste ready.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/content-image-split', [
-                'eyebrow' => 'The Detail',
-                'title' => 'Production-ready, not just pretty',
-                'description' => 'Every component is built to WCAG 2.1 AA, ships with dark mode variants, and includes responsive breakpoints from 320px to 1920px.',
-                'bullets' => ['WCAG 2.1 AA accessible', 'Dark mode for every component', '5 color palette variations', 'Tailwind, CSS, and Figma tokens'],
+                'eyebrow' => __('The Detail', 'brndle'),
+                'title' => __('Production-ready, not just pretty', 'brndle'),
+                'description' => __('Every component is built to WCAG 2.1 AA, ships with dark mode variants, and includes responsive breakpoints from 320px to 1920px.', 'brndle'),
+                'bullets' => [__('WCAG 2.1 AA accessible', 'brndle'), __('Dark mode for every component', 'brndle'), __('5 color palette variations', 'brndle'), __('Tailwind, CSS, and Figma tokens', 'brndle')],
                 'image' => '',
                 'image_position' => 'left',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'title' => 'Trusted by 8,000+ designers',
+                'title' => __('Trusted by 8,000+ designers', 'brndle'),
                 'items' => [
-                    ['name' => 'Sarah Kim', 'role' => 'Product Designer, Loom', 'quote' => 'This kit saved me 200+ hours on my last project. The quality is better than anything I could build myself.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Tom Bryant', 'role' => 'Frontend Lead, Series B Startup', 'quote' => 'The code quality is exceptional. Auto-layout, accessible, responsive — it just works.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Nina Volkov', 'role' => 'Freelance Designer', 'quote' => 'Paid for itself on my first client project. Now I use it for everything.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Sarah Kim', 'brndle'), 'role' => __('Product Designer, Loom', 'brndle'), 'quote' => __('This kit saved me 200+ hours on my last project. The quality is better than anything I could build myself.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Tom Bryant', 'brndle'), 'role' => __('Frontend Lead, Series B Startup', 'brndle'), 'quote' => __('The code quality is exceptional. Auto-layout, accessible, responsive — it just works.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Nina Volkov', 'brndle'), 'role' => __('Freelance Designer', 'brndle'), 'quote' => __('Paid for itself on my first client project. Now I use it for everything.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/pricing', [
-                'title' => 'One plan. Everything included.',
+                'title' => __('One plan. Everything included.', 'brndle'),
                 'variant' => 'light',
                 'plans' => [
-                    ['name' => 'Complete Bundle', 'description' => 'Everything you need', 'price' => '$79', 'period' => 'one-time (was $199)', 'features' => ['All 600+ components', 'Figma source files', 'React + Vue code', 'Lifetime updates', 'Commercial license', '30-day refund guarantee'], 'cta_text' => 'Get Lifetime Access', 'cta_url' => '#', 'featured' => true, 'badge' => '60% Off Today'],
+                    ['name' => __('Complete Bundle', 'brndle'), 'description' => __('Everything you need', 'brndle'), 'price' => '$79', 'period' => __('one-time (was $199)', 'brndle'), 'features' => [__('All 600+ components', 'brndle'), __('Figma source files', 'brndle'), __('React + Vue code', 'brndle'), __('Lifetime updates', 'brndle'), __('Commercial license', 'brndle'), __('30-day refund guarantee', 'brndle')], 'cta_text' => __('Get Lifetime Access', 'brndle'), 'cta_url' => '#', 'featured' => true, 'badge' => __('60% Off Today', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/faq', [
-                'title' => 'Common questions',
+                'title' => __('Common questions', 'brndle'),
                 'items' => [
-                    ['question' => 'What does lifetime access mean?', 'answer' => 'You pay once and receive all current components plus every future update. No recurring fees, ever.'],
-                    ['question' => 'What is the refund policy?', 'answer' => 'Full refund within 30 days, no questions asked. We want you to be completely satisfied.'],
-                    ['question' => 'Can I use this for client projects?', 'answer' => 'Yes. The commercial license covers unlimited personal and client projects.'],
-                    ['question' => 'When does the sale end?', 'answer' => 'Sunday at midnight EST. The price returns to $199 on Monday — no exceptions.'],
+                    ['question' => __('What does lifetime access mean?', 'brndle'), 'answer' => __('You pay once and receive all current components plus every future update. No recurring fees, ever.', 'brndle')],
+                    ['question' => __('What is the refund policy?', 'brndle'), 'answer' => __('Full refund within 30 days, no questions asked. We want you to be completely satisfied.', 'brndle')],
+                    ['question' => __('Can I use this for client projects?', 'brndle'), 'answer' => __('Yes. The commercial license covers unlimited personal and client projects.', 'brndle')],
+                    ['question' => __('When does the sale end?', 'brndle'), 'answer' => __('Sunday at midnight EST. The price returns to $199 on Monday — no exceptions.', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/cta', [
-                'title' => 'Offer ends Sunday at midnight',
-                'subtitle' => 'Price returns to $199 on Monday. No exceptions, no extensions.',
-                'cta_primary' => 'Get Lifetime Access — $79',
+                'title' => __('Offer ends Sunday at midnight', 'brndle'),
+                'subtitle' => __('Price returns to $199 on Monday. No exceptions, no extensions.', 'brndle'),
+                'cta_primary' => __('Get Lifetime Access — $79', 'brndle'),
                 'cta_primary_url' => '#',
                 'variant' => 'dark',
             ]);
@@ -440,81 +440,81 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'New: Cold Brew Collection',
-                'title' => 'Coffee that earns its morning',
-                'subtitle' => 'Single-origin beans, small-batch roasted within 48 hours of your order. Shipped fresh to your door with a satisfaction guarantee.',
-                'cta_primary' => 'Shop the Collection',
+                'eyebrow' => __('New: Cold Brew Collection', 'brndle'),
+                'title' => __('Coffee that earns its morning', 'brndle'),
+                'subtitle' => __('Single-origin beans, small-batch roasted within 48 hours of your order. Shipped fresh to your door with a satisfaction guarantee.', 'brndle'),
+                'cta_primary' => __('Shop the Collection', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'Take the Quiz',
+                'cta_secondary' => __('Take the Quiz', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/logos', [
-                'title' => 'As seen in',
+                'title' => __('As seen in', 'brndle'),
                 'companies' => ['The New York Times', 'Bon Appetit', 'Wirecutter', 'Food & Wine', 'Eater'],
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/content-image-split', [
-                'eyebrow' => 'The Difference',
-                'title' => 'From farm to your cup in 72 hours',
-                'description' => 'We work directly with 12 farms across Ethiopia, Colombia, and Guatemala. No middlemen, no commodity brokers.',
-                'bullets' => ['Roasted to order, never pre-roasted stock', 'Carbon-neutral shipping on every order', 'Compostable packaging, no plastic', 'Full traceability — scan the bag to meet your farmer'],
+                'eyebrow' => __('The Difference', 'brndle'),
+                'title' => __('From farm to your cup in 72 hours', 'brndle'),
+                'description' => __('We work directly with 12 farms across Ethiopia, Colombia, and Guatemala. No middlemen, no commodity brokers.', 'brndle'),
+                'bullets' => [__('Roasted to order, never pre-roasted stock', 'brndle'), __('Carbon-neutral shipping on every order', 'brndle'), __('Compostable packaging, no plastic', 'brndle'), __('Full traceability — scan the bag to meet your farmer', 'brndle')],
                 'image' => '',
                 'image_position' => 'right',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/how-it-works', [
-                'title' => 'Freshness by design',
+                'title' => __('Freshness by design', 'brndle'),
                 'layout' => 'horizontal',
                 'variant' => 'light',
                 'steps' => [
-                    ['title' => 'Pick Your Roast', 'description' => 'Light, medium, or dark — plus single-origin and seasonal blends.', 'icon' => ''],
-                    ['title' => 'We Roast to Order', 'description' => 'Your beans are roasted the day after you order. Never from inventory.', 'icon' => ''],
-                    ['title' => 'Ships in 24 Hours', 'description' => 'Delivered to your door in 2-3 days. Free shipping over $35.', 'icon' => ''],
+                    ['title' => __('Pick Your Roast', 'brndle'), 'description' => __('Light, medium, or dark — plus single-origin and seasonal blends.', 'brndle'), 'icon' => ''],
+                    ['title' => __('We Roast to Order', 'brndle'), 'description' => __('Your beans are roasted the day after you order. Never from inventory.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Ships in 24 Hours', 'brndle'), 'description' => __('Delivered to your door in 2-3 days. Free shipping over $35.', 'brndle'), 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Our Commitment',
-                'title' => 'What makes this coffee different',
+                'eyebrow' => __('Our Commitment', 'brndle'),
+                'title' => __('What makes this coffee different', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Direct Trade Partnership', 'description' => 'We pay farmers 40% above fair trade prices and visit every farm annually.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Roasted to Order', 'description' => 'No warehouse inventory. Every bag is roasted specifically for your order.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Carbon-Neutral Delivery', 'description' => 'We offset 100% of shipping emissions through verified carbon credit programs.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Direct Trade Partnership', 'brndle'), 'description' => __('We pay farmers 40% above fair trade prices and visit every farm annually.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Roasted to Order', 'brndle'), 'description' => __('No warehouse inventory. Every bag is roasted specifically for your order.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Carbon-Neutral Delivery', 'brndle'), 'description' => __('We offset 100% of shipping emissions through verified carbon credit programs.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'dark',
                 'items' => [
-                    ['value' => '12', 'label' => 'Partner Farms'],
-                    ['value' => '48hrs', 'label' => 'Roast to Ship'],
-                    ['value' => '50,000+', 'label' => 'Happy Customers'],
-                    ['value' => '4.8/5', 'label' => 'Average Rating'],
+                    ['value' => '12', 'label' => __('Partner Farms', 'brndle')],
+                    ['value' => '48hrs', 'label' => __('Roast to Ship', 'brndle')],
+                    ['value' => '50,000+', 'label' => __('Happy Customers', 'brndle')],
+                    ['value' => '4.8/5', 'label' => __('Average Rating', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'title' => 'What our customers say',
+                'title' => __('What our customers say', 'brndle'),
                 'items' => [
-                    ['name' => 'Michael Torres', 'role' => 'Home barista', 'quote' => 'I have tried every subscription box. This is the only one where I can taste the difference freshness makes.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Sophie Laurent', 'role' => 'Cafe owner, Brooklyn', 'quote' => 'We switched our house blend to their Colombian single-origin. Customers noticed immediately.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Chris Park', 'role' => 'Coffee enthusiast', 'quote' => 'The traceability QR code is a game-changer. I know exactly which farm grew my beans.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Michael Torres', 'brndle'), 'role' => __('Home barista', 'brndle'), 'quote' => __('I have tried every subscription box. This is the only one where I can taste the difference freshness makes.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Sophie Laurent', 'brndle'), 'role' => __('Cafe owner, Brooklyn', 'brndle'), 'quote' => __('We switched our house blend to their Colombian single-origin. Customers noticed immediately.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Chris Park', 'brndle'), 'role' => __('Coffee enthusiast', 'brndle'), 'quote' => __('The traceability QR code is a game-changer. I know exactly which farm grew my beans.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/faq', [
-                'title' => 'Common questions',
+                'title' => __('Common questions', 'brndle'),
                 'items' => [
-                    ['question' => 'What grind options do you offer?', 'answer' => 'Whole bean, espresso, drip, pour-over, French press, and cold brew grinds. Select at checkout.'],
-                    ['question' => 'How fast is shipping?', 'answer' => 'Orders placed before 2pm ship same day. Standard delivery is 2-3 business days.'],
-                    ['question' => 'Can I pause or cancel my subscription?', 'answer' => 'Yes, anytime. No commitment, no cancellation fees. Manage everything from your account.'],
-                    ['question' => 'What is the freshness guarantee?', 'answer' => 'If you are not satisfied with the freshness, we will replace your order or refund you. No questions asked.'],
+                    ['question' => __('What grind options do you offer?', 'brndle'), 'answer' => __('Whole bean, espresso, drip, pour-over, French press, and cold brew grinds. Select at checkout.', 'brndle')],
+                    ['question' => __('How fast is shipping?', 'brndle'), 'answer' => __('Orders placed before 2pm ship same day. Standard delivery is 2-3 business days.', 'brndle')],
+                    ['question' => __('Can I pause or cancel my subscription?', 'brndle'), 'answer' => __('Yes, anytime. No commitment, no cancellation fees. Manage everything from your account.', 'brndle')],
+                    ['question' => __('What is the freshness guarantee?', 'brndle'), 'answer' => __('If you are not satisfied with the freshness, we will replace your order or refund you. No questions asked.', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/cta', [
-                'title' => 'Your first bag ships tomorrow',
-                'subtitle' => 'Free shipping on orders over $35. Pause or cancel any time.',
-                'cta_primary' => 'Start Your Order',
+                'title' => __('Your first bag ships tomorrow', 'brndle'),
+                'subtitle' => __('Free shipping on orders over $35. Pause or cancel any time.', 'brndle'),
+                'cta_primary' => __('Start Your Order', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'Browse All Roasts',
+                'cta_secondary' => __('Browse All Roasts', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
             ]);
@@ -526,95 +526,95 @@ class BlockPatternServiceProvider
     {
         return
             $this->serializeBlock('brndle/hero', [
-                'eyebrow' => 'Brand & Digital Agency',
-                'title' => 'We build the brands people cannot stop talking about',
-                'subtitle' => 'Strategic branding, product design, and web development for ambitious companies. Based in New York. Working everywhere.',
-                'cta_primary' => 'Start a Project',
+                'eyebrow' => __('Brand & Digital Agency', 'brndle'),
+                'title' => __('We build the brands people cannot stop talking about', 'brndle'),
+                'subtitle' => __('Strategic branding, product design, and web development for ambitious companies. Based in New York. Working everywhere.', 'brndle'),
+                'cta_primary' => __('Start a Project', 'brndle'),
                 'cta_primary_url' => '#',
-                'cta_secondary' => 'See Our Work',
+                'cta_secondary' => __('See Our Work', 'brndle'),
                 'cta_secondary_url' => '#',
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/logos', [
-                'title' => 'Clients we have worked with',
+                'title' => __('Clients we have worked with', 'brndle'),
                 'companies' => ['Shopify', 'Airbnb', 'Stripe', 'Duolingo', 'Loom', 'Notion'],
                 'variant' => 'dark',
             ]) .
             $this->serializeBlock('brndle/stats', [
                 'variant' => 'dark',
                 'items' => [
-                    ['value' => '180+', 'label' => 'Projects Launched'],
-                    ['value' => '12yrs', 'label' => 'In Business'],
-                    ['value' => '94%', 'label' => 'Repeat Clients'],
-                    ['value' => '22', 'label' => 'Awwwards'],
+                    ['value' => '180+', 'label' => __('Projects Launched', 'brndle')],
+                    ['value' => '12yrs', 'label' => __('In Business', 'brndle')],
+                    ['value' => '94%', 'label' => __('Repeat Clients', 'brndle')],
+                    ['value' => '22', 'label' => __('Awwwards', 'brndle')],
                 ],
             ]) .
             $this->serializeBlock('brndle/features', [
-                'eyebrow' => 'Services',
-                'title' => 'End-to-end creative execution',
+                'eyebrow' => __('Services', 'brndle'),
+                'title' => __('End-to-end creative execution', 'brndle'),
                 'variant' => 'light',
                 'features' => [
-                    ['title' => 'Brand Strategy & Identity', 'description' => 'Positioning, naming, visual identity, and brand guidelines that scale from startup to enterprise.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Product Design & UX', 'description' => 'User research, wireframing, prototyping, and high-fidelity UI for web and mobile products.', 'bullets' => [], 'image' => '', 'icon' => ''],
-                    ['title' => 'Web Development & CMS', 'description' => 'Performant, accessible websites built on modern stacks. WordPress, headless, or custom.', 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Brand Strategy & Identity', 'brndle'), 'description' => __('Positioning, naming, visual identity, and brand guidelines that scale from startup to enterprise.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Product Design & UX', 'brndle'), 'description' => __('User research, wireframing, prototyping, and high-fidelity UI for web and mobile products.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
+                    ['title' => __('Web Development & CMS', 'brndle'), 'description' => __('Performant, accessible websites built on modern stacks. WordPress, headless, or custom.', 'brndle'), 'bullets' => [], 'image' => '', 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/team', [
-                'eyebrow' => 'The People',
-                'title' => 'Small team. Massive output.',
-                'subtitle' => 'We stay deliberately small so every client gets senior attention.',
+                'eyebrow' => __('The People', 'brndle'),
+                'title' => __('Small team. Massive output.', 'brndle'),
+                'subtitle' => __('We stay deliberately small so every client gets senior attention.', 'brndle'),
                 'columns' => '4',
                 'variant' => 'light',
                 'members' => [
-                    ['name' => 'Alex Rivera', 'role' => 'Creative Director', 'bio' => 'Former lead designer at Pentagram. 15 years in brand identity.', 'photo' => '', 'linkedin' => '#', 'twitter' => '#'],
-                    ['name' => 'Maya Johnson', 'role' => 'Strategy Lead', 'bio' => 'Ex-McKinsey. Translates business goals into creative briefs.', 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
-                    ['name' => 'Kai Nakamura', 'role' => 'Lead Designer', 'bio' => 'Awwwards judge. Obsessed with typography and motion.', 'photo' => '', 'linkedin' => '', 'twitter' => '#'],
-                    ['name' => 'Sam Chen', 'role' => 'Engineering Lead', 'bio' => 'Full-stack. Builds the performant frontends designers dream up.', 'photo' => '', 'linkedin' => '#', 'twitter' => '#'],
+                    ['name' => __('Alex Rivera', 'brndle'), 'role' => __('Creative Director', 'brndle'), 'bio' => __('Former lead designer at Pentagram. 15 years in brand identity.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => '#'],
+                    ['name' => __('Maya Johnson', 'brndle'), 'role' => __('Strategy Lead', 'brndle'), 'bio' => __('Ex-McKinsey. Translates business goals into creative briefs.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => ''],
+                    ['name' => __('Kai Nakamura', 'brndle'), 'role' => __('Lead Designer', 'brndle'), 'bio' => __('Awwwards judge. Obsessed with typography and motion.', 'brndle'), 'photo' => '', 'linkedin' => '', 'twitter' => '#'],
+                    ['name' => __('Sam Chen', 'brndle'), 'role' => __('Engineering Lead', 'brndle'), 'bio' => __('Full-stack. Builds the performant frontends designers dream up.', 'brndle'), 'photo' => '', 'linkedin' => '#', 'twitter' => '#'],
                 ],
             ]) .
             $this->serializeBlock('brndle/content-image-split', [
-                'eyebrow' => 'Case Study',
-                'title' => 'How we helped Meridian grow 3x in 18 months',
-                'description' => 'Meridian came to us with a commoditized brand and no digital presence. We rebuilt their identity, redesigned their product, and launched a new site — in 12 weeks.',
+                'eyebrow' => __('Case Study', 'brndle'),
+                'title' => __('How we helped Meridian grow 3x in 18 months', 'brndle'),
+                'description' => __('Meridian came to us with a commoditized brand and no digital presence. We rebuilt their identity, redesigned their product, and launched a new site — in 12 weeks.', 'brndle'),
                 'image' => '',
                 'image_position' => 'left',
-                'cta_text' => 'Read the Case Study',
+                'cta_text' => __('Read the Case Study', 'brndle'),
                 'cta_url' => '#',
                 'variant' => 'light',
             ]) .
             $this->serializeBlock('brndle/testimonials', [
-                'title' => 'What clients say',
+                'title' => __('What clients say', 'brndle'),
                 'items' => [
-                    ['name' => 'Lauren Miller', 'role' => 'Founder, Meridian', 'quote' => 'They turned our brand from forgettable to magnetic. Inbound leads tripled within 3 months of launch.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'James Park', 'role' => 'CMO, Elevate Health', 'quote' => 'Best agency experience I have had in 20 years. They deliver on time, on budget, and above expectations.', 'avatar' => '', 'stars' => 5],
-                    ['name' => 'Olivia Zhang', 'role' => 'VP Product, DataSync', 'quote' => 'Our product redesign increased activation by 45%. The UX work alone justified the engagement.', 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Lauren Miller', 'brndle'), 'role' => __('Founder, Meridian', 'brndle'), 'quote' => __('They turned our brand from forgettable to magnetic. Inbound leads tripled within 3 months of launch.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('James Park', 'brndle'), 'role' => __('CMO, Elevate Health', 'brndle'), 'quote' => __('Best agency experience I have had in 20 years. They deliver on time, on budget, and above expectations.', 'brndle'), 'avatar' => '', 'stars' => 5],
+                    ['name' => __('Olivia Zhang', 'brndle'), 'role' => __('VP Product, DataSync', 'brndle'), 'quote' => __('Our product redesign increased activation by 45%. The UX work alone justified the engagement.', 'brndle'), 'avatar' => '', 'stars' => 5],
                 ],
             ]) .
             $this->serializeBlock('brndle/how-it-works', [
-                'title' => 'How we work together',
+                'title' => __('How we work together', 'brndle'),
                 'layout' => 'vertical',
                 'variant' => 'light',
                 'steps' => [
-                    ['title' => 'Discovery & Brief', 'description' => 'We learn your business, audience, and goals. You get a detailed creative brief.', 'icon' => ''],
-                    ['title' => 'Strategy & Concept', 'description' => 'We present 2-3 strategic directions with moodboards and rationale.', 'icon' => ''],
-                    ['title' => 'Design & Build', 'description' => '4-8 weeks of focused execution with weekly check-ins.', 'icon' => ''],
-                    ['title' => 'Launch & Handover', 'description' => 'We launch, train your team, and provide 30 days of post-launch support.', 'icon' => ''],
+                    ['title' => __('Discovery & Brief', 'brndle'), 'description' => __('We learn your business, audience, and goals. You get a detailed creative brief.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Strategy & Concept', 'brndle'), 'description' => __('We present 2-3 strategic directions with moodboards and rationale.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Design & Build', 'brndle'), 'description' => __('4-8 weeks of focused execution with weekly check-ins.', 'brndle'), 'icon' => ''],
+                    ['title' => __('Launch & Handover', 'brndle'), 'description' => __('We launch, train your team, and provide 30 days of post-launch support.', 'brndle'), 'icon' => ''],
                 ],
             ]) .
             $this->serializeBlock('brndle/lead-form', [
-                'eyebrow' => 'Work With Us',
-                'title' => 'Tell us about your project',
-                'subtitle' => 'We respond within one business day.',
+                'eyebrow' => __('Work With Us', 'brndle'),
+                'title' => __('Tell us about your project', 'brndle'),
+                'subtitle' => __('We respond within one business day.', 'brndle'),
                 'layout' => 'split',
                 'variant' => 'dark',
                 'fields' => [
-                    ['label' => 'Name', 'type' => 'text', 'required' => true, 'placeholder' => 'Your name'],
-                    ['label' => 'Email', 'type' => 'email', 'required' => true, 'placeholder' => 'you@company.com'],
-                    ['label' => 'Company', 'type' => 'text', 'required' => false, 'placeholder' => 'Company name'],
-                    ['label' => 'Tell us about your project', 'type' => 'textarea', 'required' => false, 'placeholder' => 'What are you building? What is the timeline?'],
+                    ['label' => __('Name', 'brndle'), 'type' => 'text', 'required' => true, 'placeholder' => __('Your name', 'brndle')],
+                    ['label' => __('Email', 'brndle'), 'type' => 'email', 'required' => true, 'placeholder' => 'you@company.com'],
+                    ['label' => __('Company', 'brndle'), 'type' => 'text', 'required' => false, 'placeholder' => __('Company name', 'brndle')],
+                    ['label' => __('Tell us about your project', 'brndle'), 'type' => 'textarea', 'required' => false, 'placeholder' => __('What are you building? What is the timeline?', 'brndle')],
                 ],
-                'button_text' => 'Send Message',
-                'success_message' => 'Got it — we will be in touch within 24 hours.',
+                'button_text' => __('Send Message', 'brndle'),
+                'success_message' => __('Got it — we will be in touch within 24 hours.', 'brndle'),
             ]);
     }
 }

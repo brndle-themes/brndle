@@ -7,7 +7,7 @@
         @if($a['eyebrow'])
           <p class="text-sm font-semibold text-accent uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
         @endif
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">{!! $a['title'] !!}</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">{!! wp_kses_post($a['title']) !!}</h2>
       </div>
     @endif
 

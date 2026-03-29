@@ -4,7 +4,7 @@
   <div class="max-w-3xl mx-auto px-6">
     @if($a['title'])
       <div class="text-center mb-16 reveal">
-        <h2 class="text-4xl font-bold tracking-tight text-text-primary">{!! $a['title'] !!}</h2>
+        <h2 class="text-4xl font-bold tracking-tight text-text-primary">{!! wp_kses_post($a['title']) !!}</h2>
       </div>
     @endif
 

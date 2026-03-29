@@ -28,7 +28,7 @@
       </a>
 
       {{-- Transparent header overlay --}}
-      <header id="brndle-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" aria-label="Site header">
+      <header id="brndle-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
         <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {{-- Logo --}}
           <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
@@ -67,7 +67,7 @@
           </div>
 
           {{-- Mobile toggle --}}
-          <button id="brndle-menu-btn" class="md:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+          <button id="brndle-menu-btn" class="md:hidden text-white p-2" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}" aria-expanded="false">
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
             </svg>

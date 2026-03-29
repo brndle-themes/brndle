@@ -173,6 +173,11 @@ class Settings
      */
     public static function cssVariables(): string
     {
+        static $cached = null;
+        if ($cached !== null) {
+            return $cached;
+        }
+
         $palette = self::colorPalette();
         $fonts = self::fontPair();
         $all = self::all();
@@ -200,7 +205,7 @@ class Settings
         $root['--color-info'] = $palette['info'];
         $root['--font-family-heading'] = $fonts['heading'];
         $root['--font-family-body'] = $fonts['body'];
-        $root['--font-family-sans'] = $fonts['body'];
+        $root['--font-sans'] = $fonts['body'];
         $root['--font-size-base'] = $baseFontSize . 'px';
         $root['--heading-scale'] = (string) $headingScale;
         $root['--shadow-glow'] = '0 0 20px ' . self::hexToRgba($palette['accent'], 0.15);
@@ -236,7 +241,9 @@ class Settings
         }
 
         /** @var string */
-        return apply_filters('brndle/css_variables', $css);
+        $cached = apply_filters('brndle/css_variables', $css);
+
+        return $cached;
     }
 
     /**

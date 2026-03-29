@@ -32,6 +32,13 @@ export default function Performance( { settings, onChange } ) {
 				checked={ !! settings.perf_preload_fonts }
 				onChange={ ( v ) => onChange( 'perf_preload_fonts', v ) }
 			/>
+
+			<ToggleRow
+				label="Remove Global Styles"
+				description="Remove WordPress core block styles (~110KB). Enable only if your content relies on Brndle's Tailwind styling rather than default Gutenberg block styles."
+				checked={ !! settings.perf_remove_global_styles }
+				onChange={ ( v ) => onChange( 'perf_remove_global_styles', v ) }
+			/>
 		</div>
 	);
 }

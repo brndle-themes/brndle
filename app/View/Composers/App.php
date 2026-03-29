@@ -9,31 +9,30 @@ class App extends Composer
 {
     protected static $views = ['*'];
 
-    public function siteName(): string
-    {
-        return get_bloginfo('name', 'display');
-    }
+    private static ?array $cachedData = null;
 
-    public function siteDescription(): string
+    public function override(): array
     {
-        return get_bloginfo('description', 'display');
-    }
-
-    public function siteLogo(): ?string
-    {
-        // First check Brndle settings, then fall back to WP custom logo
-        $url = Settings::get('site_logo_light');
-        if (! empty($url)) {
-            return $url;
+        if (self::$cachedData !== null) {
+            return self::$cachedData;
         }
 
-        $logo_id = get_theme_mod('custom_logo');
-        return $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : null;
-    }
+        // First check Brndle settings, then fall back to WP custom logo
+        $logoLight = Settings::get('site_logo_light');
+        if (empty($logoLight)) {
+            $logoId = get_theme_mod('custom_logo');
+            $logoLight = $logoId ? wp_get_attachment_image_url($logoId, 'full') : null;
+        }
 
-    public function siteLogoDark(): ?string
-    {
-        $url = Settings::get('site_logo_dark');
-        return ! empty($url) ? $url : null;
+        $logoDark = Settings::get('site_logo_dark');
+
+        self::$cachedData = [
+            'siteName'        => get_bloginfo('name', 'display'),
+            'siteDescription' => get_bloginfo('description', 'display'),
+            'siteLogo'        => $logoLight ?: null,
+            'siteLogoDark'    => ! empty($logoDark) ? $logoDark : null,
+        ];
+
+        return self::$cachedData;
     }
 }

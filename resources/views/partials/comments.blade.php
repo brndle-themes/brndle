@@ -2,7 +2,8 @@
   <section id="comments" class="max-w-3xl mx-auto px-6 py-12">
     @if(have_comments())
       <h2 class="text-2xl font-bold text-text-primary mb-8">
-        {{ sprintf(_n('1 Comment', '%s Comments', get_comments_number(), 'brndle'), number_format_i18n(get_comments_number())) }}
+        {{-- translators: %s: number of comments --}}
+        {{ sprintf(_n('%s Comment', '%s Comments', get_comments_number(), 'brndle'), number_format_i18n(get_comments_number())) }}
       </h2>
 
       <ol class="space-y-6 comment-list">

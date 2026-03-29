@@ -1,0 +1,4178 @@
+# Copyright (C) 2026 Brndle
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Brndle 1.0.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/brndle\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-25T11:22:04+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: brndle\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+#: style.css
+#: app/Providers/SettingsServiceProvider.php:50
+msgid "Brndle"
+msgstr ""
+
+#. Theme URI of the theme
+#. Author URI of the theme
+#: style.css
+msgid "https://brndle.com/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Enterprise WordPress theme with AI-powered landing pages, Blade templating, and Tailwind CSS. Zero page builders. Lighthouse 100."
+msgstr ""
+
+#: app/filters.php:16
+msgid "Read more"
+msgstr ""
+
+#: app/Onboarding/SetupNotice.php:30
+msgid "Welcome to Brndle!"
+msgstr ""
+
+#. translators: %s is the settings page link
+#: app/Onboarding/SetupNotice.php:36
+#, php-format
+msgid "Configure your brand colors, typography, and layouts in %s to get started."
+msgstr ""
+
+#: app/Onboarding/SetupNotice.php:37
+#: app/Providers/SettingsServiceProvider.php:49
+msgid "Brndle Settings"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:20
+msgctxt "Theme starter content"
+msgid "Home"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:30
+msgctxt "Theme starter content"
+msgid "About"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:34
+msgctxt "Theme starter content"
+msgid "Contact"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:38
+msgctxt "Theme starter content"
+msgid "Blog"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:48
+#: app/setup.php:70
+msgid "Primary Navigation"
+msgstr ""
+
+#: app/Onboarding/StarterContent.php:57
+#: app/setup.php:71
+msgid "Footer Navigation"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:18
+msgid "Brndle Page Templates"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:25
+msgid "SaaS Product Page"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:26
+msgid "Professional Services"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:27
+msgid "Lead Generation"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:28
+msgid "Product Launch"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:29
+msgid "Promotional Campaign"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:30
+msgid "E-commerce Product"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:31
+msgid "Portfolio / Agency"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:62
+msgid "Now in Public Beta"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:63
+msgid "Ship better software,<br>10x faster"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:64
+msgid "Streamline your entire development workflow — from planning to deployment — in one unified platform trusted by 5,000+ engineering teams."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:65
+#: app/Providers/BlockPatternServiceProvider.php:117
+#: app/Providers/BlockPatternServiceProvider.php:134
+msgid "Start Free Trial"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:67
+msgid "Watch Demo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:75
+msgid "Engineering Teams"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:76
+msgid "Uptime SLA"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:77
+msgid "Avg Deploy Time"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:78
+msgid "Setup Cost"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:82
+msgid "Core Platform"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:83
+msgid "Everything your team needs to ship faster"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:86
+msgid "Smart CI/CD Pipelines"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:86
+msgid "Automatic parallel builds, intelligent caching, and zero-config deploys that just work."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:87
+msgid "Real-time Collaboration"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:87
+msgid "Code reviews, pair programming, and shared environments — built for distributed teams."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:88
+msgid "One-click Environments"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:88
+msgid "Spin up production-identical preview environments for every branch and pull request."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:92
+msgid "Get Started in Minutes"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:93
+msgid "From signup to first deploy in under 10 minutes"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:97
+msgid "Connect Your Repo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:97
+msgid "Link your GitHub, GitLab, or Bitbucket in one click."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:98
+msgid "Configure Pipeline"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:98
+msgid "Use our visual editor or drop in your existing YAML."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:99
+msgid "Deploy with Confidence"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:99
+msgid "Push to main and watch your pipeline run automatically."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:103
+msgid "Loved by engineers"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:104
+msgid "Teams that switched never looked back"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:106
+msgid "Sarah Chen"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:106
+msgid "VP Engineering, Acme Corp"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:106
+msgid "We cut our deploy time from 45 minutes to under 5. The ROI was obvious within the first week."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:107
+msgid "Marcus Rodriguez"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:107
+msgid "CTO, ScaleUp"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:107
+msgid "Finally a platform that does not fight you. Our team adopted it in two days with zero training."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:108
+msgid "Priya Patel"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:108
+msgid "Lead DevOps, TechFlow"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:108
+msgid "The preview environments alone justified the switch. QA cycles dropped by 60%."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:112
+msgid "Simple Pricing"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:113
+msgid "Start free, scale as you grow"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "Starter"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "For small teams getting started"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "/mo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "3 team members"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "500 CI minutes/mo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "Community support"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:116
+msgid "Get Started Free"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "Pro"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "For growing engineering teams"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "Unlimited members"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "5,000 CI minutes/mo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "Preview environments"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+msgid "Priority support"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:117
+#: resources/views/blocks/pricing.blade.php:23
+#: resources/views/blocks/pricing.blade.php:25
+msgid "Most Popular"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Enterprise"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "For large organizations"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Custom"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Everything in Pro"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Unlimited CI minutes"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "SSO/SAML"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "SLA guarantee"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Dedicated support"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:118
+msgid "Contact Sales"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:122
+msgid "Frequently asked questions"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:124
+msgid "Is there really a free tier?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:124
+msgid "Yes. The Starter plan is free forever with no credit card required. It includes 3 team members and 500 CI minutes per month."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:125
+msgid "Can I migrate from my current CI/CD?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:125
+msgid "Absolutely. We support importing from GitHub Actions, GitLab CI, CircleCI, and Jenkins. Most teams migrate in under an hour."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:126
+msgid "What happens if I exceed my plan limits?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:126
+msgid "We will notify you before you hit your limit. You can upgrade at any time, and we prorate the difference."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:127
+msgid "Do you offer annual billing?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:127
+msgid "Yes — save 20% with annual billing on all paid plans."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:128
+msgid "What is your cancellation policy?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:128
+msgid "Cancel anytime with no penalties. Your data is retained for 30 days after cancellation."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:132
+msgid "Ready to ship 10x faster?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:133
+msgid "Join 5,000 engineering teams already using the platform. Free forever, no credit card required."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:136
+msgid "Talk to Sales"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:148
+msgid "Management Consulting"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:149
+msgid "We solve the problems that slow your business"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:150
+msgid "Strategic consulting for mid-market companies. We embed with your team, diagnose the root cause, and build the systems to fix it permanently."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:151
+msgid "Book a Discovery Call"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:153
+#: app/Providers/BlockPatternServiceProvider.php:534
+msgid "See Our Work"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:160
+#: app/Providers/BlockPatternServiceProvider.php:547
+msgid "In Business"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:161
+msgid "Revenue Impacted"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:162
+msgid "Client Retention"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:163
+msgid "Engagements"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:167
+msgid "Our Approach"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:168
+msgid "Diagnosis before prescription"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:169
+msgid "Most consultants arrive with a predetermined playbook. We spend the first two weeks listening, mapping, and measuring before recommending a single change."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:170
+msgid "Cross-functional interviews with 15-40 stakeholders"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:170
+msgid "Quantitative analysis of your operational data"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:170
+msgid "Benchmarking against 50+ comparable businesses"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:170
+msgid "Written diagnosis report before any engagement begins"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:176
+msgid "Service Lines"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:177
+msgid "We specialize in three areas"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:180
+msgid "Operations & Supply Chain"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:180
+msgid "Reduce waste, increase throughput, and build resilient operations that scale."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:181
+msgid "Revenue Growth Strategy"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:181
+msgid "Find and fix the bottlenecks between your product and your customers."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:182
+msgid "Organizational Design"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:182
+msgid "Build the team structure, processes, and culture that match your growth stage."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:186
+msgid "Your Team"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:187
+msgid "Senior practitioners, not junior analysts"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:188
+msgid "Every engagement is led by a principal with 15+ years of operating experience."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:192
+msgid "David Kim"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:192
+msgid "Managing Partner"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:192
+msgid "Former COO at a $500M logistics company. 20 years in operations."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:193
+msgid "Rachel Torres"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:193
+msgid "Revenue Strategy Lead"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:193
+msgid "Built and scaled sales orgs from $5M to $100M ARR at three SaaS companies."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:194
+msgid "James Okonkwo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:194
+msgid "Org Design Principal"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:194
+msgid "Former CHRO. Specializes in post-acquisition integration and culture transformation."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:198
+msgid "Client Results"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:199
+msgid "Measurable outcomes, not just advice"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:201
+msgid "Lisa Chang"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:201
+msgid "CEO, Meridian Logistics"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:201
+msgid "They found $4.2M in annual savings we did not know existed. The diagnosis alone was worth the engagement fee."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:202
+msgid "Robert Hayes"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:202
+msgid "CFO, Apex Manufacturing"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:202
+msgid "Revenue grew 40% in the first year after implementing their recommendations. No consultant has ever delivered like this."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:203
+msgid "Anika Desai"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:203
+msgid "COO, BrightPath Health"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:203
+msgid "They embedded with our team for 12 weeks and left us with systems that still work three years later."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:207
+msgid "How an engagement works"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:211
+msgid "Discovery Call"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:211
+msgid "A 30-minute conversation to understand your situation and determine if we are a good fit."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:212
+msgid "Diagnostic Phase"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:212
+msgid "Two weeks of interviews, data analysis, and benchmarking. You receive a written report."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:213
+msgid "Solution Design"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:213
+msgid "We present 2-3 options with projected ROI and implementation timelines."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:214
+msgid "Implementation"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:214
+msgid "Our team embeds with yours to execute the plan and transfer knowledge."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:215
+msgid "Handover"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:215
+msgid "Documentation, training, and a 90-day support period to ensure sustainability."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:219
+msgid "Let us diagnose your biggest constraint"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:220
+msgid "The discovery call is free. If we can not help, we will tell you who can."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:221
+msgid "Book Discovery Call"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:223
+msgid "Download Case Study"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:235
+msgid "Free Report"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:236
+msgid "The 7 sales mistakes costing you $500K in lost revenue"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:237
+msgid "Download our data-backed report based on interviews with 1,200 B2B sales leaders. Includes benchmarks, playbooks, and a 30-day action plan."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:238
+msgid "Download Free Report"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:243
+msgid "Featured in"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:250
+msgid "Sales Leaders Surveyed"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:251
+msgid "Avg Revenue Impact"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:252
+msgid "Pipeline Increase"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:253
+msgid "ROI Within 90 Days"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:257
+msgid "What is Inside"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:258
+msgid "93 pages of data your competitors do not have"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:259
+msgid "The 7 pipeline killers and how to fix each one"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:259
+msgid "Benchmark data segmented by company size and industry"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:259
+msgid "Step-by-step outbound playbook used by top performers"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:259
+msgid "Tool stack recommendations with vendor comparisons"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:265
+msgid "What sales leaders are saying"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:267
+msgid "Mark Sullivan"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:267
+msgid "VP Sales, CloudScale"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:267
+msgid "This report changed how we approach outbound. Pipeline is up 52% since we implemented the framework."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:268
+msgid "Jennifer Wu"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:268
+msgid "CRO, DataBridge"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:268
+msgid "The benchmarks alone saved us months of guessing. Best free resource I have found in B2B sales."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:269
+msgid "Alex Petrov"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:269
+msgid "Head of Sales, NovaTech"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:269
+msgid "We went from 12 to 19 SQLs per month using the playbook in chapter 4. Concrete, actionable advice."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:273
+msgid "Get Instant Access"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:274
+msgid "Download the free report"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:275
+msgid "Join 12,000 sales leaders who have already used this framework."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:279
+msgid "Full Name"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:279
+msgid "Jane Smith"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:280
+#: app/Providers/BlockPatternServiceProvider.php:354
+msgid "Work Email"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:281
+#: app/Providers/BlockPatternServiceProvider.php:613
+msgid "Company"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:281
+msgid "Acme Inc"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:283
+msgid "Send Me the Report"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:284
+msgid "Check your inbox — the report is on its way!"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:294
+msgid "Launching Soon"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:295
+msgid "Introducing Pulse — the AI analytics co-pilot"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:296
+msgid "Pulse connects to every data source in your stack and answers your business questions in plain English. No SQL. No dashboards. Just answers."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:297
+msgid "Join the Waitlist"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:299
+msgid "Watch the Demo"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:304
+msgid "See It In Action"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:305
+msgid "Three minutes is all it takes"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:313
+msgid "Built Different"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:314
+msgid "Analytics that actually answers your questions"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:317
+msgid "Natural Language Queries"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:317
+msgid "Ask questions in plain English. No SQL required. Get answers in seconds, not hours."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:318
+msgid "Automated Insight Reports"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:318
+msgid "Wake up to a daily briefing of what changed in your metrics and why."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:319
+msgid "Proactive Anomaly Alerts"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:319
+msgid "Get notified before small dips become big problems. AI-powered anomaly detection."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:325
+msgid "Time to First Insight"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:326
+msgid "Native Integrations"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:327
+msgid "Query Accuracy"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:328
+msgid "Beta Waitlist"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:332
+msgid "Up and running in one afternoon"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:336
+msgid "Connect Your Data"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:336
+msgid "One-click integrations with Postgres, BigQuery, Snowflake, and 200+ more."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:337
+msgid "Ask Your First Question"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:337
+msgid "Type a question like you would ask a colleague. Get an answer with charts."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:338
+msgid "Share with Your Team"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:338
+msgid "Save answers as dashboards, schedule email reports, or share via Slack."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:342
+msgid "What beta users are saying"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:344
+msgid "Emily Park"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:344
+msgid "Head of Analytics, Revamp"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:344
+msgid "I replaced three BI tools with Pulse. My team now spends time on decisions, not dashboards."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:345
+msgid "Dan Foster"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:345
+msgid "CEO, MetricLab"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:345
+msgid "The anomaly alerts caught a pricing bug that would have cost us $80K. Paid for itself day one."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:349
+msgid "Limited Beta Access"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:350
+msgid "Join 5,000 teams on the waitlist"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:356
+msgid "Claim My Spot"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:357
+msgid "You are on the list! We will reach out within 48 hours."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:367
+msgid "Black Friday — 60% Off Ends Sunday"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:368
+msgid "Professional tools at startup prices"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:369
+msgid "One weekend only: get lifetime access to our complete design system, component library, and Figma kit for a one-time payment."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:370
+msgid "Claim 60% Off — $79"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:372
+msgid "See What is Included"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:379
+msgid "Designers"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:380
+msgid "Components"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:381
+#: app/Providers/BlockPatternServiceProvider.php:492
+msgid "Average Rating"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:382
+msgid "One-Time Price"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:386
+msgid "Everything Included"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:387
+msgid "Not a subscription. Own it forever."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:390
+msgid "Complete Design System"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:390
+msgid "600+ production-ready components with variants, states, and responsive breakpoints."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:391
+msgid "Figma Component Kit"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:391
+msgid "Auto-layout components with design tokens that sync with your codebase."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:392
+msgid "Developer Handoff Files"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:392
+msgid "React, Vue, and Tailwind code for every component. Copy-paste ready."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:396
+msgid "The Detail"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:397
+msgid "Production-ready, not just pretty"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:398
+msgid "Every component is built to WCAG 2.1 AA, ships with dark mode variants, and includes responsive breakpoints from 320px to 1920px."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:399
+msgid "WCAG 2.1 AA accessible"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:399
+msgid "Dark mode for every component"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:399
+msgid "5 color palette variations"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:399
+msgid "Tailwind, CSS, and Figma tokens"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:405
+msgid "Trusted by 8,000+ designers"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:407
+msgid "Sarah Kim"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:407
+msgid "Product Designer, Loom"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:407
+msgid "This kit saved me 200+ hours on my last project. The quality is better than anything I could build myself."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:408
+msgid "Tom Bryant"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:408
+msgid "Frontend Lead, Series B Startup"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:408
+msgid "The code quality is exceptional. Auto-layout, accessible, responsive — it just works."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:409
+msgid "Nina Volkov"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:409
+msgid "Freelance Designer"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:409
+msgid "Paid for itself on my first client project. Now I use it for everything."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:413
+msgid "One plan. Everything included."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Complete Bundle"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Everything you need"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "one-time (was $199)"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "All 600+ components"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Figma source files"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "React + Vue code"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Lifetime updates"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Commercial license"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "30-day refund guarantee"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "Get Lifetime Access"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:416
+msgid "60% Off Today"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:420
+#: app/Providers/BlockPatternServiceProvider.php:504
+msgid "Common questions"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:422
+msgid "What does lifetime access mean?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:422
+msgid "You pay once and receive all current components plus every future update. No recurring fees, ever."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:423
+msgid "What is the refund policy?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:423
+msgid "Full refund within 30 days, no questions asked. We want you to be completely satisfied."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:424
+msgid "Can I use this for client projects?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:424
+msgid "Yes. The commercial license covers unlimited personal and client projects."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:425
+msgid "When does the sale end?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:425
+msgid "Sunday at midnight EST. The price returns to $199 on Monday — no exceptions."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:429
+msgid "Offer ends Sunday at midnight"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:430
+msgid "Price returns to $199 on Monday. No exceptions, no extensions."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:431
+msgid "Get Lifetime Access — $79"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:443
+msgid "New: Cold Brew Collection"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:444
+msgid "Coffee that earns its morning"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:445
+msgid "Single-origin beans, small-batch roasted within 48 hours of your order. Shipped fresh to your door with a satisfaction guarantee."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:446
+msgid "Shop the Collection"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:448
+msgid "Take the Quiz"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:453
+msgid "As seen in"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:458
+msgid "The Difference"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:459
+msgid "From farm to your cup in 72 hours"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:460
+msgid "We work directly with 12 farms across Ethiopia, Colombia, and Guatemala. No middlemen, no commodity brokers."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:461
+msgid "Roasted to order, never pre-roasted stock"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:461
+msgid "Carbon-neutral shipping on every order"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:461
+msgid "Compostable packaging, no plastic"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:461
+msgid "Full traceability — scan the bag to meet your farmer"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:467
+msgid "Freshness by design"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:471
+msgid "Pick Your Roast"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:471
+msgid "Light, medium, or dark — plus single-origin and seasonal blends."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:472
+msgid "We Roast to Order"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:472
+msgid "Your beans are roasted the day after you order. Never from inventory."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:473
+msgid "Ships in 24 Hours"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:473
+msgid "Delivered to your door in 2-3 days. Free shipping over $35."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:477
+msgid "Our Commitment"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:478
+msgid "What makes this coffee different"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:481
+msgid "Direct Trade Partnership"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:481
+msgid "We pay farmers 40% above fair trade prices and visit every farm annually."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:482
+msgid "Roasted to Order"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:482
+msgid "No warehouse inventory. Every bag is roasted specifically for your order."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:483
+msgid "Carbon-Neutral Delivery"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:483
+msgid "We offset 100% of shipping emissions through verified carbon credit programs."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:489
+msgid "Partner Farms"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:490
+msgid "Roast to Ship"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:491
+msgid "Happy Customers"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:496
+msgid "What our customers say"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:498
+msgid "Michael Torres"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:498
+msgid "Home barista"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:498
+msgid "I have tried every subscription box. This is the only one where I can taste the difference freshness makes."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:499
+msgid "Sophie Laurent"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:499
+msgid "Cafe owner, Brooklyn"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:499
+msgid "We switched our house blend to their Colombian single-origin. Customers noticed immediately."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:500
+msgid "Chris Park"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:500
+msgid "Coffee enthusiast"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:500
+msgid "The traceability QR code is a game-changer. I know exactly which farm grew my beans."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:506
+msgid "What grind options do you offer?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:506
+msgid "Whole bean, espresso, drip, pour-over, French press, and cold brew grinds. Select at checkout."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:507
+msgid "How fast is shipping?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:507
+msgid "Orders placed before 2pm ship same day. Standard delivery is 2-3 business days."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:508
+msgid "Can I pause or cancel my subscription?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:508
+msgid "Yes, anytime. No commitment, no cancellation fees. Manage everything from your account."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:509
+msgid "What is the freshness guarantee?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:509
+msgid "If you are not satisfied with the freshness, we will replace your order or refund you. No questions asked."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:513
+msgid "Your first bag ships tomorrow"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:514
+msgid "Free shipping on orders over $35. Pause or cancel any time."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:515
+msgid "Start Your Order"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:517
+msgid "Browse All Roasts"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:529
+msgid "Brand & Digital Agency"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:530
+msgid "We build the brands people cannot stop talking about"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:531
+msgid "Strategic branding, product design, and web development for ambitious companies. Based in New York. Working everywhere."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:532
+msgid "Start a Project"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:539
+msgid "Clients we have worked with"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:546
+msgid "Projects Launched"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:548
+msgid "Repeat Clients"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:549
+msgid "Awwwards"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:553
+msgid "Services"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:554
+msgid "End-to-end creative execution"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:557
+msgid "Brand Strategy & Identity"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:557
+msgid "Positioning, naming, visual identity, and brand guidelines that scale from startup to enterprise."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:558
+msgid "Product Design & UX"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:558
+msgid "User research, wireframing, prototyping, and high-fidelity UI for web and mobile products."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:559
+msgid "Web Development & CMS"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:559
+msgid "Performant, accessible websites built on modern stacks. WordPress, headless, or custom."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:563
+msgid "The People"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:564
+msgid "Small team. Massive output."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:565
+msgid "We stay deliberately small so every client gets senior attention."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:569
+msgid "Alex Rivera"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:569
+msgid "Creative Director"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:569
+msgid "Former lead designer at Pentagram. 15 years in brand identity."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:570
+msgid "Maya Johnson"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:570
+msgid "Strategy Lead"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:570
+msgid "Ex-McKinsey. Translates business goals into creative briefs."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:571
+msgid "Kai Nakamura"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:571
+msgid "Lead Designer"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:571
+msgid "Awwwards judge. Obsessed with typography and motion."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:572
+msgid "Sam Chen"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:572
+msgid "Engineering Lead"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:572
+msgid "Full-stack. Builds the performant frontends designers dream up."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:576
+msgid "Case Study"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:577
+msgid "How we helped Meridian grow 3x in 18 months"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:578
+msgid "Meridian came to us with a commoditized brand and no digital presence. We rebuilt their identity, redesigned their product, and launched a new site — in 12 weeks."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:581
+msgid "Read the Case Study"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:586
+msgid "What clients say"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:588
+msgid "Lauren Miller"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:588
+msgid "Founder, Meridian"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:588
+msgid "They turned our brand from forgettable to magnetic. Inbound leads tripled within 3 months of launch."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:589
+msgid "James Park"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:589
+msgid "CMO, Elevate Health"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:589
+msgid "Best agency experience I have had in 20 years. They deliver on time, on budget, and above expectations."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:590
+msgid "Olivia Zhang"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:590
+msgid "VP Product, DataSync"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:590
+msgid "Our product redesign increased activation by 45%. The UX work alone justified the engagement."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:594
+msgid "How we work together"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:598
+msgid "Discovery & Brief"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:598
+msgid "We learn your business, audience, and goals. You get a detailed creative brief."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:599
+msgid "Strategy & Concept"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:599
+msgid "We present 2-3 strategic directions with moodboards and rationale."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:600
+msgid "Design & Build"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:600
+msgid "4-8 weeks of focused execution with weekly check-ins."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:601
+msgid "Launch & Handover"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:601
+msgid "We launch, train your team, and provide 30 days of post-launch support."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:605
+msgid "Work With Us"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:606
+#: app/Providers/BlockPatternServiceProvider.php:614
+msgid "Tell us about your project"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:607
+msgid "We respond within one business day."
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:611
+msgid "Name"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:611
+msgid "Your name"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:612
+msgid "Email"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:613
+msgid "Company name"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:614
+msgid "What are you building? What is the timeline?"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:616
+msgid "Send Message"
+msgstr ""
+
+#: app/Providers/BlockPatternServiceProvider.php:617
+msgid "Got it — we will be in touch within 24 hours."
+msgstr ""
+
+#: app/Providers/BlockServiceProvider.php:93
+msgid "Brndle Sections"
+msgstr ""
+
+#: app/Providers/SettingsServiceProvider.php:147
+msgid "Invalid settings data."
+msgstr ""
+
+#: app/Providers/SettingsServiceProvider.php:158
+msgid "No valid settings keys provided."
+msgstr ""
+
+#: app/Providers/SettingsServiceProvider.php:213
+msgid "Invalid import data."
+msgstr ""
+
+#: app/Providers/SettingsServiceProvider.php:224
+msgid "No valid settings keys in import data."
+msgstr ""
+
+#: app/Settings/ColorPalette.php:30
+msgid "Neutral"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:35
+msgid "Sapphire"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:40
+msgid "Indigo"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:45
+msgid "Cobalt"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:50
+msgid "Trust"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:55
+msgid "Commerce"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:60
+msgid "Signal"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:65
+msgid "Coral"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:70
+msgid "Aubergine"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:75
+msgid "Midnight"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:80
+msgid "Stone"
+msgstr ""
+
+#: app/Settings/ColorPalette.php:85
+msgid "Carbon"
+msgstr ""
+
+#: app/Settings/FontPairs.php:31
+msgid "System UI"
+msgstr ""
+
+#: app/Settings/FontPairs.php:38
+msgid "Inter"
+msgstr ""
+
+#: app/Settings/FontPairs.php:47
+msgid "Geist Sans"
+msgstr ""
+
+#: app/Settings/FontPairs.php:59
+msgid "IBM Plex Sans"
+msgstr ""
+
+#: app/Settings/FontPairs.php:71
+msgid "DM Sans"
+msgstr ""
+
+#: app/Settings/FontPairs.php:80
+msgid "Editorial"
+msgstr ""
+
+#: app/Settings/FontPairs.php:90
+msgid "Magazine"
+msgstr ""
+
+#: app/Settings/FontPairs.php:100
+msgid "Humanist"
+msgstr ""
+
+#: app/setup.php:72
+msgid "Footer Column 1"
+msgstr ""
+
+#: app/setup.php:73
+msgid "Footer Column 2"
+msgstr ""
+
+#: app/setup.php:74
+msgid "Footer Column 3"
+msgstr ""
+
+#: app/setup.php:121
+msgid "Footer"
+msgstr ""
+
+#. Template Name of the theme
+#: app/setup.php:175
+msgid "Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+#: app/setup.php:176
+msgid "Full Canvas"
+msgstr ""
+
+#. Template Name of the theme
+#: app/setup.php:177
+msgid "Transparent Header"
+msgstr ""
+
+#: app/View/Composers/Post.php:24
+msgid "Pages:"
+msgstr ""
+
+#: app/View/Composers/Post.php:41
+msgid "Latest Posts"
+msgstr ""
+
+#. translators: %s: search query string
+#: app/View/Composers/Post.php:51
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: app/View/Composers/Post.php:57
+msgid "Not Found"
+msgstr ""
+
+#. translators: %d: estimated reading time in minutes
+#: app/View/Composers/Post.php:76
+#, php-format
+msgid "%d min read"
+msgid_plural "%d min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:18
+msgid "Brndle theme files are incomplete. Please re-upload the theme from the official distribution zip file."
+msgstr ""
+
+#. translators: %s is replaced with the relative file path
+#: functions.php:58
+#, php-format
+msgid "Error locating <code>%s</code> for inclusion."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Homepage Canvas"
+msgstr ""
+
+#: resources/views/404.blade.php:7
+msgid "Sorry, we couldn't find the page you're looking for."
+msgstr ""
+
+#: resources/views/404.blade.php:9
+msgid "Go home"
+msgstr ""
+
+#: resources/views/blocks/content-image-split.blade.php:44
+msgid "Add an image URL"
+msgstr ""
+
+#: resources/views/blocks/hero.blade.php:67
+msgid "Trusted by industry leaders"
+msgstr ""
+
+#: resources/views/blocks/lead-form.blade.php:74
+#: resources/views/blocks/pricing.blade.php:54
+msgid "Get Started"
+msgstr ""
+
+#: resources/views/blocks/video-embed.blade.php:52
+msgid "Video"
+msgstr ""
+
+#: resources/views/blocks/video-embed.blade.php:71
+msgid "Add a video URL in the block settings"
+msgstr ""
+
+#: resources/views/forms/search.blade.php:2
+#: resources/views/forms/search.blade.php:14
+#: resources/views/sections/header.blade.php:439
+msgid "Search"
+msgstr ""
+
+#: resources/views/forms/search.blade.php:9
+msgid "Search..."
+msgstr ""
+
+#: resources/views/index.blade.php:13
+msgid "No posts found."
+msgstr ""
+
+#: resources/views/index.blade.php:28
+#: resources/views/search.blade.php:20
+msgid "&larr; Previous"
+msgstr ""
+
+#: resources/views/index.blade.php:29
+#: resources/views/search.blade.php:21
+msgid "Next &rarr;"
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:23
+#: resources/views/layouts/landing.blade.php:24
+#: resources/views/template-canvas.blade.php:25
+#: resources/views/template-transparent.blade.php:27
+msgid "Skip to content"
+msgstr ""
+
+#. translators: %s: number of comments
+#: resources/views/partials/comments.blade.php:6
+#, php-format
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/partials/comments.blade.php:17
+msgid "Comments are closed."
+msgstr ""
+
+#: resources/views/partials/components/category-filter.blade.php:8
+msgid "Filter posts by category"
+msgstr ""
+
+#: resources/views/partials/components/category-filter.blade.php:19
+msgid "All"
+msgstr ""
+
+#: resources/views/partials/components/dark-mode-toggle.blade.php:17
+msgid "Toggle dark mode"
+msgstr ""
+
+#: resources/views/partials/components/post-navigation.blade.php:7
+msgid "Post navigation"
+msgstr ""
+
+#: resources/views/partials/components/post-navigation.blade.php:11
+msgid "Previous"
+msgstr ""
+
+#: resources/views/partials/components/post-navigation.blade.php:26
+msgid "Next"
+msgstr ""
+
+#: resources/views/partials/components/related-posts.blade.php:27
+msgid "Related Posts"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:13
+msgid "Share on X (opens in new window)"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:16
+msgid "Tweet"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:25
+msgid "Share on LinkedIn (opens in new window)"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:28
+#: resources/views/sections/footer.blade.php:128
+#: resources/views/sections/footer.blade.php:187
+#: resources/views/sections/footer.blade.php:328
+#: resources/views/sections/footer.blade.php:411
+#: resources/views/sections/footer.blade.php:474
+msgid "LinkedIn"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:37
+msgid "Share on Facebook (opens in new window)"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:40
+msgid "Facebook"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:48
+msgid "Copy link to clipboard"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:51
+#: resources/views/partials/components/social-share.blade.php:63
+msgid "Copy Link"
+msgstr ""
+
+#: resources/views/partials/components/social-share.blade.php:62
+msgid "Copied!"
+msgstr ""
+
+#: resources/views/partials/components/table-of-contents.blade.php:17
+#: resources/views/partials/single/sidebar.blade.php:77
+msgid "Table of Contents"
+msgstr ""
+
+#: resources/views/partials/components/table-of-contents.blade.php:18
+msgid "On this page"
+msgstr ""
+
+#: resources/views/search.blade.php:9
+msgid "No results found."
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:15
+#: resources/views/sections/footer.blade.php:28
+#: resources/views/sections/footer.blade.php:148
+#: resources/views/sections/footer.blade.php:207
+#: resources/views/sections/footer.blade.php:358
+#: resources/views/sections/footer.blade.php:436
+msgid "Site footer"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:116
+#: resources/views/sections/footer.blade.php:175
+#: resources/views/sections/footer.blade.php:316
+#: resources/views/sections/footer.blade.php:399
+#: resources/views/sections/footer.blade.php:462
+msgid "X / Twitter"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:122
+#: resources/views/sections/footer.blade.php:181
+#: resources/views/sections/footer.blade.php:322
+#: resources/views/sections/footer.blade.php:405
+#: resources/views/sections/footer.blade.php:468
+msgid "GitHub"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:134
+#: resources/views/sections/footer.blade.php:193
+#: resources/views/sections/footer.blade.php:334
+#: resources/views/sections/footer.blade.php:417
+#: resources/views/sections/footer.blade.php:480
+msgid "Instagram"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:212
+msgid "Stay up to date"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:213
+msgid "Get the latest news and updates delivered to your inbox."
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:215
+msgid "Newsletter signup"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:216
+msgid "Email address"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:217
+msgid "Enter your email"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:220
+msgid "Subscribe"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:342
+msgid "Back to top"
+msgstr ""
+
+#: resources/views/sections/footer.blade.php:381
+msgid "Footer navigation"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:10
+#: resources/views/sections/header.blade.php:101
+#: resources/views/sections/header.blade.php:206
+#: resources/views/sections/header.blade.php:319
+#: resources/views/sections/header.blade.php:420
+#: resources/views/sections/header.blade.php:547
+#: resources/views/sections/header.blade.php:658
+#: resources/views/sections/header.blade.php:771
+#: resources/views/template-transparent.blade.php:32
+msgid "Site header"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:11
+#: resources/views/sections/header.blade.php:118
+#: resources/views/sections/header.blade.php:207
+#: resources/views/sections/header.blade.php:320
+#: resources/views/sections/header.blade.php:472
+#: resources/views/sections/header.blade.php:548
+#: resources/views/sections/header.blade.php:663
+#: resources/views/sections/header.blade.php:772
+msgid "Main navigation"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:27
+msgid "Open menu"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:153
+#: resources/views/sections/header.blade.php:254
+#: resources/views/sections/header.blade.php:367
+#: resources/views/sections/header.blade.php:462
+#: resources/views/sections/header.blade.php:595
+#: resources/views/sections/header.blade.php:709
+#: resources/views/sections/header.blade.php:819
+#: resources/views/template-transparent.blade.php:73
+msgid "Toggle menu"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:536
+msgid "Announcement"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:539
+msgid "Dismiss announcement"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+msgctxt "block title"
+msgid "Comparison Table"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+msgctxt "block description"
+msgid "Feature comparison grid with checkmark/x columns and optional highlighted plan column."
+msgstr ""
+
+#: blocks/comparison-table/block.json
+msgctxt "block keyword"
+msgid "comparison"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+#: blocks/pricing/block.json
+msgctxt "block keyword"
+msgid "table"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "features"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+#: blocks/pricing/block.json
+msgctxt "block keyword"
+msgid "pricing"
+msgstr ""
+
+#: blocks/comparison-table/block.json
+msgctxt "block keyword"
+msgid "versus"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block title"
+msgid "Content + Image"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block description"
+msgid "Side-by-side content and image section with flexible layout options."
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block keyword"
+msgid "split"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block keyword"
+msgid "image"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block keyword"
+msgid "content"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+#: blocks/video-embed/block.json
+msgctxt "block keyword"
+msgid "media"
+msgstr ""
+
+#: blocks/content-image-split/block.json
+msgctxt "block keyword"
+msgid "text"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block title"
+msgid "CTA Section"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block description"
+msgid "Call-to-action section with headline, subtitle, and buttons."
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "cta"
+msgstr ""
+
+#: blocks/cta/block.json
+msgctxt "block keyword"
+msgid "call-to-action"
+msgstr ""
+
+#: blocks/cta/block.json
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "banner"
+msgstr ""
+
+#: blocks/faq/block.json
+msgctxt "block title"
+msgid "FAQ Section"
+msgstr ""
+
+#: blocks/faq/block.json
+msgctxt "block description"
+msgid "Frequently asked questions with CSS-only accordion."
+msgstr ""
+
+#: blocks/faq/block.json
+msgctxt "block keyword"
+msgid "faq"
+msgstr ""
+
+#: blocks/faq/block.json
+msgctxt "block keyword"
+msgid "questions"
+msgstr ""
+
+#: blocks/faq/block.json
+msgctxt "block keyword"
+msgid "accordion"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block title"
+msgid "Features Section"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block description"
+msgid "Alternating feature rows with image, title, description, and bullet points."
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "benefits"
+msgstr ""
+
+#: blocks/features/block.json
+msgctxt "block keyword"
+msgid "showcase"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block title"
+msgid "Hero Section"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block description"
+msgid "Full-width hero section with eyebrow, headline, subtitle, CTAs, image, and logo strip."
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "hero"
+msgstr ""
+
+#: blocks/hero/block.json
+msgctxt "block keyword"
+msgid "landing"
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block title"
+msgid "How It Works"
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block description"
+msgid "Numbered process steps with optional icons and descriptions."
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block keyword"
+msgid "steps"
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block keyword"
+msgid "process"
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block keyword"
+msgid "how"
+msgstr ""
+
+#: blocks/how-it-works/block.json
+msgctxt "block keyword"
+msgid "workflow"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block title"
+msgid "Lead Form"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block description"
+msgid "Email capture section with headline, description, and customizable form fields."
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "email"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "signup"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "lead"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "capture"
+msgstr ""
+
+#: blocks/lead-form/block.json
+msgctxt "block keyword"
+msgid "newsletter"
+msgstr ""
+
+#: blocks/logos/block.json
+msgctxt "block title"
+msgid "Logo Strip"
+msgstr ""
+
+#: blocks/logos/block.json
+msgctxt "block description"
+msgid "Trust bar showing client/partner logos."
+msgstr ""
+
+#: blocks/logos/block.json
+msgctxt "block keyword"
+msgid "logos"
+msgstr ""
+
+#: blocks/logos/block.json
+msgctxt "block keyword"
+msgid "clients"
+msgstr ""
+
+#: blocks/logos/block.json
+msgctxt "block keyword"
+msgid "trust"
+msgstr ""
+
+#: blocks/pricing/block.json
+msgctxt "block title"
+msgid "Pricing Section"
+msgstr ""
+
+#: blocks/pricing/block.json
+msgctxt "block description"
+msgid "Pricing table with 2-3 plans, featured plan highlight, and feature lists."
+msgstr ""
+
+#: blocks/pricing/block.json
+msgctxt "block keyword"
+msgid "plans"
+msgstr ""
+
+#: blocks/stats/block.json
+msgctxt "block title"
+msgid "Stats Section"
+msgstr ""
+
+#: blocks/stats/block.json
+msgctxt "block description"
+msgid "Key metrics and statistics in a row."
+msgstr ""
+
+#: blocks/stats/block.json
+msgctxt "block keyword"
+msgid "stats"
+msgstr ""
+
+#: blocks/stats/block.json
+msgctxt "block keyword"
+msgid "numbers"
+msgstr ""
+
+#: blocks/stats/block.json
+msgctxt "block keyword"
+msgid "metrics"
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block title"
+msgid "Team"
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block description"
+msgid "Team member cards with photo, name, role, bio, and optional social links."
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block keyword"
+msgid "team"
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block keyword"
+msgid "people"
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block keyword"
+msgid "staff"
+msgstr ""
+
+#: blocks/team/block.json
+msgctxt "block keyword"
+msgid "about"
+msgstr ""
+
+#: blocks/testimonials/block.json
+msgctxt "block title"
+msgid "Testimonials Section"
+msgstr ""
+
+#: blocks/testimonials/block.json
+msgctxt "block description"
+msgid "Customer testimonials in a card grid layout."
+msgstr ""
+
+#: blocks/testimonials/block.json
+msgctxt "block keyword"
+msgid "testimonials"
+msgstr ""
+
+#: blocks/testimonials/block.json
+msgctxt "block keyword"
+msgid "reviews"
+msgstr ""
+
+#: blocks/testimonials/block.json
+msgctxt "block keyword"
+msgid "social-proof"
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block title"
+msgid "Video Embed"
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block description"
+msgid "Section wrapper for YouTube, Vimeo, or self-hosted video with optional headline."
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block keyword"
+msgid "video"
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block keyword"
+msgid "youtube"
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block keyword"
+msgid "vimeo"
+msgstr ""
+
+#: blocks/video-embed/block.json
+msgctxt "block keyword"
+msgid "embed"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Red (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Orange (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Amber (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Yellow (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Lime (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Green (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Emerald (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Teal (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Cyan (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Sky (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Blue (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Indigo (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Violet (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Purple (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Fuchsia (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Pink (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Rose (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Slate (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Gray (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Zinc (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Neutral (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Stone (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mauve (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Olive (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Mist (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (50)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (100)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (200)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (300)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (400)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (500)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (600)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (700)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (800)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (900)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Taupe (950)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Black"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Accent (Light)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Accent (Dark)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Accent (Subtle)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Surface (Primary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Surface (Secondary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Surface (Tertiary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Surface (Inverse)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Text (Primary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Text (Secondary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Text (Tertiary)"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Color name"
+msgid "Text (Inverse)"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "3XS"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "2XS"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "XS"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "S"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "M"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "L"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "XL"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "2XL"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "Hero"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "xs"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "sm"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "base"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "lg"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "2xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "X-Large"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "3xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "4xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+#: theme.json
+msgctxt "Font size name"
+msgid "2X-Large"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "5xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "6xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "7xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "8xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font size name"
+msgid "9xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font family name"
+msgid "sans"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font family name"
+msgid "serif"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Font family name"
+msgid "mono"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "xs"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "lg"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "3xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "2xl"
+msgstr ""
+
+#: public/build/assets/theme.json
+msgctxt "Border radius size name"
+msgid "4xl"
+msgstr ""

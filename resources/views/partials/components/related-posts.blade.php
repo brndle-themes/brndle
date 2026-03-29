@@ -2,12 +2,22 @@
   $related = get_transient('brndle_related_' . get_the_ID());
   if (!$related) {
     $cats = wp_get_post_categories(get_the_ID());
-    $related = get_posts([
+    $candidates = get_posts([
       'category__in' => $cats,
       'post__not_in' => [get_the_ID()],
-      'posts_per_page' => 3,
-      'orderby' => 'rand',
+      'posts_per_page' => 10,
+      'orderby' => 'date',
+      'order' => 'DESC',
+      'no_found_rows' => true,
+      'update_post_term_cache' => false,
+      'update_post_meta_cache' => false,
     ]);
+    if (count($candidates) > 3) {
+      $keys = array_rand($candidates, 3);
+      $related = array_map(fn ($k) => $candidates[$k], (array) $keys);
+    } else {
+      $related = $candidates;
+    }
     set_transient('brndle_related_' . get_the_ID(), $related, HOUR_IN_SECONDS);
   }
 @endphp

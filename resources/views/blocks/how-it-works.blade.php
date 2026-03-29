@@ -20,6 +20,7 @@
       </div>
     @endif
 
+    @if(!empty($steps))
     @if($isVertical)
       <div class="max-w-2xl mx-auto">
         @foreach($steps as $i => $step)
@@ -64,6 +65,7 @@
           </div>
         @endforeach
       </div>
+    @endif
     @endif
   </div>
 </section>

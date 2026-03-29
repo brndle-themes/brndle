@@ -8,7 +8,7 @@
     'fetchpriority' => $priority ? 'high' : null,
   ]) !!}
 @else
-  <div class="w-full h-full bg-gradient-to-br from-[var(--color-surface-tertiary)] to-[var(--color-surface-secondary)] flex items-center justify-center">
+  <div class="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
     @if($category = get_the_category())
       <span class="text-lg font-bold text-accent opacity-30">{{ $category[0]->name }}</span>
     @endif

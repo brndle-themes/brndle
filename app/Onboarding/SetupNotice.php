@@ -54,6 +54,11 @@ class SetupNotice
     public static function dismiss(): void
     {
         check_ajax_referer('brndle_dismiss', '_wpnonce');
+
+        if (! current_user_can('manage_options')) {
+            wp_die(-1, 403);
+        }
+
         update_user_meta(get_current_user_id(), 'brndle_notice_dismissed', true);
         wp_die();
     }

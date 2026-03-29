@@ -239,14 +239,16 @@ class SettingsServiceProvider
     /**
      * Output CSS custom properties in the document head.
      *
-     * Hooked to wp_head at priority 1 so variables are available before
-     * any theme stylesheet that references them.
+     * Hooked to wp_head at priority 1. The app.css dark mode fallback
+     * lives inside @layer theme, so this unlayered output always wins
+     * regardless of source order (CSS cascade: unlayered > layered).
      *
      * @return void
      */
     public function outputCssVariables(): void
     {
         $css = Settings::cssVariables();
+        $css = str_replace('</style>', '', $css);
 
         echo '<style id="brndle-css-vars">' . $css . '</style>' . "\n";
     }
@@ -276,11 +278,11 @@ class SettingsServiceProvider
     }
 
     /**
-     * Output font preloading tags in the document head.
+     * Output self-hosted font @font-face declarations in the document head.
      *
-     * Emits preconnect hints, the Google Fonts stylesheet link using
-     * the non-blocking print/onload pattern, and a noscript fallback.
-     * Handles CDN fonts (e.g. Geist via jsDelivr) separately.
+     * Generates inline @font-face CSS for the selected font pair using
+     * local woff2 files bundled with the theme. Preloads the first font
+     * file for optimal LCP performance.
      *
      * Hooked to wp_head at priority 2, immediately after CSS variables.
      *
@@ -293,33 +295,33 @@ class SettingsServiceProvider
         }
 
         $fontPairKey = Settings::get('font_pair', 'inter');
-        $googleUrl = FontPairs::googleFontsUrl($fontPairKey);
-
-        // Geist Sans is served via jsDelivr CDN, not Google Fonts.
-        if ($fontPairKey === 'geist') {
-            $geistUrl = 'https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.css';
-
-            echo '<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>' . "\n";
-            echo '<link rel="stylesheet" href="' . esc_url($geistUrl) . '" media="print" onload="this.media=\'all\'">' . "\n";
-            echo '<noscript><link rel="stylesheet" href="' . esc_url($geistUrl) . '"></noscript>' . "\n";
-
-            return;
-        }
+        $pairs = FontPairs::pairs();
+        $pair = $pairs[$fontPairKey] ?? $pairs['inter'];
 
         // System fonts need no loading.
-        if ($fontPairKey === 'system' || $googleUrl === null) {
+        if (empty($pair['fonts'])) {
             return;
         }
 
-        // Preconnect hints for Google Fonts.
-        echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
-        echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+        $fontsDir = get_theme_file_uri('public/fonts');
 
-        // Non-blocking font load with print/onload pattern.
-        echo '<link rel="stylesheet" href="' . esc_url($googleUrl) . '" media="print" onload="this.media=\'all\'">' . "\n";
+        // Preload the primary font file for faster LCP.
+        $primaryFont = $pair['fonts'][0];
+        echo '<link rel="preload" as="font" type="font/woff2" href="' . esc_url($fontsDir . '/' . $primaryFont['file']) . '" crossorigin>' . "\n";
 
-        // Noscript fallback for environments without JavaScript.
-        echo '<noscript><link rel="stylesheet" href="' . esc_url($googleUrl) . '"></noscript>' . "\n";
+        // Generate @font-face declarations for all fonts in this pair.
+        $css = '';
+        foreach ($pair['fonts'] as $font) {
+            $css .= '@font-face{';
+            $css .= 'font-family:"' . $font['family'] . '";';
+            $css .= 'src:url(' . esc_url($fontsDir . '/' . $font['file']) . ') format("woff2");';
+            $css .= 'font-weight:' . $font['weight'] . ';';
+            $css .= 'font-style:' . $font['style'] . ';';
+            $css .= 'font-display:swap;';
+            $css .= '}';
+        }
+
+        echo '<style id="brndle-fonts">' . $css . '</style>' . "\n";
     }
 
     /**

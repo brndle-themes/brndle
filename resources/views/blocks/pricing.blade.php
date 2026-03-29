@@ -7,7 +7,7 @@
         <p class="text-sm font-semibold text-accent uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
       @endif
       @if($a['title'])
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! $a['title'] !!}</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! wp_kses_post($a['title']) !!}</h2>
       @endif
       @if($a['subtitle'])
         <p class="mt-5 text-lg {{ ($a['variant'] ?? 'light') === 'dark' ? 'text-white/70' : 'text-text-secondary' }}">{{ $a['subtitle'] }}</p>

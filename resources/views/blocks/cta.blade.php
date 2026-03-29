@@ -7,7 +7,7 @@
   </div>
 
   <div class="relative z-10 max-w-3xl mx-auto px-6 text-center reveal">
-    <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! $a['title'] !!}</h2>
+    <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! wp_kses_post($a['title']) !!}</h2>
 
     @if($a['subtitle'])
       <p class="mt-5 text-lg text-white/70 max-w-xl mx-auto">{{ $a['subtitle'] }}</p>

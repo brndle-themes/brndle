@@ -56,7 +56,7 @@ add_filter('theme_file_path', function ($path, $file) {
 /**
  * Disable on-demand block asset loading.
  */
-add_filter('should_load_separate_core_block_assets', '__return_false');
+add_filter('should_load_separate_core_block_assets', '__return_true');
 
 /**
  * Register the initial theme setup.
@@ -94,6 +94,12 @@ add_action('after_setup_theme', function () {
         'style',
     ]);
     add_theme_support('customize-selective-refresh-widgets');
+    add_theme_support('custom-logo', [
+        'height'      => 80,
+        'width'       => 200,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ]);
 
     // Custom image sizes for blog
     add_image_size('brndle-card', 600, 400, true);
@@ -130,10 +136,12 @@ add_action('wp_enqueue_scripts', function () {
         wp_dequeue_script('wp-embed');
     }
 
-    // Remove global styles (block library CSS) on landing pages
-    if (is_page_template('template-landing')) {
+    // Remove global styles on landing pages (always) or all pages (opt-in setting)
+    $removeGlobalStyles = is_page_template('template-landing')
+        || \Brndle\Settings\Settings::get('perf_remove_global_styles', false);
+
+    if ($removeGlobalStyles) {
         wp_dequeue_style('global-styles');
-        wp_dequeue_style('wp-block-library');
         wp_dequeue_style('wp-block-library-theme');
         wp_dequeue_style('classic-theme-styles');
     }

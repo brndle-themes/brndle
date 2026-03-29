@@ -189,11 +189,7 @@
       </section>
     </main>
 
-    <footer style="padding:2rem 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.3)">
-      <div style="max-width:min(90vw,1200px);margin:0 auto;padding:0 1.5rem">
-        &copy; {{ date('Y') }} Varun Dubey. All rights reserved.
-      </div>
-    </footer>
+    @include('sections.footer')
 
     @php(do_action('get_footer'))
     @php(wp_footer())

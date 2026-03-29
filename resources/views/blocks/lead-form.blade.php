@@ -35,6 +35,7 @@
           data-brndle-lead-form
           data-success="{{ esc_attr($a['success_message'] ?? '') }}"
         >
+          @php(wp_nonce_field('brndle_lead_form', '_brndle_nonce'))
           @foreach($fields as $field)
             <div class="{{ $isInline ? 'flex-1 min-w-[200px]' : '' }}">
               @if(!$isInline)

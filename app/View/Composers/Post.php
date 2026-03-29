@@ -47,8 +47,9 @@ class Post extends Composer
 
         if (is_search()) {
             return sprintf(
+                /* translators: %s: search query string */
                 __('Search Results for %s', 'brndle'),
-                get_search_query()
+                esc_html(get_search_query())
             );
         }
 
@@ -71,6 +72,7 @@ class Post extends Composer
         $minutes = max(1, ceil($word_count / 250));
 
         return sprintf(
+            /* translators: %d: estimated reading time in minutes */
             _n('%d min read', '%d min read', $minutes, 'brndle'),
             $minutes
         );

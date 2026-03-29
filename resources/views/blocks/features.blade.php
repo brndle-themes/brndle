@@ -7,7 +7,7 @@
         @if($a['eyebrow'])
           <p class="text-sm font-semibold text-accent uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
         @endif
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! $a['title'] !!}</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">{!! wp_kses_post($a['title']) !!}</h2>
         @if($a['subtitle'])
           <p class="mt-4 text-lg {{ ($a['variant'] ?? 'light') === 'dark' ? 'text-white/70' : 'text-text-secondary' }}">{{ $a['subtitle'] }}</p>
         @endif
@@ -21,7 +21,7 @@
           <div>
             @if(!empty($feature['icon']) && strlen($feature['icon']) > 1 && !str_contains($feature['icon'], 'u20'))
               <div class="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mb-6">
-                <span class="text-accent text-2xl" aria-hidden="true">{!! $feature['icon'] !!}</span>
+                <span class="text-accent text-2xl" aria-hidden="true">{{ $feature['icon'] }}</span>
               </div>
             @endif
             <h3 class="text-2xl sm:text-3xl font-bold tracking-tight">{{ $feature['title'] ?? '' }}</h3>

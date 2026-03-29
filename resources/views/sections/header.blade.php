@@ -7,8 +7,8 @@
      STYLE: MINIMAL — Floating hamburger + fullscreen overlay
      ============================================================ --}}
 @if($style === 'minimal')
-<header id="brndle-header" class="fixed top-0 inset-x-0 z-50" aria-label="Site header">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+<header id="brndle-header" class="fixed top-0 inset-x-0 z-50" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Logo (hidden on minimal — shows only in overlay) --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0 opacity-0 pointer-events-none">
       @if(!empty($siteLogo))
@@ -24,7 +24,7 @@
     {{-- Floating hamburger button --}}
     <button id="brndle-minimal-btn" type="button"
             class="fixed top-5 right-6 z-[60] w-11 h-11 rounded-full bg-surface-primary shadow-lg border border-surface-tertiary/50 flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors"
-            aria-expanded="false" aria-controls="brndle-minimal-overlay" aria-label="Open menu">
+            aria-expanded="false" aria-controls="brndle-minimal-overlay" aria-label="{{ esc_attr__('Open menu', 'brndle') }}">
       <svg id="brndle-minimal-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
@@ -96,7 +96,7 @@
      STYLE: CENTERED — Logo top, nav pills below
      ============================================================ --}}
 @elseif($style === 'centered')
-<header id="brndle-header" class="relative z-50 bg-surface-primary border-b border-surface-tertiary/50" aria-label="Site header">
+<header id="brndle-header" class="relative z-50 bg-surface-primary border-b border-surface-tertiary/50" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
   {{-- Top row: logo centered --}}
   <div class="max-w-7xl mx-auto px-6 pt-6 pb-3 flex items-center justify-center">
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5">
@@ -113,7 +113,7 @@
   </div>
 
   {{-- Bottom row: nav pills --}}
-  <nav class="max-w-7xl mx-auto px-6 pb-4 flex items-center justify-center gap-3" aria-label="Main navigation">
+  <nav class="max-w-7xl mx-auto px-6 pb-4 flex items-center justify-center gap-3" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Desktop nav --}}
     @if(has_nav_menu('primary_navigation'))
       <div class="hidden md:flex items-center gap-1">
@@ -146,7 +146,7 @@
     {{-- Mobile hamburger --}}
     <button id="brndle-menu-btn" type="button"
             class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
-            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
@@ -197,8 +197,8 @@
      STYLE: TRANSPARENT — Fixed, becomes solid on scroll
      ============================================================ --}}
 @elseif($style === 'transparent')
-<header id="brndle-header" class="fixed top-0 inset-x-0 z-50 bg-transparent transition-all" aria-label="Site header">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+<header id="brndle-header" class="fixed top-0 inset-x-0 z-50 bg-transparent transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
@@ -243,7 +243,7 @@
     {{-- Mobile toggle --}}
     <button id="brndle-menu-btn" type="button"
             class="md:hidden flex items-center justify-center w-10 h-10 text-white"
-            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
@@ -306,8 +306,8 @@
      STYLE: SOLID — Static, solid bg, thicker border
      ============================================================ --}}
 @elseif($style === 'solid')
-<header id="brndle-header" class="relative z-50 bg-surface-primary border-b-2 border-surface-tertiary" aria-label="Site header">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+<header id="brndle-header" class="relative z-50 bg-surface-primary border-b-2 border-surface-tertiary" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
@@ -352,7 +352,7 @@
     {{-- Mobile toggle --}}
     <button id="brndle-menu-btn" type="button"
             class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
-            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
@@ -403,7 +403,7 @@
      STYLE: SPLIT — Two-row header (logo + nav separated)
      ============================================================ --}}
 @elseif($style === 'split')
-<header id="brndle-header" class="relative z-50 bg-surface-primary" aria-label="Site header">
+<header id="brndle-header" class="relative z-50 bg-surface-primary" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
   {{-- Top row: logo + search + CTA --}}
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     {{-- Logo --}}
@@ -422,7 +422,7 @@
     {{-- Right side: search icon + dark mode + CTA --}}
     <div class="flex items-center gap-3">
       {{-- Search icon --}}
-      <button type="button" class="hidden md:flex items-center justify-center w-10 h-10 text-text-secondary hover:text-text-primary transition-colors" aria-label="Search" onclick="document.dispatchEvent(new CustomEvent('brndle:search-open'))">
+      <button type="button" class="hidden md:flex items-center justify-center w-10 h-10 text-text-secondary hover:text-text-primary transition-colors" aria-label="{{ esc_attr__('Search', 'brndle') }}" onclick="document.dispatchEvent(new CustomEvent('brndle:search-open'))">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
         </svg>
@@ -444,7 +444,7 @@
       {{-- Mobile toggle --}}
       <button id="brndle-menu-btn" type="button"
               class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
-              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
         </svg>
@@ -454,7 +454,7 @@
 
   {{-- Bottom row: centered nav --}}
   <div class="hidden md:block border-t border-surface-tertiary/50">
-    <nav class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-center" aria-label="Main navigation">
+    <nav class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-center" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
       @if(has_nav_menu('primary_navigation'))
         {!! wp_nav_menu([
           'theme_location' => 'primary_navigation',
@@ -515,10 +515,10 @@
 @php
   $bannerText = $headerBannerText ?? 'Free shipping on all orders';
 @endphp
-<div id="brndle-banner" class="relative z-50 bg-accent text-white text-center text-sm py-2 px-6 transition-all" role="banner" aria-label="Announcement">
+<div id="brndle-banner" class="relative z-50 bg-accent text-white text-center text-sm py-2 px-6 transition-all" role="banner" aria-label="{{ esc_attr__('Announcement', 'brndle') }}">
   <div class="max-w-7xl mx-auto flex items-center justify-center gap-4">
     <span class="font-medium">{{ $bannerText }}</span>
-    <button id="brndle-banner-close" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="Dismiss announcement">
+    <button id="brndle-banner-close" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="{{ esc_attr__('Dismiss announcement', 'brndle') }}">
       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
       </svg>
@@ -526,8 +526,8 @@
   </div>
 </div>
 
-<header id="brndle-header" class="sticky top-0 z-50 bg-surface-primary/80 backdrop-blur-xl border-b border-surface-tertiary/50 transition-all" aria-label="Site header">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+<header id="brndle-header" class="sticky top-0 z-50 bg-surface-primary/80 backdrop-blur-xl border-b border-surface-tertiary/50 transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
@@ -572,7 +572,7 @@
     {{-- Mobile toggle --}}
     <button id="brndle-menu-btn" type="button"
             class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
-            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>
@@ -633,12 +633,12 @@
      STYLE: GLASS — Glassmorphism fixed header for dark heroes
      ============================================================ --}}
 @elseif($style === 'glass')
-<header id="brndle-header" class="fixed top-0 inset-x-0 z-50 transition-all" aria-label="Site header">
+<header id="brndle-header" class="fixed top-0 inset-x-0 z-50 transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
   {{-- Gradient top border --}}
   <div class="h-px bg-gradient-to-r from-accent via-accent/50 to-transparent"></div>
 
   <div class="bg-white/10 backdrop-blur-2xl backdrop-saturate-150" id="brndle-glass-bg">
-    <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+    <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
       {{-- Logo --}}
       <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
         @if(!empty($siteLogo))
@@ -682,7 +682,7 @@
       {{-- Mobile toggle --}}
       <button id="brndle-menu-btn" type="button"
               class="md:hidden flex items-center justify-center w-10 h-10 text-white/80"
-              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+              aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
         </svg>
@@ -742,8 +742,8 @@
      STYLE: STICKY (default) — Glassmorphism sticky header
      ============================================================ --}}
 @else
-<header id="brndle-header" class="sticky top-0 z-50 bg-surface-primary/80 backdrop-blur-xl border-b border-surface-tertiary/50 transition-all" aria-label="Site header">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+<header id="brndle-header" class="sticky top-0 z-50 bg-surface-primary/80 backdrop-blur-xl border-b border-surface-tertiary/50 transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
@@ -788,7 +788,7 @@
     {{-- Mobile toggle --}}
     <button id="brndle-menu-btn" type="button"
             class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
-            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="Toggle menu">
+            aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
       </svg>

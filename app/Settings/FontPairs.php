@@ -19,10 +19,10 @@ class FontPairs
      *  - name:     Human-readable label
      *  - heading:  CSS font-family for headings
      *  - body:     CSS font-family for body text
-     *  - google:   Google Fonts query string (null if system/CDN)
+     *  - fonts:    Array of local font file definitions for @font-face
      *  - source:   Product attribution
      *
-     * @return array<string, array{name: string, heading: string, body: string, google: string|null, source: string}>
+     * @return array<string, array{name: string, heading: string, body: string, fonts: array, source: string}>
      */
     public static function pairs(): array
     {
@@ -31,82 +31,86 @@ class FontPairs
                 'name' => __('System UI', 'brndle'),
                 'heading' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
                 'body' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-                'google' => null,
+                'fonts' => [],
                 'source' => 'GitHub',
             ],
             'inter' => [
                 'name' => __('Inter', 'brndle'),
                 'heading' => '"Inter", sans-serif',
                 'body' => '"Inter", sans-serif',
-                'google' => 'family=Inter:wght@400;500;600;700',
+                'fonts' => [
+                    ['family' => 'Inter', 'file' => 'inter-latin-wght-normal.woff2', 'weight' => '100 900', 'style' => 'normal'],
+                ],
                 'source' => 'Linear, Notion, Figma',
             ],
             'geist' => [
                 'name' => __('Geist Sans', 'brndle'),
                 'heading' => '"Geist Sans", sans-serif',
                 'body' => '"Geist Sans", sans-serif',
-                'google' => null, // Served via jsDelivr CDN
+                'fonts' => [
+                    ['family' => 'Geist Sans', 'file' => 'geist-sans-latin-400-normal.woff2', 'weight' => '400', 'style' => 'normal'],
+                    ['family' => 'Geist Sans', 'file' => 'geist-sans-latin-500-normal.woff2', 'weight' => '500', 'style' => 'normal'],
+                    ['family' => 'Geist Sans', 'file' => 'geist-sans-latin-600-normal.woff2', 'weight' => '600', 'style' => 'normal'],
+                    ['family' => 'Geist Sans', 'file' => 'geist-sans-latin-700-normal.woff2', 'weight' => '700', 'style' => 'normal'],
+                ],
                 'source' => 'Vercel',
             ],
             'plex' => [
                 'name' => __('IBM Plex Sans', 'brndle'),
                 'heading' => '"IBM Plex Sans", sans-serif',
                 'body' => '"IBM Plex Sans", sans-serif',
-                'google' => 'family=IBM+Plex+Sans:wght@400;500;600;700',
+                'fonts' => [
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-400-normal.woff2', 'weight' => '400', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-500-normal.woff2', 'weight' => '500', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-600-normal.woff2', 'weight' => '600', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-700-normal.woff2', 'weight' => '700', 'style' => 'normal'],
+                ],
                 'source' => 'IBM',
             ],
             'dm-sans' => [
                 'name' => __('DM Sans', 'brndle'),
                 'heading' => '"DM Sans", sans-serif',
                 'body' => '"DM Sans", sans-serif',
-                'google' => 'family=DM+Sans:wght@400;500;600;700',
+                'fonts' => [
+                    ['family' => 'DM Sans', 'file' => 'dm-sans-latin-wght-normal.woff2', 'weight' => '100 1000', 'style' => 'normal'],
+                ],
                 'source' => 'Google Design',
             ],
             'editorial' => [
                 'name' => __('Editorial', 'brndle'),
                 'heading' => '"Playfair Display", serif',
                 'body' => '"Source Serif 4", serif',
-                'google' => 'family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@400;600',
+                'fonts' => [
+                    ['family' => 'Playfair Display', 'file' => 'playfair-display-latin-wght-normal.woff2', 'weight' => '400 900', 'style' => 'normal'],
+                    ['family' => 'Source Serif 4', 'file' => 'source-serif-4-latin-wght-normal.woff2', 'weight' => '200 900', 'style' => 'normal'],
+                ],
                 'source' => 'NYT, Intercom',
             ],
             'magazine' => [
                 'name' => __('Magazine', 'brndle'),
                 'heading' => '"Fraunces", serif',
                 'body' => '"Libre Franklin", sans-serif',
-                'google' => 'family=Fraunces:wght@400;600;700&family=Libre+Franklin:wght@400;500;600',
+                'fonts' => [
+                    ['family' => 'Fraunces', 'file' => 'fraunces-latin-wght-normal.woff2', 'weight' => '100 900', 'style' => 'normal'],
+                    ['family' => 'Libre Franklin', 'file' => 'libre-franklin-latin-wght-normal.woff2', 'weight' => '100 900', 'style' => 'normal'],
+                ],
                 'source' => 'Premium editorial',
             ],
             'humanist' => [
                 'name' => __('Humanist', 'brndle'),
                 'heading' => '"Merriweather", serif',
                 'body' => '"Source Sans 3", sans-serif',
-                'google' => 'family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600',
+                'fonts' => [
+                    ['family' => 'Merriweather', 'file' => 'merriweather-latin-400-normal.woff2', 'weight' => '400', 'style' => 'normal'],
+                    ['family' => 'Merriweather', 'file' => 'merriweather-latin-700-normal.woff2', 'weight' => '700', 'style' => 'normal'],
+                    ['family' => 'Source Sans 3', 'file' => 'source-sans-3-latin-wght-normal.woff2', 'weight' => '200 900', 'style' => 'normal'],
+                ],
                 'source' => 'Publishing',
             ],
         ];
 
-        /** @var array<string, array{name: string, heading: string, body: string, google: string|null, source: string}> */
+        /** @var array<string, array{name: string, heading: string, body: string, fonts: array, source: string}> */
         return apply_filters('brndle/font_pairs', $pairs);
-    }
-
-    /**
-     * Build a full Google Fonts URL for a given pair key.
-     *
-     * Returns null when the pair does not use Google Fonts
-     * (e.g. system fonts or CDN-hosted fonts).
-     *
-     * @param  string  $pairKey  Key from pairs().
-     * @return string|null       Google Fonts URL with display=swap, or null.
-     */
-    public static function googleFontsUrl(string $pairKey): ?string
-    {
-        $pairs = self::pairs();
-
-        if (! isset($pairs[$pairKey]) || $pairs[$pairKey]['google'] === null) {
-            return null;
-        }
-
-        return 'https://fonts.googleapis.com/css2?' . $pairs[$pairKey]['google'] . '&display=swap';
     }
 
     /**

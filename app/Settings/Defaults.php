@@ -77,6 +77,7 @@ class Defaults
             'perf_remove_embed' => true,
             'perf_lazy_images' => true,
             'perf_preload_fonts' => true,
+            'perf_remove_global_styles' => false,
         ];
 
         /** @var array<string, mixed> */
@@ -118,6 +119,7 @@ class Defaults
             'perf_remove_embed',
             'perf_lazy_images',
             'perf_preload_fonts',
+            'perf_remove_global_styles',
         ];
     }
 

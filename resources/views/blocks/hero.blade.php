@@ -24,7 +24,7 @@
       @endif
 
       <h1 class="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.06] tracking-[-0.03em]">
-        {!! $a['title'] !!}
+        {!! wp_kses_post($a['title']) !!}
       </h1>
 
       @if($a['subtitle'])
