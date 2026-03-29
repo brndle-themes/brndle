@@ -96,7 +96,7 @@
             <div style="position:relative" class="reveal">
               <div style="position:absolute;inset:-1rem;background:linear-gradient(135deg,rgba(0,255,136,0.15),transparent,rgba(96,165,250,0.08));border-radius:1.5rem;filter:blur(30px)"></div>
               <div style="position:relative;border-radius:1rem;overflow:hidden;border:2px solid rgba(255,255,255,0.08);box-shadow:0 25px 50px rgba(0,0,0,0.5)">
-                @php($photo = get_option('brndle_settings')['site_logo_light'] ?? '')
+                @php($photo = \Brndle\Settings\Settings::get('site_logo_light', ''))
                 @php($photoUrl = 'https://wordpress-1412975-6298996.cloudwaysapps.com/wp-content/uploads/2026/03/varun-hero.jpg')
                 <img src="{{ $photoUrl }}" alt="Varun Dubey" style="width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;display:block" loading="eager" fetchpriority="high">
                 <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a,transparent 50%);opacity:0.5"></div>
@@ -151,6 +151,9 @@
                 'post_status' => 'publish',
                 'orderby' => 'date',
                 'order' => 'DESC',
+                'no_found_rows' => true,
+                'update_post_term_cache' => false,
+                'update_post_meta_cache' => false,
               ]);
             @endphp
             @foreach($featured as $post)

@@ -1,5 +1,9 @@
 @php
-  $categories = get_categories(['hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC', 'number' => 8]);
+  $categories = get_transient('brndle_top_categories');
+  if ($categories === false) {
+      $categories = get_categories(['hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC', 'number' => 8]);
+      set_transient('brndle_top_categories', $categories, HOUR_IN_SECONDS);
+  }
   $currentCat = is_category() ? get_queried_object_id() : 0;
   $blogUrl = get_post_type_archive_link('post') ?: home_url('/');
 @endphp

@@ -108,11 +108,15 @@ add_action('after_setup_theme', function () {
     // Disable unused default sizes — theme only uses thumbnail, medium_large, brndle-card, brndle-hero
     remove_image_size('1536x1536');
     remove_image_size('2048x2048');
+}, 20);
+
+// Set image size options once on theme activation (not every request)
+add_action('after_switch_theme', function () {
     update_option('medium_size_w', 0);
     update_option('medium_size_h', 0);
     update_option('large_size_w', 0);
     update_option('large_size_h', 0);
-}, 20);
+});
 
 /**
  * Register the theme sidebars.

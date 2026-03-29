@@ -1,5 +1,5 @@
 @php
-  $content = get_the_content();
+  $content = get_post()->post_content ?? '';
   preg_match_all('/<h([23])[^>]*id=["\']([^"\']+)["\'][^>]*>(.*?)<\/h[23]>/i', $content, $matches, PREG_SET_ORDER);
   // If no IDs, generate from text
   if (empty($matches)) {

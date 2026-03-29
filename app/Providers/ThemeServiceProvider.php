@@ -20,10 +20,22 @@ class ThemeServiceProvider extends SageServiceProvider
         $this->app->make(\Brndle\Providers\BlockPatternServiceProvider::class)->boot();
         $this->app->make(SettingsServiceProvider::class)->boot();
 
-        // Compatibility
-        \Brndle\Compatibility\Yoast::boot();
-        \Brndle\Compatibility\WooCommerce::boot();
-        \Brndle\Compatibility\WPML::boot();
+        // Compatibility — only boot when the plugin is active
+        if (defined('WPSEO_VERSION')) {
+            \Brndle\Compatibility\Yoast::boot();
+        }
+        if (class_exists('WooCommerce')) {
+            \Brndle\Compatibility\WooCommerce::boot();
+        }
+        if (defined('ICL_SITEPRESS_VERSION')) {
+            \Brndle\Compatibility\WPML::boot();
+        }
+
+        // Invalidate category filter cache when categories change
+        $clearCatCache = fn () => delete_transient('brndle_top_categories');
+        add_action('created_category', $clearCatCache);
+        add_action('edited_category', $clearCatCache);
+        add_action('delete_category', $clearCatCache);
 
         // Onboarding
         \Brndle\Onboarding\SetupNotice::boot();
