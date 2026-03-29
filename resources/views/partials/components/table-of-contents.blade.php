@@ -17,12 +17,12 @@
   <nav class="brndle-toc" aria-label="{{ __('Table of Contents', 'brndle') }}">
     <h2 class="text-sm font-bold uppercase tracking-widest text-text-tertiary mb-4">{{ __('On this page', 'brndle') }}</h2>
     <ol class="space-y-2 text-sm text-text-secondary" id="brndle-toc-list">
-      @php $inH3 = false; @endphp
+      @php($inH3 = false)
       @foreach($matches as $heading)
         @if($heading[1] == '2')
           @if($inH3)
             </ol></li>
-            @php $inH3 = false; @endphp
+            @php($inH3 = false)
           @endif
           <li>
             <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-1 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">
@@ -31,7 +31,7 @@
         @elseif($heading[1] == '3')
           @if(!$inH3)
             <ol class="ml-4 mt-1 space-y-1">
-            @php $inH3 = true; @endphp
+            @php($inH3 = true)
           @endif
             <li>
               <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-0.5 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">

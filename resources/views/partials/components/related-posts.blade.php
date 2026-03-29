@@ -28,7 +28,7 @@
 
     <div class="grid md:grid-cols-3 gap-6">
       @foreach($related as $post)
-        @php setup_postdata($post); @endphp
+        @php(setup_postdata($post))
         <a href="{{ get_permalink($post) }}" class="group block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <div class="aspect-video overflow-hidden rounded-t-2xl bg-surface-secondary">
             @if(has_post_thumbnail($post))
@@ -55,7 +55,7 @@
           </div>
         </a>
       @endforeach
-      @php wp_reset_postdata(); @endphp
+      @php(wp_reset_postdata())
     </div>
   </section>
 @endif

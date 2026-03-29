@@ -1,5 +1,5 @@
 {{-- Magazine Layout: Featured hero + grid (Linear/Apple pattern) --}}
-@php $postIndex = 0; @endphp
+@php($postIndex = 0)
 
 @while(have_posts())
     @php(the_post())
@@ -81,7 +81,7 @@
     </article>
   @endif
 
-  @php $postIndex++; @endphp
+  @php($postIndex++)
 @endwhile
 
 @if($postIndex > 1)
