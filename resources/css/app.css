@@ -276,6 +276,11 @@ html {
    In dark mode, slightly lighter shade for subtle contrast against page bg.
    ======================================================================== */
 
+/* Override WordPress core global styles that set link colors via a:where(:not(.wp-element-button)) */
+.text-on-accent {
+  color: var(--color-on-accent) !important;
+}
+
 .brndle-section-dark {
   background-color: var(--color-surface-inverse);
   color: #ffffff;

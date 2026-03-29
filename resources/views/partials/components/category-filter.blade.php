@@ -13,7 +13,7 @@
           href="{{ $blogUrl }}"
           class="inline-block px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
             {{ ! $currentCat
-              ? 'bg-accent text-white'
+              ? 'bg-accent text-on-accent'
               : 'bg-surface-secondary text-text-secondary hover:bg-surface-tertiary'
             }}"
         >
@@ -28,7 +28,7 @@
             href="{{ get_category_link($cat->term_id) }}"
             class="inline-block px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
               {{ $currentCat === $cat->term_id
-                ? 'bg-accent text-white'
+                ? 'bg-accent text-on-accent'
                 : 'bg-surface-secondary text-text-secondary hover:bg-surface-tertiary'
               }}"
           >

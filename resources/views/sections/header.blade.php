@@ -60,7 +60,7 @@
     @endif
     @if(!empty($headerCtaText))
       <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-         class="mt-10 px-8 py-3 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+         class="mt-10 px-8 py-3 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
         {{ $headerCtaText }}
       </a>
     @endif
@@ -138,7 +138,7 @@
     {{-- CTA --}}
     @if(!empty($headerCtaText))
       <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-         class="hidden md:inline-flex px-5 py-1.5 text-base font-semibold rounded-full bg-accent text-white hover:opacity-90 transition-opacity">
+         class="hidden md:inline-flex px-5 py-1.5 text-base font-semibold rounded-full bg-accent text-on-accent hover:opacity-90 transition-opacity">
         {{ $headerCtaText }}
       </a>
     @endif
@@ -167,7 +167,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -233,7 +233,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -263,7 +263,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -344,7 +344,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -374,7 +374,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -437,7 +437,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="hidden md:inline-flex px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="hidden md:inline-flex px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -483,7 +483,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -516,7 +516,7 @@
 @php
   $bannerText = $headerBannerText ?? 'Free shipping on all orders';
 @endphp
-<div id="brndle-banner" class="relative z-50 bg-accent text-white text-center text-sm py-2 px-6 transition-all" role="banner" aria-label="{{ esc_attr__('Announcement', 'brndle') }}">
+<div id="brndle-banner" class="relative z-50 bg-accent text-on-accent text-center text-sm py-2 px-6 transition-all" role="banner" aria-label="{{ esc_attr__('Announcement', 'brndle') }}">
   <div class="max-w-7xl mx-auto flex items-center justify-center gap-4">
     <span class="font-medium">{{ $bannerText }}</span>
     <button id="brndle-banner-close" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="{{ esc_attr__('Dismiss announcement', 'brndle') }}">
@@ -564,7 +564,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -594,7 +594,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -674,7 +674,7 @@
 
         @if(!empty($headerCtaText))
           <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-             class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+             class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
             {{ $headerCtaText }}
           </a>
         @endif
@@ -704,7 +704,7 @@
           ]) !!}
         @endif
         @if(!empty($headerCtaText))
-          <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+          <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
             {{ $headerCtaText }}
           </a>
         @endif
@@ -780,7 +780,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
+           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-on-accent hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -810,7 +810,7 @@
         ]) !!}
       @endif
       @if(!empty($headerCtaText))
-        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-white">
+        <a href="{{ esc_url($headerCtaUrl ?? '#') }}" class="block mt-4 text-center text-base font-semibold px-5 py-2.5 rounded-lg bg-accent text-on-accent">
           {{ $headerCtaText }}
         </a>
       @endif
