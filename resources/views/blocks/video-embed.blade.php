@@ -41,7 +41,7 @@
 
     <div class="reveal">
       @if($embedUrl)
-        <div class="relative {{ $aspectClass }} rounded-2xl overflow-hidden {{ $isDark ? 'shadow-[0_0_80px_rgba(99,102,241,0.15)] border border-white/[0.08]' : 'shadow-2xl border border-surface-tertiary' }}">
+        <div class="relative {{ $aspectClass }} rounded-2xl overflow-hidden {{ $isDark ? 'shadow-accent-glow border border-white/[0.08]' : 'shadow-2xl border border-surface-tertiary' }}">
           <iframe
             src="{{ esc_url($embedUrl) }}"
             class="absolute inset-0 w-full h-full"
@@ -53,7 +53,7 @@
           ></iframe>
         </div>
       @elseif($videoType === 'self' && $videoUrl)
-        <div class="relative {{ $aspectClass }} rounded-2xl overflow-hidden {{ $isDark ? 'shadow-[0_0_80px_rgba(99,102,241,0.15)] border border-white/[0.08]' : 'shadow-2xl border border-surface-tertiary' }}">
+        <div class="relative {{ $aspectClass }} rounded-2xl overflow-hidden {{ $isDark ? 'shadow-accent-glow border border-white/[0.08]' : 'shadow-2xl border border-surface-tertiary' }}">
           <video
             class="absolute inset-0 w-full h-full object-cover"
             {{ $controls ? 'controls' : '' }}

@@ -199,6 +199,7 @@ class Settings
         $root['--color-text-tertiary'] = $palette['light-text-tertiary'];
         $root['--color-border'] = $palette['light-border'];
         $root['--color-border-hover'] = $palette['light-border-hover'];
+        $root['--color-on-accent'] = $palette['on-accent'];
         $root['--color-success'] = $palette['success'];
         $root['--color-warning'] = $palette['warning'];
         $root['--color-error'] = $palette['error'];
@@ -222,6 +223,7 @@ class Settings
         $dark['--color-text-tertiary'] = $palette['dark-text-tertiary'];
         $dark['--color-border'] = $palette['dark-border'];
         $dark['--color-border-hover'] = $palette['dark-border-hover'];
+        $dark['--color-on-accent'] = $palette['dark-on-accent'];
         $dark['--shadow-glow'] = '0 0 20px ' . self::hexToRgba($palette['dark-accent'], 0.2);
 
         // Build minified CSS.

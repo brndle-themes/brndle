@@ -35,7 +35,7 @@
             @if(!empty($siteLogo))
               <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
             @else
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+              <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
                 <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
               </div>
               <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
@@ -92,7 +92,7 @@
 
         {{-- Scroll effect: adds bg on scroll --}}
         <script>
-        (function(){var h=document.getElementById('brndle-header');if(!h)return;window.addEventListener('scroll',function(){if(window.scrollY>50){h.style.backgroundColor='rgba(8,11,22,0.85)';h.style.backdropFilter='blur(20px)';h.style.boxShadow='0 1px 0 rgba(255,255,255,0.05)'}else{h.style.backgroundColor='transparent';h.style.backdropFilter='none';h.style.boxShadow='none'}},{passive:true})})();
+        (function(){var h=document.getElementById('brndle-header');if(!h)return;var bg='';window.addEventListener('scroll',function(){if(window.scrollY>50){if(!bg){var s=getComputedStyle(document.documentElement).getPropertyValue('--color-surface-inverse').trim()||'#080B16';var m=s.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);bg=m?'rgba('+parseInt(m[1],16)+','+parseInt(m[2],16)+','+parseInt(m[3],16)+',0.85)':'rgba(8,11,22,0.85)'}h.style.backgroundColor=bg;h.style.backdropFilter='blur(20px)';h.style.boxShadow='0 1px 0 rgba(255,255,255,0.05)'}else{h.style.backgroundColor='transparent';h.style.backdropFilter='none';h.style.boxShadow='none'}},{passive:true})})();
         </script>
 
         {{-- Mobile menu toggle --}}

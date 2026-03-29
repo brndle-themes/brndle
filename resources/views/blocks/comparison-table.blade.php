@@ -28,7 +28,7 @@
               <th class="text-left p-4 font-semibold {{ $isDark ? 'text-white/50' : 'text-text-tertiary' }} w-56 min-w-[14rem]"></th>
               @foreach($columns as $ci => $col)
                 @php($isHL = $ci === $highlight)
-                <th class="p-4 text-center font-bold {{ $isHL ? 'bg-accent text-white rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
+                <th class="p-4 text-center font-bold {{ $isHL ? 'bg-accent text-on-accent rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
                   <div class="text-base font-bold">{{ $col['label'] ?? '' }}</div>
                   @if(!empty($col['sublabel']))
                     <div class="text-xs {{ $isHL ? 'text-white/70' : ($isDark ? 'text-white/50' : 'text-text-tertiary') }} font-normal mt-0.5">{{ $col['sublabel'] }}</div>
@@ -49,7 +49,7 @@
                   @endphp
                   <td class="p-4 text-center {{ $isHL ? ($isDark ? 'bg-white/[0.08]' : 'bg-accent/[0.04]') : '' }} {{ ($isLast && $isHL) ? 'rounded-b-2xl' : '' }}">
                     @if($val === true)
-                      <svg class="w-5 h-5 mx-auto text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"/></svg>
+                      <svg class="w-5 h-5 mx-auto text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"/></svg>
                     @elseif($val === false)
                       <svg class="w-4 h-4 mx-auto {{ $isDark ? 'text-white/20' : 'text-text-tertiary' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                     @else

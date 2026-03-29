@@ -18,7 +18,17 @@
       "defaultDuotone": false,
       "defaultGradients": false,
       "defaultPalette": false,
-      "duotone": []
+      "duotone": [],
+      "palette": [
+        { "slug": "accent", "color": "#F97316", "name": "Accent" },
+        { "slug": "surface-primary", "color": "#fafafa", "name": "Surface" },
+        { "slug": "surface-secondary", "color": "#f8fafc", "name": "Surface Alt" },
+        { "slug": "surface-dark", "color": "#080B16", "name": "Dark Surface" },
+        { "slug": "text-primary", "color": "#171717", "name": "Text" },
+        { "slug": "text-secondary", "color": "#475569", "name": "Text Light" },
+        { "slug": "white", "color": "#ffffff", "name": "White" },
+        { "slug": "black", "color": "#000000", "name": "Black" }
+      ]
     },
     "spacing": {
       "padding": true,
@@ -47,7 +57,35 @@
         { "slug": "x-large", "size": "1.75rem", "name": "X-Large" },
         { "slug": "xx-large", "size": "2.5rem", "name": "2X-Large" },
         { "slug": "hero", "size": "clamp(2.5rem, 5vw, 4.5rem)", "name": "Hero" }
+      ],
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter, system-ui, -apple-system, sans-serif",
+          "slug": "inter",
+          "name": "Inter"
+        }
       ]
+    }
+  },
+  "styles": {
+    "elements": {
+      "heading": {
+        "color": {
+          "text": "var(--color-text-primary)"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var(--color-accent)"
+        }
+      }
+    },
+    "blocks": {
+      "core/table": {
+        "border": {
+          "color": "var(--color-surface-tertiary)"
+        }
+      }
     }
   }
 }

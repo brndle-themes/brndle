@@ -4,7 +4,7 @@
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $cols = $a['columns'] ?? '3';
   $gridClass = ['2' => 'sm:grid-cols-2', '3' => 'sm:grid-cols-2 lg:grid-cols-3', '4' => 'sm:grid-cols-2 lg:grid-cols-4'][$cols] ?? 'sm:grid-cols-2 lg:grid-cols-3';
-  $avatarColors = ['from-indigo-400 to-purple-500', 'from-emerald-400 to-cyan-500', 'from-amber-400 to-orange-500', 'from-pink-400 to-rose-500', 'from-blue-400 to-indigo-500', 'from-teal-400 to-emerald-500'];
+  $avatarColors = ['bg-accent'];
 @endphp
 
 <section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
@@ -29,7 +29,7 @@
             @if(!empty($member['photo']))
               <img src="{{ esc_url($member['photo']) }}" alt="{{ esc_attr($member['name'] ?? '') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
             @else
-              <div class="w-full h-full bg-gradient-to-br {{ $avatarColors[$i % count($avatarColors)] }} flex items-center justify-center text-white text-4xl font-bold">
+              <div class="w-full h-full {{ $avatarColors[$i % count($avatarColors)] }} flex items-center justify-center text-white text-4xl font-bold">
                 {{ strtoupper(substr($member['name'] ?? 'T', 0, 1)) }}
               </div>
             @endif

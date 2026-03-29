@@ -15,7 +15,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
       @endif
@@ -42,7 +42,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto hidden dark:block">
       @else
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-base font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-xl font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -104,7 +104,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto hidden dark:block">
       @else
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -198,14 +198,14 @@
      ============================================================ --}}
 @elseif($style === 'transparent')
 <header id="brndle-header" class="fixed top-0 inset-x-0 z-50 bg-transparent transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
-    {{-- Logo --}}
+  <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
+    {{-- Logo: dark version (white text) shown initially over hero, light version (dark text) on scroll --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto brndle-logo-light hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto brndle-logo-dark">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
@@ -281,12 +281,24 @@
 (function(){
   var h=document.getElementById('brndle-header');
   if(!h)return;
-  window.addEventListener('scroll',function(){
-    h.classList.toggle('bg-surface-primary',window.scrollY>50);
-    h.classList.toggle('backdrop-blur-xl',window.scrollY>50);
-    h.classList.toggle('shadow-sm',window.scrollY>50);
-    h.classList.toggle('[&_a]:text-text-primary',window.scrollY>50);
-  },{passive:true});
+  var ll=h.querySelector('.brndle-logo-light');
+  var ld=h.querySelector('.brndle-logo-dark');
+  function update(){
+    var s=window.scrollY>50;
+    var dark=document.documentElement.classList.contains('dark');
+    h.classList.toggle('bg-surface-primary',s);
+    h.classList.toggle('backdrop-blur-xl',s);
+    h.classList.toggle('shadow-sm',s);
+    h.classList.toggle('[&_a]:text-text-primary',s&&!dark);
+    if(ll&&ld){
+      var showLight=s&&!dark;
+      ll.classList.toggle('hidden',!showLight);
+      ld.classList.toggle('hidden',showLight);
+    }
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  update();
 })();
 </script>
 <script>
@@ -314,7 +326,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -412,7 +424,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -534,7 +546,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -644,7 +656,7 @@
         @if(!empty($siteLogo))
           <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
         @else
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
             <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
           <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
@@ -750,7 +762,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
       @else
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>

@@ -29,6 +29,12 @@
   --color-text-secondary: #475569;
   --color-text-tertiary: #94a3b8;
   --color-text-inverse: #f8fafc;
+  --color-on-accent: #ffffff;
+
+  /* Semantic Colors */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
 
   /* Section Spacing */
   --spacing-section: clamp(4rem, 8vw, 8rem);
@@ -163,13 +169,115 @@ html {
 }
 
 /* ========================================================================
+   Header Logo Dark Mode Fix
+   Swap light/dark logos when data-theme="dark" is active
+   ======================================================================== */
+
+[data-theme="dark"] img.dark\:hidden {
+  display: none !important;
+}
+
+[data-theme="dark"] img.hidden.dark\:block {
+  display: block !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] img.dark\:hidden {
+    display: none !important;
+  }
+  [data-theme="system"] img.hidden.dark\:block {
+    display: block !important;
+  }
+}
+
+/* ========================================================================
+   WordPress Block Table Styles
+   ======================================================================== */
+
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: 0.9375rem;
+}
+
+.wp-block-table th {
+  background: var(--color-surface-tertiary);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  text-align: left;
+  padding: 0.875rem 1rem;
+  border-bottom: 2px solid var(--color-surface-tertiary);
+}
+
+.wp-block-table td {
+  padding: 0.875rem 1rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-surface-tertiary);
+}
+
+.wp-block-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Striped rows */
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background: var(--color-surface-secondary);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) td {
+  color: var(--color-text-secondary);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(even) {
+  background: transparent;
+}
+
+/* Dark mode table fixes */
+[data-theme="dark"] .wp-block-table th {
+  background: var(--color-surface-tertiary);
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .wp-block-table td {
+  color: var(--color-text-secondary);
+  border-bottom-color: var(--color-surface-tertiary);
+}
+
+[data-theme="dark"] .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background: var(--color-surface-secondary);
+}
+
+[data-theme="dark"] .wp-block-table.is-style-stripes tbody tr:nth-child(odd) td {
+  color: var(--color-text-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] .wp-block-table th {
+    background: var(--color-surface-tertiary);
+    color: var(--color-text-primary);
+  }
+  [data-theme="system"] .wp-block-table td {
+    color: var(--color-text-secondary);
+    border-bottom-color: var(--color-surface-tertiary);
+  }
+  [data-theme="system"] .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+    background: var(--color-surface-secondary);
+  }
+  [data-theme="system"] .wp-block-table.is-style-stripes tbody tr:nth-child(odd) td {
+    color: var(--color-text-secondary);
+  }
+}
+
+/* ========================================================================
    Always-Dark Sections (hero, CTA — never flip with dark/light mode)
    Like Stripe/Linear/Vercel: hero stays dark in both modes.
    In dark mode, slightly lighter shade for subtle contrast against page bg.
    ======================================================================== */
 
 .brndle-section-dark {
-  background-color: #080B16;
+  background-color: var(--color-surface-inverse);
   color: #ffffff;
 }
 
@@ -180,6 +288,18 @@ html {
 .brndle-section-dark .text-text-secondary,
 .brndle-section-dark .text-text-tertiary {
   color: rgba(255, 255, 255, 0.6);
+}
+
+/* Ambient grid pattern — uses accent color at low opacity */
+.ambient-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-accent) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 4%, transparent) 1px, transparent 1px);
+}
+
+/* Accent glow shadow — replaces hardcoded rgba(99,102,241,...) */
+.shadow-accent-glow {
+  box-shadow: 0 0 80px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
 /* ========================================================================
@@ -309,45 +429,6 @@ html {
 .nav-links .prev,
 .nav-links .next {
   font-weight: 600;
-}
-
-/* ========================================================================
-   Custom Hero Button (for wp:html blocks where Tailwind arbitrary values fail)
-   ======================================================================== */
-
-/* Hero green CTA — targets links by href since wp_kses strips classes from wp:html blocks */
-.brndle-section-dark a[href*="open-source"] {
-  background-color: #00ff88 !important;
-  color: #0a0a0a !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 9999px;
-  font-size: 0.925rem;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-.brndle-section-dark a[href*="open-source"]:hover {
-  background-color: #00cc6a !important;
-  box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-}
-
-/* Hero ghost button */
-.brndle-section-dark a[href*="contact"] {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.85rem 1.75rem;
-  border-radius: 9999px;
-  font-size: 0.925rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.8);
-  transition: all 0.3s;
-}
-.brndle-section-dark a[href*="contact"]:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ========================================================================

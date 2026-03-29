@@ -29,8 +29,7 @@
             @if(isset($item['avatar']))
               <img src="{{ esc_url($item['avatar']) }}" alt="Photo of {{ esc_attr($item['name'] ?? '') }}" class="w-10 h-10 rounded-full" loading="lazy" decoding="async">
             @else
-              @php($colors = ['from-indigo-400 to-purple-500', 'from-emerald-400 to-cyan-500', 'from-amber-400 to-orange-500', 'from-pink-400 to-rose-500'])
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br {{ $colors[$loop->index % count($colors)] }} flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">
+              <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">
                 {{ strtoupper(substr($item['name'] ?? 'A', 0, 1)) }}
               </div>
             @endif

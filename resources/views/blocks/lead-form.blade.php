@@ -66,7 +66,7 @@
           @endforeach
 
           <div class="{{ $isInline ? '' : 'pt-2' }}">
-            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'bg-accent text-white hover:opacity-90' }} transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
+            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'bg-accent text-on-accent hover:opacity-90' }} transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
               {{ $a['button_text'] ?? __('Get Started', 'brndle') }}
             </button>
           </div>

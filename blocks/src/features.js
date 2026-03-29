@@ -131,13 +131,46 @@ registerBlockType( 'brndle/features', {
 									updateFeature( i, 'image', v )
 								}
 							/>
-							<TextControl
-								label="Icon (HTML/SVG)"
+							<SelectControl
+								label="Icon"
 								value={ feature.icon }
+								options={ [
+									{ label: '— None —', value: '' },
+									{ label: 'Globe', value: 'globe-alt' },
+									{ label: 'Academic Cap', value: 'academic-cap' },
+									{ label: 'Dollar', value: 'currency-dollar' },
+									{ label: 'Shopping Cart', value: 'shopping-cart' },
+									{ label: 'Search', value: 'magnifying-glass' },
+									{ label: 'Target', value: 'cursor-arrow-rays' },
+									{ label: 'Map Pin', value: 'map-pin' },
+									{ label: 'Chat', value: 'chat-bubble-left-right' },
+									{ label: 'Video', value: 'video-camera' },
+									{ label: 'Book', value: 'book-open' },
+									{ label: 'Chart Bar', value: 'chart-bar' },
+									{ label: 'Trending Up', value: 'arrow-trending-up' },
+									{ label: 'Lock', value: 'lock-closed' },
+									{ label: 'Star', value: 'star' },
+									{ label: 'Sparkles', value: 'sparkles' },
+									{ label: 'Rocket', value: 'rocket-launch' },
+									{ label: 'Document', value: 'document-text' },
+									{ label: 'Pencil', value: 'pencil-square' },
+									{ label: 'Office', value: 'building-office' },
+									{ label: 'Storefront', value: 'building-storefront' },
+									{ label: 'Users', value: 'users' },
+									{ label: 'Heart', value: 'heart' },
+									{ label: 'Shield', value: 'shield-check' },
+									{ label: 'Wrench', value: 'wrench' },
+									{ label: 'Light Bulb', value: 'light-bulb' },
+									{ label: 'Phone', value: 'device-phone-mobile' },
+									{ label: 'Paint Brush', value: 'paint-brush' },
+									{ label: 'Trophy', value: 'trophy' },
+									{ label: 'Ticket', value: 'ticket' },
+									{ label: 'Check Circle', value: 'check-circle' },
+									{ label: 'Settings', value: 'cog-6-tooth' },
+								] }
 								onChange={ ( v ) =>
 									updateFeature( i, 'icon', v )
 								}
-								help="e.g., an emoji or SVG markup"
 							/>
 							<Button
 								isDestructive

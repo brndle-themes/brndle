@@ -104,6 +104,14 @@ add_action('after_setup_theme', function () {
     // Custom image sizes for blog
     add_image_size('brndle-card', 600, 400, true);
     add_image_size('brndle-hero', 1920, 1080, false);
+
+    // Disable unused default sizes — theme only uses thumbnail, medium_large, brndle-card, brndle-hero
+    remove_image_size('1536x1536');
+    remove_image_size('2048x2048');
+    update_option('medium_size_w', 0);
+    update_option('medium_size_h', 0);
+    update_option('large_size_w', 0);
+    update_option('large_size_h', 0);
 }, 20);
 
 /**

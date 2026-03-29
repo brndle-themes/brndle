@@ -1,4 +1,4 @@
-const { restUrl, nonce } = window.brndleAdmin || {};
+const { restUrl, cacheUrl, nonce } = window.brndleAdmin || {};
 
 if ( ! restUrl || ! nonce ) {
 	// eslint-disable-next-line no-console
@@ -46,6 +46,18 @@ export async function resetSettings() {
 	if ( ! res.ok ) {
 		if ( res.status === 403 ) throw new Error( 'Session expired. Please refresh the page.' );
 		throw new Error( 'Reset failed' );
+	}
+	return res.json();
+}
+
+export async function purgeCache() {
+	const res = await fetch( cacheUrl, {
+		method: 'POST',
+		headers: { 'X-WP-Nonce': nonce },
+	} );
+	if ( ! res.ok ) {
+		if ( res.status === 403 ) throw new Error( 'Session expired. Please refresh the page.' );
+		throw new Error( 'Cache purge failed' );
 	}
 	return res.json();
 }

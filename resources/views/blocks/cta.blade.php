@@ -1,8 +1,8 @@
 @php($a = $attributes)
 
-<section class="relative py-24 md:py-32 overflow-hidden {{ ($a['variant'] ?? 'dark') === 'dark' ? 'brndle-section-dark' : 'bg-accent text-white' }} noise">
+<section class="relative py-24 md:py-32 overflow-hidden {{ ($a['variant'] ?? 'dark') === 'dark' ? 'brndle-section-dark' : 'bg-accent text-on-accent' }} noise">
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+    <div class="absolute inset-0 ambient-grid bg-[size:48px_48px]"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-accent/10 blur-[128px]"></div>
   </div>
 

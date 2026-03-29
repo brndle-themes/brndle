@@ -28,7 +28,7 @@
             @if($i < count($steps) - 1)
               <div class="absolute left-5 top-12 w-px h-[calc(100%-48px)] {{ $isDark ? 'bg-white/10' : 'bg-surface-tertiary' }}"></div>
             @endif
-            <div class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-sm font-bold">
+            <div class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-accent text-on-accent flex items-center justify-center text-sm font-bold">
               @if(!empty($step['icon']))
                 {{ $step['icon'] }}
               @else
@@ -51,7 +51,7 @@
             @if($i < count($steps) - 1)
               <div class="hidden md:block absolute top-5 h-px {{ $isDark ? 'bg-white/10' : 'bg-surface-tertiary' }}" style="left: calc(50% + 28px); width: calc(100% - 56px);"></div>
             @endif
-            <div class="relative z-10 w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center text-lg font-bold mx-auto mb-4">
+            <div class="relative z-10 w-12 h-12 rounded-full bg-accent text-on-accent flex items-center justify-center text-lg font-bold mx-auto mb-4">
               @if(!empty($step['icon']))
                 {{ $step['icon'] }}
               @else

@@ -24,7 +24,7 @@
      STYLE: COLUMNS — Multi-column with menus
      ============================================================ --}}
 @elseif($style === 'columns')
-<footer class="bg-[#080B16] text-white" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
+<footer class="brndle-section-dark text-white" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
   <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
     {{-- Columns grid --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 {{ $colsClass }} gap-10 pb-12 border-b border-white/10">
@@ -34,7 +34,7 @@
           @if(!empty($siteLogo))
             <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
           @else
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center">
+            <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
             </div>
             <span class="text-base font-bold text-white">{!! $siteName !!}</span>
@@ -149,7 +149,7 @@
           <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-7 w-auto dark:hidden">
           <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-7 w-auto hidden dark:block">
         @else
-          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center">
+          <div class="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
             <span class="text-white text-xs font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
           <span class="text-sm font-bold">{!! $siteName !!}</span>
@@ -218,7 +218,7 @@
   </div>
 
   {{-- Main columns --}}
-  <div class="bg-[#080B16]">
+  <div class="brndle-section-dark">
     <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 {{ $colsClass }} gap-10 pb-12 border-b border-white/10">
         {{-- Column 1: Brand + tagline --}}
@@ -227,7 +227,7 @@
             @if(!empty($siteLogo))
               <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
             @else
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
                 <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
               </div>
               <span class="text-base font-bold text-white">{!! $siteName !!}</span>
@@ -352,7 +352,7 @@
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto hidden dark:block">
       @else
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
         <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
@@ -420,7 +420,7 @@
      STYLE: DARK (default) — Dark bg, white text, single row
      ============================================================ --}}
 @else
-<footer class="bg-[#080B16] text-white" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
+<footer class="brndle-section-dark text-white" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
   <div class="max-w-7xl mx-auto px-6 py-12">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
       {{-- Brand --}}
@@ -428,7 +428,7 @@
         @if(!empty($siteLogo))
           <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-7 w-auto">
         @else
-          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center">
+          <div class="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
             <span class="text-white text-xs font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
           <span class="text-sm font-bold text-white">{!! $siteName !!}</span>

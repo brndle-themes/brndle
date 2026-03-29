@@ -158,6 +158,12 @@ class ColorPalette
                 ? self::hslToHex($h, $s, min(75, $l + 28))
                 : self::hslToHex($h, $s, min(80, $l + 10)),
 
+            // ── Contrast text for accent backgrounds ────────
+            'on-accent' => self::relativeLuminance($hex) > 0.4 ? '#09090b' : '#ffffff',
+            'dark-on-accent' => self::relativeLuminance(
+                $l < 40 ? self::hslToHex($h, $s, min(65, $l + 20)) : $hex
+            ) > 0.4 ? '#09090b' : '#ffffff',
+
             // ── Semantic ────────────────────────────────────
             'success' => '#16a34a',
             'warning' => '#d97706',

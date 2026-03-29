@@ -106,6 +106,12 @@ class SettingsServiceProvider
             'callback'            => [$this, 'handleImportSettings'],
             'permission_callback' => [$this, 'checkManageOptions'],
         ]);
+
+        register_rest_route($namespace, '/cache/purge', [
+            'methods'             => 'POST',
+            'callback'            => [$this, 'handlePurgeCache'],
+            'permission_callback' => [$this, 'checkManageOptions'],
+        ]);
     }
 
     /**
@@ -233,6 +239,55 @@ class SettingsServiceProvider
         return new WP_REST_Response([
             'success'  => true,
             'settings' => Settings::all(),
+        ], 200);
+    }
+
+    /**
+     * Handle POST /cache/purge — clear all theme caches.
+     *
+     * Clears: compiled Blade views, in-memory settings cache,
+     * and CSS variables static cache.
+     *
+     * @return WP_REST_Response
+     */
+    public function handlePurgeCache(): WP_REST_Response
+    {
+        $cleared = [];
+
+        // 1. Clear compiled Blade views.
+        $viewsPath = defined('WP_CONTENT_DIR')
+            ? WP_CONTENT_DIR . '/cache/acorn/framework/views'
+            : ABSPATH . 'wp-content/cache/acorn/framework/views';
+
+        if (is_dir($viewsPath)) {
+            $files = glob($viewsPath . '/*.php');
+            $count = 0;
+
+            if ($files) {
+                foreach ($files as $file) {
+                    if (unlink($file)) {
+                        $count++;
+                    }
+                }
+            }
+
+            $cleared['blade_views'] = $count;
+        } else {
+            $cleared['blade_views'] = 0;
+        }
+
+        // 2. Clear in-memory settings cache.
+        Settings::clearCache();
+        $cleared['settings_cache'] = true;
+
+        // 3. Flush WordPress object cache (picks up WP Rocket, Redis, etc.).
+        wp_cache_flush();
+        $cleared['object_cache'] = true;
+
+        return new WP_REST_Response([
+            'success' => true,
+            'message' => __('All caches purged successfully.', 'brndle'),
+            'cleared' => $cleared,
         ], 200);
     }
 
@@ -392,8 +447,9 @@ class SettingsServiceProvider
         );
 
         wp_localize_script('brndle-admin', 'brndleAdmin', [
-            'restUrl' => rest_url('brndle/v1/settings'),
-            'nonce'   => wp_create_nonce('wp_rest'),
+            'restUrl'  => rest_url('brndle/v1/settings'),
+            'cacheUrl' => rest_url('brndle/v1/cache/purge'),
+            'nonce'    => wp_create_nonce('wp_rest'),
         ]);
 
         wp_enqueue_style(
