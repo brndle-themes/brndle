@@ -199,16 +199,15 @@
 @elseif($style === 'transparent')
 <header id="brndle-header" class="fixed top-0 inset-x-0 z-50 bg-transparent transition-all" aria-label="{{ esc_attr__('Site header', 'brndle') }}">
   <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
-    {{-- Logo: dark version (white text) shown initially over hero, light version (dark text) on scroll --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto brndle-logo-light hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto brndle-logo-dark">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto hidden dark:block">
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
       @endif
     </a>
 
@@ -220,7 +219,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
-          'link_before' => '<span class="text-base font-medium text-white/80 hover:text-white transition-colors">',
+          'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
       </div>
@@ -234,7 +233,7 @@
 
       @if(!empty($headerCtaText))
         <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-           class="px-5 py-2 text-base font-semibold rounded-lg border border-white/30 text-white hover:bg-white/10 transition-all">
+           class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
           {{ $headerCtaText }}
         </a>
       @endif
@@ -242,7 +241,7 @@
 
     {{-- Mobile toggle --}}
     <button id="brndle-menu-btn" type="button"
-            class="md:hidden flex items-center justify-center w-10 h-10 text-white"
+            class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
             aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
@@ -281,24 +280,14 @@
 (function(){
   var h=document.getElementById('brndle-header');
   if(!h)return;
-  var ll=h.querySelector('.brndle-logo-light');
-  var ld=h.querySelector('.brndle-logo-dark');
-  function update(){
+  window.addEventListener('scroll',function(){
     var s=window.scrollY>50;
-    var dark=document.documentElement.classList.contains('dark');
-    h.classList.toggle('bg-surface-primary',s);
+    h.classList.toggle('bg-surface-primary/80',s);
     h.classList.toggle('backdrop-blur-xl',s);
     h.classList.toggle('shadow-sm',s);
-    h.classList.toggle('[&_a]:text-text-primary',s&&!dark);
-    if(ll&&ld){
-      var showLight=s&&!dark;
-      ll.classList.toggle('hidden',!showLight);
-      ld.classList.toggle('hidden',showLight);
-    }
-  }
-  window.addEventListener('scroll',update,{passive:true});
-  new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
-  update();
+    h.classList.toggle('border-b',s);
+    h.classList.toggle('border-surface-tertiary/50',s);
+  },{passive:true});
 })();
 </script>
 <script>
@@ -649,7 +638,7 @@
   {{-- Gradient top border --}}
   <div class="h-px bg-gradient-to-r from-accent via-accent/50 to-transparent"></div>
 
-  <div class="bg-white/10 backdrop-blur-2xl backdrop-saturate-150" id="brndle-glass-bg">
+  <div class="bg-surface-primary/80 backdrop-blur-2xl backdrop-saturate-150 border-b border-surface-tertiary/50" id="brndle-glass-bg">
     <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="{{ esc_attr__('Main navigation', 'brndle') }}">
       {{-- Logo --}}
       <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
@@ -671,7 +660,7 @@
             'menu_class' => 'flex items-center gap-8',
             'container' => false,
             'echo' => false,
-            'link_before' => '<span class="text-base font-medium text-white/70 hover:text-white transition-colors">',
+            'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
             'link_after' => '</span>',
           ]) !!}
         </div>
@@ -685,7 +674,7 @@
 
         @if(!empty($headerCtaText))
           <a href="{{ esc_url($headerCtaUrl ?? '#') }}"
-             class="px-5 py-2 text-base font-semibold rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25 transition-all">
+             class="px-5 py-2 text-base font-semibold rounded-lg bg-accent text-white hover:opacity-90 transition-opacity">
             {{ $headerCtaText }}
           </a>
         @endif
@@ -693,7 +682,7 @@
 
       {{-- Mobile toggle --}}
       <button id="brndle-menu-btn" type="button"
-              class="md:hidden flex items-center justify-center w-10 h-10 text-white/80"
+              class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary"
               aria-expanded="false" aria-controls="brndle-mobile-menu" aria-label="{{ esc_attr__('Toggle menu', 'brndle') }}">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
