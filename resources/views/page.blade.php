@@ -5,11 +5,13 @@
     @php(the_post())
     <article @php(post_class())>
       <div class="max-w-4xl mx-auto px-6 pt-20 pb-24">
+        @unless($hideTitle)
         <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary [text-wrap:balance]">
           {{ get_the_title() }}
         </h1>
+        @endunless
 
-        <div class="mt-10 prose prose-lg max-w-none
+        <div class="{{ $hideTitle ? '' : 'mt-10 ' }}prose prose-lg max-w-none
           prose-headings:font-bold prose-headings:tracking-tight
           prose-a:text-accent prose-a:no-underline hover:prose-a:underline
           prose-img:rounded-xl

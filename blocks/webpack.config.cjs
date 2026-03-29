@@ -1,7 +1,14 @@
+const path = require( 'path' );
 const defaults = require( '@wordpress/scripts/config/webpack.config' );
+
+const defaultEntry = typeof defaults.entry === 'function' ? defaults.entry() : defaults.entry;
 
 module.exports = {
 	...defaults,
+	entry: {
+		...defaultEntry,
+		'page-meta-sidebar': path.resolve( __dirname, 'src/page-meta-sidebar.js' ),
+	},
 	resolve: {
 		...defaults.resolve,
 		extensions: [ '.js', '.jsx', '.ts', '.tsx', '.json' ],

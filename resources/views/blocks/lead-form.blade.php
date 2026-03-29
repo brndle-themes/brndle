@@ -38,6 +38,7 @@
           data-success="{{ esc_attr($a['success_message'] ?: __('Thank you! Your submission has been received.', 'brndle')) }}"
           @if(empty($a['form_action']))
             data-brndle-endpoint="{{ rest_url('brndle/v1/forms/submit') }}"
+            data-rest-nonce="{{ wp_create_nonce('wp_rest') }}"
             data-mailchimp-list="{{ esc_attr($a['mailchimp_list_id'] ?? '') }}"
           @endif
         >
@@ -109,7 +110,7 @@
         if(form.dataset.mailchimpList)data._mailchimp_list=form.dataset.mailchimpList;
         fetch(form.dataset.brndleEndpoint,{
           method:'POST',
-          headers:{'Content-Type':'application/json'},
+          headers:{'Content-Type':'application/json','X-WP-Nonce':form.dataset.restNonce||''},
           body:JSON.stringify(data)
         })
         .then(function(r){return r.json()})
@@ -118,7 +119,7 @@
             while(form.firstChild)form.removeChild(form.firstChild);
             var p=document.createElement('p');
             p.className='text-center py-6 text-lg font-medium';
-            p.textContent=form.dataset.success;
+            var tmp=document.createElement('span');tmp.innerHTML=form.dataset.success;p.textContent=tmp.textContent;
             form.appendChild(p);
           }else{
             btn.disabled=false;

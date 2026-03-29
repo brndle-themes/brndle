@@ -94,6 +94,7 @@ class Theme extends Composer
             'singleShowPostNav' => (bool) Settings::get('single_show_post_nav', true),
 
             // Page overrides
+            'hideTitle' => $pageMetaBool('_brndle_hide_title'),
             'pageBodyClass' => is_singular('page') ? get_post_meta(get_the_ID(), '_brndle_body_class', true) : '',
 
             // Social Links

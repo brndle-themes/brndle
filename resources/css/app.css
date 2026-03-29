@@ -493,3 +493,11 @@ html {
 /* Dark mode scrollbar */
 [data-theme="dark"] ::-webkit-scrollbar-thumb { background: #475569; }
 [data-theme="dark"] ::-webkit-scrollbar-track { background: var(--color-surface-primary); }
+
+/* ========================================================================
+   Page Toolkit — per-page content width overrides
+   ======================================================================== */
+
+.brndle-content-narrow article > div { max-width: 40rem; }
+.brndle-content-wide article > div { max-width: 80rem; }
+.brndle-content-full article > div { max-width: none; }

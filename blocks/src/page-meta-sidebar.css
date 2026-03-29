@@ -1,0 +1,183 @@
+/* ========================================================================
+   Brndle Page Settings — Meta Box (below content area)
+   Premium card-based layout for page-level controls
+   ======================================================================== */
+
+/* Container */
+.brndle-meta-box {
+	padding: 4px 0;
+}
+
+/* 2-column responsive grid */
+.brndle-meta-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+}
+
+@media (max-width: 1080px) {
+	.brndle-meta-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ── Card ───────────────────────────────────────────────────────────── */
+
+.brndle-meta-card {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
+	overflow: hidden;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.brndle-meta-card:hover {
+	border-color: #ccc;
+}
+
+.brndle-meta-card.is-open {
+	border-color: #1e1e1e;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Card header (clickable toggle) */
+.brndle-meta-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 16px 20px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	text-align: left;
+	transition: background 0.1s ease;
+}
+
+.brndle-meta-card__header:hover {
+	background: #fafafa;
+}
+
+.brndle-meta-card.is-open .brndle-meta-card__header {
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.brndle-meta-card__header-left {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+/* Icon badge */
+.brndle-meta-card__icon {
+	flex-shrink: 0;
+	width: 36px;
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	background: #f5f5f5;
+	color: #1e1e1e;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.brndle-meta-card.is-open .brndle-meta-card__icon {
+	background: #1e1e1e;
+	color: #fff;
+}
+
+/* Title + description */
+.brndle-meta-card__title {
+	display: block;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 1.4;
+	color: #1e1e1e;
+}
+
+.brndle-meta-card__desc {
+	display: block;
+	font-weight: 400;
+	font-size: 11.5px;
+	line-height: 1.4;
+	color: #888;
+	margin-top: 1px;
+}
+
+/* Chevron */
+.brndle-meta-card__chevron {
+	flex-shrink: 0;
+	color: #999;
+	transition: color 0.15s ease;
+}
+
+.brndle-meta-card.is-open .brndle-meta-card__chevron {
+	color: #1e1e1e;
+}
+
+/* Card body (controls area) */
+.brndle-meta-card__body {
+	padding: 20px;
+}
+
+/* ── Control helpers ────────────────────────────────────────────────── */
+
+.brndle-meta-spacer {
+	height: 12px;
+}
+
+.brndle-meta-divider {
+	height: 1px;
+	background: #f0f0f0;
+	margin: 16px 0;
+}
+
+/* ── Custom CSS textarea — monospace ────────────────────────────────── */
+
+.brndle-css-editor textarea {
+	font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace !important;
+	font-size: 12px !important;
+	line-height: 1.7 !important;
+	background: #f8f9fa !important;
+	border: 1px solid #e0e0e0 !important;
+	border-radius: 8px !important;
+	padding: 14px !important;
+	tab-size: 2;
+	resize: vertical;
+}
+
+.brndle-css-editor textarea:focus {
+	background: #fff !important;
+	border-color: #1e1e1e !important;
+	box-shadow: 0 0 0 1px #1e1e1e !important;
+	outline: none !important;
+}
+
+/* ── WordPress component overrides inside meta box ──────────────────── */
+
+.brndle-meta-card__body .components-toggle-control .components-base-control__help {
+	font-size: 11.5px;
+	color: #888;
+}
+
+.brndle-meta-card__body .components-select-control .components-base-control__help {
+	font-size: 11.5px;
+	color: #888;
+}
+
+.brndle-meta-card__body .components-text-control .components-base-control__help {
+	font-size: 11.5px;
+	color: #888;
+}
+
+/* Clean up meta box chrome */
+#brndle-page-settings .inside {
+	padding: 12px;
+	margin: 0;
+}
+
+#brndle-page-settings .postbox-header h2 {
+	font-size: 14px;
+	font-weight: 600;
+}

@@ -15,3 +15,102 @@
 	max-width: 100%;
 	margin: 0;
 }
+
+/* ========================================================================
+   Brndle Page Settings — Premium Sidebar Panel
+   ======================================================================== */
+
+.brndle-page-settings-panel {
+	border-top: 3px solid #1e1e1e;
+}
+
+.brndle-page-settings-panel > .components-panel__body > .components-panel__body-title {
+	font-weight: 600;
+	font-size: 13px;
+	letter-spacing: -0.01em;
+}
+
+/* Section header with icon */
+.brndle-section-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.brndle-section-header__icon {
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: #f0f0f0;
+	color: #1e1e1e;
+}
+
+.brndle-section-header__title {
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 1.4;
+	color: #1e1e1e;
+}
+
+.brndle-section-header__desc {
+	font-weight: 400;
+	font-size: 11px;
+	line-height: 1.4;
+	color: #757575;
+	margin-top: 1px;
+}
+
+/* Panel sections */
+.brndle-panel-section {
+	border-top: 1px solid #e0e0e0 !important;
+	border-bottom: none !important;
+}
+
+.brndle-panel-section:last-child {
+	border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.brndle-panel-section .components-panel__body-title button {
+	padding: 16px 0 !important;
+}
+
+/* Control spacer between related controls */
+.brndle-control-spacer {
+	height: 12px;
+}
+
+/* Visual divider between header/footer groups */
+.brndle-control-divider {
+	height: 1px;
+	background: #e0e0e0;
+	margin: 16px 0;
+}
+
+/* Custom CSS textarea — monospace */
+.brndle-css-editor textarea {
+	font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, monospace !important;
+	font-size: 12px !important;
+	line-height: 1.6 !important;
+	background: #f8f8f8 !important;
+	border-color: #ddd !important;
+	border-radius: 6px !important;
+	padding: 12px !important;
+	tab-size: 2;
+}
+
+.brndle-css-editor textarea:focus {
+	background: #fff !important;
+	border-color: #1e1e1e !important;
+	box-shadow: 0 0 0 1px #1e1e1e !important;
+}
+
+/* Toggle help text styling */
+.brndle-panel-section .components-toggle-control .components-base-control__help {
+	font-size: 11px;
+	color: #757575;
+	margin-top: 2px;
+}
