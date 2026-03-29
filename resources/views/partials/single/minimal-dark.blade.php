@@ -31,7 +31,7 @@
       </div>
 
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
-        {!! $title !!}
+        {{ $title }}
       </h1>
 
       {{-- Author --}}

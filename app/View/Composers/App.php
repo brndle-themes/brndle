@@ -27,7 +27,7 @@ class App extends Composer
         $logoDark = Settings::get('site_logo_dark');
 
         self::$cachedData = [
-            'siteName'        => get_bloginfo('name', 'display'),
+            'siteName'        => esc_html(get_bloginfo('name', 'display')),
             'siteDescription' => get_bloginfo('description', 'display'),
             'siteLogo'        => $logoLight ?: null,
             'siteLogoDark'    => ! empty($logoDark) ? $logoDark : null,

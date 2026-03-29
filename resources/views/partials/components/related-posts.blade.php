@@ -2,23 +2,29 @@
   $related = get_transient('brndle_related_' . get_the_ID());
   if (!$related) {
     $cats = wp_get_post_categories(get_the_ID());
-    $candidates = get_posts([
-      'category__in' => $cats,
-      'post__not_in' => [get_the_ID()],
-      'posts_per_page' => 10,
-      'orderby' => 'date',
-      'order' => 'DESC',
-      'no_found_rows' => true,
-      'update_post_term_cache' => false,
-      'update_post_meta_cache' => false,
-    ]);
-    if (count($candidates) > 3) {
-      $keys = array_rand($candidates, 3);
-      $related = array_map(fn ($k) => $candidates[$k], (array) $keys);
-    } else {
-      $related = $candidates;
+    if (empty($cats) || is_wp_error($cats)) {
+      $related = [];
+      set_transient('brndle_related_' . get_the_ID(), $related, HOUR_IN_SECONDS);
     }
-    set_transient('brndle_related_' . get_the_ID(), $related, HOUR_IN_SECONDS);
+    if (!empty($cats) && !is_wp_error($cats)) {
+      $candidates = get_posts([
+        'category__in' => $cats,
+        'post__not_in' => [get_the_ID()],
+        'posts_per_page' => 10,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'no_found_rows' => true,
+        'update_post_term_cache' => false,
+        'update_post_meta_cache' => false,
+      ]);
+      if (count($candidates) > 3) {
+        $keys = array_rand($candidates, 3);
+        $related = array_map(fn ($k) => $candidates[$k], (array) $keys);
+      } else {
+        $related = $candidates;
+      }
+      set_transient('brndle_related_' . get_the_ID(), $related, HOUR_IN_SECONDS);
+    }
   }
 @endphp
 
@@ -47,7 +53,7 @@
           </div>
           <div class="p-5">
             <h3 class="font-semibold text-text-primary group-hover:text-accent transition-colors leading-snug line-clamp-2">
-              {!! get_the_title($post) !!}
+              {{ get_the_title($post) }}
             </h3>
             <time class="block mt-2 text-xs text-text-tertiary" datetime="{{ get_the_date('c', $post) }}">
               {{ get_the_date('', $post) }}

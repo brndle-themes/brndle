@@ -19,7 +19,7 @@
     @endif
 
     <h1 class="mt-4 text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
-      {!! $title !!}
+      {{ $title }}
     </h1>
 
     <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-text-tertiary">

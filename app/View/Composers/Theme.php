@@ -54,7 +54,7 @@ class Theme extends Composer
 
         $copyright = Settings::get('footer_copyright', '');
         if (empty($copyright)) {
-            $copyright = '&copy; ' . date('Y') . ' ' . get_bloginfo('name', 'display') . '. All rights reserved.';
+            $copyright = '&copy; ' . wp_date('Y') . ' ' . esc_html(get_bloginfo('name', 'display')) . '. ' . __('All rights reserved.', 'brndle');
         }
 
         self::$cachedData[$cacheKey] = [

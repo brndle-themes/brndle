@@ -45,7 +45,7 @@
         <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-base font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-xl font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-xl font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
     @if(has_nav_menu('primary_navigation'))
@@ -107,7 +107,7 @@
         <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
   </div>
@@ -207,7 +207,7 @@
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 
@@ -318,7 +318,7 @@
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 
@@ -416,7 +416,7 @@
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 
@@ -538,7 +538,7 @@
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 
@@ -648,7 +648,7 @@
           <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
             <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
-          <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
+          <span class="text-lg font-bold tracking-tight text-white">{{ $siteName }}</span>
         @endif
       </a>
 
@@ -754,7 +754,7 @@
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 

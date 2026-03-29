@@ -35,7 +35,7 @@
         @endif
 
         <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white [text-wrap:balance] p-name">
-          {!! $title !!}
+          {{ $title }}
         </h1>
 
         <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
@@ -83,7 +83,7 @@
         @endif
 
         <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-text-inverse [text-wrap:balance] p-name">
-          {!! $title !!}
+          {{ $title }}
         </h1>
 
         <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-text-inverse/60">

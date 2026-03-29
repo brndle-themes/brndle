@@ -37,7 +37,7 @@
             <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
             </div>
-            <span class="text-base font-bold text-white">{!! $siteName !!}</span>
+            <span class="text-base font-bold text-white">{{ $siteName }}</span>
           @endif
         </a>
         <p class="text-sm text-white/60 leading-relaxed">{{ get_bloginfo('description', 'display') }}</p>
@@ -152,7 +152,7 @@
           <div class="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
             <span class="text-white text-xs font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
-          <span class="text-sm font-bold">{!! $siteName !!}</span>
+          <span class="text-sm font-bold">{{ $siteName }}</span>
         @endif
       </a>
 
@@ -230,7 +230,7 @@
               <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
                 <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
               </div>
-              <span class="text-base font-bold text-white">{!! $siteName !!}</span>
+              <span class="text-base font-bold text-white">{{ $siteName }}</span>
             @endif
           </a>
           <p class="text-sm text-white/60 leading-relaxed">{{ get_bloginfo('description', 'display') }}</p>
@@ -355,7 +355,7 @@
         <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
         </div>
-        <span class="text-lg font-bold tracking-tight text-text-primary">{!! $siteName !!}</span>
+        <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
       @endif
     </a>
 
@@ -431,7 +431,7 @@
           <div class="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
             <span class="text-white text-xs font-black">{{ mb_substr($siteName, 0, 1) }}</span>
           </div>
-          <span class="text-sm font-bold text-white">{!! $siteName !!}</span>
+          <span class="text-sm font-bold text-white">{{ $siteName }}</span>
         @endif
       </a>
 

@@ -303,7 +303,7 @@ class SettingsServiceProvider
     public function outputCssVariables(): void
     {
         $css = Settings::cssVariables();
-        $css = str_replace('</style>', '', $css);
+        $css = str_replace(['</style>', '</STYLE>'], '', $css);
 
         echo '<style id="brndle-css-vars">' . $css . '</style>' . "\n";
     }
@@ -398,7 +398,7 @@ class SettingsServiceProvider
             return;
         }
 
-        $perPage = (int) Settings::get('archive_posts_per_page', 12);
+        $perPage = max(1, min(100, (int) Settings::get('archive_posts_per_page', 12)));
         $query->set('posts_per_page', $perPage);
     }
 

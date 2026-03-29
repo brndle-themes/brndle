@@ -19,11 +19,11 @@
           @endif
 
           <h2 class="mt-2 text-xl font-bold text-text-primary leading-snug group-hover:text-accent transition-colors">
-            {!! get_the_title() !!}
+            {{ get_the_title() }}
           </h2>
 
           <p class="mt-2 text-sm text-text-secondary leading-relaxed line-clamp-3">
-            {!! get_the_excerpt() !!}
+            {{ get_the_excerpt() }}
           </p>
 
           <div class="mt-4 flex items-center gap-3 text-xs text-text-tertiary">

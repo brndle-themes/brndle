@@ -38,7 +38,7 @@
               <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
                 <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
               </div>
-              <span class="text-lg font-bold tracking-tight text-white">{!! $siteName !!}</span>
+              <span class="text-lg font-bold tracking-tight text-white">{{ $siteName }}</span>
             @endif
           </a>
 

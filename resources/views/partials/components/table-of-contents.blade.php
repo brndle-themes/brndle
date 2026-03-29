@@ -25,7 +25,7 @@
             @php($inH3 = false)
           @endif
           <li>
-            <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-1 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">
+            <a href="#{{ esc_attr($heading[2]) }}" class="brndle-toc-link block py-1 hover:text-accent transition-colors" data-target="{{ esc_attr($heading[2]) }}">
               {{ wp_strip_all_tags($heading[3]) }}
             </a>
         @elseif($heading[1] == '3')
@@ -34,7 +34,7 @@
             @php($inH3 = true)
           @endif
             <li>
-              <a href="#{{ $heading[2] }}" class="brndle-toc-link block py-0.5 hover:text-accent transition-colors" data-target="{{ $heading[2] }}">
+              <a href="#{{ esc_attr($heading[2]) }}" class="brndle-toc-link block py-0.5 hover:text-accent transition-colors" data-target="{{ esc_attr($heading[2]) }}">
                 {{ wp_strip_all_tags($heading[3]) }}
               </a>
             </li>

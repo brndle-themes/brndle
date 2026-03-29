@@ -158,7 +158,7 @@
             @endphp
             @foreach($featured as $post)
               <a href="{{ get_permalink($post) }}" class="vp-post-link">
-                <h3>{!! get_the_title($post) !!}</h3>
+                <h3>{{ get_the_title($post) }}</h3>
                 <time datetime="{{ get_post_time('c', true, $post) }}">{{ get_the_date('M j, Y', $post) }}</time>
               </a>
             @endforeach

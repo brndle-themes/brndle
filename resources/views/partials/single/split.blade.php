@@ -24,7 +24,7 @@
         @endif
 
         <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">
-          {!! $title !!}
+          {{ $title }}
         </h1>
 
         {{-- Meta --}}
