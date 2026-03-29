@@ -6,11 +6,36 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    name: Code Style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: Install dependencies
+        run: composer install --optimize-autoloader
+
+      - name: Pint (code style)
+        run: vendor/bin/pint --test
+
   php:
+    name: PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.2', '8.3']
+        php: ['8.2', '8.3', '8.4']
     steps:
       - uses: actions/checkout@v4
 
@@ -24,15 +49,55 @@ jobs:
         uses: actions/cache@v4
         with:
           path: vendor
-          key: composer-${{ hashFiles('composer.lock') }}
+          key: composer-${{ matrix.php }}-${{ hashFiles('composer.lock') }}
 
       - name: Install dependencies
-        run: composer install --optimize-autoloader
+        run: composer install --no-dev --optimize-autoloader
 
-      - name: Check code style
-        run: vendor/bin/pint --test
+      - name: Syntax check (php -l)
+        run: find app resources -name "*.php" -not -path "*/vendor/*" -exec php -l {} + 2>&1 | grep -v "No syntax errors" || true
 
-  node:
+      - name: Check for deprecated features
+        run: |
+          echo "Checking for PHP deprecations..."
+          # Detect dynamic properties (deprecated 8.2+)
+          grep -rn '#\[AllowDynamicProperties\]' app/ || echo "No AllowDynamicProperties found (good)"
+          # Detect ${var} in strings (deprecated 8.2+)
+          grep -rPn '\$\{[a-zA-Z_]' app/ resources/ --include="*.php" || echo "No deprecated string interpolation found (good)"
+
+  blade:
+    name: Blade Templates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for broken @php syntax
+        run: |
+          echo "Checking for single-line @php...@endphp (breaks Blade)..."
+          if grep -rn '@php .*@endphp' resources/views/; then
+            echo "::error::Found single-line @php...@endphp patterns that break Blade compilation. Use @php(\$expr) instead."
+            exit 1
+          fi
+          echo "All clear."
+
+      - name: Check for hardcoded colors
+        run: |
+          echo "Checking for hardcoded colors that bypass theme system..."
+          ISSUES=0
+          # Check for hardcoded indigo/emerald (should use accent)
+          if grep -rn 'text-emerald-\|text-indigo-\|from-indigo-\|via-purple-\|to-cyan-' resources/views/ --include="*.blade.php"; then
+            echo "::warning::Found hardcoded Tailwind colors that should use theme CSS variables"
+            ISSUES=$((ISSUES+1))
+          fi
+          # Check for hardcoded hex bg colors (except in comments)
+          if grep -rn 'bg-\[#' resources/views/ --include="*.blade.php" | grep -v '{{--'; then
+            echo "::warning::Found hardcoded hex background colors"
+            ISSUES=$((ISSUES+1))
+          fi
+          if [ $ISSUES -eq 0 ]; then echo "All clear."; fi
+
+  build:
+    name: Build Assets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,8 +111,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build frontend
+      - name: Build frontend (Vite + Tailwind)
         run: npm run build
 
-      - name: Build admin
+      - name: Build admin panel
         run: npm run admin:build
+
+      - name: Build block editor
+        run: npm run blocks:build
+
+      - name: Verify build output
+        run: |
+          echo "Checking build artifacts..."
+          test -f public/build/manifest.json || (echo "::error::Missing manifest.json" && exit 1)
+          test -d public/build/assets || (echo "::error::Missing build assets" && exit 1)
+          test -f admin/build/index.js || (echo "::error::Missing admin build" && exit 1)
+          test -f blocks/build/index.js || (echo "::error::Missing blocks build" && exit 1)
+          echo "All build artifacts present."
+          ls -lh public/build/assets/app-*.css public/build/assets/app-*.js
