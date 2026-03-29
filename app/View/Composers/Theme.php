@@ -42,13 +42,14 @@ class Theme extends Composer
      */
     public function override(): array
     {
-        $cacheKey = is_singular() ? get_the_ID() : 'global';
+        $cacheKey = is_singular() ? get_the_ID() : (is_home() ? 'home' : 'global');
         if (isset(self::$cachedData[$cacheKey])) {
             return self::$cachedData[$cacheKey];
         }
 
-        $pageMeta = fn (string $key, string $default) => (is_singular('page') && ($v = get_post_meta(get_the_ID(), $key, true)) !== '') ? $v : $default;
-        $pageMetaBool = fn (string $key) => is_singular('page') && (bool) get_post_meta(get_the_ID(), $key, true);
+        $pageId = is_singular('page') ? get_the_ID() : (is_home() ? (int) get_option('page_for_posts') : 0);
+        $pageMeta = fn (string $key, string $default) => ($pageId && ($v = get_post_meta($pageId, $key, true)) !== '') ? $v : $default;
+        $pageMetaBool = fn (string $key) => $pageId && (bool) get_post_meta($pageId, $key, true);
 
         $links = Settings::get('social_links', []);
 
