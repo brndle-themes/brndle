@@ -16,7 +16,7 @@
           href="{{ get_category_link($category[0]->term_id) }}"
           class="font-semibold uppercase tracking-wider text-accent hover:opacity-80 transition-opacity text-xs"
         >
-          {{ $category[0]->name }}
+          {!! $category[0]->name !!}
         </a>
         <span>&middot;</span>
       @endif

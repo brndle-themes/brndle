@@ -12,7 +12,7 @@
           <time datetime="{{ get_post_time('c', true) }}">{{ get_the_date() }}</time>
           @if($category = get_the_category())
             <span>&middot;</span>
-            <span class="text-accent">{{ $category[0]->name }}</span>
+            <span class="text-accent">{!! $category[0]->name !!}</span>
           @endif
         </div>
 

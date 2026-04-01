@@ -12,7 +12,7 @@
     @if($category = get_the_category())
       <a href="{{ get_category_link($category[0]->term_id) }}"
          class="inline-block text-xs font-semibold uppercase tracking-wider text-accent hover:opacity-80 transition-opacity">
-        {{ $category[0]->name }}
+        {!! $category[0]->name !!}
       </a>
     @endif
 

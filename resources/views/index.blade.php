@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="max-w-7xl mx-auto px-6 pt-32 pb-16">
     @include('partials.page-header')
 
     @if($archiveShowCategoryFilter)

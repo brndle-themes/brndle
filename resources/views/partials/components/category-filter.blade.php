@@ -36,7 +36,7 @@
                 : 'bg-surface-secondary text-text-secondary hover:bg-surface-tertiary'
               }}"
           >
-            {{ $cat->name }}
+            {!! $cat->name !!}
           </a>
         </li>
       @endforeach

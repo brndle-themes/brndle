@@ -14,7 +14,7 @@
         <div class="p-6">
           {{-- Category --}}
           @if($category = get_the_category())
-            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{{ $category[0]->name }}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{!! $category[0]->name !!}</span>
           @endif
 
           <h2 class="mt-2 text-lg font-bold text-text-primary leading-snug group-hover:text-accent transition-colors">

@@ -46,7 +46,7 @@
             @else
               <div class="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
                 @if($cat = get_the_category($post->ID))
-                  <span class="text-sm font-bold text-accent/30 uppercase tracking-wider">{{ $cat[0]->name }}</span>
+                  <span class="text-sm font-bold text-accent/30 uppercase tracking-wider">{!! $cat[0]->name !!}</span>
                 @endif
               </div>
             @endif

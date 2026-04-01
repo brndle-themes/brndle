@@ -30,7 +30,7 @@
               <span>{{ $readingTime ?? '' }}</span>
               @if($category = get_the_category())
                 <span>&middot;</span>
-                <span class="px-2 py-0.5 rounded-full bg-surface-secondary text-xs text-text-secondary">{{ $category[0]->name }}</span>
+                <span class="px-2 py-0.5 rounded-full bg-surface-secondary text-xs text-text-secondary">{!! $category[0]->name !!}</span>
               @endif
             </div>
           </div>
