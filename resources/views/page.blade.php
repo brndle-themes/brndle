@@ -7,7 +7,7 @@
       <div class="max-w-4xl mx-auto px-6 pt-20 pb-24">
         @unless($hideTitle)
         <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary [text-wrap:balance]">
-          {{ get_the_title() }}
+          {!! get_the_title() !!}
         </h1>
         @endunless
 

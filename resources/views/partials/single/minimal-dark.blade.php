@@ -17,7 +17,7 @@
             href="{{ get_category_link($category[0]->term_id) }}"
             class="text-accent hover:opacity-80 transition-opacity"
           >
-            {!! esc_html($category[0]->name) !!}
+            {{ $category[0]->name }}
           </a>
           <span>/</span>
         @endif

@@ -46,14 +46,14 @@
             @else
               <div class="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
                 @if($cat = get_the_category($post->ID))
-                  <span class="text-sm font-bold text-accent/30 uppercase tracking-wider">{!! esc_html($cat[0]->name) !!}</span>
+                  <span class="text-sm font-bold text-accent/30 uppercase tracking-wider">{{ $cat[0]->name }}</span>
                 @endif
               </div>
             @endif
           </div>
           <div class="p-5">
             <h3 class="font-semibold text-text-primary group-hover:text-accent transition-colors leading-snug line-clamp-2">
-              {{ get_the_title($post) }}
+              {!! get_the_title($post) !!}
             </h3>
             <time class="block mt-2 text-xs text-text-tertiary" datetime="{{ get_the_date('c', $post) }}">
               {{ get_the_date('', $post) }}

@@ -11,7 +11,7 @@
           &larr; {{ __('Previous', 'brndle') }}
         </span>
         <span class="block mt-1 font-semibold text-text-primary group-hover:text-accent transition-colors line-clamp-2">
-          {{ get_the_title($prevPost) }}
+          {!! get_the_title($prevPost) !!}
         </span>
       </a>
     @else
@@ -24,7 +24,7 @@
           {{ __('Next', 'brndle') }} &rarr;
         </span>
         <span class="block mt-1 font-semibold text-text-primary group-hover:text-accent transition-colors line-clamp-2">
-          {{ get_the_title($nextPost) }}
+          {!! get_the_title($nextPost) !!}
         </span>
       </a>
     @else

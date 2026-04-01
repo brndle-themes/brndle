@@ -20,11 +20,11 @@
           {{-- Content --}}
           <div class="p-8 lg:p-10 flex flex-col justify-center">
             @if($category = get_the_category())
-              <span class="text-xs font-semibold uppercase tracking-wider text-accent">{!! esc_html($category[0]->name) !!}</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">{{ $category[0]->name }}</span>
             @endif
 
             <h2 class="mt-3 text-3xl font-bold text-text-primary leading-tight group-hover:text-accent transition-colors">
-              {{ get_the_title() }}
+              {!! get_the_title() !!}
             </h2>
 
             <p class="mt-4 text-text-secondary leading-relaxed">
@@ -60,11 +60,11 @@
 
         <div class="p-6">
           @if($category = get_the_category())
-            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{!! esc_html($category[0]->name) !!}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-accent">{{ $category[0]->name }}</span>
           @endif
 
           <h2 class="mt-2 text-lg font-bold text-text-primary leading-snug group-hover:text-accent transition-colors">
-            {{ get_the_title() }}
+            {!! get_the_title() !!}
           </h2>
 
           <p class="mt-2 text-sm text-text-secondary leading-relaxed line-clamp-2">
