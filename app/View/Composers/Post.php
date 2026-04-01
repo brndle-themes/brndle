@@ -30,21 +30,22 @@ class Post extends Composer
     private function resolveTitle(): string
     {
         $allowedHtml = ['br' => [], 'em' => [], 'strong' => [], 'span' => ['class' => []]];
+        $decode = fn (string $s): string => html_entity_decode($s, ENT_QUOTES, 'UTF-8');
 
         if ($this->view->name() !== 'partials.page-header') {
-            return wp_kses(get_the_title(), $allowedHtml);
+            return $decode(wp_kses(get_the_title(), $allowedHtml));
         }
 
         if (is_home()) {
             if ($home = get_option('page_for_posts', true)) {
-                return wp_kses(get_the_title($home), $allowedHtml);
+                return $decode(wp_kses(get_the_title($home), $allowedHtml));
             }
 
             return __('Latest Posts', 'brndle');
         }
 
         if (is_archive()) {
-            return wp_kses(get_the_archive_title(), $allowedHtml);
+            return $decode(wp_kses(get_the_archive_title(), $allowedHtml));
         }
 
         if (is_search()) {
@@ -59,7 +60,7 @@ class Post extends Composer
             return __('Not Found', 'brndle');
         }
 
-        return wp_kses(get_the_title(), $allowedHtml);
+        return $decode(wp_kses(get_the_title(), $allowedHtml));
     }
 
     private function resolveReadingTime(): string
