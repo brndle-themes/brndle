@@ -66,7 +66,7 @@
         <div class="flex flex-wrap items-center gap-x-12 gap-y-6">
           @foreach($a['logos'] as $logo)
             @if(is_array($logo) && isset($logo['url']))
-              <img src="{{ esc_url($logo['url']) }}" alt="{{ esc_attr($logo['name'] ?? '') }}" class="h-7 opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300" loading="lazy" decoding="async">
+              <img src="{{ esc_url($logo['url']) }}" alt="{{ esc_attr($logo['name'] ?? '') }}" class="h-[60px] grayscale invert opacity-60 hover:grayscale-0 hover:invert-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async">
             @elseif(is_string($logo))
               <span class="text-lg font-bold {{ $isDark ? 'text-white/50' : 'text-text-tertiary' }} tracking-tight">{{ $logo }}</span>
             @endif
