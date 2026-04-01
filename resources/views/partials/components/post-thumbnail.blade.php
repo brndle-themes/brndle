@@ -8,9 +8,5 @@
     'fetchpriority' => $priority ? 'high' : null,
   ]) !!}
 @else
-  <div class="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
-    @if($category = get_the_category())
-      <span class="text-lg font-bold text-accent opacity-30">{{ $category[0]->name }}</span>
-    @endif
-  </div>
+  <img src="{{ get_theme_file_uri('public/placeholder.webp') }}" alt="" class="{{ $class }}" loading="{{ $priority ? 'eager' : $loading }}" decoding="async" width="600" height="400">
 @endif

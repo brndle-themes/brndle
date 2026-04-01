@@ -20,7 +20,7 @@
             </h2>
 
             <p class="mt-2 text-base text-text-secondary leading-relaxed line-clamp-3">
-              {{ get_the_excerpt() }}
+              {{ wp_strip_all_tags(get_the_excerpt()) }}
             </p>
 
             {{-- Meta --}}

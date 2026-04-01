@@ -22,7 +22,7 @@
           </h2>
 
           <p class="mt-2 text-sm text-text-secondary leading-relaxed line-clamp-2">
-            {{ get_the_excerpt() }}
+            {{ wp_strip_all_tags(get_the_excerpt()) }}
           </p>
 
           <div class="mt-4 flex items-center gap-3 text-xs text-text-tertiary">

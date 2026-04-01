@@ -17,7 +17,7 @@
         </div>
 
         <p class="mt-3 text-text-secondary leading-relaxed">
-          {{ get_the_excerpt() }}
+          {{ wp_strip_all_tags(get_the_excerpt()) }}
         </p>
       </a>
     </article>
