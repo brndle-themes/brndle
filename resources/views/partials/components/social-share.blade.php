@@ -1,6 +1,6 @@
 @php
   $shareUrl = urlencode(get_permalink());
-  $shareTitle = urlencode(get_the_title());
+  $shareTitle = urlencode(html_entity_decode(get_the_title(), ENT_QUOTES, 'UTF-8'));
 @endphp
 
 <div class="flex flex-wrap items-center gap-2">
