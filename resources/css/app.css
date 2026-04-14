@@ -93,37 +93,13 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode surfaces — fallback defaults (inside @layer so the unlayered
-   PHP <style id="brndle-css-vars"> always wins via CSS cascade priority) */
-@layer theme {
-  [data-theme="dark"] {
-    --color-surface-primary: #0c1222;
-    --color-surface-secondary: #111827;
-    --color-surface-tertiary: #1a2234;
-    --color-surface-inverse: #f8fafc;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-    --color-text-tertiary: #64748b;
-    --color-text-inverse: #0f172a;
-    color-scheme: dark;
-  }
-}
+/* color-scheme hint — lets the UA theme scrollbars and form controls. The
+   actual palette variables are injected inline by Settings::cssVariables()
+   only when dark mode is enabled, so this block costs nothing when not. */
+[data-theme="dark"] { color-scheme: dark; }
 
-/* System preference fallback */
-@layer theme {
-  @media (prefers-color-scheme: dark) {
-    [data-theme="system"] {
-      --color-surface-primary: #0c1222;
-      --color-surface-secondary: #111827;
-      --color-surface-tertiary: #1a2234;
-      --color-surface-inverse: #f8fafc;
-      --color-text-primary: #f1f5f9;
-      --color-text-secondary: #94a3b8;
-      --color-text-tertiary: #64748b;
-      --color-text-inverse: #0f172a;
-      color-scheme: dark;
-    }
-  }
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] { color-scheme: dark; }
 }
 
 /* ========================================================================

@@ -5,7 +5,22 @@ import ToggleRow from '../components/ToggleRow';
 export default function DarkMode( { settings, onChange } ) {
 	const toggle = !! settings.dark_mode_toggle;
 	const defaultMode = settings.dark_mode_default || 'light';
-	const darkModeDisabled = ! toggle && defaultMode === 'light';
+	const fixedMode = ! toggle;
+
+	const fixedModeNotice = ! toggle && {
+		light: __(
+			'Fixed mode: the site always displays in light. No theme-switching JS runs, and any stored visitor preference is cleared on next visit.',
+			'brndle'
+		),
+		dark: __(
+			'Fixed mode: the site always displays in dark. No theme-switching JS runs, and any stored visitor preference is cleared on next visit.',
+			'brndle'
+		),
+		system: __(
+			'Fixed mode: the site follows each visitor\'s operating system preference automatically. No toggle is shown.',
+			'brndle'
+		),
+	}[ defaultMode ];
 
 	return (
 		<div className="brndle-dark-mode">
@@ -53,12 +68,9 @@ export default function DarkMode( { settings, onChange } ) {
 				__nextHasNoMarginBottom
 			/>
 
-			{ darkModeDisabled && (
+			{ fixedMode && fixedModeNotice && (
 				<Notice status="info" isDismissible={ false }>
-					{ __(
-						'Dark mode is fully disabled. The site will always display in light mode. No dark mode CSS is loaded — saving bandwidth.',
-						'brndle'
-					) }
+					{ fixedModeNotice }
 				</Notice>
 			) }
 		</div>

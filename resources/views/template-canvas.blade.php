@@ -3,20 +3,27 @@
   Description: No header, no footer, no margins. Pure full-screen content canvas for creative pages.
 --}}
 
-@php($hasDarkMode = $showDarkModeToggle || $darkModeDefault !== 'light')
+@php
+  $toggleDriven = (bool) ($showDarkModeToggle ?? false);
+  $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
+  $viteEntries = ['resources/css/app.css'];
+  if ($toggleDriven) {
+    $viteEntries[] = 'resources/js/dark-mode.js';
+  }
+@endphp
 <!doctype html>
-<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $darkModeDefault }}">
+<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $initialTheme }}">
   <head>
     <meta charset="utf-8">
-    @if($hasDarkMode)
-    <script>
-    (function(){var t=localStorage.getItem('brndle-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}})();
-    </script>
+    @if ($toggleDriven)
+      <script>(function(){try{var s=localStorage.getItem('brndle-theme');if(s==='dark'||s==='light'||s==='system'){document.documentElement.setAttribute('data-theme',s)}}catch(e){}})();</script>
+    @else
+      <script>try{localStorage.removeItem('brndle-theme')}catch(e){}</script>
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
-    @vite(['resources/css/app.css'])
+    @vite($viteEntries)
   </head>
 
   <body @php(body_class('font-sans antialiased bg-surface-primary text-text-primary'))>
@@ -31,8 +38,10 @@
       @endwhile
     </main>
 
-    @if($hasDarkMode)
-      @include('partials.components.dark-mode-toggle')
+    {{-- Canvas has no header to host the inline toggle, so render the floating button
+         whenever dark mode is enabled — even if position is set to 'header'. --}}
+    @if ($toggleDriven)
+      @include('partials.components.dark-mode-toggle', ['position' => ($darkModeTogglePosition === 'header' ? 'bottom-right' : $darkModeTogglePosition)])
     @endif
 
     @php(do_action('get_footer'))

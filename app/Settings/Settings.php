@@ -30,6 +30,12 @@ class Settings
     private static ?array $cache = null;
 
     /**
+     * Memoised CSS-variables output. Cleared when settings mutate so
+     * save/reset within the same request returns fresh CSS.
+     */
+    private static ?string $cssVarsCache = null;
+
+    /**
      * Retrieve all settings merged with defaults.
      *
      * Saved values take precedence over defaults. The result is cached
@@ -105,6 +111,7 @@ class Settings
 
         // Update cache directly so reads within this request are fresh.
         self::$cache = array_merge(Defaults::all(), $merged);
+        self::$cssVarsCache = null;
 
         return $result;
     }
@@ -119,6 +126,7 @@ class Settings
     public static function reset(): bool
     {
         self::$cache = null;
+        self::$cssVarsCache = null;
 
         return delete_option(self::OPTION_KEY);
     }
@@ -173,9 +181,8 @@ class Settings
      */
     public static function cssVariables(): string
     {
-        static $cached = null;
-        if ($cached !== null) {
-            return $cached;
+        if (self::$cssVarsCache !== null) {
+            return self::$cssVarsCache;
         }
 
         $palette = self::colorPalette();
@@ -243,9 +250,9 @@ class Settings
         }
 
         /** @var string */
-        $cached = apply_filters('brndle/css_variables', $css);
+        self::$cssVarsCache = apply_filters('brndle/css_variables', $css);
 
-        return $cached;
+        return self::$cssVarsCache;
     }
 
     /**
@@ -291,6 +298,7 @@ class Settings
     public static function clearCache(): void
     {
         self::$cache = null;
+        self::$cssVarsCache = null;
     }
 
     /**

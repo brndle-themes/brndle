@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Brndle 1.2.1\n"
+"Project-Id-Version: Brndle 1.2.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/brndle\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-01T04:05:55+00:00\n"
+"POT-Creation-Date: 2026-04-14T01:31:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: brndle\n"
@@ -1822,22 +1822,22 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: app/View/Composers/Post.php:43
+#: app/View/Composers/Post.php:44
 msgid "Latest Posts"
 msgstr ""
 
 #. translators: %s: search query string
-#: app/View/Composers/Post.php:53
+#: app/View/Composers/Post.php:54
 #, php-format
 msgid "Search Results for %s"
 msgstr ""
 
-#: app/View/Composers/Post.php:59
+#: app/View/Composers/Post.php:60
 msgid "Not Found"
 msgstr ""
 
 #. translators: %d: estimated reading time in minutes
-#: app/View/Composers/Post.php:78
+#: app/View/Composers/Post.php:79
 #, php-format
 msgid "%d min read"
 msgid_plural "%d min read"
@@ -1914,10 +1914,10 @@ msgstr ""
 msgid "Next &rarr;"
 msgstr ""
 
-#: resources/views/layouts/app.blade.php:23
-#: resources/views/layouts/landing.blade.php:24
-#: resources/views/template-canvas.blade.php:25
-#: resources/views/template-transparent.blade.php:27
+#: resources/views/layouts/app.blade.php:34
+#: resources/views/layouts/landing.blade.php:31
+#: resources/views/template-canvas.blade.php:32
+#: resources/views/template-transparent.blade.php:34
 msgid "Skip to content"
 msgstr ""
 
@@ -1941,8 +1941,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: resources/views/partials/components/dark-mode-toggle.blade.php:18
-msgid "Toggle dark mode"
+#: resources/views/partials/components/dark-mode-toggle.blade.php:31
+msgid "Toggle color theme"
 msgstr ""
 
 #: resources/views/partials/components/post-navigation.blade.php:7
@@ -1974,11 +1974,11 @@ msgid "Share on LinkedIn (opens in new window)"
 msgstr ""
 
 #: resources/views/partials/components/social-share.blade.php:28
-#: resources/views/sections/footer.blade.php:128
-#: resources/views/sections/footer.blade.php:187
-#: resources/views/sections/footer.blade.php:328
-#: resources/views/sections/footer.blade.php:411
-#: resources/views/sections/footer.blade.php:474
+#: resources/views/sections/footer.blade.php:129
+#: resources/views/sections/footer.blade.php:188
+#: resources/views/sections/footer.blade.php:330
+#: resources/views/sections/footer.blade.php:413
+#: resources/views/sections/footer.blade.php:477
 msgid "LinkedIn"
 msgstr ""
 
@@ -2018,66 +2018,66 @@ msgstr ""
 
 #: resources/views/sections/footer.blade.php:15
 #: resources/views/sections/footer.blade.php:28
-#: resources/views/sections/footer.blade.php:148
-#: resources/views/sections/footer.blade.php:207
-#: resources/views/sections/footer.blade.php:358
-#: resources/views/sections/footer.blade.php:436
+#: resources/views/sections/footer.blade.php:149
+#: resources/views/sections/footer.blade.php:208
+#: resources/views/sections/footer.blade.php:360
+#: resources/views/sections/footer.blade.php:438
 msgid "Site footer"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:116
-#: resources/views/sections/footer.blade.php:175
-#: resources/views/sections/footer.blade.php:316
-#: resources/views/sections/footer.blade.php:399
-#: resources/views/sections/footer.blade.php:462
+#: resources/views/sections/footer.blade.php:117
+#: resources/views/sections/footer.blade.php:176
+#: resources/views/sections/footer.blade.php:318
+#: resources/views/sections/footer.blade.php:401
+#: resources/views/sections/footer.blade.php:465
 msgid "X / Twitter"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:122
-#: resources/views/sections/footer.blade.php:181
-#: resources/views/sections/footer.blade.php:322
-#: resources/views/sections/footer.blade.php:405
-#: resources/views/sections/footer.blade.php:468
+#: resources/views/sections/footer.blade.php:123
+#: resources/views/sections/footer.blade.php:182
+#: resources/views/sections/footer.blade.php:324
+#: resources/views/sections/footer.blade.php:407
+#: resources/views/sections/footer.blade.php:471
 msgid "GitHub"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:134
-#: resources/views/sections/footer.blade.php:193
-#: resources/views/sections/footer.blade.php:334
-#: resources/views/sections/footer.blade.php:417
-#: resources/views/sections/footer.blade.php:480
+#: resources/views/sections/footer.blade.php:135
+#: resources/views/sections/footer.blade.php:194
+#: resources/views/sections/footer.blade.php:336
+#: resources/views/sections/footer.blade.php:419
+#: resources/views/sections/footer.blade.php:483
 msgid "Instagram"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:212
+#: resources/views/sections/footer.blade.php:213
 msgid "Stay up to date"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:213
+#: resources/views/sections/footer.blade.php:214
 msgid "Get the latest news and updates delivered to your inbox."
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:215
+#: resources/views/sections/footer.blade.php:216
 msgid "Newsletter signup"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:216
+#: resources/views/sections/footer.blade.php:217
 msgid "Email address"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:217
+#: resources/views/sections/footer.blade.php:218
 msgid "Enter your email"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:220
+#: resources/views/sections/footer.blade.php:221
 msgid "Subscribe"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:342
+#: resources/views/sections/footer.blade.php:344
 msgid "Back to top"
 msgstr ""
 
-#: resources/views/sections/footer.blade.php:381
+#: resources/views/sections/footer.blade.php:383
 msgid "Footer navigation"
 msgstr ""
 
@@ -2089,7 +2089,7 @@ msgstr ""
 #: resources/views/sections/header.blade.php:548
 #: resources/views/sections/header.blade.php:659
 #: resources/views/sections/header.blade.php:772
-#: resources/views/template-transparent.blade.php:32
+#: resources/views/template-transparent.blade.php:39
 msgid "Site header"
 msgstr ""
 
@@ -2115,7 +2115,7 @@ msgstr ""
 #: resources/views/sections/header.blade.php:596
 #: resources/views/sections/header.blade.php:710
 #: resources/views/sections/header.blade.php:820
-#: resources/views/template-transparent.blade.php:73
+#: resources/views/template-transparent.blade.php:81
 msgid "Toggle menu"
 msgstr ""
 

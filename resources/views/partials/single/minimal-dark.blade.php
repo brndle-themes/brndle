@@ -1,12 +1,12 @@
 {{--
-  Minimal dark single post layout — inspired by Mercury/Linear.
-  Forced dark mode, monospace accents, stark elegance.
+  Minimal single post layout — inspired by Mercury/Linear.
+  Monospace accents, stark elegance. Follows the site-wide theme toggle
+  instead of forcing dark, so the layout reads correctly in either mode.
 --}}
 
 @includeWhen($singleShowProgressBar, 'partials.components.reading-progress')
 
-<div data-theme="dark">
-  <article @php(post_class('h-entry bg-surface-primary text-text-primary'))>
+<article @php(post_class('h-entry bg-surface-primary text-text-primary'))>
 
     {{-- Header --}}
     <header class="max-w-[640px] mx-auto px-6 pt-32 pb-12 space-y-8">
@@ -70,7 +70,7 @@
 
     {{-- Content --}}
     <div class="max-w-[640px] mx-auto px-6 e-content">
-      <div class="minimal-dark-content prose prose-lg prose-invert max-w-none
+      <div class="minimal-dark-content prose prose-lg dark:prose-invert max-w-none
         prose-headings:font-bold prose-headings:tracking-tight
         prose-a:text-accent prose-a:no-underline hover:prose-a:underline
         prose-img:rounded-none
@@ -82,19 +82,17 @@
       </div>
     </div>
 
-    {{-- Styles for minimal dark specifics --}}
+    {{-- Styles for minimal specifics — theme-agnostic, uses tokens --}}
     <style>
-      [data-theme="dark"] .minimal-dark-content pre {
+      .minimal-dark-content pre {
         background: transparent;
         border: 1px solid var(--color-surface-tertiary);
       }
-
-      [data-theme="dark"] .minimal-dark-content img {
+      .minimal-dark-content img {
         border-radius: 0;
         box-shadow: none;
       }
-
-      [data-theme="dark"] .minimal-dark-content hr {
+      .minimal-dark-content hr {
         border-color: var(--color-surface-tertiary);
       }
     </style>
@@ -148,4 +146,3 @@
     </div>
 
   </article>
-</div>

@@ -1,18 +1,29 @@
-@php($hasDarkMode = $showDarkModeToggle || $darkModeDefault !== 'light')
+@php
+  // Toggle-driven mode: user can switch → read localStorage + ship JS controller.
+  // Fixed mode (toggle off): theme is whatever the admin picked — no JS, no localStorage read, always wipe stale prefs.
+  $toggleDriven = (bool) ($showDarkModeToggle ?? false);
+  $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
+  $viteEntries = ['resources/css/app.css', 'resources/js/app.js'];
+  if ($toggleDriven) {
+    $viteEntries[] = 'resources/js/dark-mode.js';
+  }
+@endphp
 <!doctype html>
-<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $darkModeDefault }}">
+<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $initialTheme }}">
   <head>
     <meta charset="utf-8">
-    @if($hasDarkMode)
-    <script>
-    (function(){var t=localStorage.getItem('brndle-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}})();
-    </script>
+    @if ($toggleDriven)
+      {{-- Toggle mode: applies stored preference synchronously before <body> paints to avoid FOUC. --}}
+      <script>(function(){try{var s=localStorage.getItem('brndle-theme');if(s==='dark'||s==='light'||s==='system'){document.documentElement.setAttribute('data-theme',s)}}catch(e){}})();</script>
+    @else
+      {{-- Fixed mode: admin chose a single theme. Wipe any stale preference a user set before the toggle was disabled. --}}
+      <script>try{localStorage.removeItem('brndle-theme')}catch(e){}</script>
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite($viteEntries)
   </head>
 
   <body @php(body_class('font-sans antialiased bg-surface-primary text-text-primary'))>
@@ -42,7 +53,7 @@
       @endunless
     </div>
 
-    @if($hasDarkMode)
+    @if ($toggleDriven && ($darkModeTogglePosition ?? '') !== 'header')
       @include('partials.components.dark-mode-toggle')
     @endif
 
