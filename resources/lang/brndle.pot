@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-14T01:31:47+00:00\n"
+"POT-Creation-Date: 2026-05-01T19:39:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: brndle\n"
@@ -1634,6 +1634,9 @@ msgid "We respond within one business day."
 msgstr ""
 
 #: app/Providers/BlockPatternServiceProvider.php:611
+#: blocks/build/index.js:1
+#: blocks/src/team.js:111
+#: blocks/src/testimonials.js:86
 msgid "Name"
 msgstr ""
 
@@ -1642,6 +1645,8 @@ msgid "Your name"
 msgstr ""
 
 #: app/Providers/BlockPatternServiceProvider.php:612
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:157
 msgid "Email"
 msgstr ""
 
@@ -1661,7 +1666,7 @@ msgstr ""
 msgid "Got it — we will be in touch within 24 hours."
 msgstr ""
 
-#: app/Providers/BlockServiceProvider.php:93
+#: app/Providers/BlockServiceProvider.php:187
 msgid "Brndle Sections"
 msgstr ""
 
@@ -1708,50 +1713,74 @@ msgid "All caches purged successfully."
 msgstr ""
 
 #: app/Settings/ColorPalette.php:30
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:227
 msgid "Neutral"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:35
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:216
 msgid "Sapphire"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:40
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:217
 msgid "Indigo"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:45
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:218
 msgid "Cobalt"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:50
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:219
 msgid "Trust"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:55
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:220
 msgid "Commerce"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:60
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:221
 msgid "Signal"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:65
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:222
 msgid "Coral"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:70
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:223
 msgid "Aubergine"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:75
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:224
 msgid "Midnight"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:80
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:225
 msgid "Stone"
 msgstr ""
 
 #: app/Settings/ColorPalette.php:85
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:226
 msgid "Carbon"
 msgstr ""
 
@@ -1864,11 +1893,19 @@ msgstr ""
 msgid "Add an image URL"
 msgstr ""
 
-#: resources/views/blocks/hero.blade.php:69
+#: resources/views/blocks/hero.blade.php:75
 msgid "Works with"
 msgstr ""
 
-#: resources/views/blocks/lead-form.blade.php:91
+#: resources/views/blocks/lead-form.blade.php:39
+msgid "Sending…"
+msgstr ""
+
+#: resources/views/blocks/lead-form.blade.php:40
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: resources/views/blocks/lead-form.blade.php:94
 #: resources/views/blocks/pricing.blade.php:117
 msgid "Get Started"
 msgstr ""
@@ -1883,6 +1920,9 @@ msgstr ""
 
 #: resources/views/blocks/video-embed.blade.php:58
 #: resources/views/blocks/video-embed.blade.php:71
+#: blocks/build/index.js:1
+#: blocks/src/features.js:148
+#: blocks/src/video-embed.js:45
 msgid "Video"
 msgstr ""
 
@@ -1893,6 +1933,8 @@ msgstr ""
 #: resources/views/forms/search.blade.php:2
 #: resources/views/forms/search.blade.php:14
 #: resources/views/sections/header.blade.php:440
+#: blocks/build/index.js:1
+#: blocks/src/features.js:144
 msgid "Search"
 msgstr ""
 
@@ -2125,6 +2167,1044 @@ msgstr ""
 
 #: resources/views/sections/header.blade.php:540
 msgid "Dismiss announcement"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:27
+#: blocks/src/cta.js:26
+#: blocks/src/hero.js:28
+#: blocks/src/lead-form.js:52
+#: blocks/src/logos.js:27
+#: blocks/src/video-embed.js:27
+msgid "Content"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:105
+#: blocks/src/content-image-split.js:29
+#: blocks/src/features.js:59
+#: blocks/src/hero.js:30
+#: blocks/src/how-it-works.js:53
+#: blocks/src/lead-form.js:54
+#: blocks/src/pricing.js:61
+#: blocks/src/team.js:60
+#: blocks/src/testimonials.js:56
+#: blocks/src/video-embed.js:29
+msgid "Eyebrow"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:110
+#: blocks/src/content-image-split.js:34
+#: blocks/src/cta.js:28
+#: blocks/src/faq.js:47
+#: blocks/src/features.js:66
+#: blocks/src/features.js:99
+#: blocks/src/hero.js:35
+#: blocks/src/how-it-works.js:58
+#: blocks/src/how-it-works.js:96
+#: blocks/src/lead-form.js:59
+#: blocks/src/logos.js:29
+#: blocks/src/pricing.js:68
+#: blocks/src/team.js:67
+#: blocks/src/testimonials.js:63
+#: blocks/src/video-embed.js:34
+msgid "Title"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/hero.js:38
+msgid "Supports HTML for styling (e.g., <span class='gradient-text'>)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:116
+#: blocks/src/cta.js:34
+#: blocks/src/features.js:72
+#: blocks/src/hero.js:41
+#: blocks/src/how-it-works.js:64
+#: blocks/src/lead-form.js:65
+#: blocks/src/pricing.js:74
+#: blocks/src/team.js:73
+#: blocks/src/video-embed.js:40
+msgid "Subtitle"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:78
+#: blocks/src/hero.js:47
+msgid "Call to Action"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/cta.js:44
+#: blocks/src/hero.js:49
+msgid "Primary Button Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/cta.js:51
+#: blocks/src/hero.js:54
+msgid "Primary Button URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/cta.js:58
+#: blocks/src/hero.js:61
+msgid "Secondary Button Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/cta.js:65
+#: blocks/src/hero.js:68
+msgid "Secondary Button URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:234
+#: blocks/src/content-image-split.js:90
+#: blocks/src/cta.js:73
+#: blocks/src/features.js:170
+#: blocks/src/hero.js:76
+#: blocks/src/logos.js:51
+#: blocks/src/stats.js:84
+msgid "Settings"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:57
+#: blocks/src/features.js:129
+#: blocks/src/hero.js:78
+msgid "Image URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:245
+#: blocks/src/content-image-split.js:92
+#: blocks/src/cta.js:75
+#: blocks/src/features.js:79
+#: blocks/src/hero.js:83
+#: blocks/src/how-it-works.js:78
+#: blocks/src/lead-form.js:125
+#: blocks/src/logos.js:53
+#: blocks/src/pricing.js:81
+#: blocks/src/stats.js:86
+#: blocks/src/team.js:92
+#: blocks/src/video-embed.js:105
+msgid "Variant"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/comparison-table.js:249
+#: blocks/src/content-image-split.js:96
+#: blocks/src/cta.js:78
+#: blocks/src/features.js:83
+#: blocks/src/hero.js:86
+#: blocks/src/how-it-works.js:82
+#: blocks/src/lead-form.js:129
+#: blocks/src/logos.js:57
+#: blocks/src/page-meta-sidebar.js:184
+#: blocks/src/pricing.js:85
+#: blocks/src/stats.js:90
+#: blocks/src/team.js:96
+#: blocks/src/video-embed.js:109
+msgid "Dark"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/comparison-table.js:248
+#: blocks/src/content-image-split.js:95
+#: blocks/src/cta.js:79
+#: blocks/src/features.js:82
+#: blocks/src/hero.js:87
+#: blocks/src/how-it-works.js:81
+#: blocks/src/lead-form.js:128
+#: blocks/src/logos.js:56
+#: blocks/src/page-meta-sidebar.js:185
+#: blocks/src/pricing.js:84
+#: blocks/src/stats.js:89
+#: blocks/src/team.js:95
+#: blocks/src/video-embed.js:108
+msgid "Light"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/hero.js:88
+msgid "Gradient"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/hero.js:94
+msgid "Logo Strip"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/hero.js:96
+msgid "Logos"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/hero.js:105
+#: blocks/src/logos.js:47
+msgid "One company name per line"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/stats.js:46
+msgid "Stats"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:146
+#: blocks/src/comparison-table.js:190
+#: blocks/src/stats.js:75
+msgid "Remove"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/stats.js:80
+msgid "Add Stat"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:45
+#: blocks/src/features.js:57
+#: blocks/src/how-it-works.js:51
+#: blocks/src/pricing.js:59
+#: blocks/src/team.js:58
+#: blocks/src/testimonials.js:54
+msgid "Section Header"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:113
+#: blocks/src/content-image-split.js:37
+#: blocks/src/cta.js:31
+#: blocks/src/features.js:69
+#: blocks/src/how-it-works.js:61
+#: blocks/src/lead-form.js:62
+#: blocks/src/pricing.js:71
+#: blocks/src/team.js:70
+#: blocks/src/testimonials.js:66
+msgid "Supports HTML for styling"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:84
+msgid "Subtle"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:40
+#: blocks/src/features.js:106
+#: blocks/src/how-it-works.js:101
+#: blocks/src/pricing.js:107
+msgid "Description"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:45
+#: blocks/src/features.js:113
+msgid "Bullet Points"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:126
+msgid "One bullet point per line"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:136
+msgid "Icon"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:139
+msgid "— None —"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:140
+msgid "Globe"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:141
+msgid "Academic Cap"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:142
+msgid "Dollar"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:143
+msgid "Shopping Cart"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:145
+msgid "Target"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:146
+msgid "Map Pin"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:147
+msgid "Chat"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:149
+msgid "Book"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:150
+msgid "Chart Bar"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:151
+msgid "Trending Up"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:152
+msgid "Lock"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:153
+msgid "Star"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:154
+msgid "Sparkles"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:155
+msgid "Rocket"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:156
+msgid "Document"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:157
+msgid "Pencil"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:158
+msgid "Office"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:159
+msgid "Storefront"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:160
+msgid "Users"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:161
+msgid "Heart"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:162
+msgid "Shield"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:163
+msgid "Wrench"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:164
+msgid "Light Bulb"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:165
+#: blocks/src/lead-form.js:158
+msgid "Phone"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:166
+msgid "Paint Brush"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:167
+msgid "Trophy"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:168
+msgid "Ticket"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:169
+msgid "Check Circle"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:181
+msgid "Remove Feature"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/features.js:186
+#: blocks/src/features.js:188
+msgid "Add Feature"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/testimonials.js:79
+msgid "Quote"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:118
+#: blocks/src/testimonials.js:93
+msgid "Role"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/testimonials.js:100
+msgid "Avatar URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/testimonials.js:107
+msgid "Stars"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/testimonials.js:120
+msgid "Remove Testimonial"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/testimonials.js:125
+#: blocks/src/testimonials.js:127
+msgid "Add Testimonial"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:100
+msgid "Plan Name"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:114
+msgid "Price"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:119
+msgid "e.g., $29"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:122
+msgid "Period"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:127
+msgid "e.g., /month"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:130
+msgid "Features"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:143
+msgid "One feature per line"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:146
+msgid "CTA Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:153
+msgid "CTA URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:160
+msgid "Featured Plan"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:168
+msgid "Badge Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:173
+msgid "e.g., Most Popular"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:181
+msgid "Remove Plan"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pricing.js:186
+#: blocks/src/pricing.js:188
+msgid "Add Plan"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/cta.js:42
+msgid "Buttons"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:67
+msgid "Question"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:74
+msgid "Answer"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:85
+msgid "Remove FAQ"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:90
+msgid "Add FAQ"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/faq.js:92
+msgid "Add FAQ Item"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/logos.js:34
+msgid "Companies"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:52
+msgid "One bullet per line"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:55
+msgid "Image"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:62
+msgid "Image Alt Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:67
+msgid "Image Position"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:70
+msgid "Right"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:71
+msgid "Left"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:80
+#: blocks/src/lead-form.js:74
+msgid "Button Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/content-image-split.js:85
+msgid "Button URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:69
+#: blocks/src/lead-form.js:104
+#: blocks/src/video-embed.js:82
+msgid "Layout"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:72
+msgid "Horizontal (cards)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:73
+msgid "Vertical (timeline)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:108
+msgid "Icon (emoji or text)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:111
+msgid "Leave empty to show step number"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:118
+msgid "Remove Step"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/how-it-works.js:122
+#: blocks/src/how-it-works.js:124
+msgid "Add Step"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:72
+msgid "Form Settings"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:81
+msgid "Success Message"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:88
+msgid "Form Action URL (optional)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:93
+msgid "Leave empty to use built-in form handler with Mailchimp, webhook, and email notifications. Only set this if you want to POST to an external endpoint."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:96
+msgid "Mailchimp List ID (optional)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:101
+msgid "Override the global Mailchimp list for this form. Leave empty to use the list configured in Brndle > Forms settings."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:108
+msgid "Stacked (full width)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:112
+msgid "Inline (single row)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:116
+msgid "Split (text + form)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:130
+msgid "Accent"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:150
+#: blocks/src/lead-form.js:146
+msgid "Label"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:153
+msgid "Type"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:156
+msgid "Text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:159
+msgid "URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:160
+msgid "Textarea"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:167
+msgid "Placeholder"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:174
+msgid "Required"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:185
+msgid "Remove Field"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/lead-form.js:189
+#: blocks/src/lead-form.js:191
+msgid "Add Field"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:103
+msgid "Header"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:155
+msgid "Sublabel (e.g. price)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:194
+msgid "Feature name"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:207
+msgid "Check"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:208
+msgid "Cross"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:209
+#: blocks/src/comparison-table.js:217
+msgid "Custom text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/comparison-table.js:236
+msgid "Highlight column (0-based, -1 = none)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:186
+#: blocks/src/team.js:80
+msgid "Columns"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:83
+msgid "2 Columns"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:84
+msgid "3 Columns"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:85
+msgid "4 Columns"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:125
+msgid "Bio"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:132
+msgid "Photo URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:139
+msgid "LinkedIn URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:146
+msgid "X / Twitter URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:157
+msgid "Remove Member"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:162
+msgid "Add Member"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/team.js:164
+msgid "Add Team Member"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:37
+msgid "Supports HTML"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:47
+msgid "Video URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:50
+msgid "YouTube, Vimeo, or direct video URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:53
+msgid "Video Source"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:56
+msgid "YouTube"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:57
+msgid "Vimeo"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:58
+msgid "Self-hosted"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:64
+msgid "Poster Image URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:67
+msgid "Thumbnail shown before video plays"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:71
+msgid "Autoplay"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:74
+msgid "Video will be muted when autoplaying"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:77
+msgid "Show Controls"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:84
+msgid "Aspect Ratio"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:87
+msgid "16:9 (Widescreen)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:88
+msgid "4:3 (Classic)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:89
+msgid "1:1 (Square)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:90
+msgid "21:9 (Ultrawide)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:95
+msgid "Max Width"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:98
+msgid "Full"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:99
+msgid "Medium"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/video-embed.js:100
+msgid "Narrow"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:122
+msgid "Hide Page Title"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:132
+msgid "Content Width"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:135
+msgid "Default (max-w-4xl)"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:136
+msgid "Narrow — 640px"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:137
+msgid "Wide — 1280px"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:138
+msgid "Full Width"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:155
+msgid "Header Style"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:158
+#: blocks/src/page-meta-sidebar.js:183
+#: blocks/src/page-meta-sidebar.js:215
+msgid "Use Global Setting"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:159
+msgid "Sticky"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:160
+msgid "Solid"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:161
+msgid "Transparent"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:162
+msgid "Centered"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:163
+#: blocks/src/page-meta-sidebar.js:187
+msgid "Minimal"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:164
+msgid "Split"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:165
+msgid "Banner"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:166
+msgid "Glass"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:173
+msgid "Hide Header"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:180
+msgid "Footer Style"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:188
+msgid "Big"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:189
+msgid "Stacked"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:196
+msgid "Hide Footer"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:212
+msgid "Color Scheme"
+msgstr ""
+
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:235
+msgid "Extra Body Classes"
 msgstr ""
 
 #: blocks/comparison-table/block.json
