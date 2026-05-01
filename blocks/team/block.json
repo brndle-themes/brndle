@@ -15,5 +15,19 @@
     "columns": { "type": "string", "default": "3", "enum": ["2", "3", "4"] },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "About us",
+      "title": "Meet the team.",
+      "subtitle": "Built by a small group of designers and engineers from Stripe, Vercel, and Automattic.",
+      "columns": "3",
+      "variant": "light",
+      "members": [
+        { "name": "Alex Reyes", "role": "Founder & CEO" },
+        { "name": "Priya Shah", "role": "Head of Design" },
+        { "name": "Jordan Lee", "role": "Lead Engineer" }
+      ]
+    }
+  }
 }

@@ -14,5 +14,17 @@
     "features": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark", "subtle"] }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Why teams choose us",
+      "title": "Everything you need to ship faster.",
+      "subtitle": "A complete toolkit for modern marketing sites.",
+      "variant": "light",
+      "features": [
+        { "title": "Server-rendered blocks", "description": "Lighter pages, better SEO, faster TTFB." },
+        { "title": "AI page builder", "description": "Generate landing pages from a single prompt." }
+      ]
+    }
+  }
 }

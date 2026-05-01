@@ -20,5 +20,17 @@
     "max_width": { "type": "string", "default": "full", "enum": ["full", "narrow", "medium"] },
     "variant": { "type": "string", "default": "dark", "enum": ["light", "dark"] }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Watch",
+      "title": "See Brndle in 90 seconds.",
+      "subtitle": "A quick tour of blocks, AI pages and the design system.",
+      "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "video_type": "youtube",
+      "aspect_ratio": "16/9",
+      "max_width": "medium",
+      "variant": "dark"
+    }
+  }
 }

@@ -19,5 +19,18 @@
     "layout": { "type": "string", "default": "stacked", "enum": ["stacked", "inline", "split"] },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark", "accent"] }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Newsletter",
+      "title": "Get product updates.",
+      "subtitle": "One short email every two weeks. No spam.",
+      "button_text": "Subscribe",
+      "layout": "stacked",
+      "variant": "light",
+      "fields": [
+        { "label": "Email", "type": "email", "required": true, "placeholder": "you@company.com" }
+      ]
+    }
+  }
 }

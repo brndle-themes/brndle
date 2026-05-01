@@ -14,5 +14,17 @@
     "plans": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light" }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Pricing",
+      "title": "Simple, transparent pricing.",
+      "subtitle": "Pick a plan that scales with you.",
+      "variant": "light",
+      "plans": [
+        { "name": "Starter", "price": "$19", "period": "/mo", "features": ["1 site", "Email support"], "cta_text": "Start free", "featured": false },
+        { "name": "Pro", "price": "$49", "period": "/mo", "features": ["10 sites", "Priority support", "AI pages"], "cta_text": "Get Pro", "featured": true }
+      ]
+    }
+  }
 }
