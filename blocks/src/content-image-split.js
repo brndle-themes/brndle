@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -23,76 +24,76 @@ registerBlockType( 'brndle/content-image-split', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Content" initialOpen={ true }>
+					<PanelBody title={ __( 'Content', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) => setAttributes( { eyebrow: v } ) }
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Description"
+							label={ __( 'Description', 'brndle' ) }
 							value={ attributes.description }
 							onChange={ ( v ) => setAttributes( { description: v } ) }
 						/>
 						<TextareaControl
-							label="Bullet Points"
+							label={ __( 'Bullet Points', 'brndle' ) }
 							value={ bullets.join( '\n' ) }
 							onChange={ ( v ) =>
 								setAttributes( {
 									bullets: v.split( '\n' ).filter( ( l ) => l.trim() ),
 								} )
 							}
-							help="One bullet per line"
+							help={ __( 'One bullet per line', 'brndle' ) }
 						/>
 					</PanelBody>
-					<PanelBody title="Image" initialOpen={ true }>
+					<PanelBody title={ __( 'Image', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Image URL"
+							label={ __( 'Image URL', 'brndle' ) }
 							value={ attributes.image }
 							onChange={ ( v ) => setAttributes( { image: v } ) }
 						/>
 						<TextControl
-							label="Image Alt Text"
+							label={ __( 'Image Alt Text', 'brndle' ) }
 							value={ attributes.image_alt }
 							onChange={ ( v ) => setAttributes( { image_alt: v } ) }
 						/>
 						<SelectControl
-							label="Image Position"
+							label={ __( 'Image Position', 'brndle' ) }
 							value={ attributes.image_position }
 							options={ [
-								{ label: 'Right', value: 'right' },
-								{ label: 'Left', value: 'left' },
+								{ label: __( 'Right', 'brndle' ), value: 'right' },
+								{ label: __( 'Left', 'brndle' ), value: 'left' },
 							] }
 							onChange={ ( v ) =>
 								setAttributes( { image_position: v } )
 							}
 						/>
 					</PanelBody>
-					<PanelBody title="Call to Action" initialOpen={ false }>
+					<PanelBody title={ __( 'Call to Action', 'brndle' ) } initialOpen={ false }>
 						<TextControl
-							label="Button Text"
+							label={ __( 'Button Text', 'brndle' ) }
 							value={ attributes.cta_text }
 							onChange={ ( v ) => setAttributes( { cta_text: v } ) }
 						/>
 						<TextControl
-							label="Button URL"
+							label={ __( 'Button URL', 'brndle' ) }
 							value={ attributes.cta_url }
 							onChange={ ( v ) => setAttributes( { cta_url: v } ) }
 						/>
 					</PanelBody>
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>

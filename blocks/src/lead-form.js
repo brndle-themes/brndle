@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -48,71 +49,71 @@ registerBlockType( 'brndle/lead-form', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Content" initialOpen={ true }>
+					<PanelBody title={ __( 'Content', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) => setAttributes( { eyebrow: v } ) }
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) =>
 								setAttributes( { subtitle: v } )
 							}
 						/>
 					</PanelBody>
-					<PanelBody title="Form Settings" initialOpen={ true }>
+					<PanelBody title={ __( 'Form Settings', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Button Text"
+							label={ __( 'Button Text', 'brndle' ) }
 							value={ attributes.button_text }
 							onChange={ ( v ) =>
 								setAttributes( { button_text: v } )
 							}
 						/>
 						<TextControl
-							label="Success Message"
+							label={ __( 'Success Message', 'brndle' ) }
 							value={ attributes.success_message }
 							onChange={ ( v ) =>
 								setAttributes( { success_message: v } )
 							}
 						/>
 						<TextControl
-							label="Form Action URL (optional)"
+							label={ __( 'Form Action URL (optional)', 'brndle' ) }
 							value={ attributes.form_action }
 							onChange={ ( v ) =>
 								setAttributes( { form_action: v } )
 							}
-							help="Leave empty to use built-in form handler with Mailchimp, webhook, and email notifications. Only set this if you want to POST to an external endpoint."
+							help={ __( 'Leave empty to use built-in form handler with Mailchimp, webhook, and email notifications. Only set this if you want to POST to an external endpoint.', 'brndle' ) }
 						/>
 						<TextControl
-							label="Mailchimp List ID (optional)"
+							label={ __( 'Mailchimp List ID (optional)', 'brndle' ) }
 							value={ attributes.mailchimp_list_id }
 							onChange={ ( v ) =>
 								setAttributes( { mailchimp_list_id: v } )
 							}
-							help="Override the global Mailchimp list for this form. Leave empty to use the list configured in Brndle > Forms settings."
+							help={ __( 'Override the global Mailchimp list for this form. Leave empty to use the list configured in Brndle > Forms settings.', 'brndle' ) }
 						/>
 						<SelectControl
-							label="Layout"
+							label={ __( 'Layout', 'brndle' ) }
 							value={ attributes.layout }
 							options={ [
 								{
-									label: 'Stacked (full width)',
+									label: __( 'Stacked (full width)', 'brndle' ),
 									value: 'stacked',
 								},
 								{
-									label: 'Inline (single row)',
+									label: __( 'Inline (single row)', 'brndle' ),
 									value: 'inline',
 								},
 								{
-									label: 'Split (text + form)',
+									label: __( 'Split (text + form)', 'brndle' ),
 									value: 'split',
 								},
 							] }
@@ -121,12 +122,12 @@ registerBlockType( 'brndle/lead-form', {
 							}
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
-								{ label: 'Accent', value: 'accent' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
+								{ label: __( 'Accent', 'brndle' ), value: 'accent' },
 							] }
 							onChange={ ( v ) =>
 								setAttributes( { variant: v } )
@@ -142,35 +143,35 @@ registerBlockType( 'brndle/lead-form', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Label"
+								label={ __( 'Label', 'brndle' ) }
 								value={ field.label }
 								onChange={ ( v ) =>
 									updateField( i, 'label', v )
 								}
 							/>
 							<SelectControl
-								label="Type"
+								label={ __( 'Type', 'brndle' ) }
 								value={ field.type }
 								options={ [
-									{ label: 'Text', value: 'text' },
-									{ label: 'Email', value: 'email' },
-									{ label: 'Phone', value: 'tel' },
-									{ label: 'URL', value: 'url' },
-									{ label: 'Textarea', value: 'textarea' },
+									{ label: __( 'Text', 'brndle' ), value: 'text' },
+									{ label: __( 'Email', 'brndle' ), value: 'email' },
+									{ label: __( 'Phone', 'brndle' ), value: 'tel' },
+									{ label: __( 'URL', 'brndle' ), value: 'url' },
+									{ label: __( 'Textarea', 'brndle' ), value: 'textarea' },
 								] }
 								onChange={ ( v ) =>
 									updateField( i, 'type', v )
 								}
 							/>
 							<TextControl
-								label="Placeholder"
+								label={ __( 'Placeholder', 'brndle' ) }
 								value={ field.placeholder }
 								onChange={ ( v ) =>
 									updateField( i, 'placeholder', v )
 								}
 							/>
 							<ToggleControl
-								label="Required"
+								label={ __( 'Required', 'brndle' ) }
 								checked={ !! field.required }
 								onChange={ ( v ) =>
 									updateField( i, 'required', v )
@@ -181,13 +182,13 @@ registerBlockType( 'brndle/lead-form', {
 								isSmall
 								onClick={ () => removeField( i ) }
 							>
-								Remove Field
+								{ __( 'Remove Field', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
-					<PanelBody title="Add Field" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Field', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addField }>
-							Add Field
+							{ __( 'Add Field', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

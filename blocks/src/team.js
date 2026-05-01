@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -54,45 +55,45 @@ registerBlockType( 'brndle/team', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) =>
 								setAttributes( { eyebrow: v } )
 							}
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) =>
 								setAttributes( { subtitle: v } )
 							}
 						/>
 						<SelectControl
-							label="Columns"
+							label={ __( 'Columns', 'brndle' ) }
 							value={ attributes.columns }
 							options={ [
-								{ label: '2 Columns', value: '2' },
-								{ label: '3 Columns', value: '3' },
-								{ label: '4 Columns', value: '4' },
+								{ label: __( '2 Columns', 'brndle' ), value: '2' },
+								{ label: __( '3 Columns', 'brndle' ), value: '3' },
+								{ label: __( '4 Columns', 'brndle' ), value: '4' },
 							] }
 							onChange={ ( v ) =>
 								setAttributes( { columns: v } )
 							}
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
@@ -107,42 +108,42 @@ registerBlockType( 'brndle/team', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Name"
+								label={ __( 'Name', 'brndle' ) }
 								value={ member.name }
 								onChange={ ( v ) =>
 									updateMember( i, 'name', v )
 								}
 							/>
 							<TextControl
-								label="Role"
+								label={ __( 'Role', 'brndle' ) }
 								value={ member.role }
 								onChange={ ( v ) =>
 									updateMember( i, 'role', v )
 								}
 							/>
 							<TextareaControl
-								label="Bio"
+								label={ __( 'Bio', 'brndle' ) }
 								value={ member.bio }
 								onChange={ ( v ) =>
 									updateMember( i, 'bio', v )
 								}
 							/>
 							<TextControl
-								label="Photo URL"
+								label={ __( 'Photo URL', 'brndle' ) }
 								value={ member.photo }
 								onChange={ ( v ) =>
 									updateMember( i, 'photo', v )
 								}
 							/>
 							<TextControl
-								label="LinkedIn URL"
+								label={ __( 'LinkedIn URL', 'brndle' ) }
 								value={ member.linkedin }
 								onChange={ ( v ) =>
 									updateMember( i, 'linkedin', v )
 								}
 							/>
 							<TextControl
-								label="X / Twitter URL"
+								label={ __( 'X / Twitter URL', 'brndle' ) }
 								value={ member.twitter }
 								onChange={ ( v ) =>
 									updateMember( i, 'twitter', v )
@@ -153,14 +154,14 @@ registerBlockType( 'brndle/team', {
 								isSmall
 								onClick={ () => removeMember( i ) }
 							>
-								Remove Member
+								{ __( 'Remove Member', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
 
-					<PanelBody title="Add Member" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Member', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addMember }>
-							Add Team Member
+							{ __( 'Add Team Member', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

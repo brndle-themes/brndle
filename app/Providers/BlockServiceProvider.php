@@ -31,6 +31,27 @@ class BlockServiceProvider
     {
         add_action('init', [$this, 'registerBlocks']);
         add_filter('block_categories_all', [$this, 'registerCategory']);
+        add_action('wp_enqueue_scripts', [$this, 'registerFrontendScripts']);
+    }
+
+    /**
+     * Register block view scripts. Enqueueing happens lazily inside the
+     * render callback so the asset only loads on pages that use the block.
+     */
+    public function registerFrontendScripts(): void
+    {
+        $asset_file = get_theme_file_path('blocks/build/lead-form-view.asset.php');
+        if (! file_exists($asset_file)) {
+            return;
+        }
+        $asset = require $asset_file;
+        wp_register_script(
+            'brndle-lead-form-view',
+            get_theme_file_uri('blocks/build/lead-form-view.js'),
+            $asset['dependencies'] ?? [],
+            $asset['version'] ?? false,
+            true
+        );
     }
 
     public function registerBlocks(): void
@@ -45,6 +66,13 @@ class BlockServiceProvider
                 $asset['dependencies'] ?? [],
                 $asset['version'] ?? false,
                 true
+            );
+
+            // Load JS translations from resources/lang for the editor script.
+            wp_set_script_translations(
+                'brndle-blocks-editor',
+                'brndle',
+                get_theme_file_path('resources/lang')
             );
 
             $style_path = get_theme_file_path('blocks/build/index.css');
@@ -66,11 +94,17 @@ class BlockServiceProvider
             }
 
             $viewName = "blocks.{$block}";
+            $blockSlug = $block;
 
             register_block_type($path, [
                 'editor_script' => 'brndle-blocks-editor',
                 'editor_style' => 'brndle-blocks-editor-style',
-                'render_callback' => function (array $attributes, string $content) use ($viewName) {
+                'render_callback' => function (array $attributes, string $content) use ($viewName, $blockSlug) {
+                    // Lazily enqueue the lead-form view script only when the block actually renders.
+                    if ($blockSlug === 'lead-form' && empty($attributes['form_action'] ?? '')) {
+                        wp_enqueue_script('brndle-lead-form-view');
+                    }
+
                     // Render through Acorn's Blade engine
                     if (function_exists('Roots\\view')) {
                         return view($viewName, [

@@ -8,6 +8,7 @@ module.exports = {
 	entry: {
 		...defaultEntry,
 		'page-meta-sidebar': path.resolve( __dirname, 'src/page-meta-sidebar.js' ),
+		'lead-form-view': path.resolve( __dirname, 'src/lead-form-view.js' ),
 	},
 	resolve: {
 		...defaults.resolve,

@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -22,15 +23,15 @@ registerBlockType( 'brndle/cta', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Content" initialOpen={ true }>
+					<PanelBody title={ __( 'Content', 'brndle' ) } initialOpen={ true }>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) =>
 								setAttributes( { subtitle: v } )
@@ -38,30 +39,30 @@ registerBlockType( 'brndle/cta', {
 						/>
 					</PanelBody>
 
-					<PanelBody title="Buttons" initialOpen={ true }>
+					<PanelBody title={ __( 'Buttons', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Primary Button Text"
+							label={ __( 'Primary Button Text', 'brndle' ) }
 							value={ attributes.cta_primary }
 							onChange={ ( v ) =>
 								setAttributes( { cta_primary: v } )
 							}
 						/>
 						<TextControl
-							label="Primary Button URL"
+							label={ __( 'Primary Button URL', 'brndle' ) }
 							value={ attributes.cta_primary_url }
 							onChange={ ( v ) =>
 								setAttributes( { cta_primary_url: v } )
 							}
 						/>
 						<TextControl
-							label="Secondary Button Text"
+							label={ __( 'Secondary Button Text', 'brndle' ) }
 							value={ attributes.cta_secondary }
 							onChange={ ( v ) =>
 								setAttributes( { cta_secondary: v } )
 							}
 						/>
 						<TextControl
-							label="Secondary Button URL"
+							label={ __( 'Secondary Button URL', 'brndle' ) }
 							value={ attributes.cta_secondary_url }
 							onChange={ ( v ) =>
 								setAttributes( { cta_secondary_url: v } )
@@ -69,13 +70,13 @@ registerBlockType( 'brndle/cta', {
 						/>
 					</PanelBody>
 
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Dark', value: 'dark' },
-								{ label: 'Light', value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>

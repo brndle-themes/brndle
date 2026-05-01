@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -53,34 +54,34 @@ registerBlockType( 'brndle/features', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) =>
 								setAttributes( { eyebrow: v } )
 							}
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) =>
 								setAttributes( { subtitle: v } )
 							}
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
-								{ label: 'Subtle', value: 'subtle' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
+								{ label: __( 'Subtle', 'brndle' ), value: 'subtle' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
@@ -95,21 +96,21 @@ registerBlockType( 'brndle/features', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Title"
+								label={ __( 'Title', 'brndle' ) }
 								value={ feature.title }
 								onChange={ ( v ) =>
 									updateFeature( i, 'title', v )
 								}
 							/>
 							<TextareaControl
-								label="Description"
+								label={ __( 'Description', 'brndle' ) }
 								value={ feature.description }
 								onChange={ ( v ) =>
 									updateFeature( i, 'description', v )
 								}
 							/>
 							<TextareaControl
-								label="Bullet Points"
+								label={ __( 'Bullet Points', 'brndle' ) }
 								value={ (
 									feature.bullets || []
 								).join( '\n' ) }
@@ -122,51 +123,51 @@ registerBlockType( 'brndle/features', {
 											.filter( ( l ) => l.trim() )
 									)
 								}
-								help="One bullet point per line"
+								help={ __( 'One bullet point per line', 'brndle' ) }
 							/>
 							<TextControl
-								label="Image URL"
+								label={ __( 'Image URL', 'brndle' ) }
 								value={ feature.image }
 								onChange={ ( v ) =>
 									updateFeature( i, 'image', v )
 								}
 							/>
 							<SelectControl
-								label="Icon"
+								label={ __( 'Icon', 'brndle' ) }
 								value={ feature.icon }
 								options={ [
-									{ label: '— None —', value: '' },
-									{ label: 'Globe', value: 'globe-alt' },
-									{ label: 'Academic Cap', value: 'academic-cap' },
-									{ label: 'Dollar', value: 'currency-dollar' },
-									{ label: 'Shopping Cart', value: 'shopping-cart' },
-									{ label: 'Search', value: 'magnifying-glass' },
-									{ label: 'Target', value: 'cursor-arrow-rays' },
-									{ label: 'Map Pin', value: 'map-pin' },
-									{ label: 'Chat', value: 'chat-bubble-left-right' },
-									{ label: 'Video', value: 'video-camera' },
-									{ label: 'Book', value: 'book-open' },
-									{ label: 'Chart Bar', value: 'chart-bar' },
-									{ label: 'Trending Up', value: 'arrow-trending-up' },
-									{ label: 'Lock', value: 'lock-closed' },
-									{ label: 'Star', value: 'star' },
-									{ label: 'Sparkles', value: 'sparkles' },
-									{ label: 'Rocket', value: 'rocket-launch' },
-									{ label: 'Document', value: 'document-text' },
-									{ label: 'Pencil', value: 'pencil-square' },
-									{ label: 'Office', value: 'building-office' },
-									{ label: 'Storefront', value: 'building-storefront' },
-									{ label: 'Users', value: 'users' },
-									{ label: 'Heart', value: 'heart' },
-									{ label: 'Shield', value: 'shield-check' },
-									{ label: 'Wrench', value: 'wrench' },
-									{ label: 'Light Bulb', value: 'light-bulb' },
-									{ label: 'Phone', value: 'device-phone-mobile' },
-									{ label: 'Paint Brush', value: 'paint-brush' },
-									{ label: 'Trophy', value: 'trophy' },
-									{ label: 'Ticket', value: 'ticket' },
-									{ label: 'Check Circle', value: 'check-circle' },
-									{ label: 'Settings', value: 'cog-6-tooth' },
+									{ label: __( '— None —', 'brndle' ), value: '' },
+									{ label: __( 'Globe', 'brndle' ), value: 'globe-alt' },
+									{ label: __( 'Academic Cap', 'brndle' ), value: 'academic-cap' },
+									{ label: __( 'Dollar', 'brndle' ), value: 'currency-dollar' },
+									{ label: __( 'Shopping Cart', 'brndle' ), value: 'shopping-cart' },
+									{ label: __( 'Search', 'brndle' ), value: 'magnifying-glass' },
+									{ label: __( 'Target', 'brndle' ), value: 'cursor-arrow-rays' },
+									{ label: __( 'Map Pin', 'brndle' ), value: 'map-pin' },
+									{ label: __( 'Chat', 'brndle' ), value: 'chat-bubble-left-right' },
+									{ label: __( 'Video', 'brndle' ), value: 'video-camera' },
+									{ label: __( 'Book', 'brndle' ), value: 'book-open' },
+									{ label: __( 'Chart Bar', 'brndle' ), value: 'chart-bar' },
+									{ label: __( 'Trending Up', 'brndle' ), value: 'arrow-trending-up' },
+									{ label: __( 'Lock', 'brndle' ), value: 'lock-closed' },
+									{ label: __( 'Star', 'brndle' ), value: 'star' },
+									{ label: __( 'Sparkles', 'brndle' ), value: 'sparkles' },
+									{ label: __( 'Rocket', 'brndle' ), value: 'rocket-launch' },
+									{ label: __( 'Document', 'brndle' ), value: 'document-text' },
+									{ label: __( 'Pencil', 'brndle' ), value: 'pencil-square' },
+									{ label: __( 'Office', 'brndle' ), value: 'building-office' },
+									{ label: __( 'Storefront', 'brndle' ), value: 'building-storefront' },
+									{ label: __( 'Users', 'brndle' ), value: 'users' },
+									{ label: __( 'Heart', 'brndle' ), value: 'heart' },
+									{ label: __( 'Shield', 'brndle' ), value: 'shield-check' },
+									{ label: __( 'Wrench', 'brndle' ), value: 'wrench' },
+									{ label: __( 'Light Bulb', 'brndle' ), value: 'light-bulb' },
+									{ label: __( 'Phone', 'brndle' ), value: 'device-phone-mobile' },
+									{ label: __( 'Paint Brush', 'brndle' ), value: 'paint-brush' },
+									{ label: __( 'Trophy', 'brndle' ), value: 'trophy' },
+									{ label: __( 'Ticket', 'brndle' ), value: 'ticket' },
+									{ label: __( 'Check Circle', 'brndle' ), value: 'check-circle' },
+									{ label: __( 'Settings', 'brndle' ), value: 'cog-6-tooth' },
 								] }
 								onChange={ ( v ) =>
 									updateFeature( i, 'icon', v )
@@ -177,14 +178,14 @@ registerBlockType( 'brndle/features', {
 								isSmall
 								onClick={ () => removeFeature( i ) }
 							>
-								Remove Feature
+								{ __( 'Remove Feature', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
 
-					<PanelBody title="Add Feature" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Feature', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addFeature }>
-							Add Feature
+							{ __( 'Add Feature', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

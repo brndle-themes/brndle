@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -99,20 +100,20 @@ registerBlockType( 'brndle/comparison-table', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) => setAttributes( { eyebrow: v } ) }
 						/>
 						<TextControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) => setAttributes( { subtitle: v } ) }
 						/>
@@ -142,16 +143,16 @@ registerBlockType( 'brndle/comparison-table', {
 										variant="tertiary"
 										onClick={ () => removeColumn( ci ) }
 									>
-										Remove
+										{ __( 'Remove', 'brndle' ) }
 									</Button>
 								</div>
 								<TextControl
-									label="Label"
+									label={ __( 'Label', 'brndle' ) }
 									value={ col.label || '' }
 									onChange={ ( v ) => updateColumn( ci, 'label', v ) }
 								/>
 								<TextControl
-									label="Sublabel (e.g. price)"
+									label={ __( 'Sublabel (e.g. price)', 'brndle' ) }
 									value={ col.sublabel || '' }
 									onChange={ ( v ) => updateColumn( ci, 'sublabel', v ) }
 								/>
@@ -186,11 +187,11 @@ registerBlockType( 'brndle/comparison-table', {
 										variant="tertiary"
 										onClick={ () => removeRow( ri ) }
 									>
-										Remove
+										{ __( 'Remove', 'brndle' ) }
 									</Button>
 								</div>
 								<TextControl
-									label="Feature name"
+									label={ __( 'Feature name', 'brndle' ) }
 									value={ row.feature || '' }
 									onChange={ ( v ) => updateRowFeature( ri, v ) }
 								/>
@@ -203,9 +204,9 @@ registerBlockType( 'brndle/comparison-table', {
 												label={ `"${ col.label || `Col ${ ci + 1 }` }" value` }
 												value={ selectVal }
 												options={ [
-													{ label: 'Check', value: 'check' },
-													{ label: 'Cross', value: 'cross' },
-													{ label: 'Custom text', value: 'custom' },
+													{ label: __( 'Check', 'brndle' ), value: 'check' },
+													{ label: __( 'Cross', 'brndle' ), value: 'cross' },
+													{ label: __( 'Custom text', 'brndle' ), value: 'custom' },
 												] }
 												onChange={ ( v ) =>
 													updateRowValue( ri, ci, v, undefined )
@@ -213,7 +214,7 @@ registerBlockType( 'brndle/comparison-table', {
 											/>
 											{ selectVal === 'custom' && (
 												<TextControl
-													label="Custom text"
+													label={ __( 'Custom text', 'brndle' ) }
 													value={ typeof cellVal === 'string' ? cellVal : '' }
 													onChange={ ( v ) =>
 														updateRowValue( ri, ci, 'custom', v )
@@ -230,9 +231,9 @@ registerBlockType( 'brndle/comparison-table', {
 						</Button>
 					</PanelBody>
 
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<NumberControl
-							label="Highlight column (0-based, -1 = none)"
+							label={ __( 'Highlight column (0-based, -1 = none)', 'brndle' ) }
 							value={ attributes.highlight_column }
 							min={ -1 }
 							max={ columns.length - 1 }
@@ -241,11 +242,11 @@ registerBlockType( 'brndle/comparison-table', {
 							}
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
