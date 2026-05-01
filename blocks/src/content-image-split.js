@@ -8,6 +8,7 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { ImageControl } from './components/image-control';
 
 registerBlockType( 'brndle/content-image-split', {
 	icon: (
@@ -53,15 +54,21 @@ registerBlockType( 'brndle/content-image-split', {
 						/>
 					</PanelBody>
 					<PanelBody title={ __( 'Image', 'brndle' ) } initialOpen={ true }>
-						<TextControl
-							label={ __( 'Image URL', 'brndle' ) }
-							value={ attributes.image }
-							onChange={ ( v ) => setAttributes( { image: v } ) }
-						/>
-						<TextControl
-							label={ __( 'Image Alt Text', 'brndle' ) }
-							value={ attributes.image_alt }
-							onChange={ ( v ) => setAttributes( { image_alt: v } ) }
+						<ImageControl
+							image={ attributes.image }
+							imageId={ attributes.image_id }
+							imageAlt={ attributes.image_alt }
+							onChange={ ( {
+								image,
+								imageId,
+								imageAlt,
+							} ) =>
+								setAttributes( {
+									image,
+									image_id: imageId,
+									image_alt: imageAlt,
+								} )
+							}
 						/>
 						<SelectControl
 							label={ __( 'Image Position', 'brndle' ) }

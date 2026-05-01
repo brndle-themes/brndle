@@ -13,6 +13,7 @@
     "description": { "type": "string", "default": "" },
     "bullets": { "type": "array", "default": [] },
     "image": { "type": "string", "default": "" },
+    "image_id": { "type": "number", "default": 0 },
     "image_alt": { "type": "string", "default": "" },
     "image_position": { "type": "string", "default": "right", "enum": ["left", "right"] },
     "cta_text": { "type": "string", "default": "" },

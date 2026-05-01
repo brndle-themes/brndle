@@ -57,10 +57,11 @@
       </div>
 
       @if($a['image'])
+        @php($altText = !empty($a['image_alt']) ? $a['image_alt'] : wp_strip_all_tags($a['title'] ?? ''))
         <div class="relative">
           <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 rounded-2xl blur-2xl opacity-60"></div>
           <div class="relative rounded-2xl border {{ $isInverse ? 'border-white/[0.08] bg-white/[0.02]' : 'border-surface-tertiary' }} overflow-hidden shadow-2xl">
-            <img src="{{ esc_url($a['image']) }}" alt="{{ wp_strip_all_tags($a['title']) }}" class="w-full" loading="eager" decoding="async" fetchpriority="high">
+            <img src="{{ esc_url($a['image']) }}" alt="{{ esc_attr($altText) }}" class="w-full" loading="eager" decoding="async" fetchpriority="high">
           </div>
         </div>
       @endif

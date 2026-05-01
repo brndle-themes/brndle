@@ -16,6 +16,8 @@
     "cta_secondary": { "type": "string", "default": "" },
     "cta_secondary_url": { "type": "string", "default": "#" },
     "image": { "type": "string", "default": "" },
+    "image_id": { "type": "number", "default": 0 },
+    "image_alt": { "type": "string", "default": "" },
     "variant": { "type": "string", "default": "dark", "enum": ["dark", "light", "gradient"] },
     "logos": { "type": "array", "default": [] }
   },

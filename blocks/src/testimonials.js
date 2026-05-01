@@ -9,6 +9,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { ImageControl } from './components/image-control';
 
 registerBlockType( 'brndle/testimonials', {
 	icon: (
@@ -96,12 +97,25 @@ registerBlockType( 'brndle/testimonials', {
 									updateItem( i, 'role', v )
 								}
 							/>
-							<TextControl
-								label={ __( 'Avatar URL', 'brndle' ) }
-								value={ item.avatar }
-								onChange={ ( v ) =>
-									updateItem( i, 'avatar', v )
-								}
+							<ImageControl
+								label={ __( 'Avatar', 'brndle' ) }
+								image={ item.avatar }
+								imageId={ item.avatar_id }
+								imageAlt={ item.avatar_alt || item.name }
+								onChange={ ( {
+									image,
+									imageId,
+									imageAlt,
+								} ) => {
+									const newItems = [ ...items ];
+									newItems[ i ] = {
+										...newItems[ i ],
+										avatar: image,
+										avatar_id: imageId,
+										avatar_alt: imageAlt,
+									};
+									setAttributes( { items: newItems } );
+								} }
 							/>
 							<RangeControl
 								label={ __( 'Stars', 'brndle' ) }

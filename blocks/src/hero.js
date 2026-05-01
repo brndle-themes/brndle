@@ -8,6 +8,7 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { ImageControl } from './components/image-control';
 
 registerBlockType( 'brndle/hero', {
 	icon: (
@@ -73,12 +74,27 @@ registerBlockType( 'brndle/hero', {
 						/>
 					</PanelBody>
 
-					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
-						<TextControl
-							label={ __( 'Image URL', 'brndle' ) }
-							value={ attributes.image }
-							onChange={ ( v ) => setAttributes( { image: v } ) }
+					<PanelBody title={ __( 'Image', 'brndle' ) } initialOpen={ false }>
+						<ImageControl
+							label={ __( 'Hero image', 'brndle' ) }
+							image={ attributes.image }
+							imageId={ attributes.image_id }
+							imageAlt={ attributes.image_alt }
+							onChange={ ( {
+								image,
+								imageId,
+								imageAlt,
+							} ) =>
+								setAttributes( {
+									image,
+									image_id: imageId,
+									image_alt: imageAlt,
+								} )
+							}
 						/>
+					</PanelBody>
+
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<SelectControl
 							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
