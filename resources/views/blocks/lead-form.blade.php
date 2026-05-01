@@ -36,11 +36,14 @@
           class="{{ $isInline ? 'flex flex-wrap gap-3 items-end' : 'space-y-4' }}"
           data-brndle-lead-form
           data-success="{{ esc_attr($a['success_message'] ?: __('Thank you! Your submission has been received.', 'brndle')) }}"
+          data-sending-label="{{ esc_attr(__('Sending…', 'brndle')) }}"
+          data-error-message="{{ esc_attr(__('Something went wrong. Please try again.', 'brndle')) }}"
           @if(empty($a['form_action']))
             data-brndle-endpoint="{{ rest_url('brndle/v1/forms/submit') }}"
             data-rest-nonce="{{ wp_create_nonce('wp_rest') }}"
             data-mailchimp-list="{{ esc_attr($a['mailchimp_list_id'] ?? '') }}"
           @endif
+          aria-describedby="brndle-form-status-{{ $a['anchor'] ?? uniqid() }}"
         >
           @if(empty($a['form_action']))
             <input type="hidden" name="_brndle_nonce" value="{{ wp_create_nonce('brndle_form_submit') }}">
@@ -83,59 +86,19 @@
           @endforeach
 
           <div class="{{ $isInline ? '' : 'pt-2' }}">
-            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'bg-accent text-on-accent hover:opacity-90' }} transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
+            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'bg-accent text-on-accent hover:opacity-90' }} transition-all motion-reduce:transition-none focus:outline-2 focus:outline-offset-2 focus:outline-accent">
               {{ $a['button_text'] ?? __('Get Started', 'brndle') }}
             </button>
           </div>
+          <p
+            class="sr-only"
+            data-brndle-status
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
         </form>
       </div>
     </div>
   </div>
-
-  @if(empty($a['form_action']))
-  <script>
-  (function(){
-    document.querySelectorAll('[data-brndle-lead-form][data-brndle-endpoint]').forEach(function(form){
-      if(form._brndleBound)return;
-      form._brndleBound=true;
-      form.addEventListener('submit',function(e){
-        e.preventDefault();
-        var btn=form.querySelector('[type="submit"]');
-        var orig=btn.textContent;
-        btn.disabled=true;
-        btn.textContent='Sending...';
-        var data={};
-        new FormData(form).forEach(function(v,k){data[k]=v});
-        data._source_url=window.location.href;
-        if(form.dataset.mailchimpList)data._mailchimp_list=form.dataset.mailchimpList;
-        fetch(form.dataset.brndleEndpoint,{
-          method:'POST',
-          headers:{'Content-Type':'application/json','X-WP-Nonce':form.dataset.restNonce||''},
-          body:JSON.stringify(data)
-        })
-        .then(function(r){return r.json()})
-        .then(function(res){
-          if(res.success){
-            while(form.firstChild)form.removeChild(form.firstChild);
-            var p=document.createElement('p');
-            p.className='text-center py-6 text-lg font-medium';
-            var tmp=document.createElement('span');tmp.innerHTML=form.dataset.success;p.textContent=tmp.textContent;
-            form.appendChild(p);
-          }else{
-            btn.disabled=false;
-            btn.textContent=orig;
-            var err=form.querySelector('.brndle-form-error');
-            if(!err){err=document.createElement('p');err.className='brndle-form-error text-sm text-red-400 mt-2';form.appendChild(err)}
-            err.textContent=res.message||'Something went wrong.';
-          }
-        })
-        .catch(function(){
-          btn.disabled=false;
-          btn.textContent=orig;
-        });
-      });
-    });
-  })();
-  </script>
-  @endif
 </section>

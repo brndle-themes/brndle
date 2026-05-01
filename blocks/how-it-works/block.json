@@ -15,5 +15,19 @@
     "layout": { "type": "string", "default": "horizontal", "enum": ["horizontal", "vertical"] },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Process",
+      "title": "Launch in three steps.",
+      "subtitle": "From blank canvas to live site in under an hour.",
+      "layout": "horizontal",
+      "variant": "light",
+      "steps": [
+        { "title": "Install", "description": "One-click install from your dashboard." },
+        { "title": "Configure", "description": "Pick a color scheme, font pair, and layout." },
+        { "title": "Publish", "description": "Generate landing pages with AI and ship." }
+      ]
+    }
+  }
 }

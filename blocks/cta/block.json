@@ -16,5 +16,16 @@
     "cta_secondary_url": { "type": "string", "default": "#" },
     "variant": { "type": "string", "default": "dark" }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "title": "Ready to ship a faster site?",
+      "subtitle": "Join thousands of teams using Brndle to launch in minutes.",
+      "cta_primary": "Get started",
+      "cta_primary_url": "#",
+      "cta_secondary": "Talk to sales",
+      "cta_secondary_url": "#",
+      "variant": "dark"
+    }
+  }
 }

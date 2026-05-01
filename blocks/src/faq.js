@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -41,9 +42,9 @@ registerBlockType( 'brndle/faq', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
 						/>
@@ -63,14 +64,14 @@ registerBlockType( 'brndle/faq', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Question"
+								label={ __( 'Question', 'brndle' ) }
 								value={ item.question }
 								onChange={ ( v ) =>
 									updateItem( i, 'question', v )
 								}
 							/>
 							<TextareaControl
-								label="Answer"
+								label={ __( 'Answer', 'brndle' ) }
 								value={ item.answer }
 								onChange={ ( v ) =>
 									updateItem( i, 'answer', v )
@@ -81,14 +82,14 @@ registerBlockType( 'brndle/faq', {
 								isSmall
 								onClick={ () => removeItem( i ) }
 							>
-								Remove FAQ
+								{ __( 'Remove FAQ', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
 
-					<PanelBody title="Add FAQ" initialOpen={ true }>
+					<PanelBody title={ __( 'Add FAQ', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addItem }>
-							Add FAQ Item
+							{ __( 'Add FAQ Item', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

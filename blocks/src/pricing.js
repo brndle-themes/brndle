@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -55,33 +56,33 @@ registerBlockType( 'brndle/pricing', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) =>
 								setAttributes( { eyebrow: v } )
 							}
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) =>
 								setAttributes( { subtitle: v } )
 							}
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
@@ -96,37 +97,37 @@ registerBlockType( 'brndle/pricing', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Plan Name"
+								label={ __( 'Plan Name', 'brndle' ) }
 								value={ plan.name }
 								onChange={ ( v ) =>
 									updatePlan( i, 'name', v )
 								}
 							/>
 							<TextareaControl
-								label="Description"
+								label={ __( 'Description', 'brndle' ) }
 								value={ plan.description }
 								onChange={ ( v ) =>
 									updatePlan( i, 'description', v )
 								}
 							/>
 							<TextControl
-								label="Price"
+								label={ __( 'Price', 'brndle' ) }
 								value={ plan.price }
 								onChange={ ( v ) =>
 									updatePlan( i, 'price', v )
 								}
-								help="e.g., $29"
+								help={ __( 'e.g., $29', 'brndle' ) }
 							/>
 							<TextControl
-								label="Period"
+								label={ __( 'Period', 'brndle' ) }
 								value={ plan.period }
 								onChange={ ( v ) =>
 									updatePlan( i, 'period', v )
 								}
-								help="e.g., /month"
+								help={ __( 'e.g., /month', 'brndle' ) }
 							/>
 							<TextareaControl
-								label="Features"
+								label={ __( 'Features', 'brndle' ) }
 								value={ (
 									plan.features || []
 								).join( '\n' ) }
@@ -139,24 +140,24 @@ registerBlockType( 'brndle/pricing', {
 											.filter( ( l ) => l.trim() )
 									)
 								}
-								help="One feature per line"
+								help={ __( 'One feature per line', 'brndle' ) }
 							/>
 							<TextControl
-								label="CTA Text"
+								label={ __( 'CTA Text', 'brndle' ) }
 								value={ plan.cta_text }
 								onChange={ ( v ) =>
 									updatePlan( i, 'cta_text', v )
 								}
 							/>
 							<TextControl
-								label="CTA URL"
+								label={ __( 'CTA URL', 'brndle' ) }
 								value={ plan.cta_url }
 								onChange={ ( v ) =>
 									updatePlan( i, 'cta_url', v )
 								}
 							/>
 							<ToggleControl
-								label="Featured Plan"
+								label={ __( 'Featured Plan', 'brndle' ) }
 								checked={ !! plan.featured }
 								onChange={ ( v ) =>
 									updatePlan( i, 'featured', v )
@@ -164,12 +165,12 @@ registerBlockType( 'brndle/pricing', {
 							/>
 							{ plan.featured && (
 								<TextControl
-									label="Badge Text"
+									label={ __( 'Badge Text', 'brndle' ) }
 									value={ plan.badge }
 									onChange={ ( v ) =>
 										updatePlan( i, 'badge', v )
 									}
-									help="e.g., Most Popular"
+									help={ __( 'e.g., Most Popular', 'brndle' ) }
 								/>
 							) }
 							<Button
@@ -177,14 +178,14 @@ registerBlockType( 'brndle/pricing', {
 								isSmall
 								onClick={ () => removePlan( i ) }
 							>
-								Remove Plan
+								{ __( 'Remove Plan', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
 
-					<PanelBody title="Add Plan" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Plan', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addPlan }>
-							Add Plan
+							{ __( 'Add Plan', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

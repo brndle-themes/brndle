@@ -12,5 +12,12 @@
     "companies": { "type": "array", "default": [] },
     "variant": { "type": "string", "default": "light" }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "title": "Trusted by industry leaders",
+      "variant": "light",
+      "companies": ["Acme", "Northwind", "Globex", "Initech", "Umbrella"]
+    }
+  }
 }
