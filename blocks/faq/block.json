@@ -11,5 +11,14 @@
     "title": { "type": "string", "default": "Frequently asked questions" },
     "items": { "type": "array", "default": [] }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "title": "Frequently asked questions",
+      "items": [
+        { "question": "Do I need a page builder?", "answer": "No. Brndle ships native Gutenberg blocks rendered server-side." },
+        { "question": "Will it work with my caching plugin?", "answer": "Yes. Brndle is fully compatible with WP Rocket, LiteSpeed, and others." }
+      ]
+    }
+  }
 }

@@ -19,5 +19,17 @@
     "cta_url": { "type": "string", "default": "#" },
     "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true }
+  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Workflow",
+      "title": "Edit visually, ship server-rendered.",
+      "description": "All blocks render through Blade — no client-side hydration tax, no layout shift.",
+      "bullets": ["Lighthouse 100 by default", "No page-builder lock-in", "Translation-ready"],
+      "image_position": "right",
+      "variant": "light",
+      "cta_text": "Learn more",
+      "cta_url": "#"
+    }
+  }
 }

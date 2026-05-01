@@ -12,5 +12,15 @@
     "title": { "type": "string", "default": "" },
     "items": { "type": "array", "default": [] }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true }
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "eyebrow": "Customers",
+      "title": "Loved by teams shipping fast.",
+      "items": [
+        { "quote": "We replaced our page builder and saw 40% faster pages overnight.", "name": "Alex Reyes", "role": "Head of Growth", "company": "Acme" },
+        { "quote": "The AI landing pages saved us a month of marketing-design back-and-forth.", "name": "Priya Shah", "role": "Marketing Lead", "company": "Northwind" }
+      ]
+    }
+  }
 }

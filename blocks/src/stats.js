@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -42,7 +43,7 @@ registerBlockType( 'brndle/stats', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Stats" initialOpen={ true }>
+					<PanelBody title={ __( 'Stats', 'brndle' ) } initialOpen={ true }>
 						{ items.map( ( item, i ) => (
 							<div
 								key={ i }
@@ -71,22 +72,22 @@ registerBlockType( 'brndle/stats', {
 									isSmall
 									onClick={ () => removeItem( i ) }
 								>
-									Remove
+									{ __( 'Remove', 'brndle' ) }
 								</Button>
 							</div>
 						) ) }
 						<Button variant="secondary" onClick={ addItem }>
-							Add Stat
+							{ __( 'Add Stat', 'brndle' ) }
 						</Button>
 					</PanelBody>
 
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>

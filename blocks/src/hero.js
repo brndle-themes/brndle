@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -24,47 +25,47 @@ registerBlockType( 'brndle/hero', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Content" initialOpen={ true }>
+					<PanelBody title={ __( 'Content', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) => setAttributes( { eyebrow: v } ) }
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling (e.g., <span class='gradient-text'>)"
+							help={ __( 'Supports HTML for styling (e.g., <span class=\'gradient-text\'>)', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) => setAttributes( { subtitle: v } ) }
 						/>
 					</PanelBody>
 
-					<PanelBody title="Call to Action" initialOpen={ false }>
+					<PanelBody title={ __( 'Call to Action', 'brndle' ) } initialOpen={ false }>
 						<TextControl
-							label="Primary Button Text"
+							label={ __( 'Primary Button Text', 'brndle' ) }
 							value={ attributes.cta_primary }
 							onChange={ ( v ) => setAttributes( { cta_primary: v } ) }
 						/>
 						<TextControl
-							label="Primary Button URL"
+							label={ __( 'Primary Button URL', 'brndle' ) }
 							value={ attributes.cta_primary_url }
 							onChange={ ( v ) =>
 								setAttributes( { cta_primary_url: v } )
 							}
 						/>
 						<TextControl
-							label="Secondary Button Text"
+							label={ __( 'Secondary Button Text', 'brndle' ) }
 							value={ attributes.cta_secondary }
 							onChange={ ( v ) =>
 								setAttributes( { cta_secondary: v } )
 							}
 						/>
 						<TextControl
-							label="Secondary Button URL"
+							label={ __( 'Secondary Button URL', 'brndle' ) }
 							value={ attributes.cta_secondary_url }
 							onChange={ ( v ) =>
 								setAttributes( { cta_secondary_url: v } )
@@ -72,27 +73,27 @@ registerBlockType( 'brndle/hero', {
 						/>
 					</PanelBody>
 
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<TextControl
-							label="Image URL"
+							label={ __( 'Image URL', 'brndle' ) }
 							value={ attributes.image }
 							onChange={ ( v ) => setAttributes( { image: v } ) }
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Dark', value: 'dark' },
-								{ label: 'Light', value: 'light' },
-								{ label: 'Gradient', value: 'gradient' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Gradient', 'brndle' ), value: 'gradient' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
 					</PanelBody>
 
-					<PanelBody title="Logo Strip" initialOpen={ false }>
+					<PanelBody title={ __( 'Logo Strip', 'brndle' ) } initialOpen={ false }>
 						<TextareaControl
-							label="Logos"
+							label={ __( 'Logos', 'brndle' ) }
 							value={ ( attributes.logos || [] ).join( '\n' ) }
 							onChange={ ( v ) =>
 								setAttributes( {
@@ -101,7 +102,7 @@ registerBlockType( 'brndle/hero', {
 										.filter( ( l ) => l.trim() ),
 								} )
 							}
-							help="One company name per line"
+							help={ __( 'One company name per line', 'brndle' ) }
 						/>
 					</PanelBody>
 				</InspectorControls>

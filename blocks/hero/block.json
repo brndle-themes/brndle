@@ -23,5 +23,17 @@
     "align": ["full"],
     "html": false,
     "anchor": true
+  },
+  "example": {
+    "attributes": {
+      "eyebrow": "New release",
+      "title": "Build sites that just work.",
+      "subtitle": "An enterprise-grade theme with AI-powered landing pages, server-rendered blocks, and a Lighthouse-100 baseline.",
+      "cta_primary": "Start free trial",
+      "cta_primary_url": "#",
+      "cta_secondary": "View demo",
+      "cta_secondary_url": "#",
+      "variant": "dark"
+    }
   }
 }

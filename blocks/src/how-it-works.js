@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -47,38 +48,38 @@ registerBlockType( 'brndle/how-it-works', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) => setAttributes( { eyebrow: v } ) }
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 						<TextareaControl
-							label="Subtitle"
+							label={ __( 'Subtitle', 'brndle' ) }
 							value={ attributes.subtitle }
 							onChange={ ( v ) => setAttributes( { subtitle: v } ) }
 						/>
 						<SelectControl
-							label="Layout"
+							label={ __( 'Layout', 'brndle' ) }
 							value={ attributes.layout }
 							options={ [
-								{ label: 'Horizontal (cards)', value: 'horizontal' },
-								{ label: 'Vertical (timeline)', value: 'vertical' },
+								{ label: __( 'Horizontal (cards)', 'brndle' ), value: 'horizontal' },
+								{ label: __( 'Vertical (timeline)', 'brndle' ), value: 'vertical' },
 							] }
 							onChange={ ( v ) => setAttributes( { layout: v } ) }
 						/>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
@@ -92,35 +93,35 @@ registerBlockType( 'brndle/how-it-works', {
 							initialOpen={ false }
 						>
 							<TextControl
-								label="Title"
+								label={ __( 'Title', 'brndle' ) }
 								value={ step.title }
 								onChange={ ( v ) => updateStep( i, 'title', v ) }
 							/>
 							<TextareaControl
-								label="Description"
+								label={ __( 'Description', 'brndle' ) }
 								value={ step.description }
 								onChange={ ( v ) =>
 									updateStep( i, 'description', v )
 								}
 							/>
 							<TextControl
-								label="Icon (emoji or text)"
+								label={ __( 'Icon (emoji or text)', 'brndle' ) }
 								value={ step.icon }
 								onChange={ ( v ) => updateStep( i, 'icon', v ) }
-								help="Leave empty to show step number"
+								help={ __( 'Leave empty to show step number', 'brndle' ) }
 							/>
 							<Button
 								isDestructive
 								isSmall
 								onClick={ () => removeStep( i ) }
 							>
-								Remove Step
+								{ __( 'Remove Step', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
-					<PanelBody title="Add Step" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Step', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addStep }>
-							Add Step
+							{ __( 'Add Step', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

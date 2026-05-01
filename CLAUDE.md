@@ -21,7 +21,7 @@ app/Providers/         — Service providers (Theme, Block, Settings)
 app/View/Composers/    — Blade data injection (App, Post, Theme)
 app/Compatibility/     — Plugin compat (Yoast, WooCommerce, WPML)
 app/Onboarding/        — Setup notice + starter content
-blocks/                — block.json definitions (8 blocks)
+blocks/                — block.json definitions (14 blocks)
 blocks/src/            — Block editor JS (React)
 resources/views/       — Blade templates
 admin/src/             — React admin panel (9 tabs)
@@ -44,6 +44,11 @@ admin/src/             — React admin panel (9 tabs)
 - Block Blade views live in `resources/views/blocks/` (NOT in `blocks/*/`)
 - Editor scripts in `blocks/src/` use `ServerSideRender` + `InspectorControls`
 - `save: () => null` for all blocks (server-side rendered)
+- All blocks at `apiVersion: 3` (WP 6.9+ iframe-editor compatible)
+- Editor JSX strings use `__('...', 'brndle')` and `wp_set_script_translations()` is called in `BlockServiceProvider`
+- Each `block.json` includes an `example` for inserter previews
+- FAQ block emits `FAQPage` JSON-LD schema for SEO
+- Hover/animation utilities use Tailwind's `motion-reduce:` variant; a global `prefers-reduced-motion` rule in `app.css` neutralises transitions inside any `wp-block-brndle-*` block
 
 ### Settings
 - All settings in `wp_options` key `brndle_settings`
@@ -73,7 +78,7 @@ npm run blocks:build   # Block editor scripts
 - **5 archive layouts**: grid, list, magazine, editorial, minimal
 - **8 single post layouts**: standard, hero-immersive, sidebar, editorial, cinematic, presentation, split, minimal-dark
 - **4 page templates**: default, template-landing, template-canvas, template-transparent
-- **8 custom blocks**: hero, stats, features, testimonials, pricing, cta, faq, logos
+- **14 custom blocks**: hero, stats, features, testimonials, pricing, cta, faq, logos, content-image-split, how-it-works, lead-form, comparison-table, team, video-embed
 - **12 color schemes**: sapphire, indigo, cobalt, trust, commerce, signal, coral, aubergine, midnight, stone, carbon, neutral
 - **8 font pairs**: system, inter, geist, plex, dm-sans, editorial, magazine, humanist
 

@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -50,19 +51,19 @@ registerBlockType( 'brndle/testimonials', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Section Header" initialOpen={ true }>
+					<PanelBody title={ __( 'Section Header', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Eyebrow"
+							label={ __( 'Eyebrow', 'brndle' ) }
 							value={ attributes.eyebrow }
 							onChange={ ( v ) =>
 								setAttributes( { eyebrow: v } )
 							}
 						/>
 						<TextareaControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
-							help="Supports HTML for styling"
+							help={ __( 'Supports HTML for styling', 'brndle' ) }
 						/>
 					</PanelBody>
 
@@ -75,35 +76,35 @@ registerBlockType( 'brndle/testimonials', {
 							initialOpen={ false }
 						>
 							<TextareaControl
-								label="Quote"
+								label={ __( 'Quote', 'brndle' ) }
 								value={ item.quote }
 								onChange={ ( v ) =>
 									updateItem( i, 'quote', v )
 								}
 							/>
 							<TextControl
-								label="Name"
+								label={ __( 'Name', 'brndle' ) }
 								value={ item.name }
 								onChange={ ( v ) =>
 									updateItem( i, 'name', v )
 								}
 							/>
 							<TextControl
-								label="Role"
+								label={ __( 'Role', 'brndle' ) }
 								value={ item.role }
 								onChange={ ( v ) =>
 									updateItem( i, 'role', v )
 								}
 							/>
 							<TextControl
-								label="Avatar URL"
+								label={ __( 'Avatar URL', 'brndle' ) }
 								value={ item.avatar }
 								onChange={ ( v ) =>
 									updateItem( i, 'avatar', v )
 								}
 							/>
 							<RangeControl
-								label="Stars"
+								label={ __( 'Stars', 'brndle' ) }
 								value={ item.stars ?? 5 }
 								onChange={ ( v ) =>
 									updateItem( i, 'stars', v )
@@ -116,14 +117,14 @@ registerBlockType( 'brndle/testimonials', {
 								isSmall
 								onClick={ () => removeItem( i ) }
 							>
-								Remove Testimonial
+								{ __( 'Remove Testimonial', 'brndle' ) }
 							</Button>
 						</PanelBody>
 					) ) }
 
-					<PanelBody title="Add Testimonial" initialOpen={ true }>
+					<PanelBody title={ __( 'Add Testimonial', 'brndle' ) } initialOpen={ true }>
 						<Button variant="secondary" onClick={ addItem }>
-							Add Testimonial
+							{ __( 'Add Testimonial', 'brndle' ) }
 						</Button>
 					</PanelBody>
 				</InspectorControls>

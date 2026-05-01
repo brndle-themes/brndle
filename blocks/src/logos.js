@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -23,14 +24,14 @@ registerBlockType( 'brndle/logos', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="Content" initialOpen={ true }>
+					<PanelBody title={ __( 'Content', 'brndle' ) } initialOpen={ true }>
 						<TextControl
-							label="Title"
+							label={ __( 'Title', 'brndle' ) }
 							value={ attributes.title }
 							onChange={ ( v ) => setAttributes( { title: v } ) }
 						/>
 						<TextareaControl
-							label="Companies"
+							label={ __( 'Companies', 'brndle' ) }
 							value={ ( attributes.companies || [] )
 								.map( ( c ) =>
 									typeof c === 'string' ? c : c.name || ''
@@ -43,17 +44,17 @@ registerBlockType( 'brndle/logos', {
 										.filter( ( l ) => l.trim() ),
 								} )
 							}
-							help="One company name per line"
+							help={ __( 'One company name per line', 'brndle' ) }
 						/>
 					</PanelBody>
 
-					<PanelBody title="Settings" initialOpen={ false }>
+					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<SelectControl
-							label="Variant"
+							label={ __( 'Variant', 'brndle' ) }
 							value={ attributes.variant }
 							options={ [
-								{ label: 'Light', value: 'light' },
-								{ label: 'Dark', value: 'dark' },
+								{ label: __( 'Light', 'brndle' ), value: 'light' },
+								{ label: __( 'Dark', 'brndle' ), value: 'dark' },
 							] }
 							onChange={ ( v ) => setAttributes( { variant: v } ) }
 						/>
