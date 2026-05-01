@@ -9,6 +9,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { ImageControl } from './components/image-control';
 
 registerBlockType( 'brndle/team', {
 	icon: (
@@ -128,12 +129,25 @@ registerBlockType( 'brndle/team', {
 									updateMember( i, 'bio', v )
 								}
 							/>
-							<TextControl
-								label={ __( 'Photo URL', 'brndle' ) }
-								value={ member.photo }
-								onChange={ ( v ) =>
-									updateMember( i, 'photo', v )
-								}
+							<ImageControl
+								label={ __( 'Photo', 'brndle' ) }
+								image={ member.photo }
+								imageId={ member.photo_id }
+								imageAlt={ member.photo_alt || member.name }
+								onChange={ ( {
+									image,
+									imageId,
+									imageAlt,
+								} ) => {
+									const newMembers = [ ...members ];
+									newMembers[ i ] = {
+										...newMembers[ i ],
+										photo: image,
+										photo_id: imageId,
+										photo_alt: imageAlt,
+									};
+									setAttributes( { members: newMembers } );
+								} }
 							/>
 							<TextControl
 								label={ __( 'LinkedIn URL', 'brndle' ) }
