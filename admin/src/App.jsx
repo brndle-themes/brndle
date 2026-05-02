@@ -9,6 +9,7 @@ import Typography from './tabs/Typography';
 import Header from './tabs/Header';
 import Footer from './tabs/Footer';
 import BlogArchive from './tabs/BlogArchive';
+import BlogHomepage from './tabs/BlogHomepage';
 import SinglePost from './tabs/SinglePost';
 import Performance from './tabs/Performance';
 import Forms from './tabs/Forms';
@@ -21,6 +22,7 @@ const TAB_CONFIG = [
 	{ name: 'header', title: 'Header', Component: Header },
 	{ name: 'footer', title: 'Footer', Component: Footer },
 	{ name: 'blog-archive', title: 'Blog Archive', Component: BlogArchive },
+	{ name: 'blog-homepage', title: 'Blog Homepage', Component: BlogHomepage },
 	{ name: 'single-post', title: 'Single Post', Component: SinglePost },
 	{ name: 'performance', title: 'Performance', Component: Performance },
 	{ name: 'forms', title: 'Forms', Component: Forms },

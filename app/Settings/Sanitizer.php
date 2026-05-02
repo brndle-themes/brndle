@@ -24,6 +24,10 @@ class Sanitizer
      */
     public static function sanitize(string $key, mixed $value): mixed
     {
+        if ($key === 'homepage_sections') {
+            return self::sanitizeHomepageSections($value);
+        }
+
         return match (true) {
             in_array($key, Defaults::colorKeys(), true) => self::sanitizeColor($value),
             in_array($key, Defaults::urlKeys(), true) => self::sanitizeUrl($value),
@@ -194,5 +198,54 @@ class Sanitizer
         }
 
         return sanitize_text_field($value);
+    }
+
+    /**
+     * Sanitize the homepage_sections array.
+     *
+     * Each section is `{category_id:int, style:string, count:int,
+     * show_title:bool, show_view_all:bool}`. Unknown styles fall back
+     * to grid-3col. Counts are clamped 1..10. Order is preserved (the
+     * sections render top-to-bottom).
+     *
+     * @param  mixed  $value
+     * @return array<int, array{category_id:int,style:string,count:int,show_title:bool,show_view_all:bool}>
+     */
+    private static function sanitizeHomepageSections(mixed $value): array
+    {
+        if (! is_array($value)) {
+            return [];
+        }
+
+        $allowedStyles = Defaults::homepageSectionStyles();
+        $sanitized = [];
+
+        // Hard cap at 12 sections. Each section issues its own SELECT
+        // on the homepage; without this guard a misconfigured list could
+        // explode into 100+ queries per pageview on a high-traffic blog.
+        // Twelve is plenty for a magazine homepage and matches the
+        // render-time guard in resources/views/partials/archive/sections.blade.php.
+        $rows = array_slice(array_values($value), 0, 12);
+
+        foreach ($rows as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+
+            $style = (string) ($row['style'] ?? 'grid-3col');
+            if (! in_array($style, $allowedStyles, true)) {
+                $style = 'grid-3col';
+            }
+
+            $sanitized[] = [
+                'category_id'   => absint($row['category_id'] ?? 0),
+                'style'         => $style,
+                'count'         => max(1, min(10, absint($row['count'] ?? 4))),
+                'show_title'    => ! empty($row['show_title']),
+                'show_view_all' => ! empty($row['show_view_all']),
+            ];
+        }
+
+        return $sanitized;
     }
 }

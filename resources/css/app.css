@@ -353,6 +353,118 @@ html {
 }
 
 /* ========================================================================
+   Blog Homepage Sections (1.5.0+)
+
+   Each section is wrapped in `.brndle-homepage-section` so the layout can
+   space sections consistently and add the magazine-style numbered kicker.
+
+   1.5.4: dropped the alternating background tint — on dark themes the
+   tint read as a contained "card-within-card" rather than a flow break,
+   and on light it added visual weight without earning its keep. The
+   differentiation now comes from the layout style of each section, the
+   numbered kicker (01 / 02 / ...), and a hairline divider between
+   blocks. Background stays transparent so each section sits flush on
+   the page.
+   ======================================================================== */
+
+.brndle-homepage-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.brndle-homepage-section {
+  position: relative;
+  padding: 4rem 0;
+}
+
+.brndle-homepage-section.is-first {
+  padding-top: 1rem;
+}
+
+.brndle-homepage-section + .brndle-homepage-section {
+  border-top: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+}
+
+/* The kicker (01, 02, ...) sits inline with the heading. Larger, monospaced
+   feel via tabular-nums + heavier weight for that magazine masthead vibe. */
+.brndle-section-kicker {
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--color-accent) 50%, var(--color-text-tertiary));
+}
+
+/* Ticker (horizontal scroll) — hide native scrollbar, show arrow buttons.
+   The visible scrollbar at the bottom of the section read as visual noise
+   on the magazine homepage. Touch / trackpad swipe still scrolls; mouse
+   users get the overlay arrow buttons (vanilla JS controller in
+   resources/js/sections-ticker.js). Buttons are skipped when matchMedia
+   reports a touch-primary device (no hover) so they do not steal viewport
+   on phones. */
+.brndle-ticker__track {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / old Edge */
+}
+.brndle-ticker__track::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+  width: 0;
+  height: 0;
+}
+
+.brndle-ticker__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 25%, transparent);
+  background: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  transition: transform 200ms ease, opacity 200ms ease, background 200ms ease;
+}
+
+.brndle-ticker__btn:hover {
+  background: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.brndle-ticker__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.brndle-ticker__btn--prev { left: 0.5rem; }
+.brndle-ticker__btn--next { right: 0.5rem; }
+
+@media (hover: none) {
+  /* Touch-primary devices: hide arrows, swipe is the affordance. */
+  .brndle-ticker__btn { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brndle-ticker__btn { transition: none; }
+  .brndle-ticker__track { scroll-behavior: auto; }
+}
+
+@media (max-width: 640px) {
+  .brndle-homepage-section {
+    padding: 2.5rem 0;
+  }
+
+  .brndle-homepage-section.is-first {
+    padding-top: 0.5rem;
+  }
+}
+
+/* ========================================================================
    Scroll-driven Reveal Animations
    ======================================================================== */
 
