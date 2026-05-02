@@ -3,7 +3,17 @@
   // Fixed mode (toggle off): theme is whatever the admin picked — no JS, no localStorage read, always wipe stale prefs.
   $toggleDriven = (bool) ($showDarkModeToggle ?? false);
   $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
-  $viteEntries = ['resources/css/app.css'];
+
+  $criticalCssEnabled = (bool) \Brndle\Settings\Settings::get('perf_critical_css', false);
+  $criticalCss = '';
+  if ($criticalCssEnabled) {
+    $criticalCss = (string) @file_get_contents(get_theme_file_path('resources/css/critical.css'));
+  }
+
+  // When critical CSS is on we emit `<link rel=preload>` for app.css ourselves
+  // and swap to `rel=stylesheet` after load — so we drop it from the @vite
+  // call to avoid a duplicate render-blocking <link>.
+  $viteEntries = $criticalCssEnabled ? [] : ['resources/css/app.css'];
   if ($toggleDriven) {
     $viteEntries[] = 'resources/js/dark-mode.js';
   }
@@ -25,6 +35,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
+
+    @if ($criticalCssEnabled && $criticalCss !== '')
+      {{-- Inline critical CSS so the first paint isn't render-blocked. --}}
+      <style id="brndle-critical">{!! $criticalCss !!}</style>
+      {{-- Preload the full app.css and swap to a stylesheet once it's
+           loaded. The noscript fallback covers users with JS disabled. --}}
+      <link rel="preload" as="style" href="{{ \Illuminate\Support\Facades\Vite::asset('resources/css/app.css') }}" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="{{ \Illuminate\Support\Facades\Vite::asset('resources/css/app.css') }}"></noscript>
+    @endif
 
     @vite($viteEntries)
   </head>

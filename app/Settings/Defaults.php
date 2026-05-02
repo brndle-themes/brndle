@@ -79,6 +79,7 @@ class Defaults
             'perf_preload_fonts' => true,
             'perf_remove_global_styles' => false,
             'perf_view_transitions' => false,
+            'perf_critical_css' => false,
 
             // ── Forms & Integrations ───────────────────────────
             'mailchimp_api_key'        => '',
@@ -130,6 +131,7 @@ class Defaults
             'perf_preload_fonts',
             'perf_remove_global_styles',
             'perf_view_transitions',
+            'perf_critical_css',
             'form_store_submissions',
             'form_email_notifications',
         ];
