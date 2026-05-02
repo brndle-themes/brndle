@@ -258,30 +258,37 @@ class Settings
     /**
      * Run version-based migrations on saved settings.
      *
-     * Each migration bumps the `_version` key. Migrations run
-     * sequentially from the saved version to the current VERSION.
+     * Iterates `Migrations::all()` in ascending version order and applies
+     * any migration whose target is greater than the saved `_version`.
+     * The `_version` key is bumped after each successful migration so a
+     * partial run can resume cleanly. Result is persisted exactly once
+     * if anything changed; idempotent otherwise.
      *
      * @param  array<string, mixed>  $saved  Raw saved settings.
      * @return array<string, mixed>          Migrated settings.
      */
     public static function migrate(array $saved): array
     {
-        $version = (int) ($saved['_version'] ?? 0);
-
-        if ($version >= self::VERSION) {
+        $current = (int) ($saved['_version'] ?? 0);
+        if ($current >= self::VERSION) {
             return $saved;
         }
 
-        // ── Migration 0 → 1: Initial schema ────────────────
-        if ($version < 1) {
-            $saved['_version'] = 1;
+        $migrations = Migrations::all();
+        ksort($migrations);
 
-            // Future migration logic goes here.
-            // Example: rename deprecated keys, convert types, etc.
+        $changed = false;
+        foreach ($migrations as $target => $migration) {
+            if ($current >= $target) {
+                continue;
+            }
+            $saved = $migration($saved);
+            $saved['_version'] = $target;
+            $current = $target;
+            $changed = true;
         }
 
-        // Persist migration result so it does not run again.
-        if ($version !== ($saved['_version'] ?? 0)) {
+        if ($changed) {
             update_option(self::OPTION_KEY, $saved, false);
         }
 
