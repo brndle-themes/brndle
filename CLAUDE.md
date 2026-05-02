@@ -33,6 +33,7 @@ admin/src/             — React admin panel (9 tabs)
 - Use `@php(function())` for single-line PHP calls
 - Use `@php ... @endphp` for multi-line blocks
 - NEVER use `@php function() @endphp` on a single line — it breaks Blade compilation
+- Avoid `@php($expr)` when `$expr` contains `===` or other operators with `=` — the Acorn compiler emits malformed PHP for those (bit us on comparison-table.blade.php). Use the multi-line `@php ... @endphp` block instead
 
 ### CSS Colors
 - Use Tailwind theme utility names: `bg-surface-primary`, `text-text-primary`, `text-accent`
@@ -40,15 +41,20 @@ admin/src/             — React admin panel (9 tabs)
 - For dark sections with `bg-surface-inverse`, use explicit `text-white`, `text-white/60` — NOT `text-text-secondary`
 
 ### Block Development
-- Blocks render server-side via `render_callback` in BlockServiceProvider
+- Blocks render server-side via `render_callback` in `BlockServiceProvider`
 - Block Blade views live in `resources/views/blocks/` (NOT in `blocks/*/`)
 - Editor scripts in `blocks/src/` use `ServerSideRender` + `InspectorControls`
 - `save: () => null` for all blocks (server-side rendered)
 - All blocks at `apiVersion: 3` (WP 6.9+ iframe-editor compatible)
 - Editor JSX strings use `__('...', 'brndle')` and `wp_set_script_translations()` is called in `BlockServiceProvider`
-- Each `block.json` includes an `example` for inserter previews
+- Block icons import from `@wordpress/icons` (not inline `<svg>`); see `blocks/src/*.js` for the per-block mapping
+- Each `block.json` carries an `example` for inserter previews and a `version` field
+- For image inputs, use the shared `<ImageControl>` from `./components/image-control` (MediaUpload + URL fallback + alt text). Store as `*_id` (number) + `*_alt` (string) alongside the existing URL string attribute
 - FAQ block emits `FAQPage` JSON-LD schema for SEO
-- Hover/animation utilities use Tailwind's `motion-reduce:` variant; a global `prefers-reduced-motion` rule in `app.css` neutralises transitions inside any `wp-block-brndle-*` block
+- Hero exposes Dark / Light / Gradient as `variations` in `block.json`
+- Lead form's submit JS lives in `blocks/src/lead-form-view.js` (registered as `brndle-lead-form-view`, lazily enqueued from the render callback)
+- The compiled frontend `app.css` is enqueued inside the block editor iframe via `enqueue_block_assets` (gated on `is_admin()`) so Tailwind utilities + `.brndle-section-*` rules resolve in the canvas
+- Hover/animation utilities use Tailwind's `motion-reduce:` variant; a global `prefers-reduced-motion` rule in `app.css` neutralises transitions inside `.brndle-section-dark`, `.brndle-section-gradient`, and any `main > section[class*="brndle-"]` (Blade renders its own `<section>` so core's `.wp-block-brndle-*` wrapper class is never present)
 
 ### Settings
 - All settings in `wp_options` key `brndle_settings`
@@ -84,11 +90,38 @@ npm run blocks:build   # Block editor scripts
 
 ## Cache
 
-After modifying Blade templates, clear the compiled view cache:
+After modifying Blade templates, clear the compiled view cache. The path is
+relative to the WordPress install root (`app/public/`), not the theme dir:
+
 ```bash
-rm -rf wp-content/cache/acorn/framework/views/*
+rm -rf /Users/varundubey/Local\ Sites/elementor/app/public/wp-content/cache/acorn/framework/views/*.php
 ```
+
+Or from the theme directory: `rm -rf ../../cache/acorn/framework/views/*.php`
+
 Do NOT delete the parent `cache/acorn/` directory — Acorn needs it to exist.
+
+## Releases
+
+The release script lives at `bin/release.sh`. Bump `Version:` in `style.css`
+and `Stable tag:` + Changelog in `readme.txt`, commit + merge to `main`, then:
+
+```bash
+./bin/release.sh 1.x.y
+git tag -a v1.x.y origin/main -m "..."
+git push origin v1.x.y
+gh release create v1.x.y brndle-1.x.y.zip --title "v1.x.y — ..." --notes "..."
+```
+
+The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
+--delete-branch` to land work; `gh pr merge` uses the API and is allowed.
+
+## Recent Changes
+
+| Version | Date | Highlights |
+|---------|------|------------|
+| 1.3.0 | 2026-05-02 | Block quality pass — editor canvas styles, MediaUpload picker, FAQ JSON-LD, hero variations, i18n, lead-form view script, `@wordpress/icons`, wp-scripts v32, comparison-table compile fix |
+| 1.2.4 | 2026-04-14 | Logo strip visibility, FAQ focus outline, post nav entity encoding, dark-mode toggle state machine |
 
 ## Skills
 
