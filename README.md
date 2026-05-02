@@ -48,13 +48,14 @@ Settings panel at **Brndle** in the WP admin sidebar with tabs:
 
 - **Site Identity** — Logo (light/dark), social links
 - **Colors** — 12 presets + custom accent color
-- **Dark Mode** — Toggle on/off, position, default mode
-- **Typography** — 8 font pairs, base size, heading scale
+- **Dark Mode** — Toggle on/off, position, default mode (light/dark/system)
+- **Typography** — 8 font pairs, base size, heading scale (drives `--font-size-base` + `--text-h1`…`--text-h6` ramp)
 - **Header** — 8 styles, CTA button, mobile menu, announcement banner
 - **Footer** — 6 styles, copyright, column menus, social links
 - **Blog Archive** — Layout, posts per page, sidebar, category filter
 - **Single Post** — Layout, progress bar, reading time, author box, related posts, TOC
 - **Performance** — Remove emoji/embed scripts, lazy images, preload fonts
+- **Forms** — Mailchimp passthrough, REST webhook URL, notification email, store / email toggles
 
 All settings accessible via REST API at `brndle/v1/settings` (GET/POST/DELETE) with import/export.
 
@@ -129,7 +130,7 @@ brndle/
 │   ├── View/Composers/    # App, Post, Theme (Blade data injection)
 │   ├── setup.php          # Theme setup, nav menus, image sizes
 │   └── filters.php        # WordPress filters
-├── admin/src/             # React admin settings panel (9 tabs)
+├── admin/src/             # React admin settings panel (10 tabs)
 ├── blocks/                # block.json definitions (14 blocks)
 ├── blocks/src/            # Block editor JS (ServerSideRender + InspectorControls)
 ├── resources/
