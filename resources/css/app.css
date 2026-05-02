@@ -127,9 +127,7 @@ html {
 
 /* Heading scale ramp — exposes a 6-step type ramp computed from the admin
    Typography → Heading Scale Ratio (1.10–1.50). Available as
-   `var(--text-h1)` … `var(--text-h6)` in templates and custom CSS for
-   opt-in usage; nothing is auto-applied so Tailwind `text-*` utilities on
-   block markup keep their explicit sizes. */
+   `var(--text-h1)` … `var(--text-h6)` in templates and custom CSS. */
 :root {
   --text-h6: 1rem;
   --text-h5: calc(var(--text-h6) * var(--heading-scale, 1.25));
@@ -138,6 +136,21 @@ html {
   --text-h2: calc(var(--text-h3) * var(--heading-scale, 1.25));
   --text-h1: calc(var(--text-h2) * var(--heading-scale, 1.25));
 }
+
+/* Apply the ramp to prose content (Tailwind typography plugin output:
+   article bodies, single-post content, anything wrapped in `.prose`).
+   This is the long-tail blog content where heading-scale should "just
+   work" — moving the admin slider visibly rescales h1–h6 here. Block
+   markup (hero, features, etc.) intentionally keeps its explicit
+   Tailwind sizes via `text-[clamp(...)]` because those are design-intent
+   not body-flow defaults; the ramp won't reach them because the
+   `.prose` class is scoped to content output only. */
+.prose h1 { font-size: var(--text-h1); }
+.prose h2 { font-size: var(--text-h2); }
+.prose h3 { font-size: var(--text-h3); }
+.prose h4 { font-size: var(--text-h4); }
+.prose h5 { font-size: var(--text-h5); }
+.prose h6 { font-size: var(--text-h6); }
 
 /* color-scheme hint — lets the UA theme scrollbars and form controls. The
    actual palette variables are injected inline by Settings::cssVariables()
