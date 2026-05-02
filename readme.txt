@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.3.3
+Stable tag: 1.4.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,14 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.4.0 =
+* Improvement: View Transitions and Critical CSS now default to ON for fresh installs and any site that hasn't yet opened the admin Performance tab. Brndle is primarily used for pages and blogs — soft-navigation between articles and faster first paint on landing pages are exactly the wins those sites need. Existing sites that already saved their settings keep their explicit values; the flip only affects new / never-touched installs. Both features remain admin-toggleable and respect `prefers-reduced-motion`.
+* Improvement: Block attribute deprecation registry (`Brndle\Blocks\AttributeMigrations`) wired into every render callback. Sets the structural pattern needed to drop legacy attribute branches in Blade templates after future schema changes — same idempotent-function-per-version model as the settings migration registry from 1.3.3.
+* Improvement: Settings schema metadata (`Defaults::schema()`) describes section / label / control / range for all 45 settings. Foundation for the future schema-driven admin UI; today the existing tabs ship unchanged. The settings consistency CI now also asserts every key has matching schema metadata.
+* New: `bin/check-blade-compile.php` — pure-PHP dry-run that compiles every Blade template through Acorn's BladeCompiler and runs `token_get_all($source, TOKEN_PARSE)` on the output. Catches the comparison-table-bug class (compiler emits malformed PHP). Fixed six latent issues on first run: 5 unescaped CSS at-rules in inline `<style>` blocks (`@keyframes`, `@media` → `@@keyframes`, `@@media`) and the `<html @php(language_attributes())>` Blade-regex collision in 5 layouts (now raw `<?php language_attributes(); ?>`).
+* New: `tests/e2e/journey.spec.js` — Playwright integration test (`npm run test:e2e`) covering frontend perf head tags, palette swap, LCP preload, admin settings, REST endpoint. Caught a real frontend regression on first run — `.brndle-section-dark <h1>` was rendering dark in light-mode sessions because Tailwind preflight broke inheritance. Fix shipped: explicit `color: inherit` rule.
+* New: GitHub Actions workflow templates (`bin/github-actions/upstream-check.yml`, `release.yml`) ready for one-`cp` install — handles Mondays-09:00-UTC upstream drift tracking and manual workflow_dispatch version bumps.
 
 = 1.3.3 =
 * New: `<x-img>` Blade component with AVIF / WebP `<picture>` wrapper. Detects sibling `*.avif` / `*.webp` files next to local uploads and emits matching `<source>` elements; falls back to a plain `<img>` for external URLs or when no variant is on disk. Width / height / fetchpriority / loading flow through one `priority` prop. Adopted across hero, content-image-split, team, testimonials, and logos blocks — sites that already produce modern image variants serve them automatically.
@@ -96,6 +104,9 @@ No build tools required for end users — the release zip ships compiled assets.
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.4.0 =
+View Transitions and Critical CSS default to ON for fresh installs and never-saved settings — the flip is a no-op for existing sites that have already saved settings. To opt out on a fresh install, set `perf_view_transitions = false` and `perf_critical_css = false` from admin Brndle → Performance. Both features respect `prefers-reduced-motion` and fall back gracefully on unsupported browsers. Also bundles the structural plumbing shipped between 1.3.3 and 1.4.0 (block attribute migration registry, settings schema metadata, Blade compile dry-run script, Playwright E2E journey, workflow templates).
 
 = 1.3.3 =
 Adds AVIF / WebP `<picture>` wrapper across every block image, opt-in View Transitions for SPA-feel navigation, opt-in critical CSS to remove render-blocking on first paint, and Lucide icons for frontend Blade. Also lands the structural settings-migration registry needed for any future schema rename. All new features are off by default; turn them on from admin Performance.
