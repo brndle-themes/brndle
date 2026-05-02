@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run fonts:copy && vite build",
+    "build": "npm run fonts:copy && npm run icons:copy && vite build",
+    "icons:copy": "node bin/copy-lucide-icons.mjs",
     "fonts:copy": "node -e \"const fs=require('fs');const p=require('path');const d='public/fonts';fs.mkdirSync(d,{recursive:true});const fonts=[['@fontsource-variable/inter','inter-latin-wght-normal.woff2'],['@fontsource-variable/dm-sans','dm-sans-latin-wght-normal.woff2'],['@fontsource-variable/playfair-display','playfair-display-latin-wght-normal.woff2'],['@fontsource-variable/source-serif-4','source-serif-4-latin-wght-normal.woff2'],['@fontsource-variable/fraunces','fraunces-latin-wght-normal.woff2'],['@fontsource-variable/libre-franklin','libre-franklin-latin-wght-normal.woff2'],['@fontsource-variable/source-sans-3','source-sans-3-latin-wght-normal.woff2']];fonts.forEach(([pkg,f])=>fs.copyFileSync(p.join('node_modules',pkg,'files',f),p.join(d,f)));['400','500','600','700'].forEach(w=>{['ibm-plex-sans','merriweather','geist-sans'].forEach(f=>{const s=p.join('node_modules','@fontsource',f,'files',f+'-latin-'+w+'-normal.woff2');if(fs.existsSync(s))fs.copyFileSync(s,p.join(d,f+'-latin-'+w+'-normal.woff2'))})});console.log('Fonts copied to public/fonts/')\"",
     "admin:build": "wp-scripts build --webpack-src-dir=admin/src --output-path=admin/build --config=admin/webpack.config.cjs",
     "admin:start": "wp-scripts start --webpack-src-dir=admin/src --output-path=admin/build --config=admin/webpack.config.cjs",
@@ -41,6 +42,8 @@
     "@fontsource/geist-sans": "^5.2.5",
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@fontsource/merriweather": "^5.2.11",
-    "@wordpress/icons": "^13.0.0"
+    "@wordpress/icons": "^13.0.0",
+    "lucide-react": "^1.14.0",
+    "lucide-static": "^1.14.0"
   }
 }
