@@ -17,6 +17,8 @@
 
 namespace Brndle\Providers;
 
+use Brndle\Settings\Settings;
+
 class PerformanceServiceProvider
 {
     /**
@@ -37,6 +39,7 @@ class PerformanceServiceProvider
         // but before any third-party plugin output.
         add_action('wp_head', [$this, 'outputSpeculationRules'], 4);
         add_action('wp_head', [$this, 'outputLcpImagePreload'], 3);
+        add_action('wp_head', [$this, 'outputIntegrationPreconnects'], 3);
     }
 
     /**
@@ -112,6 +115,81 @@ class PerformanceServiceProvider
             '<link rel="preload" as="image" href="%s" fetchpriority="high">' . "\n",
             esc_url($imageUrl)
         );
+    }
+
+    /**
+     * Emit `<link rel="preconnect">` for third-party origins the page is
+     * about to talk to. Only fires when the relevant block is actually
+     * present on the page AND the integration is configured — so a site
+     * that doesn't use Mailchimp never pays the DNS / TLS cost of
+     * advertising the connection.
+     *
+     * Today: Mailchimp's API host on pages with a `brndle/lead-form`
+     * block when `mailchimp_api_key` is set. Future integrations (Klaviyo,
+     * ConvertKit, etc.) can extend `INTEGRATION_PRECONNECTS` rather than
+     * touching this method.
+     */
+    public function outputIntegrationPreconnects(): void
+    {
+        if (is_admin() || is_feed() || ! is_singular()) {
+            return;
+        }
+        if (! apply_filters('brndle/perf/preconnects', true)) {
+            return;
+        }
+
+        $post = get_post();
+        if (! $post || ! has_blocks($post->post_content)) {
+            return;
+        }
+
+        $blocks = parse_blocks($post->post_content);
+
+        $origins = [];
+        if ($this->blockPresent($blocks, 'brndle/lead-form')) {
+            // Lead-form route uses the configured Mailchimp datacenter when
+            // the API key is set. The datacenter prefix is the trailing
+            // segment of the key after the dash (e.g. "us12").
+            $apiKey = (string) Settings::get('mailchimp_api_key', '');
+            if ($apiKey !== '' && str_contains($apiKey, '-')) {
+                $dc = substr($apiKey, strrpos($apiKey, '-') + 1);
+                if ($dc !== '' && preg_match('/^[a-z]{2}\d+$/', $dc)) {
+                    $origins[] = "https://{$dc}.api.mailchimp.com";
+                }
+            }
+        }
+
+        $origins = apply_filters('brndle/perf/preconnect_origins', array_values(array_unique($origins)));
+
+        foreach ($origins as $origin) {
+            printf(
+                '<link rel="preconnect" href="%s" crossorigin>' . "\n",
+                esc_url($origin)
+            );
+            // dns-prefetch is the legacy fallback for browsers that don't
+            // act on preconnect. Tiny enough to ship alongside.
+            printf('<link rel="dns-prefetch" href="%s">' . "\n", esc_url($origin));
+        }
+    }
+
+    /**
+     * Depth-first scan for the presence of a block by name. Returns true
+     * on the first match.
+     *
+     * @param  array<int, array<string, mixed>>  $blocks
+     */
+    private function blockPresent(array $blocks, string $name): bool
+    {
+        foreach ($blocks as $block) {
+            if (($block['blockName'] ?? null) === $name) {
+                return true;
+            }
+            if (! empty($block['innerBlocks']) && is_array($block['innerBlocks'])
+                && $this->blockPresent($block['innerBlocks'], $name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
