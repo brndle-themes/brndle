@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { people } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -12,14 +13,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 import { ImageControl } from './components/image-control';
 
 registerBlockType( 'brndle/team', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<circle cx="8" cy="7" r="3" />
-			<circle cx="16" cy="7" r="3" />
-			<path strokeLinecap="round" d="M2 20c0-3.314 2.686-6 6-6s6 2.686 6 6" />
-			<path strokeLinecap="round" d="M16 14c2 0 6 1 6 6" />
-		</svg>
-	),
+	icon: people,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

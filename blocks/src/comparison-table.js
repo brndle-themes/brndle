@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { table } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -11,12 +12,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/comparison-table', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="2" y="3" width="20" height="18" rx="1" />
-			<path d="M2 8h20M8 8v13" />
-		</svg>
-	),
+	icon: table,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

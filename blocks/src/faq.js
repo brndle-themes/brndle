@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { help } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -10,12 +11,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/faq', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<circle cx="12" cy="12" r="10" />
-			<path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" />
-		</svg>
-	),
+	icon: help,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { gallery } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -11,14 +12,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/features', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="3" y="3" width="8" height="8" rx="1" />
-			<rect x="13" y="3" width="8" height="8" rx="1" />
-			<rect x="3" y="13" width="8" height="8" rx="1" />
-			<rect x="13" y="13" width="8" height="8" rx="1" />
-		</svg>
-	),
+	icon: gallery,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

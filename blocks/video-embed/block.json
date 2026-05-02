@@ -5,22 +5,88 @@
   "title": "Video Embed",
   "category": "brndle-sections",
   "description": "Section wrapper for YouTube, Vimeo, or self-hosted video with optional headline.",
-  "keywords": ["video", "youtube", "vimeo", "embed", "media"],
+  "keywords": [
+    "video",
+    "youtube",
+    "vimeo",
+    "embed",
+    "media"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "video_url": { "type": "string", "default": "" },
-    "video_type": { "type": "string", "default": "youtube", "enum": ["youtube", "vimeo", "self"] },
-    "poster": { "type": "string", "default": "" },
-    "autoplay": { "type": "boolean", "default": false },
-    "show_controls": { "type": "boolean", "default": true },
-    "aspect_ratio": { "type": "string", "default": "16/9", "enum": ["16/9", "4/3", "1/1", "21/9"] },
-    "max_width": { "type": "string", "default": "full", "enum": ["full", "narrow", "medium"] },
-    "variant": { "type": "string", "default": "dark", "enum": ["light", "dark"] }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "video_url": {
+      "type": "string",
+      "default": ""
+    },
+    "video_type": {
+      "type": "string",
+      "default": "youtube",
+      "enum": [
+        "youtube",
+        "vimeo",
+        "self"
+      ]
+    },
+    "poster": {
+      "type": "string",
+      "default": ""
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "show_controls": {
+      "type": "boolean",
+      "default": true
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "default": "16/9",
+      "enum": [
+        "16/9",
+        "4/3",
+        "1/1",
+        "21/9"
+      ]
+    },
+    "max_width": {
+      "type": "string",
+      "default": "full",
+      "enum": [
+        "full",
+        "narrow",
+        "medium"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "default": "dark",
+      "enum": [
+        "light",
+        "dark"
+      ]
+    }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "eyebrow": "Watch",
@@ -32,5 +98,6 @@
       "max_width": "medium",
       "variant": "dark"
     }
-  }
+  },
+  "version": "1.0.0"
 }
