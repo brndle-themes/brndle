@@ -23,18 +23,24 @@ Built on [Sage](https://roots.io/sage/) + [Acorn](https://roots.io/acorn/) (Lara
 
 ### Landing Page Blocks
 
-8 custom Gutenberg blocks for building landing pages — all server-side rendered, zero JavaScript.
+14 custom Gutenberg blocks for building landing pages — all server-side rendered, all WP 6.9+ ready (`apiVersion: 3`).
 
 | Block | Description |
 |-------|-------------|
-| `brndle/hero` | Full-width hero with eyebrow, CTAs, product image, logo strip |
-| `brndle/stats` | Key metrics row (e.g. "100 Lighthouse Score", "0 KB JS") |
-| `brndle/features` | Alternating feature sections with images and bullet points |
-| `brndle/testimonials` | Customer testimonial cards with avatars and star ratings |
-| `brndle/pricing` | 2-3 column pricing table with featured plan highlighting |
-| `brndle/cta` | Call-to-action banner with primary/secondary buttons |
-| `brndle/faq` | Accessible accordion FAQ with ARIA attributes |
-| `brndle/logos` | Trust bar with company logos or text names |
+| `brndle/hero` | Full-width hero with eyebrow, CTAs, image (media picker), logo strip. Dark / Light / Gradient inserter variations. |
+| `brndle/stats` | Key metrics row (e.g. "100 Lighthouse Score", "0 KB JS"). |
+| `brndle/features` | Alternating feature rows with images and bullet points. |
+| `brndle/content-image-split` | Side-by-side content + media block with media-library picker. |
+| `brndle/how-it-works` | Numbered process steps, horizontal or vertical layout. |
+| `brndle/comparison-table` | Feature comparison grid with optional highlighted column. |
+| `brndle/pricing` | 2–3 column pricing table with featured-plan highlighting. |
+| `brndle/testimonials` | Customer testimonial cards with avatars (media picker) and star ratings. |
+| `brndle/team` | Team member cards with photo (media picker), role, bio, social links. |
+| `brndle/logos` | Trust bar with company logos (media picker) or text fallback. |
+| `brndle/video-embed` | YouTube / Vimeo / self-hosted video wrapper. |
+| `brndle/faq` | Accessible accordion FAQ with ARIA attributes — emits `FAQPage` JSON-LD. |
+| `brndle/cta` | Call-to-action banner with primary / secondary buttons. |
+| `brndle/lead-form` | Email-capture form with REST submission, aria-live status, Mailchimp passthrough. |
 
 ### Admin Panel
 
@@ -124,7 +130,7 @@ brndle/
 │   ├── setup.php          # Theme setup, nav menus, image sizes
 │   └── filters.php        # WordPress filters
 ├── admin/src/             # React admin settings panel (9 tabs)
-├── blocks/                # block.json definitions (8 blocks)
+├── blocks/                # block.json definitions (14 blocks)
 ├── blocks/src/            # Block editor JS (ServerSideRender + InspectorControls)
 ├── resources/
 │   ├── views/             # Blade templates
