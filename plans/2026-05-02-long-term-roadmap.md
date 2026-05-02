@@ -73,20 +73,40 @@ The 1.3.1 audit (43-key cross-reference, dead-setting hunt, dark-mode
 variant verification) was manual. None of it would catch a regression in
 1.4.0 unless someone runs the audit again. Long-term:
 
-  - **Settings consistency check** — script that asserts every
-    Defaults key has both an admin field and at least one consumer (PHP
-    grep + JSX scan). Run in CI on every PR.
-  - **Blade compile dry-run** — render every Blade template through
-    Acorn at build time. Would have caught the `comparison-table.blade
-    .php` `@php($expr)===` parser bug before merge.
-  - **Tailwind variant assertion** — when adding a new `dark:` utility
-    to source, fail CI if it doesn't appear in the compiled CSS under
-    the expected selector.
-  - **Visual regression** — Playwright screenshots per block + per
-    layout, diffed against a baseline.
+  - **Settings consistency check** — _**shipped**_ as
+    `bin/check-settings-consistency.mjs`. Asserts every `Defaults::all()`
+    key has matching entries in `Defaults::schema()`, in `admin/src/
+    tabs/*.jsx`, and in PHP / Blade consumers. Wired into
+    `.github/workflows/main.yml` in 1.3.2.
+  - **Blade compile dry-run** — _**shipped**_ as `bin/check-blade-
+    compile.php`. Compiles every template through Acorn's BladeCompiler,
+    then `token_get_all($source, TOKEN_PARSE)` on the output. Caught
+    six latent bugs on first run (5 `@media` / `@keyframes` escapes plus
+    the `<html @php(language_attributes())>` regex collision). The
+    workflow file install template lives in `bin/github-actions/`
+    pending the maintainer's manual `cp` (security hook still blocks
+    direct workflow writes).
+  - **Tailwind variant assertion** — _**deferred, not next.**_
+    The original concern is "did Tailwind generate the dark: rule
+    under the right selector?" 1.3.2's `@custom-variant dark` change
+    fixed the only known failure mode and the rule is asserted at
+    runtime by the dark-mode portion of the E2E journey. A
+    build-time check would also need to know which utilities the
+    project considers "must compile under the custom variant" —
+    that's a shape-of-data question we don't have an answer for yet.
+    Revisit when a second `dark:`-style custom variant gets added.
+  - **Visual regression** — _**deferred, not next.**_ Playwright
+    screenshots per block + per layout, diffed against a baseline.
+    Real value but real cost: needs a stable rendering host (theme
+    test fixtures + seeded content), pixel-tolerance tuning per
+    block, baseline storage / Git LFS, and a flake-rate budget.
+    The 1.3.4 E2E journey covers the high-value paths
+    behaviourally; visual-regression can layer on once the test
+    fixtures + seeded content exist as a separate plan item.
 
 The existing `.github/workflows/main.yml` covers PHP lint + Pint + Blade
-single-line @php — this is the next layer.
+single-line @php + settings consistency. The two checks above are the
+deliberately-deferred layer.
 
 ### 4. Block attribute deprecations
 
