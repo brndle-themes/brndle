@@ -62,6 +62,13 @@ class Defaults
             'archive_show_sidebar' => false,
             'archive_show_category_filter' => true,
 
+            // ── Blog Homepage Sections (1.5.0) ───────────────────
+            // Opt-in news-portal-style homepage. Activates only when the
+            // blog is set as the site front page AND the toggle below is on.
+            // See plans/2026-05-02-blog-homepage-sections.md for design.
+            'homepage_sections_enabled' => false,
+            'homepage_sections' => [],
+
             // ── Single Post ─────────────────────────────────────
             'single_layout' => 'standard',
             'single_show_progress_bar' => true,
@@ -163,6 +170,8 @@ class Defaults
             'archive_posts_per_page' => ['section' => 'blog-archive', 'label' => 'Posts per page', 'control' => 'range', 'min' => 1, 'max' => 100, 'step' => 1],
             'archive_show_sidebar' => ['section' => 'blog-archive', 'label' => 'Show sidebar', 'control' => 'toggle'],
             'archive_show_category_filter' => ['section' => 'blog-archive', 'label' => 'Show category filter', 'control' => 'toggle'],
+            'homepage_sections_enabled' => ['section' => 'blog-homepage', 'label' => 'Use sections layout when blog is the homepage', 'control' => 'toggle', 'description' => 'When the blog is set as the front page, render stacked category sections (news-portal style) instead of a single archive layout.'],
+            'homepage_sections' => ['section' => 'blog-homepage', 'label' => 'Homepage sections', 'control' => 'sections-builder', 'description' => 'Ordered list of category sections. Each section renders posts from one top-level category in the chosen visual style.'],
 
             // ── Single Post ─────────────────────────────────────
             'single_layout' => ['section' => 'single-post', 'label' => 'Single post layout', 'control' => 'select', 'options' => ['standard' => 'Standard', 'hero-immersive' => 'Hero Immersive', 'sidebar' => 'Sidebar', 'editorial' => 'Editorial', 'cinematic' => 'Cinematic', 'presentation' => 'Presentation', 'split' => 'Split', 'minimal-dark' => 'Minimal Dark']],
@@ -234,6 +243,7 @@ class Defaults
             'perf_remove_global_styles',
             'perf_view_transitions',
             'perf_critical_css',
+            'homepage_sections_enabled',
             'form_store_submissions',
             'form_email_notifications',
         ];
@@ -313,6 +323,28 @@ class Defaults
     {
         return [
             'social_links',
+            'homepage_sections',
+        ];
+    }
+
+    /**
+     * Allowed style keys for a homepage section.
+     *
+     * Mirrors the seven Blade partials in
+     * `resources/views/partials/sections-styles/`.
+     *
+     * @return string[]
+     */
+    public static function homepageSectionStyles(): array
+    {
+        return [
+            'featured-hero',
+            'grid-3col',
+            'magazine-strip',
+            'list-with-thumb',
+            'mixed-2x2',
+            'ticker',
+            'editorial-pair',
         ];
     }
 

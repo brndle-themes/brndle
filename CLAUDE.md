@@ -126,6 +126,18 @@ The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 1.5.8 | 2026-05-03 | Admin panel switched to fluid `max-width: 90%` + auto margins (was pixel-capped) so it scales with the viewport |
+| 1.5.7 | 2026-05-03 | Removed silent `array_slice` truncation in 4 of 7 section styles — count slider now honored end-to-end |
+| 1.5.6 | 2026-05-03 | Ticker scrollbar replaced with overlay arrow buttons (vanilla JS, hides on touch / at scroll boundaries); large-site perf hardening (auto-cats transient cache, thumbnail prime per section, 12-section cap, REST `_fields` trim) |
+| 1.5.5 | 2026-05-03 | Hotfix: `ReferenceError: sections` crashed the admin in 1.5.4. Restored the missing `const sections = ...` declaration |
+| 1.5.4 | 2026-05-03 | Dropped alternating section background tint (read as card-within-card on dark themes); kept dividers + numbered kickers |
+| 1.5.3 | 2026-05-03 | Admin pre-populates 5 sections on toggle off→on transition; "Apply suggested defaults" button; `!important` tab strip nowrap |
+| 1.5.2 | 2026-05-02 | Auto-defaults for sections + visual variation (5 cats, magazine flow, kicker numerals, hide redundant page header) |
+| 1.5.1 | 2026-05-02 | Admin polish: `decodeEntities()` on REST category labels, panel widened (later replaced with fluid 90%), tab strip nowrap |
+| 1.5.0 | 2026-05-02 | New: Blog Homepage Sections layout. Toggle to render stacked category sections (news-portal style) instead of single archive layout when blog is the front page. 7 styles: featured-hero, grid-3col, magazine-strip, list-with-thumb, mixed-2x2, ticker, editorial-pair. Plan: `plans/2026-05-02-blog-homepage-sections.md` |
+| 1.4.2 | 2026-05-02 | Wrapped `critical.css` in `@layer base` / `@layer utilities` so Tailwind's `.hidden` properly overrides the preflight `img { display: block }` (fixes the duplicate-logo bug seen on attowp.com) |
+| 1.4.1 | 2026-05-02 | Hotfix: keep `critical.css` in the release zip; layout falls back to render-blocking `app.css` if critical inline can't be read |
+| 1.4.0 | 2026-05-02 | Defaulted `perf_view_transitions` + `perf_critical_css` ON for fresh installs; block attribute migration registry; settings schema metadata; Blade compile dry-run CI; E2E journey test |
 | 1.3.0 | 2026-05-02 | Block quality pass — editor canvas styles, MediaUpload picker, FAQ JSON-LD, hero variations, i18n, lead-form view script, `@wordpress/icons`, wp-scripts v32, comparison-table compile fix |
 | 1.2.4 | 2026-04-14 | Logo strip visibility, FAQ focus outline, post nav entity encoding, dark-mode toggle state machine |
 

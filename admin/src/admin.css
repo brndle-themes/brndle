@@ -1,5 +1,11 @@
 .brndle-admin {
-	max-width: 960px;
+	/* Fluid: 90% of the available width inside WP admin's #wpbody-content
+	   wrapper, centered. Tracks the viewport without locking to a fixed
+	   pixel cap (was 960px → 1280px → fixed margin in earlier 1.5.x —
+	   user feedback was that fixed widths feel cramped on wide displays).
+	   The 5% gutter on each side keeps the card from running edge-to-edge
+	   while still using most of the available real estate. */
+	max-width: 90%;
 	margin: 20px auto;
 	background: #fff;
 	border: 1px solid #e0e0e0;
@@ -332,17 +338,37 @@
 	gap: 8px;
 }
 
-/* Tab panel overrides for a cleaner look */
+/* Tab panel overrides for a cleaner look. Tabs stay on a single line —
+   each tab title is short enough that wrapping creates visual noise.
+   The !important is intentional: @wordpress/components ships its own
+   computed flex behavior that wins without it (1.5.0/1.5.1 hotfixes
+   thought CSS was applied because the rule was loaded, but specificity
+   from the WP component's inline styling kept overriding ours). */
 .brndle-admin .components-tab-panel__tabs {
 	border-bottom: 1px solid #e0e0e0;
 	background: #fafafa;
 	padding: 0 16px;
+	display: flex !important;
+	flex-wrap: nowrap !important;
+	overflow-x: auto;
+	scrollbar-width: thin;
 }
 
-.brndle-admin .components-tab-panel__tabs button {
+.brndle-admin .components-tab-panel__tabs > button,
+.brndle-admin .components-tab-panel__tabs-item {
 	font-size: 13px;
 	font-weight: 500;
 	padding: 12px 16px;
+	white-space: nowrap !important;
+	flex-shrink: 0 !important;
+	flex-grow: 0;
+}
+
+@media (max-width: 1024px) {
+	.brndle-admin .components-tab-panel__tabs > button,
+	.brndle-admin .components-tab-panel__tabs-item {
+		padding: 12px 12px;
+	}
 }
 
 /* WordPress component spacing fixes */
