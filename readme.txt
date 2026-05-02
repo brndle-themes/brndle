@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,14 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fix: Typography → Base Font Size and Heading Scale Ratio sliders now actually scale rendered output. Previously the admin saved + emitted CSS variables but no stylesheet read them. `html { font-size: var(--font-size-base) }` makes the rem cascade scale; `--text-h1` … `--text-h6` are now exposed as a calc() ramp from `--heading-scale` for opt-in heading sizing in custom CSS.
+* Fix: Tailwind `dark:` modifier is now bound to brndle's `[data-theme="dark"]` toggle via a `@custom-variant`. Previously `dark:foo` only fired on `prefers-color-scheme: dark` — the toggle worked accidentally for the three `dark:` utilities currently used (`dark:hidden`, `dark:block`, `dark:prose-invert`) because each was manually re-implemented under `[data-theme="dark"]`. New utilities will now just work. The variant also covers `[data-theme="system"]` + OS-dark and the no-attribute fallback so child themes that drop the attribute keep OS-driven dark styling.
+* Refactor: Block editor iframe styles now flow through Sage's idiomatic `Vite::asset('editor.css')` injection instead of a parallel enqueue path in BlockServiceProvider. `editor.css` `@import`s `app.css` so the iframe inherits the same Tailwind theme tokens, source globs, and `.brndle-section-*` rules as the frontend (-66 lines, single iframe-loading path).
+* Chore: Adds `bin/check-upstream.sh` + a CLAUDE.md upstream-tracking section so framework drift from `roots/sage` is visible at a glance (Acorn 5→6, Vite 7→8, etc.).
+* Chore: Adds `assets: ['resources/images/**', 'resources/fonts/**']` to the Vite Laravel-plugin input (Sage v11.2 pattern).
+* Chore: Refresh `brndle.pot` to track the renumbered line references after the i18n + icon swap.
 
 = 1.3.0 =
 * New: Native media-library picker (`MediaUpload`) replaces raw URL inputs in hero, content-image-split, team, testimonials, and logos blocks. Includes alt-text input + URL fallback.
@@ -71,6 +79,9 @@ No build tools required for end users — the release zip ships compiled assets.
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Patch release. Two dead admin settings (Base Font Size, Heading Scale) now actually affect rendered output. `dark:` Tailwind utilities are now bound to the brndle toggle so future dark: usage just works. Block editor iframe loading is simplified to align with upstream Sage. No breaking changes.
 
 = 1.3.0 =
 Major editor-experience improvements: native media picker, fixed dark-on-dark headlines in the canvas, FAQ JSON-LD schema, hero variations, and a comparison-table render bug fix. Backward compatible — existing posts keep rendering unchanged.
