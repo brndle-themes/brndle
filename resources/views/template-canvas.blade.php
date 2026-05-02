@@ -12,7 +12,7 @@
   }
 @endphp
 <!doctype html>
-<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $initialTheme }}">
+<html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}">
   <head>
     <meta charset="utf-8">
     @if ($toggleDriven)
