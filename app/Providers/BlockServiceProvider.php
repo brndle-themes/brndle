@@ -95,11 +95,17 @@ class BlockServiceProvider
 
             $viewName = "blocks.{$block}";
             $blockSlug = $block;
+            $blockName = "brndle/{$block}";
 
             register_block_type($path, [
                 'editor_script' => 'brndle-blocks-editor',
                 'editor_style' => 'brndle-blocks-editor-style',
-                'render_callback' => function (array $attributes, string $content) use ($viewName, $blockSlug) {
+                'render_callback' => function (array $attributes, string $content) use ($viewName, $blockSlug, $blockName) {
+                    // Run any registered attribute migrations so the Blade
+                    // template only ever sees the current shape (no
+                    // `is_string($x) || is_array($x)` branches forever).
+                    $attributes = \Brndle\Blocks\AttributeMigrations::apply($blockName, $attributes);
+
                     // Lazily enqueue the lead-form view script only when the block actually renders.
                     if ($blockSlug === 'lead-form' && empty($attributes['form_action'] ?? '')) {
                         wp_enqueue_script('brndle-lead-form-view');
