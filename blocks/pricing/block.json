@@ -5,16 +5,41 @@
   "title": "Pricing Section",
   "category": "brndle-sections",
   "description": "Pricing table with 2-3 plans, featured plan highlight, and feature lists.",
-  "keywords": ["pricing", "plans", "table"],
+  "keywords": [
+    "pricing",
+    "plans",
+    "table"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "plans": { "type": "array", "default": [] },
-    "variant": { "type": "string", "default": "light" }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "plans": {
+      "type": "array",
+      "default": []
+    },
+    "variant": {
+      "type": "string",
+      "default": "light"
+    }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "eyebrow": "Pricing",
@@ -22,9 +47,31 @@
       "subtitle": "Pick a plan that scales with you.",
       "variant": "light",
       "plans": [
-        { "name": "Starter", "price": "$19", "period": "/mo", "features": ["1 site", "Email support"], "cta_text": "Start free", "featured": false },
-        { "name": "Pro", "price": "$49", "period": "/mo", "features": ["10 sites", "Priority support", "AI pages"], "cta_text": "Get Pro", "featured": true }
+        {
+          "name": "Starter",
+          "price": "$19",
+          "period": "/mo",
+          "features": [
+            "1 site",
+            "Email support"
+          ],
+          "cta_text": "Start free",
+          "featured": false
+        },
+        {
+          "name": "Pro",
+          "price": "$49",
+          "period": "/mo",
+          "features": [
+            "10 sites",
+            "Priority support",
+            "AI pages"
+          ],
+          "cta_text": "Get Pro",
+          "featured": true
+        }
       ]
     }
-  }
+  },
+  "version": "1.0.0"
 }

@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { image } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -25,13 +26,7 @@ function normaliseCompanies( companies ) {
 }
 
 registerBlockType( 'brndle/logos', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="2" y="7" width="6" height="6" rx="1" />
-			<rect x="9" y="7" width="6" height="6" rx="1" />
-			<rect x="16" y="7" width="6" height="6" rx="1" />
-		</svg>
-	),
+	icon: image,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

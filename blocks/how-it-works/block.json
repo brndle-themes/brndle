@@ -5,17 +5,55 @@
   "title": "How It Works",
   "category": "brndle-sections",
   "description": "Numbered process steps with optional icons and descriptions.",
-  "keywords": ["steps", "process", "how", "workflow"],
+  "keywords": [
+    "steps",
+    "process",
+    "how",
+    "workflow"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "steps": { "type": "array", "default": [] },
-    "layout": { "type": "string", "default": "horizontal", "enum": ["horizontal", "vertical"] },
-    "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "steps": {
+      "type": "array",
+      "default": []
+    },
+    "layout": {
+      "type": "string",
+      "default": "horizontal",
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "default": "light",
+      "enum": [
+        "light",
+        "dark"
+      ]
+    }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "eyebrow": "Process",
@@ -24,10 +62,20 @@
       "layout": "horizontal",
       "variant": "light",
       "steps": [
-        { "title": "Install", "description": "One-click install from your dashboard." },
-        { "title": "Configure", "description": "Pick a color scheme, font pair, and layout." },
-        { "title": "Publish", "description": "Generate landing pages with AI and ship." }
+        {
+          "title": "Install",
+          "description": "One-click install from your dashboard."
+        },
+        {
+          "title": "Configure",
+          "description": "Pick a color scheme, font pair, and layout."
+        },
+        {
+          "title": "Publish",
+          "description": "Generate landing pages with AI and ship."
+        }
       ]
     }
-  }
+  },
+  "version": "1.0.0"
 }

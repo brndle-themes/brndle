@@ -5,21 +5,82 @@
   "title": "Lead Form",
   "category": "brndle-sections",
   "description": "Email capture section with headline, description, and customizable form fields.",
-  "keywords": ["form", "email", "signup", "lead", "capture", "newsletter"],
+  "keywords": [
+    "form",
+    "email",
+    "signup",
+    "lead",
+    "capture",
+    "newsletter"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "fields": { "type": "array", "default": [{"label": "Email", "type": "email", "required": true, "placeholder": "you@company.com"}] },
-    "button_text": { "type": "string", "default": "Get Started" },
-    "success_message": { "type": "string", "default": "Thanks! We'll be in touch." },
-    "form_action": { "type": "string", "default": "" },
-    "mailchimp_list_id": { "type": "string", "default": "" },
-    "layout": { "type": "string", "default": "stacked", "enum": ["stacked", "inline", "split"] },
-    "variant": { "type": "string", "default": "light", "enum": ["light", "dark", "accent"] }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "fields": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "placeholder": "you@company.com"
+        }
+      ]
+    },
+    "button_text": {
+      "type": "string",
+      "default": "Get Started"
+    },
+    "success_message": {
+      "type": "string",
+      "default": "Thanks! We'll be in touch."
+    },
+    "form_action": {
+      "type": "string",
+      "default": ""
+    },
+    "mailchimp_list_id": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "stacked",
+      "enum": [
+        "stacked",
+        "inline",
+        "split"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "default": "light",
+      "enum": [
+        "light",
+        "dark",
+        "accent"
+      ]
+    }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "eyebrow": "Newsletter",
@@ -29,8 +90,14 @@
       "layout": "stacked",
       "variant": "light",
       "fields": [
-        { "label": "Email", "type": "email", "required": true, "placeholder": "you@company.com" }
+        {
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "placeholder": "you@company.com"
+        }
       ]
     }
-  }
+  },
+  "version": "1.0.0"
 }
