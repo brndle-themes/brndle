@@ -78,6 +78,7 @@ class Defaults
             'perf_lazy_images' => true,
             'perf_preload_fonts' => true,
             'perf_remove_global_styles' => false,
+            'perf_view_transitions' => false,
 
             // ── Forms & Integrations ───────────────────────────
             'mailchimp_api_key'        => '',
@@ -128,6 +129,7 @@ class Defaults
             'perf_lazy_images',
             'perf_preload_fonts',
             'perf_remove_global_styles',
+            'perf_view_transitions',
             'form_store_submissions',
             'form_email_notifications',
         ];
