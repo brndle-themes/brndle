@@ -61,7 +61,7 @@
         <div class="relative">
           <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 rounded-2xl blur-2xl opacity-60"></div>
           <div class="relative rounded-2xl border {{ $isInverse ? 'border-white/[0.08] bg-white/[0.02]' : 'border-surface-tertiary' }} overflow-hidden shadow-2xl">
-            <img src="{{ esc_url($a['image']) }}" alt="{{ esc_attr($altText) }}" class="w-full" loading="eager" decoding="async" fetchpriority="high">
+            <x-img :src="$a['image']" :alt="$altText" class="w-full" :priority="true" />
           </div>
         </div>
       @endif
