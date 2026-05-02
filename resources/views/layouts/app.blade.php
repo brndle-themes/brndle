@@ -4,15 +4,31 @@
   $toggleDriven = (bool) ($showDarkModeToggle ?? false);
   $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
 
+  // Critical CSS path. Three states matter:
+  //   1. Toggle off → standard @vite-driven render-blocking app.css.
+  //   2. Toggle on AND `resources/css/critical.css` readable → inline
+  //      critical + preload-and-swap deferred app.css.
+  //   3. Toggle on BUT critical.css missing (release didn't ship it,
+  //      file got deleted, perms wrong) → silently fall back to (1).
+  //      Any other path leaves the page render-blocked-on-nothing — see
+  //      attowp.com 1.4.0 incident — and that's the worst possible
+  //      outcome.
   $criticalCssEnabled = (bool) \Brndle\Settings\Settings::get('perf_critical_css', false);
   $criticalCss = '';
   if ($criticalCssEnabled) {
-    $criticalCss = (string) @file_get_contents(get_theme_file_path('resources/css/critical.css'));
+    $criticalCssPath = get_theme_file_path('resources/css/critical.css');
+    $criticalCss = is_readable($criticalCssPath) ? (string) file_get_contents($criticalCssPath) : '';
+    if ($criticalCss === '') {
+      // Asset missing on this install — degrade to render-blocking
+      // app.css instead of dropping CSS entirely.
+      $criticalCssEnabled = false;
+    }
   }
 
-  // When critical CSS is on we emit `<link rel=preload>` for app.css ourselves
-  // and swap to `rel=stylesheet` after load — so we drop it from the @vite
-  // call to avoid a duplicate render-blocking <link>.
+  // When critical CSS is on (and the file is readable) we emit
+  // `<link rel=preload>` for app.css ourselves and swap to
+  // `rel=stylesheet` after load — so we drop it from the @vite call to
+  // avoid a duplicate render-blocking <link>.
   $viteEntries = $criticalCssEnabled ? [] : ['resources/css/app.css'];
   if ($toggleDriven) {
     $viteEntries[] = 'resources/js/dark-mode.js';
