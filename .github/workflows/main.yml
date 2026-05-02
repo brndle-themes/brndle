@@ -96,6 +96,24 @@ jobs:
           fi
           if [ $ISSUES -eq 0 ]; then echo "All clear."; fi
 
+  settings:
+    # Reads only repo files (Defaults.php, admin/src/tabs/*.jsx, app/**, resources/**).
+    # No untrusted GitHub event payload is consumed, so command-injection guidance
+    # in https://github.blog/security/vulnerability-research/how-to-catch-github-actions-workflow-injections-before-attackers-do/
+    # does not apply here.
+    name: Settings Consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run settings consistency check
+        run: node bin/check-settings-consistency.mjs
+
   build:
     name: Build Assets
     runs-on: ubuntu-latest
