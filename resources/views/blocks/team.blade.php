@@ -26,7 +26,7 @@
         <div class="reveal group">
           <div class="aspect-square rounded-2xl overflow-hidden mb-5 {{ $isDark ? 'bg-white/[0.05]' : 'bg-surface-secondary' }}">
             @if(!empty($member['photo']))
-              <img src="{{ esc_url($member['photo']) }}" alt="{{ esc_attr($member['name'] ?? '') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+              <x-img :src="$member['photo']" :alt="$member['photo_alt'] ?? ($member['name'] ?? '')" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             @else
               <div class="w-full h-full bg-accent flex items-center justify-center text-white text-4xl font-bold">
                 {{ strtoupper(substr($member['name'] ?? 'T', 0, 1)) }}

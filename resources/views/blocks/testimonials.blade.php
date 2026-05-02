@@ -31,7 +31,7 @@
 
           <figcaption class="flex items-center gap-3">
             @if(isset($item['avatar']))
-              <img src="{{ esc_url($item['avatar']) }}" alt="Photo of {{ esc_attr($item['name'] ?? '') }}" class="w-10 h-10 rounded-full" loading="lazy" decoding="async">
+              <x-img :src="$item['avatar']" :alt="$item['avatar_alt'] ?? ('Photo of ' . ($item['name'] ?? ''))" class="w-10 h-10 rounded-full" />
             @else
               <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">
                 {{ strtoupper(substr($item['name'] ?? 'A', 0, 1)) }}

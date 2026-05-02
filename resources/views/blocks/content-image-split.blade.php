@@ -35,7 +35,7 @@
       <div class="reveal">
         @if($a['image'])
           <div class="rounded-2xl {{ ($a['variant'] ?? 'light') === 'dark' ? 'border border-white/10' : 'bg-surface-secondary border border-surface-tertiary shadow-lg' }} overflow-hidden">
-            <img src="{{ esc_url($a['image']) }}" alt="{{ esc_attr($a['image_alt'] ?? '') }}" class="w-full" loading="lazy" decoding="async">
+            <x-img :src="$a['image']" :alt="$a['image_alt'] ?? ''" class="w-full" />
           </div>
         @else
           <div class="aspect-[4/3] rounded-2xl {{ ($a['variant'] ?? 'light') === 'dark' ? 'bg-white/5 border border-white/10' : 'bg-surface-secondary border border-surface-tertiary' }} flex items-center justify-center">
