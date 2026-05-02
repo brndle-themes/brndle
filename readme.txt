@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,14 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.3.3 =
+* New: `<x-img>` Blade component with AVIF / WebP `<picture>` wrapper. Detects sibling `*.avif` / `*.webp` files next to local uploads and emits matching `<source>` elements; falls back to a plain `<img>` for external URLs or when no variant is on disk. Width / height / fetchpriority / loading flow through one `priority` prop. Adopted across hero, content-image-split, team, testimonials, and logos blocks — sites that already produce modern image variants serve them automatically.
+* New: View Transitions API + soft-navigation controller (admin opt-in, default off). When enabled, emits `<meta name="view-transition" content="same-origin">` for native crossfade in Chrome / Edge 126+ and ships a 2.1 KiB vanilla-JS controller that intercepts same-origin clicks, fetches the destination, and swaps `<main>` + `<title>` + `<html lang>` inside `document.startViewTransition()`. Bails for downloads / external / cross-origin / reduced-motion / non-HTML / missing `<main>`. Dispatches `brndle:soft-nav` on document so block view-scripts can rebind.
+* New: Critical CSS opt-in (admin Performance → Critical CSS, default off). Inlines a 3.2 KiB hand-curated stylesheet covering reset, body / html base, `.brndle-section-*` variants, hero layout primitives, and skip-link rule; defers the full `app.css` via `rel=preload` + `onload` swap so the first paint isn't render-blocked. `<noscript>` fallback restores blocking behaviour when JS is off.
+* New: Lucide as the frontend SVG library (alongside `@wordpress/icons` for editor JSX). Curated `bin/copy-lucide-icons.mjs` writes Lucide SVGs into `resources/icons/` at build time; new `<x-icon name="kebab-case">` Blade component renders them inline with a single attribute. First adoption: FAQ summary plus icon. Convention recorded in CLAUDE.md — never use emoji as a UI affordance.
+* Improvement: Settings migration registry — `Brndle\Settings\Migrations::all()` is now the single source of truth for schema upgrades. Each migration is a pure idempotent function applied in version order. Sets the structural pattern needed before any settings rename / restructure ships safely. `Settings::VERSION` stays at 1 today; the registry is ready for v2 the next time a key is restructured.
+* Improvement: Settings consistency CI guardrail extended to 45 keys (was 43) — every PR fails fast if `Defaults.php` / admin tabs / code consumers drift apart.
 
 = 1.3.2 =
 * New: Speculation Rules — pages now emit a `<script type="speculationrules">` so Chrome and Edge prefetch same-origin links the user is likely to visit next, making navigation feel instant. Excludes `/wp-admin/*`, `/wp-login.php`, and any link with `rel="external"` or `data-no-prefetch`.
@@ -88,6 +96,9 @@ No build tools required for end users — the release zip ships compiled assets.
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+Adds AVIF / WebP `<picture>` wrapper across every block image, opt-in View Transitions for SPA-feel navigation, opt-in critical CSS to remove render-blocking on first paint, and Lucide icons for frontend Blade. Also lands the structural settings-migration registry needed for any future schema rename. All new features are off by default; turn them on from admin Performance.
 
 = 1.3.2 =
 Patch release — performance polish (speculation rules, LCP preload, conditional preconnect on lead-form pages) plus the Heading Scale slider now visibly affects blog content. New CI guardrail catches dead settings before merge. Backward compatible.
