@@ -113,7 +113,7 @@
       width: calc(100% + 4rem);
     }
 
-    @media (min-width: 1024px) {
+    @@media (min-width: 1024px) {
       .editorial-content img,
       .editorial-content figure {
         width: calc(100% + 16rem);

@@ -104,7 +104,7 @@
     }
 
     /* Left marker line on desktop */
-    @media (min-width: 1024px) {
+    @@media (min-width: 1024px) {
       .presentation-content h2 {
         padding-left: 3rem;
       }
@@ -135,7 +135,7 @@
       top: 2rem;
     }
 
-    @media (min-width: 1024px) {
+    @@media (min-width: 1024px) {
       .presentation-content h2:first-of-type::before {
         top: 2rem;
       }

@@ -16,7 +16,7 @@
   }
 @endphp
 <!doctype html>
-<html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $initialTheme }}">
+<html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}">
   <head>
     <meta charset="utf-8">
     @if ($toggleDriven)
@@ -25,8 +25,8 @@
       <script>try{localStorage.removeItem('brndle-theme')}catch(e){}</script>
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @php(do_action('get_header'))
-    @php(wp_head())
+    <?php do_action('get_header'); ?>
+    <?php wp_head(); ?>
     @vite($viteEntries)
     <style>
       body { font-family: var(--font-family-body); background: var(--color-surface-primary); color: var(--color-text-primary); }
@@ -36,7 +36,7 @@
       .vp-gradient { background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, #60a5fa)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
       /* Cursor blink */
-      @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+      @@keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
       .vp-cursor { animation: blink 1s infinite; color: var(--color-accent); }
 
       /* Mesh bg */
@@ -87,13 +87,13 @@
       .vp-hero-photo-fade { position:absolute;inset:0;background:linear-gradient(to top,color-mix(in srgb,var(--color-surface-primary) 90%,transparent),transparent 50%);opacity:0.6 }
       .vp-hero-badge { position:absolute;bottom:1rem;left:1rem;display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.75rem;border-radius:9999px;background:color-mix(in srgb,var(--color-surface-primary) 75%,transparent);backdrop-filter:blur(10px);border:1px solid var(--color-surface-tertiary);font-size:0.75rem;color:var(--color-text-secondary) }
 
-      @media (prefers-reduced-motion:reduce) { .reveal{opacity:1;transform:none;transition:none} .vp-card:hover{transform:none} .vp-cursor{animation:none} }
-      @media (max-width:768px) { .vp-nav-links{display:none} .hero-grid{grid-template-columns:1fr !important} }
+      @@media (prefers-reduced-motion:reduce) { .reveal{opacity:1;transform:none;transition:none} .vp-card:hover{transform:none} .vp-cursor{animation:none} }
+      @@media (max-width:768px) { .vp-nav-links{display:none} .hero-grid{grid-template-columns:1fr !important} }
     </style>
   </head>
 
-  <body @php(body_class('antialiased'))>
-    @php(wp_body_open())
+  <body <?php body_class('antialiased'); ?>>
+    <?php wp_body_open(); ?>
 
     {{-- Nav --}}
     <nav class="vp-nav">
@@ -119,7 +119,7 @@
             <div style="position:relative" class="reveal">
               <div class="vp-hero-photo-glow"></div>
               <div class="vp-hero-photo-wrap">
-                @php($photoUrl = 'https://wordpress-1412975-6298996.cloudwaysapps.com/wp-content/uploads/2026/03/varun-hero.jpg')
+                <?php $photoUrl = 'https://wordpress-1412975-6298996.cloudwaysapps.com/wp-content/uploads/2026/03/varun-hero.jpg'; ?>
                 <img src="{{ $photoUrl }}" alt="Varun Dubey" style="width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;display:block" loading="eager" fetchpriority="high">
                 <div class="vp-hero-photo-fade"></div>
                 <div class="vp-hero-badge">
@@ -219,8 +219,8 @@
       @include('partials.components.dark-mode-toggle', ['position' => ($darkModeTogglePosition === 'header' ? 'bottom-right' : $darkModeTogglePosition)])
     @endif
 
-    @php(do_action('get_footer'))
-    @php(wp_footer())
+    <?php do_action('get_footer'); ?>
+    <?php wp_footer(); ?>
 
     <script>
     const observer = new IntersectionObserver((entries) => {
