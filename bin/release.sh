@@ -152,7 +152,8 @@ rsync -a \
     --exclude='blocks/src/' \
     --exclude='blocks/webpack.config.cjs' \
     --exclude='resources/js/' \
-    --exclude='resources/css/' \
+    --exclude='resources/css/app.css' \
+    --exclude='resources/css/editor.css' \
     --exclude='public/hot' \
     --exclude='*.map' \
     --exclude='*.bak' \

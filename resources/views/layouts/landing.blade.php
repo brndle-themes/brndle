@@ -2,10 +2,17 @@
   $toggleDriven = (bool) ($showDarkModeToggle ?? false);
   $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
 
+  // See app.blade.php for the three-state rationale. The fallback is
+  // critical to keep pages from rendering with no CSS when the
+  // critical.css asset is missing (1.4.0 attowp.com incident).
   $criticalCssEnabled = (bool) \Brndle\Settings\Settings::get('perf_critical_css', false);
   $criticalCss = '';
   if ($criticalCssEnabled) {
-    $criticalCss = (string) @file_get_contents(get_theme_file_path('resources/css/critical.css'));
+    $criticalCssPath = get_theme_file_path('resources/css/critical.css');
+    $criticalCss = is_readable($criticalCssPath) ? (string) file_get_contents($criticalCssPath) : '';
+    if ($criticalCss === '') {
+      $criticalCssEnabled = false;
+    }
   }
 
   $viteEntries = $criticalCssEnabled ? [] : ['resources/css/app.css'];

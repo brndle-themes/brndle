@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,12 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.4.1 =
+* **Hotfix:** the 1.4.0 release zip excluded `resources/css/critical.css` because `bin/release.sh` was stripping the entire `resources/css/` directory. With 1.4.0's `perf_critical_css` default flipped to true, fresh installs that triggered the inline-critical path then dropped `app.css` from `@vite` AND failed to read the missing critical.css — leaving pages with zero stylesheets (attowp.com surfaced this within minutes of the upgrade). Two-prong fix:
+    1. `bin/release.sh` now keeps `resources/css/critical.css` in the zip; only the source `app.css` and `editor.css` files (which compile into `public/build/`) are excluded.
+    2. Both layout templates (`app.blade.php`, `landing.blade.php`) now degrade gracefully — if `perf_critical_css` is on but `critical.css` can't be read, they fall back to render-blocking `app.css` instead of leaving the page CSS-less.
+* If you're already on 1.4.0 and seeing unstyled pages, the immediate workaround is to toggle Critical CSS off from admin Brndle → Performance. Upgrading to 1.4.1 (or any later version) makes the toggle safe to leave on.
 
 = 1.4.0 =
 * Improvement: View Transitions and Critical CSS now default to ON for fresh installs and any site that hasn't yet opened the admin Performance tab. Brndle is primarily used for pages and blogs — soft-navigation between articles and faster first paint on landing pages are exactly the wins those sites need. Existing sites that already saved their settings keep their explicit values; the flip only affects new / never-touched installs. Both features remain admin-toggleable and respect `prefers-reduced-motion`.
@@ -104,6 +110,9 @@ No build tools required for end users — the release zip ships compiled assets.
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.4.1 =
+**Critical hotfix for 1.4.0.** The 1.4.0 zip was missing `resources/css/critical.css` because the release script excluded the directory it lived in; with the new default `perf_critical_css = true`, fresh installs rendered with no stylesheets at all. 1.4.1 ships the file AND adds a layout safety net so any future asset-missing scenario falls back to rendering with `app.css` instead of breaking. Sites already on 1.4.0 with unstyled pages can either upgrade to 1.4.1, or temporarily toggle Brndle → Performance → Critical CSS off until they upgrade.
 
 = 1.4.0 =
 View Transitions and Critical CSS default to ON for fresh installs and never-saved settings — the flip is a no-op for existing sites that have already saved settings. To opt out on a fresh install, set `perf_view_transitions = false` and `perf_critical_css = false` from admin Brndle → Performance. Both features respect `prefers-reduced-motion` and fall back gracefully on unsupported browsers. Also bundles the structural plumbing shipped between 1.3.3 and 1.4.0 (block attribute migration registry, settings schema metadata, Blade compile dry-run script, Playwright E2E journey, workflow templates).
