@@ -14,53 +14,63 @@
  * when tokens haven't loaded yet (e.g. dark-mode fallback).
  */
 
-/* ── Modern reset ─────────────────────────────────────────────── */
-*,*::before,*::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; tab-size: 4; line-height: 1.5; font-size: var(--font-size-base, 16px); scroll-behavior: smooth; }
-body {
-    margin: 0;
-    font-family: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
-    background: var(--color-surface-primary, #fafafa);
-    color: var(--color-text-primary, #171717);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+/*
+ * Wrapped in @layer base so Tailwind utilities (in @layer utilities)
+ * can override these defaults. Unlayered styles always beat layered
+ * styles in the cascade — without this wrapper, `img { display: block }`
+ * defeated `.hidden { display: none }`, breaking the dark-mode logo
+ * swap (1.4.1 attowp incident: two logos rendered side-by-side).
+ */
+@layer base {
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; tab-size: 4; line-height: 1.5; font-size: var(--font-size-base, 16px); scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+        background: var(--color-surface-primary, #fafafa);
+        color: var(--color-text-primary, #171717);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd { margin: 0; }
+    img,picture,video,canvas,svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
 }
-h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd { margin: 0; }
-img,picture,video,canvas,svg { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; }
 
-/* ── Skip link (must be focusable instantly) ──────────────────── */
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.focus\:not-sr-only:focus { position: static; width: auto; height: auto; padding: 0; margin: 0; overflow: visible; clip: auto; white-space: normal; }
+@layer utilities {
+    /* Skip link (must be focusable instantly, even before app.css arrives) */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .focus\:not-sr-only:focus { position: static; width: auto; height: auto; padding: 0; margin: 0; overflow: visible; clip: auto; white-space: normal; }
 
-/* ── Brndle section variants (block backgrounds before app.css) ── */
-.brndle-section-dark {
-    background-color: var(--color-surface-inverse, #080B16);
-    color: #ffffff;
+    /* Brndle section variants (block backgrounds before app.css) */
+    .brndle-section-dark {
+        background-color: var(--color-surface-inverse, #080B16);
+        color: #ffffff;
+    }
+    .brndle-section-gradient {
+        background-image: linear-gradient(135deg, var(--color-surface-inverse, #080B16) 0%, color-mix(in srgb, var(--color-accent, #6366f1) 35%, var(--color-surface-inverse, #080B16)) 100%);
+        color: #ffffff;
+    }
+    .bg-surface-primary { background-color: var(--color-surface-primary, #fafafa); }
+    .text-text-primary { color: var(--color-text-primary, #171717); }
+
+    /* Layout primitives the hero relies on */
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .flex { display: flex; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .w-full { width: 100%; }
+    .max-w-7xl { max-width: 80rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .min-h-screen { min-height: 100vh; }
+    .overflow-hidden { overflow: hidden; }
+    .text-center { text-align: center; }
+    .z-10 { z-index: 10; }
 }
-.brndle-section-gradient {
-    background-image: linear-gradient(135deg, var(--color-surface-inverse, #080B16) 0%, color-mix(in srgb, var(--color-accent, #6366f1) 35%, var(--color-surface-inverse, #080B16)) 100%);
-    color: #ffffff;
-}
-.bg-surface-primary { background-color: var(--color-surface-primary, #fafafa); }
-.text-text-primary { color: var(--color-text-primary, #171717); }
 
-/* ── Layout primitives the hero relies on ──────────────────────── */
-.relative { position: relative; }
-.absolute { position: absolute; }
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.w-full { width: 100%; }
-.max-w-7xl { max-width: 80rem; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.min-h-screen { min-height: 100vh; }
-.overflow-hidden { overflow: hidden; }
-.text-center { text-align: center; }
-.z-10 { z-index: 10; }
-
-/* ── Reduced-motion fallback while app.css loads ──────────────── */
+/* Reduced-motion fallback while app.css loads — @media at root, no layer needed */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 }
