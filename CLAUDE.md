@@ -40,6 +40,12 @@ admin/src/             — React admin panel (9 tabs)
 - NEVER use `text-[var(--color-*)]` or `bg-[var(--color-*)]` — Tailwind v4 doesn't generate these
 - For dark sections with `bg-surface-inverse`, use explicit `text-white`, `text-white/60` — NOT `text-text-secondary`
 
+### Icons (no emoji as UI affordance)
+- **Editor JSX** (admin / block editor): import from `@wordpress/icons`. Looks native to the WP editor and the dependency-extraction-webpack-plugin tree-shakes per-import (verified — only imported icons end up in the bundle).
+- **Frontend Blade**: use Lucide via `<x-icon name="kebab-case-name" />`. The component reads from `resources/icons/{name}.svg`, populated at `npm run build` time by `bin/copy-lucide-icons.mjs` from a curated list. Add a new icon: append to the ICONS array in that script, run `npm run icons:copy`, commit the SVG.
+- **Never use emoji** as a UI affordance (stars, arrows, hashes, dots). Emoji rendering varies by OS / browser, breaks visual rhythm, ignores theme colors. Use Lucide.
+- **Never paste raw `<svg>` markup** into Blade templates — go through `<x-icon>` so the design language stays consistent.
+
 ### Block Development
 - Blocks render server-side via `render_callback` in `BlockServiceProvider`
 - Block Blade views live in `resources/views/blocks/` (NOT in `blocks/*/`)
