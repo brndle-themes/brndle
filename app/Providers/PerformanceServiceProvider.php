@@ -40,6 +40,26 @@ class PerformanceServiceProvider
         add_action('wp_head', [$this, 'outputSpeculationRules'], 4);
         add_action('wp_head', [$this, 'outputLcpImagePreload'], 3);
         add_action('wp_head', [$this, 'outputIntegrationPreconnects'], 3);
+        add_action('wp_head', [$this, 'outputViewTransitionMeta'], 4);
+    }
+
+    /**
+     * Emit `<meta name="view-transition" content="same-origin">` so
+     * browsers that support cross-document view transitions (Chrome /
+     * Edge 126+) crossfade between full-page navigations natively. The
+     * accompanying soft-nav JS controller (resources/js/view-transitions.js)
+     * uses the same toggle and provides the same effect for in-tab
+     * navigations on every modern browser via
+     * `document.startViewTransition()`.
+     *
+     * Off by default — opt in from admin Performance → View Transitions.
+     */
+    public function outputViewTransitionMeta(): void
+    {
+        if (is_admin() || ! Settings::get('perf_view_transitions', false)) {
+            return;
+        }
+        echo '<meta name="view-transition" content="same-origin">' . "\n";
     }
 
     /**

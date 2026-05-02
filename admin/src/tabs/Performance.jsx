@@ -63,6 +63,13 @@ export default function Performance( { settings, onChange } ) {
 				onChange={ ( v ) => onChange( 'perf_remove_global_styles', v ) }
 			/>
 
+			<ToggleRow
+				label={ __( 'View Transitions (soft navigation)', 'brndle' ) }
+				description={ __( 'Cross-fade between same-origin pages using the browser View Transitions API plus a tiny vanilla-JS controller (~3 KB) that swaps the main content without a full reload. Falls back gracefully when the API is unavailable, when the user prefers reduced motion, or for downloads / external links.', 'brndle' ) }
+				checked={ !! settings.perf_view_transitions }
+				onChange={ ( v ) => onChange( 'perf_view_transitions', v ) }
+			/>
+
 			<div className="brndle-cache-section" style={ { marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid #e0e0e0' } }>
 				<h3 className="brndle-section-title">{ __( 'Cache Management', 'brndle' ) }</h3>
 				<p style={ { color: '#757575', fontSize: '13px', marginBottom: '1rem' } }>

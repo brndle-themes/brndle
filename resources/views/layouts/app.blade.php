@@ -7,6 +7,9 @@
   if ($toggleDriven) {
     $viteEntries[] = 'resources/js/dark-mode.js';
   }
+  if (\Brndle\Settings\Settings::get('perf_view_transitions', false)) {
+    $viteEntries[] = 'resources/js/view-transitions.js';
+  }
 @endphp
 <!doctype html>
 <html @php(language_attributes()) class="scroll-smooth" data-theme="{{ $initialTheme }}">
