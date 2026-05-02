@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { megaphone } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -10,12 +11,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/cta', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="3" y="5" width="18" height="14" rx="2" />
-			<path d="M8 15h8M10 11h4" />
-		</svg>
-	),
+	icon: megaphone,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

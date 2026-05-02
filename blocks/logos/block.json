@@ -5,19 +5,45 @@
   "title": "Logo Strip",
   "category": "brndle-sections",
   "description": "Trust bar showing client/partner logos.",
-  "keywords": ["logos", "clients", "trust"],
+  "keywords": [
+    "logos",
+    "clients",
+    "trust"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "title": { "type": "string", "default": "Trusted by industry leaders" },
-    "companies": { "type": "array", "default": [] },
-    "variant": { "type": "string", "default": "light" }
+    "title": {
+      "type": "string",
+      "default": "Trusted by industry leaders"
+    },
+    "companies": {
+      "type": "array",
+      "default": []
+    },
+    "variant": {
+      "type": "string",
+      "default": "light"
+    }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "title": "Trusted by industry leaders",
       "variant": "light",
-      "companies": ["Acme", "Northwind", "Globex", "Initech", "Umbrella"]
+      "companies": [
+        "Acme",
+        "Northwind",
+        "Globex",
+        "Initech",
+        "Umbrella"
+      ]
     }
-  }
+  },
+  "version": "1.0.0"
 }

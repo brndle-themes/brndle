@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { listView } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -11,17 +12,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/how-it-works', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<circle cx="6" cy="5" r="3" />
-			<circle cx="18" cy="5" r="3" />
-			<circle cx="6" cy="19" r="3" />
-			<circle cx="18" cy="19" r="3" />
-			<line x1="9" y1="5" x2="15" y2="5" />
-			<line x1="6" y1="8" x2="6" y2="16" />
-			<line x1="18" y1="8" x2="18" y2="16" />
-		</svg>
-	),
+	icon: listView,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

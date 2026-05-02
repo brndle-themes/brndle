@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { video } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -11,12 +12,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/video-embed', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="2" y="4" width="20" height="16" rx="2" />
-			<polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
-		</svg>
-	),
+	icon: video,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

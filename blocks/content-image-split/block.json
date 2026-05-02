@@ -5,32 +5,91 @@
   "title": "Content + Image",
   "category": "brndle-sections",
   "description": "Side-by-side content and image section with flexible layout options.",
-  "keywords": ["split", "image", "content", "media", "text"],
+  "keywords": [
+    "split",
+    "image",
+    "content",
+    "media",
+    "text"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "description": { "type": "string", "default": "" },
-    "bullets": { "type": "array", "default": [] },
-    "image": { "type": "string", "default": "" },
-    "image_id": { "type": "number", "default": 0 },
-    "image_alt": { "type": "string", "default": "" },
-    "image_position": { "type": "string", "default": "right", "enum": ["left", "right"] },
-    "cta_text": { "type": "string", "default": "" },
-    "cta_url": { "type": "string", "default": "#" },
-    "variant": { "type": "string", "default": "light", "enum": ["light", "dark"] }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "bullets": {
+      "type": "array",
+      "default": []
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "image_id": {
+      "type": "number",
+      "default": 0
+    },
+    "image_alt": {
+      "type": "string",
+      "default": ""
+    },
+    "image_position": {
+      "type": "string",
+      "default": "right",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "cta_text": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_url": {
+      "type": "string",
+      "default": "#"
+    },
+    "variant": {
+      "type": "string",
+      "default": "light",
+      "enum": [
+        "light",
+        "dark"
+      ]
+    }
   },
-  "supports": { "align": ["full", "wide"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "eyebrow": "Workflow",
       "title": "Edit visually, ship server-rendered.",
       "description": "All blocks render through Blade — no client-side hydration tax, no layout shift.",
-      "bullets": ["Lighthouse 100 by default", "No page-builder lock-in", "Translation-ready"],
+      "bullets": [
+        "Lighthouse 100 by default",
+        "No page-builder lock-in",
+        "Translation-ready"
+      ],
       "image_position": "right",
       "variant": "light",
       "cta_text": "Learn more",
       "cta_url": "#"
     }
-  }
+  },
+  "version": "1.0.0"
 }

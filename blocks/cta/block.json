@@ -5,18 +5,49 @@
   "title": "CTA Section",
   "category": "brndle-sections",
   "description": "Call-to-action section with headline, subtitle, and buttons.",
-  "keywords": ["cta", "call-to-action", "banner"],
+  "keywords": [
+    "cta",
+    "call-to-action",
+    "banner"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "cta_primary": { "type": "string", "default": "" },
-    "cta_primary_url": { "type": "string", "default": "#" },
-    "cta_secondary": { "type": "string", "default": "" },
-    "cta_secondary_url": { "type": "string", "default": "#" },
-    "variant": { "type": "string", "default": "dark" }
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_primary": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_primary_url": {
+      "type": "string",
+      "default": "#"
+    },
+    "cta_secondary": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_secondary_url": {
+      "type": "string",
+      "default": "#"
+    },
+    "variant": {
+      "type": "string",
+      "default": "dark"
+    }
   },
-  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "supports": {
+    "align": [
+      "full"
+    ],
+    "html": false,
+    "anchor": true
+  },
   "example": {
     "attributes": {
       "title": "Ready to ship a faster site?",
@@ -27,5 +58,6 @@
       "cta_secondary_url": "#",
       "variant": "dark"
     }
-  }
+  },
+  "version": "1.0.0"
 }

@@ -5,24 +5,71 @@
   "title": "Hero Section",
   "category": "brndle-sections",
   "description": "Full-width hero section with eyebrow, headline, subtitle, CTAs, image, and logo strip.",
-  "keywords": ["hero", "banner", "landing"],
+  "keywords": [
+    "hero",
+    "banner",
+    "landing"
+  ],
   "textdomain": "brndle",
   "attributes": {
-    "eyebrow": { "type": "string", "default": "" },
-    "title": { "type": "string", "default": "" },
-    "subtitle": { "type": "string", "default": "" },
-    "cta_primary": { "type": "string", "default": "" },
-    "cta_primary_url": { "type": "string", "default": "#" },
-    "cta_secondary": { "type": "string", "default": "" },
-    "cta_secondary_url": { "type": "string", "default": "#" },
-    "image": { "type": "string", "default": "" },
-    "image_id": { "type": "number", "default": 0 },
-    "image_alt": { "type": "string", "default": "" },
-    "variant": { "type": "string", "default": "dark", "enum": ["dark", "light", "gradient"] },
-    "logos": { "type": "array", "default": [] }
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_primary": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_primary_url": {
+      "type": "string",
+      "default": "#"
+    },
+    "cta_secondary": {
+      "type": "string",
+      "default": ""
+    },
+    "cta_secondary_url": {
+      "type": "string",
+      "default": "#"
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "image_id": {
+      "type": "number",
+      "default": 0
+    },
+    "image_alt": {
+      "type": "string",
+      "default": ""
+    },
+    "variant": {
+      "type": "string",
+      "default": "dark",
+      "enum": [
+        "dark",
+        "light",
+        "gradient"
+      ]
+    },
+    "logos": {
+      "type": "array",
+      "default": []
+    }
   },
   "supports": {
-    "align": ["full"],
+    "align": [
+      "full"
+    ],
     "html": false,
     "anchor": true
   },
@@ -37,5 +84,42 @@
       "cta_secondary_url": "#",
       "variant": "dark"
     }
-  }
+  },
+  "version": "1.0.0",
+  "variations": [
+    {
+      "name": "hero-dark",
+      "title": "Hero — Dark",
+      "description": "Full-width hero on a dark surface.",
+      "attributes": {
+        "variant": "dark"
+      },
+      "scope": [
+        "inserter"
+      ],
+      "isDefault": true
+    },
+    {
+      "name": "hero-light",
+      "title": "Hero — Light",
+      "description": "Full-width hero on a light surface.",
+      "attributes": {
+        "variant": "light"
+      },
+      "scope": [
+        "inserter"
+      ]
+    },
+    {
+      "name": "hero-gradient",
+      "title": "Hero — Gradient",
+      "description": "Full-width hero with the brand accent gradient.",
+      "attributes": {
+        "variant": "gradient"
+      },
+      "scope": [
+        "inserter"
+      ]
+    }
+  ]
 }

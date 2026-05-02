@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { envelope } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -12,14 +13,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/lead-form', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="3" y="4" width="18" height="16" rx="2" />
-			<line x1="7" y1="9" x2="17" y2="9" />
-			<line x1="7" y1="13" x2="13" y2="13" />
-			<rect x="14" y="15" width="4" height="2" rx="1" fill="currentColor" stroke="none" />
-		</svg>
-	),
+	icon: envelope,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();

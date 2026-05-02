@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { chartBar } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
@@ -10,13 +11,7 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 
 registerBlockType( 'brndle/stats', {
-	icon: (
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-			<rect x="3" y="12" width="4" height="8" rx="1" />
-			<rect x="10" y="6" width="4" height="14" rx="1" />
-			<rect x="17" y="3" width="4" height="17" rx="1" />
-		</svg>
-	),
+	icon: chartBar,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();
