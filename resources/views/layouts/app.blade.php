@@ -3,7 +3,7 @@
   // Fixed mode (toggle off): theme is whatever the admin picked — no JS, no localStorage read, always wipe stale prefs.
   $toggleDriven = (bool) ($showDarkModeToggle ?? false);
   $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
-  $viteEntries = ['resources/css/app.css', 'resources/js/app.js'];
+  $viteEntries = ['resources/css/app.css'];
   if ($toggleDriven) {
     $viteEntries[] = 'resources/js/dark-mode.js';
   }
