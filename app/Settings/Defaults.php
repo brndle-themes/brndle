@@ -78,8 +78,14 @@ class Defaults
             'perf_lazy_images' => true,
             'perf_preload_fonts' => true,
             'perf_remove_global_styles' => false,
-            'perf_view_transitions' => false,
-            'perf_critical_css' => false,
+            // 1.4.0 — default-on for pages / blogs. Existing sites that
+            // already saved their settings keep their explicit values; the
+            // flip only affects fresh installs and sites that have not yet
+            // touched the admin Performance tab. Both features are safe on
+            // older browsers (graceful fallback) and respect
+            // `prefers-reduced-motion`.
+            'perf_view_transitions' => true,
+            'perf_critical_css' => true,
 
             // ── Forms & Integrations ───────────────────────────
             'mailchimp_api_key'        => '',
