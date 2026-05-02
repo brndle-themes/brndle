@@ -14,7 +14,6 @@ export default defineConfig({
     laravel({
       input: [
         'resources/css/app.css',
-        'resources/js/app.js',
         'resources/js/dark-mode.js',
         'resources/css/editor.css',
         'resources/js/editor.js',
@@ -22,6 +21,8 @@ export default defineConfig({
       refresh: true,
       // Sage v11.2 pattern — let Laravel-Vite hash + emit images and fonts
       // through the build directory so PHP can resolve them via `Vite::asset()`.
+      // Replaces the prior `import.meta.glob()` trick in resources/js/app.js,
+      // which produced an empty 0 B JS artifact in every build.
       assets: ['resources/images/**', 'resources/fonts/**'],
     }),
 
