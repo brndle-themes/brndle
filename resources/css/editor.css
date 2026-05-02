@@ -1,28 +1,42 @@
-@import "tailwindcss";
+/* Editor stylesheet — pulls in the full app.css (Tailwind directive,
+   @theme tokens, @source globs, brndle utilities) so the block-editor
+   iframe gets the same vocabulary as the frontend, then layers a few
+   editor-only overrides on top. */
+@import "./app.css";
 
-/* Brndle custom classes for editor fidelity */
-.brndle-section-dark {
-  background-color: #080B16;
-  color: #ffffff;
+/* Editor canvas overrides — keep blocks workable inside the iframe.
+   Cap the min-h-screen Tailwind utility so blocks aren't a full viewport
+   tall in the editor (frontend keeps the full size). Force headings inside
+   dark variants to inherit white from the parent — the WP block-library
+   default forces `<h1>` back to dark grey otherwise. */
+.brndle-section-dark,
+.brndle-section-gradient {
+    min-height: 0 !important;
 }
 
-.brndle-section-dark .text-text-secondary,
-.brndle-section-dark .text-text-tertiary {
-  color: rgba(255, 255, 255, 0.6);
+.brndle-section-dark .min-h-screen,
+.brndle-section-gradient .min-h-screen,
+section.min-h-screen {
+    min-height: 0 !important;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #a855f7 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.brndle-section-dark h1,
+.brndle-section-dark h2,
+.brndle-section-dark h3,
+.brndle-section-gradient h1,
+.brndle-section-gradient h2,
+.brndle-section-gradient h3 {
+    color: inherit;
 }
 
+.editor-styles-wrapper .animate-ping,
+.block-editor-iframe__container .animate-ping,
 .noise::after {
-  display: none;
+    animation: none !important;
 }
 
-.reveal {
-  opacity: 1;
-  transform: none;
+.editor-styles-wrapper .reveal,
+.block-editor-iframe__container .reveal {
+    opacity: 1;
+    transform: none;
 }

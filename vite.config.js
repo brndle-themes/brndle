@@ -20,6 +20,9 @@ export default defineConfig({
         'resources/js/editor.js',
       ],
       refresh: true,
+      // Sage v11.2 pattern — let Laravel-Vite hash + emit images and fonts
+      // through the build directory so PHP can resolve them via `Vite::asset()`.
+      assets: ['resources/images/**', 'resources/fonts/**'],
     }),
 
     wordpressPlugin(),
