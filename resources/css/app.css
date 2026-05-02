@@ -308,6 +308,19 @@ html {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Headings inside dark sections must inherit the section's white color
+   override. Without this, Tailwind preflight + theme.json defaults force
+   <h1>–<h3> back to --color-text-primary (the dark body color) and the
+   headline is invisible on the dark background. Same fix shipped to
+   editor.css for the iframe in 1.3.0; the frontend needed its own copy
+   (caught by the E2E journey in 1.3.4 — light-mode sessions were
+   exposing the bug because dark-mode sessions hid it behind the global
+   white text). */
+.brndle-section-dark :is(h1, h2, h3, h4, h5, h6),
+.brndle-section-gradient :is(h1, h2, h3, h4, h5, h6) {
+  color: inherit;
+}
+
 /* Hero gradient variant — accent gradient background */
 .brndle-section-gradient {
   background-image: linear-gradient(
