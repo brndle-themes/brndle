@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,15 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.3.2 =
+* New: Speculation Rules — pages now emit a `<script type="speculationrules">` so Chrome and Edge prefetch same-origin links the user is likely to visit next, making navigation feel instant. Excludes `/wp-admin/*`, `/wp-login.php`, and any link with `rel="external"` or `data-no-prefetch`.
+* New: LCP image preload — pages with a hero, content+image, or video-embed block emit `<link rel="preload" as="image" fetchpriority="high">` for the first such image, shaving 100–400 ms of LCP on hero-led layouts.
+* New: Conditional integration preconnect — when a lead-form block is on the page and Mailchimp is configured, the page warms the DNS / TLS to the correct Mailchimp datacenter via `<link rel="preconnect">` + `dns-prefetch`. Cost is paid only on pages that actually use the integration.
+* New: Filter hooks `brndle/perf/speculation_rules`, `brndle/perf/lcp_preload`, `brndle/perf/preconnects`, and `brndle/perf/preconnect_origins` for site-level opt-out / customisation.
+* Improvement: Typography → Heading Scale Ratio admin slider now scales `<h1>`–`<h6>` inside `.prose` content (blog posts, page bodies). Block markup keeps its design-intent `text-[clamp(...)]` sizes.
+* Improvement: Settings consistency CI guardrail (`bin/check-settings-consistency.mjs`) — every PR now fails fast if a key in `Defaults.php` lacks an admin tab field or a code consumer, or if an admin tab references a key that doesn't exist in defaults. Closes the kind of silent drift that produced the 1.3.0 dead settings.
+* Chore: Drop the empty `resources/js/app.js` Vite shim. Phase-5 bundle hygiene from the perf roadmap — every page is now one fewer network request and the build manifest shrinks 1.36 → 0.82 KiB.
 
 = 1.3.1 =
 * Fix: Typography → Base Font Size and Heading Scale Ratio sliders now actually scale rendered output. Previously the admin saved + emitted CSS variables but no stylesheet read them. `html { font-size: var(--font-size-base) }` makes the rem cascade scale; `--text-h1` … `--text-h6` are now exposed as a calc() ramp from `--heading-scale` for opt-in heading sizing in custom CSS.
@@ -79,6 +88,9 @@ No build tools required for end users — the release zip ships compiled assets.
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Patch release — performance polish (speculation rules, LCP preload, conditional preconnect on lead-form pages) plus the Heading Scale slider now visibly affects blog content. New CI guardrail catches dead settings before merge. Backward compatible.
 
 = 1.3.1 =
 Patch release. Two dead admin settings (Base Font Size, Heading Scale) now actually affect rendered output. `dark:` Tailwind utilities are now bound to the brndle toggle so future dark: usage just works. Block editor iframe loading is simplified to align with upstream Sage. No breaking changes.
