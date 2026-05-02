@@ -5,6 +5,34 @@
 @source "../**/*.js";
 @source "../../blocks/**/*.blade.php";
 
+/* Tailwind dark variant — bind every `dark:*` utility to the brndle
+   data-theme attribute system. Tailwind v4 defaults to
+   `prefers-color-scheme: dark`, which would mean `dark:bg-foo` only fires
+   when the OS is in dark mode and would ignore the brndle toggle. The
+   multi-rule form below activates `dark:` in three cases:
+     1. user explicitly picked dark         → [data-theme="dark"]
+     2. user picked system + OS reports dark → [data-theme="system"] + media
+     3. no theme attribute set + OS dark    → :root:not([data-theme]) + media
+
+   Case 3 covers the brief moment before the FOUC script runs, plus any
+   child theme that drops the data-theme attribute entirely while still
+   wanting dark-mode utilities to track the OS. Keeps the variant general
+   and adoptive — a client can opt out of toggle-driven mode without losing
+   OS-driven dark styling. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where([data-theme="system"], [data-theme="system"] *) {
+      @slot;
+    }
+    &:where(:root:not([data-theme]) *, :root:not([data-theme])) {
+      @slot;
+    }
+  }
+}
+
 @theme {
   /* Typography — --font-sans overrides Tailwind's default so font-sans utility
      picks up the theme font. --font-family-heading is custom for .font-heading. */
@@ -159,28 +187,6 @@ html {
     --tw-prose-pre-bg: var(--color-surface-secondary);
     --tw-prose-th-borders: var(--color-surface-tertiary);
     --tw-prose-td-borders: var(--color-surface-tertiary);
-  }
-}
-
-/* ========================================================================
-   Header Logo Dark Mode Fix
-   Swap light/dark logos when data-theme="dark" is active
-   ======================================================================== */
-
-[data-theme="dark"] img.dark\:hidden {
-  display: none !important;
-}
-
-[data-theme="dark"] img.hidden.dark\:block {
-  display: block !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-theme="system"] img.dark\:hidden {
-    display: none !important;
-  }
-  [data-theme="system"] img.hidden.dark\:block {
-    display: block !important;
   }
 }
 
