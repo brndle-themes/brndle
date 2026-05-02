@@ -70,6 +70,13 @@ export default function Performance( { settings, onChange } ) {
 				onChange={ ( v ) => onChange( 'perf_view_transitions', v ) }
 			/>
 
+			<ToggleRow
+				label={ __( 'Critical CSS (defer main stylesheet)', 'brndle' ) }
+				description={ __( 'Inline a small hand-curated critical stylesheet so the first paint is not render-blocked, then load the full app.css asynchronously. Pages start rendering ~150–400 ms sooner on slow connections; on fast connections the difference is invisible. Briefly shows the un-styled version of below-the-fold content while the rest of the stylesheet finishes downloading; not recommended for sites with very slow origins.', 'brndle' ) }
+				checked={ !! settings.perf_critical_css }
+				onChange={ ( v ) => onChange( 'perf_critical_css', v ) }
+			/>
+
 			<div className="brndle-cache-section" style={ { marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid #e0e0e0' } }>
 				<h3 className="brndle-section-title">{ __( 'Cache Management', 'brndle' ) }</h3>
 				<p style={ { color: '#757575', fontSize: '13px', marginBottom: '1rem' } }>

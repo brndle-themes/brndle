@@ -1,7 +1,14 @@
 @php
   $toggleDriven = (bool) ($showDarkModeToggle ?? false);
   $initialTheme = in_array($darkModeDefault, ['light', 'dark', 'system'], true) ? $darkModeDefault : 'light';
-  $viteEntries = ['resources/css/app.css'];
+
+  $criticalCssEnabled = (bool) \Brndle\Settings\Settings::get('perf_critical_css', false);
+  $criticalCss = '';
+  if ($criticalCssEnabled) {
+    $criticalCss = (string) @file_get_contents(get_theme_file_path('resources/css/critical.css'));
+  }
+
+  $viteEntries = $criticalCssEnabled ? [] : ['resources/css/app.css'];
   if ($toggleDriven) {
     $viteEntries[] = 'resources/js/dark-mode.js';
   }
@@ -21,6 +28,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
+
+    @if ($criticalCssEnabled && $criticalCss !== '')
+      <style id="brndle-critical">{!! $criticalCss !!}</style>
+      <link rel="preload" as="style" href="{{ \Illuminate\Support\Facades\Vite::asset('resources/css/app.css') }}" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="{{ \Illuminate\Support\Facades\Vite::asset('resources/css/app.css') }}"></noscript>
+    @endif
 
     @vite($viteEntries)
     {{-- Landing layout stays lean: only ships dark-mode JS when the feature is enabled. --}}
