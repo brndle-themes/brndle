@@ -1,0 +1,61 @@
+name: Release
+
+# Manual release workflow — bumps style.css + readme.txt, commits, tags,
+# pushes the tag. The release zip is still built locally via
+# `bin/release.sh` and uploaded with `gh release create`; this job only
+# automates the version-bump + tag step.
+#
+# Adapted from roots/sage v11.2's release.yml. Only consumes the
+# `version` input (validated against semver) plus the bot identity;
+# no untrusted GitHub event payload is interpolated into shell.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver version (e.g. 1.3.4)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Bump version + tag
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Validate version format
+        run: |
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid version. Use semver (e.g. 1.3.4)."
+            exit 1
+          fi
+
+      - name: Verify tag does not exist
+        run: |
+          if git ls-remote --tags origin "refs/tags/v${VERSION}" | grep -q .; then
+            echo "::error::Tag v${VERSION} already exists on origin."
+            exit 1
+          fi
+
+      - name: Bump style.css and readme.txt
+        run: |
+          sed -i "s/^Version:.*/Version:            ${VERSION}/" style.css
+          sed -i "s/^Stable tag:.*/Stable tag: ${VERSION}/" readme.txt
+
+      - name: Commit + tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add style.css readme.txt
+          git commit --message "release(${VERSION}): bump version"
+          git tag -a "v${VERSION}" -m "Brndle ${VERSION}"
+          git push origin main
+          git push origin "refs/tags/v${VERSION}"
