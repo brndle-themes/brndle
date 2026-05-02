@@ -123,6 +123,39 @@ The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
 | 1.3.0 | 2026-05-02 | Block quality pass — editor canvas styles, MediaUpload picker, FAQ JSON-LD, hero variations, i18n, lead-form view script, `@wordpress/icons`, wp-scripts v32, comparison-table compile fix |
 | 1.2.4 | 2026-04-14 | Logo strip visibility, FAQ focus outline, post nav entity encoding, dark-mode toggle state machine |
 
+## Upstream tracking (roots/sage)
+
+Brndle is built on Sage / Acorn. Stay aware of upstream — the framework
+moves and our deps drift.
+
+Run the helper before any framework upgrade work:
+
+```bash
+./bin/check-upstream.sh
+```
+
+It prints a side-by-side table (PHP, Acorn, Vite, vite plugins) plus the
+latest Sage release tag and last five commits to `roots/sage`.
+
+### Known gap as of 2026-05-02 (brndle 1.3.0 → sage v11.2.1)
+
+| dep | brndle | sage main | upgrade priority |
+|-----|--------|-----------|------------------|
+| `roots/acorn` | `^5.0` | `^6.0` | **High** — Acorn 6 may fix the `@php($expr)===` Blade compiler bug we hit on `comparison-table.blade.php` |
+| `vite` | `^7.0` | `^8.0` | Medium — pulls `laravel-vite-plugin@3` and `@roots/vite-plugin@2` together |
+| `laravel-vite-plugin` | `^2.0` | `^3.0` | (bundled with Vite 8) |
+| `@roots/vite-plugin` | `^1.0` | `^2.0` | (bundled with Vite 8) |
+| PHP | `>=8.2` | `>=8.3` | Low — only raise if Acorn 6 forces it |
+
+### Cadence
+
+- Run `bin/check-upstream.sh` at the start of any framework-touching session
+- Skim the Sage releases page before cutting a brndle minor version
+- A behaviour bug we can't reproduce in isolation may already be fixed
+  upstream — check before going deep
+
+Reference: <https://github.com/roots/sage/releases>
+
 ## Skills
 
 Use `/brndle-pages` skill for creating landing pages and configuring sites.
