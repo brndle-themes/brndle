@@ -62,11 +62,17 @@ function* walk(dir, predicate) {
 }
 
 // 1. Pull canonical keys from Defaults.php — first-level array keys only.
-function extractDefaultsKeys() {
+//    `which` selects which top-level array we extract from: $defaults
+//    inside all() vs $schema inside schema(). Both share the depth-aware
+//    parse + trailing-line flush.
+function extractKeysFromArray(varName, fnName) {
     const text = readFile(path.join(ROOT, 'app/Settings/Defaults.php'));
-    const match = text.match(/public static function all\(\): array\s*\{[\s\S]*?\$defaults = \[([\s\S]*?)\n\s*\];/);
+    const re = new RegExp(
+        `public static function ${fnName}\\(\\): array\\s*\\{[\\s\\S]*?\\$${varName} = \\[([\\s\\S]*?)\\n\\s*\\];`
+    );
+    const match = text.match(re);
     if (!match) {
-        throw new Error('Could not locate $defaults array in Defaults.php');
+        throw new Error(`Could not locate $${varName} array in Defaults::${fnName}().`);
     }
     const body = match[1];
     const keys = new Set();
@@ -90,6 +96,14 @@ function extractDefaultsKeys() {
     // Trailing line (no terminating \n captured by the outer regex).
     flush();
     return keys;
+}
+
+function extractDefaultsKeys() {
+    return extractKeysFromArray('defaults', 'all');
+}
+
+function extractSchemaKeys() {
+    return extractKeysFromArray('schema', 'schema');
 }
 
 // 2. Scan admin/src/tabs for `settings.<key>` and `settings['<key>']` references.
@@ -132,6 +146,7 @@ function extractConsumerKeys(canonical) {
 
 function main() {
     const defaults = extractDefaultsKeys();
+    const schema = extractSchemaKeys();
     const adminFields = extractAdminKeys();
     const consumers = extractConsumerKeys(defaults);
 
@@ -141,11 +156,14 @@ function main() {
     const orphansFromConsumers = [...defaults].filter(
         (k) => !consumers.has(k) && !ALLOW_NO_CONSUMER.has(k)
     );
+    const orphansFromSchema = [...defaults].filter((k) => !schema.has(k));
     const ghostsInAdmin = [...adminFields].filter((k) => !defaults.has(k));
+    const ghostsInSchema = [...schema].filter((k) => !defaults.has(k));
 
     let failed = false;
 
     console.log(`Defaults: ${defaults.size} keys`);
+    console.log(`Schema metadata: ${schema.size} keys`);
     console.log(`Admin tab fields: ${adminFields.size} unique keys`);
     console.log(`Code consumers found: ${consumers.size} keys`);
     console.log('');
@@ -168,14 +186,30 @@ function main() {
 
     if (ghostsInAdmin.length) {
         failed = true;
-        console.log('❌ Admin tab fields not declared in Defaults.php:');
+        console.log('Admin tab fields not declared in Defaults.php:');
         for (const k of ghostsInAdmin) console.log(`   - ${k}`);
         console.log('   (Add the key + default + type list to Defaults.php.)');
         console.log('');
     }
 
+    if (orphansFromSchema.length) {
+        failed = true;
+        console.log('Defaults keys with no schema() metadata entry:');
+        for (const k of orphansFromSchema) console.log(`   - ${k}`);
+        console.log('   (Add a metadata entry to Defaults::schema() — section, label, control, etc.)');
+        console.log('');
+    }
+
+    if (ghostsInSchema.length) {
+        failed = true;
+        console.log('schema() entries not declared in all():');
+        for (const k of ghostsInSchema) console.log(`   - ${k}`);
+        console.log('   (Add the key + default to Defaults::all().)');
+        console.log('');
+    }
+
     if (!failed) {
-        console.log('✅ All settings consistent across Defaults / admin tabs / consumers.');
+        console.log('All settings consistent across Defaults (all + schema) / admin tabs / consumers.');
         process.exit(0);
     }
 
