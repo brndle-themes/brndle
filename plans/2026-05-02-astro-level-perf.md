@@ -192,7 +192,7 @@ Cache-Control hints, no inline secrets) but not implement them.
 1. Phase 1 (#1 + #2 + #3 — speculation rules, LCP preload, fetchpriority)
    — biggest perceived win for least code, two short PRs.
 2. Measure baseline with Lighthouse + WebPageTest, save numbers in
-   docs/. Without this, later phases are guesswork.
+   `plans/`. Without this, later phases are guesswork.
 3. Phase 4 (#12 — `<x-img>` picture wrapper) — once measured, AVIF/WebP
    adoption gives the next big LCP / total-bytes win.
 4. Phase 2 (#6–#8 — critical CSS) — needs the baseline first; the
