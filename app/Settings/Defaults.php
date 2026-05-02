@@ -95,6 +95,102 @@ class Defaults
     }
 
     /**
+     * Field metadata for every Brndle setting.
+     *
+     * Single source of truth for the admin UI: section, label,
+     * description, control type, and (where relevant) the option
+     * choices or numeric range. The hand-coded admin tabs in
+     * `admin/src/tabs/*.jsx` still ship today — this metadata is the
+     * structural foundation that lets a future PR generate those
+     * tabs from one place. Until that ships, the consistency CI
+     * (`bin/check-settings-consistency.mjs`) verifies every key in
+     * `all()` also has an entry here, so the two stay in sync.
+     *
+     * @return array<string, array{
+     *     section: string,
+     *     label: string,
+     *     description?: string,
+     *     control: 'text'|'textarea'|'url'|'email'|'color'|'image'|'select'|'toggle'|'number'|'range'|'social'|'html',
+     *     options?: array<string, string>,
+     *     min?: int|float,
+     *     max?: int|float,
+     *     step?: int|float,
+     * }>
+     */
+    public static function schema(): array
+    {
+        $schema = [
+            // ── Site Identity ───────────────────────────────────
+            'site_logo_light' => ['section' => 'site-identity', 'label' => 'Logo (light)', 'description' => 'Shown in light mode and on light section variants.', 'control' => 'image'],
+            'site_logo_dark' => ['section' => 'site-identity', 'label' => 'Logo (dark)', 'description' => 'Shown in dark mode and on dark section variants.', 'control' => 'image'],
+            'social_links' => ['section' => 'site-identity', 'label' => 'Social profiles', 'control' => 'social'],
+
+            // ── Colors ──────────────────────────────────────────
+            'color_scheme' => ['section' => 'colors', 'label' => 'Color scheme', 'description' => 'One of 12 design-tested presets. Custom Accent overrides the preset accent if set.', 'control' => 'select'],
+            'custom_accent' => ['section' => 'colors', 'label' => 'Custom accent', 'description' => 'Hex value that overrides the preset accent. Leave empty to use the preset.', 'control' => 'color'],
+
+            // ── Dark Mode ───────────────────────────────────────
+            'dark_mode_default' => ['section' => 'dark-mode', 'label' => 'Default mode', 'control' => 'select', 'options' => ['light' => 'Light', 'dark' => 'Dark', 'system' => 'Follow system']],
+            'dark_mode_toggle' => ['section' => 'dark-mode', 'label' => 'Show toggle button', 'description' => 'Disabling drops the dark-mode JS controller entirely.', 'control' => 'toggle'],
+            'dark_mode_toggle_position' => ['section' => 'dark-mode', 'label' => 'Toggle position', 'control' => 'select', 'options' => ['bottom-right' => 'Bottom right', 'bottom-left' => 'Bottom left', 'header' => 'Header']],
+
+            // ── Typography ──────────────────────────────────────
+            'font_pair' => ['section' => 'typography', 'label' => 'Font pair', 'description' => '8 self-hosted woff2 pairs.', 'control' => 'select'],
+            'font_size_base' => ['section' => 'typography', 'label' => 'Base font size (px)', 'description' => 'Drives `html { font-size }` so every rem scales.', 'control' => 'range', 'min' => 12, 'max' => 24, 'step' => 1],
+            'heading_scale' => ['section' => 'typography', 'label' => 'Heading scale ratio', 'description' => 'Geometric ratio between h6 and h1 inside `.prose` content. 1.25 ≈ Major Third.', 'control' => 'range', 'min' => 1.10, 'max' => 1.50, 'step' => 0.05],
+
+            // ── Header ──────────────────────────────────────────
+            'header_style' => ['section' => 'header', 'label' => 'Header style', 'description' => '8 layouts; pick the closest match for the brand.', 'control' => 'select'],
+            'header_cta_text' => ['section' => 'header', 'label' => 'CTA button text', 'control' => 'text'],
+            'header_cta_url' => ['section' => 'header', 'label' => 'CTA button URL', 'control' => 'url'],
+            'header_banner_text' => ['section' => 'header', 'label' => 'Top banner text', 'description' => 'Optional one-line marketing message above the header.', 'control' => 'text'],
+            'header_mobile_style' => ['section' => 'header', 'label' => 'Mobile menu style', 'control' => 'select', 'options' => ['slide' => 'Slide-in', 'fullscreen' => 'Fullscreen', 'dropdown' => 'Dropdown']],
+
+            // ── Footer ──────────────────────────────────────────
+            'footer_columns' => ['section' => 'footer', 'label' => 'Columns', 'control' => 'range', 'min' => 1, 'max' => 4, 'step' => 1],
+            'footer_copyright' => ['section' => 'footer', 'label' => 'Copyright HTML', 'description' => 'Limited HTML allowed. Default uses site name + current year.', 'control' => 'html'],
+            'footer_show_social' => ['section' => 'footer', 'label' => 'Show social links', 'control' => 'toggle'],
+            'footer_style' => ['section' => 'footer', 'label' => 'Footer style', 'control' => 'select', 'options' => ['dark' => 'Dark', 'light' => 'Light', 'columns' => 'Columns', 'minimal' => 'Minimal', 'big' => 'Big', 'stacked' => 'Stacked']],
+
+            // ── Blog Archive ────────────────────────────────────
+            'archive_layout' => ['section' => 'blog-archive', 'label' => 'Archive layout', 'control' => 'select', 'options' => ['grid' => 'Grid', 'list' => 'List', 'magazine' => 'Magazine', 'editorial' => 'Editorial', 'minimal' => 'Minimal']],
+            'archive_posts_per_page' => ['section' => 'blog-archive', 'label' => 'Posts per page', 'control' => 'range', 'min' => 1, 'max' => 100, 'step' => 1],
+            'archive_show_sidebar' => ['section' => 'blog-archive', 'label' => 'Show sidebar', 'control' => 'toggle'],
+            'archive_show_category_filter' => ['section' => 'blog-archive', 'label' => 'Show category filter', 'control' => 'toggle'],
+
+            // ── Single Post ─────────────────────────────────────
+            'single_layout' => ['section' => 'single-post', 'label' => 'Single post layout', 'control' => 'select', 'options' => ['standard' => 'Standard', 'hero-immersive' => 'Hero Immersive', 'sidebar' => 'Sidebar', 'editorial' => 'Editorial', 'cinematic' => 'Cinematic', 'presentation' => 'Presentation', 'split' => 'Split', 'minimal-dark' => 'Minimal Dark']],
+            'single_show_progress_bar' => ['section' => 'single-post', 'label' => 'Show reading progress bar', 'control' => 'toggle'],
+            'single_show_reading_time' => ['section' => 'single-post', 'label' => 'Show reading time', 'control' => 'toggle'],
+            'single_show_author_box' => ['section' => 'single-post', 'label' => 'Show author box', 'control' => 'toggle'],
+            'single_show_social_share' => ['section' => 'single-post', 'label' => 'Show social share', 'control' => 'toggle'],
+            'single_show_related_posts' => ['section' => 'single-post', 'label' => 'Show related posts', 'control' => 'toggle'],
+            'single_show_toc' => ['section' => 'single-post', 'label' => 'Show table of contents', 'control' => 'toggle'],
+            'single_show_post_nav' => ['section' => 'single-post', 'label' => 'Show post navigation', 'control' => 'toggle'],
+
+            // ── Performance ─────────────────────────────────────
+            'perf_remove_emoji' => ['section' => 'performance', 'label' => 'Remove emoji scripts', 'description' => 'Saves ~14 KiB on every page.', 'control' => 'toggle'],
+            'perf_remove_embed' => ['section' => 'performance', 'label' => 'Remove wp-embed', 'control' => 'toggle'],
+            'perf_lazy_images' => ['section' => 'performance', 'label' => 'Lazy-load images', 'control' => 'toggle'],
+            'perf_preload_fonts' => ['section' => 'performance', 'label' => 'Preload primary font', 'control' => 'toggle'],
+            'perf_remove_global_styles' => ['section' => 'performance', 'label' => 'Remove WP global styles on landing template', 'control' => 'toggle'],
+            'perf_view_transitions' => ['section' => 'performance', 'label' => 'View Transitions (soft navigation)', 'description' => 'Adds ~2 KiB JS controller for SPA-feel navigation.', 'control' => 'toggle'],
+            'perf_critical_css' => ['section' => 'performance', 'label' => 'Inline critical CSS, defer app.css', 'description' => 'Trade brief flash for faster first paint.', 'control' => 'toggle'],
+
+            // ── Forms & Integrations ───────────────────────────
+            'mailchimp_api_key' => ['section' => 'forms', 'label' => 'Mailchimp API key', 'control' => 'text'],
+            'mailchimp_list_id' => ['section' => 'forms', 'label' => 'Mailchimp list / audience ID', 'control' => 'text'],
+            'form_webhook_url' => ['section' => 'forms', 'label' => 'Webhook URL', 'description' => 'Optional POST endpoint that receives every submission.', 'control' => 'url'],
+            'form_notification_email' => ['section' => 'forms', 'label' => 'Notification email', 'control' => 'email'],
+            'form_store_submissions' => ['section' => 'forms', 'label' => 'Store submissions in DB', 'control' => 'toggle'],
+            'form_email_notifications' => ['section' => 'forms', 'label' => 'Email notification', 'control' => 'toggle'],
+        ];
+
+        /** @var array<string, array<string, mixed>> */
+        return apply_filters('brndle/settings_schema', $schema);
+    }
+
+    /**
      * Return the default value for a single key.
      *
      * @param  string  $key      Setting key name.
