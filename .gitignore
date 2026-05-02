@@ -7,3 +7,8 @@
 !/blocks/build/.gitkeep
 .env
 brndle-*.zip
+
+# Playwright artifacts from `npm run test:e2e`
+/test-results/
+/playwright-report/
+/playwright/.cache/
