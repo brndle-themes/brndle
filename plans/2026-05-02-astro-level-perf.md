@@ -152,13 +152,22 @@ distinctive "feels like an app" character. WP themes rarely ship this.
 
 ## Phase 6 — Repeat-visit speed
 
-20. **Service worker for stale-while-revalidate** — register a tiny
-    worker that caches:
-    - Built assets (`/wp-content/themes/brndle/public/build/*`)
-    - Visited HTML pages (LRU, 50 entries)
-    Repeat visits are instant; offline gracefully shows cached HTML.
-    Theme-shippable: register from app.js, ship `service-worker.js` in
-    `public/`. Admin opt-in toggle.
+20. **Service worker for stale-while-revalidate** — _**deferred,
+    not next.**_
+    - **What it would do:** register a tiny worker that caches built
+      assets (`/wp-content/themes/brndle/public/build/*`) and visited
+      HTML pages (LRU, 50 entries). Repeat visits become instant;
+      offline gracefully shows cached HTML.
+    - **Why later:** service workers ship at a site-root scope, but a
+      theme can only place files at `/wp-content/themes/brndle/...`.
+      Getting the right scope requires either a WP rewrite rule
+      (`/brndle-sw.js` → theme file) or a `Service-Worker-Allowed`
+      response header — both add a server-config story that breaks
+      the "drop-in theme zip" install model. There's also the
+      well-known SW update flow (stuck-on-old-version, dev-tools-
+      disable) that deserves a careful first-class UX, not a quick
+      ship. Realistic path: pair it with the upcoming hosted-only
+      brndle distribution where we control the host config too.
 
 21. **Save-Data + reduced-motion + reduced-data variants** — already
     handle `prefers-reduced-motion`; extend to `prefers-reduced-data`
