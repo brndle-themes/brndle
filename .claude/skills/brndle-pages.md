@@ -7,6 +7,8 @@ description: Create landing pages, blog posts, and configure sites for Brndle Wo
 
 Create WordPress pages/posts and configure Brndle theme sites. Content is stored as standard WordPress block markup in `post_content`.
 
+> **Portable / non-Claude-Code version:** the same content as a markdown reference is at `docs/AI-USAGE-GUIDE.md` — use that when working from a context that doesn't load this skill (other AI tools, human scripting reference, plain-text docs).
+
 ## How It Works
 
 1. User describes the page or site configuration they want

@@ -181,3 +181,15 @@ Reference: <https://github.com/roots/sage/releases>
 ## Skills
 
 Use `/brndle-pages` skill for creating landing pages and configuring sites.
+
+## AI Usage Docs
+
+Comprehensive AI / scripting guide lives at `docs/AI-USAGE-GUIDE.md`. Covers all
+18 blocks (full attribute reference + decision trees), the REST settings API,
+page templates, and complete worked examples for landing pages and blog posts.
+Read this before authoring content programmatically — it's the canonical
+"how to use Brndle from outside the editor" reference.
+
+The `.claude/skills/brndle-pages.md` skill is the same content as a Claude Code
+skill (invocable via `/brndle-pages`); the `docs/` version is portable across
+AI tools and includes more recipes / REST examples.
