@@ -25,12 +25,16 @@ const DEST = path.join(ROOT, 'resources/icons');
 const ICONS = [
     'alert-triangle',
     'arrow-right',
+    'arrow-up',
     'check',
     'chevron-down',
     'chevron-right',
+    'clock',
     'external-link',
+    'home',
     'info',
     'plus',
+    'search',
     'star',
     'x',
 ];

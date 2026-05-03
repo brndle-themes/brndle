@@ -52,6 +52,14 @@
   if ($stickyMode !== 'static' || $searchEnabled) {
     $viteEntries[] = 'resources/js/header-behaviors.js';
   }
+
+  // Back-to-top floating button (v2.0). Filterable so sites can opt out
+  // without touching markup. The controller is tiny + early-exits if the
+  // button isn't in the DOM, but skipping the request keeps it cheap.
+  $backToTopEnabled = (bool) apply_filters('brndle/back_to_top_enabled', true);
+  if ($backToTopEnabled) {
+    $viteEntries[] = 'resources/js/back-to-top.js';
+  }
 @endphp
 <!doctype html>
 <html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}" data-brndle-sticky-mode="{{ $stickyMode }}">
@@ -95,6 +103,7 @@
 
       <main id="main" class="main">
         @yield('content')
+        @include('partials.components.print-source')
       </main>
 
       @hasSection('sidebar')
@@ -110,6 +119,10 @@
 
     @if ($toggleDriven && ($darkModeTogglePosition ?? '') !== 'header')
       @include('partials.components.dark-mode-toggle')
+    @endif
+
+    @if ($backToTopEnabled)
+      @include('partials.components.back-to-top')
     @endif
 
     @php(do_action('get_footer'))

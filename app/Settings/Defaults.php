@@ -80,6 +80,7 @@ class Defaults
             'single_show_related_posts' => true,
             'single_show_toc' => false,
             'single_show_post_nav' => true,
+            'single_show_updated_date' => true,
 
             // ── Performance ─────────────────────────────────────
             'perf_remove_emoji' => true,
@@ -186,6 +187,7 @@ class Defaults
             'single_show_related_posts' => ['section' => 'single-post', 'label' => 'Show related posts', 'control' => 'toggle'],
             'single_show_toc' => ['section' => 'single-post', 'label' => 'Show table of contents', 'control' => 'toggle'],
             'single_show_post_nav' => ['section' => 'single-post', 'label' => 'Show post navigation', 'control' => 'toggle'],
+            'single_show_updated_date' => ['section' => 'single-post', 'label' => 'Show last-updated date', 'description' => 'Adds an "Updated …" line next to the publish date when the post was modified more than 24h after publishing.', 'control' => 'toggle'],
 
             // ── Performance ─────────────────────────────────────
             'perf_remove_emoji' => ['section' => 'performance', 'label' => 'Remove emoji scripts', 'description' => 'Saves ~14 KiB on every page.', 'control' => 'toggle'],
@@ -240,6 +242,7 @@ class Defaults
             'single_show_related_posts',
             'single_show_toc',
             'single_show_post_nav',
+            'single_show_updated_date',
             'perf_remove_emoji',
             'perf_remove_embed',
             'perf_lazy_images',
