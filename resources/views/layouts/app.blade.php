@@ -43,9 +43,18 @@
   if (has_nav_menu('primary_navigation')) {
     $viteEntries[] = 'resources/js/mega-menu.js';
   }
+
+  // Header behaviors (M4) — sticky modes + search popover. Always loaded
+  // when sticky mode is non-static OR search is enabled (the script
+  // early-exits if neither feature is configured).
+  $stickyMode = (string) \Brndle\Settings\Settings::get('header_sticky_mode', 'sticky-fixed');
+  $searchEnabled = (bool) \Brndle\Settings\Settings::get('header_search_enabled', false);
+  if ($stickyMode !== 'static' || $searchEnabled) {
+    $viteEntries[] = 'resources/js/header-behaviors.js';
+  }
 @endphp
 <!doctype html>
-<html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}">
+<html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}" data-brndle-sticky-mode="{{ $stickyMode }}">
   <head>
     <meta charset="utf-8">
     @if ($toggleDriven)
@@ -81,6 +90,7 @@
 
       @unless($hideHeader ?? false)
         @include('sections.header')
+        @include('partials.header.search')
       @endunless
 
       <main id="main" class="main">

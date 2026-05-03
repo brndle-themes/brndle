@@ -1,4 +1,5 @@
 import { SelectControl, TextControl } from '@wordpress/components';
+import ToggleRow from '../components/ToggleRow';
 
 export default function Header( { settings, onChange } ) {
 	return (
@@ -49,6 +50,29 @@ export default function Header( { settings, onChange } ) {
 				onChange={ ( v ) => onChange( 'header_cta_url', v ) }
 				placeholder="https://example.com/signup"
 				__nextHasNoMarginBottom
+			/>
+
+			<h3 className="brndle-section-title">Behavior</h3>
+
+			<SelectControl
+				label="Sticky mode"
+				help="How the header behaves on scroll. Static = no sticky. Sticky-fixed = always visible. Sticky-fade = sticky with subtle fade-in on scroll. Hide-on-scroll = scroll down hides, scroll up reveals."
+				value={ settings.header_sticky_mode || 'sticky-fixed' }
+				options={ [
+					{ label: 'Static (no sticky)', value: 'static' },
+					{ label: 'Sticky (always visible)', value: 'sticky-fixed' },
+					{ label: 'Sticky with fade-on-scroll', value: 'sticky-fade' },
+					{ label: 'Hide on scroll down, reveal on scroll up', value: 'sticky-hide-on-scroll' },
+				] }
+				onChange={ ( v ) => onChange( 'header_sticky_mode', v ) }
+				__nextHasNoMarginBottom
+			/>
+
+			<ToggleRow
+				label="Show header search"
+				description="Adds a search icon to the header that opens a popover with the WordPress search form."
+				checked={ !! settings.header_search_enabled }
+				onChange={ ( v ) => onChange( 'header_search_enabled', v ) }
 			/>
 
 			<h3 className="brndle-section-title">Mobile</h3>

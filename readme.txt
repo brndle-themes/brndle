@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.8.0
+Stable tag: 1.9.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,11 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.9.0 =
+* **New: Sticky header modes (M4.A of mega-menu plan).** Setting `header_sticky_mode` adds 4 scroll behaviors that work uniformly across all 8 header styles: `static` (no sticky — explicit override even when a header style has its own sticky baked in), `sticky-fixed` (always visible, default), `sticky-fade` (subtle blur + shadow nudge appears once the user scrolls past 40px), and `sticky-hide-on-scroll` (hides on scroll-down, reveals on scroll-up — common product-site pattern). Mode is selected from the Header tab in admin → Behavior. Vanilla JS scroll watcher (~1KB) on a single requestAnimationFrame loop; passive listener; honors `prefers-reduced-motion` (kills the slide / fade transitions but keeps the sticky position). Reveals header on `:focus-within` so keyboard users navigating into the header don't lose track when it's hidden.
+* **New: Header search slot (M4.B of mega-menu plan).** Setting `header_search_enabled` adds a fixed-position search-icon button that opens a popover with WordPress's standard `get_search_form()` (so any plugin-customized search — Yoast, RankMath, Algolia — picks up automatically). Popover is keyboard + click-outside dismissible (Esc closes + returns focus to the trigger; click-outside closes). Search input gets the same 3px accent focus ring + accent submit button as the rest of Brndle's design system. Trigger is rendered once at the layout level rather than inside each header style's markup so it works across all 8 styles without per-style edits.
+* **Plan progress.** With v1.9.0 the four-milestone mega-menu plan is delivered: M1 (foundation, 1.6.0), M2 (mega + admin + featured + widget area + auto-posts, 1.7.0 + 1.7.1), M3 (tabbed mega + conditional visibility, 1.8.0), M4 (sticky modes + search, this release). Mini-cart and user avatar slots — originally planned for M4 — are deferred to a future v1.9.x as standalone integrations because each needs its own domain depth (WooCommerce cart fragments AJAX; auth-aware avatar dropdown). Brndle now ships a feature-complete mega menu system with three rendering modes (standard / flyout / mega), three content sources per mega panel (manual / widget area / auto-posts), tabbed mega, conditional visibility, and four sticky modes — comparable to the free tier of Max Mega Menu plus the visual depth of paid premium themes.
 
 = 1.8.0 =
 * **New: Tabbed mega menus (M3.A of mega-menu plan).** Per mega-enabled menu item: tick "Render as tabbed mega" and the children become a left-rail tab list, while their grandchildren become the right-panel content. Pattern matches UberMenu's tabbed mode + the Linear / GitHub product menu UX. Full WAI-ARIA tabs implementation: role=tablist with vertical orientation, role=tab buttons with aria-selected + aria-controls, role=tabpanel divs with aria-labelledby + hidden attribute. Click selects a tab; ↑/↓/←/→ arrow keys navigate between tabs; Home/End jump to first/last; Enter/Space activate; tabindex=-1 on inactive tabs so Tab cycles to the next focusable element rather than every tab.

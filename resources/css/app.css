@@ -1229,6 +1229,151 @@ html {
   }
 }
 
+/* ========================================================================
+   Header behaviors (M4) — sticky modes + search popover
+   ======================================================================== */
+
+/* Sticky mode is selected via `data-brndle-sticky-mode` on <html>. CSS
+   alone handles `static` (no behavior) and `sticky-fixed` (always visible).
+   Modes that depend on scroll position — `sticky-fade` (fade-in on scroll)
+   and `sticky-hide-on-scroll` (translate-Y hide) — combine these CSS rules
+   with classes flipped by header-behaviors.js. */
+
+/* Sticky-fixed — pin the header to the top of the viewport. The sticky
+   header styles (sticky/transparent/glass) already use `fixed`/`sticky` in
+   their own styles; this rule layers on top to ensure the global setting
+   wins regardless of which header style the admin picked. */
+html[data-brndle-sticky-mode="sticky-fixed"] #brndle-header,
+html[data-brndle-sticky-mode="sticky-fade"] #brndle-header,
+html[data-brndle-sticky-mode="sticky-hide-on-scroll"] #brndle-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: transform 240ms ease, opacity 240ms ease, background-color 240ms ease, box-shadow 240ms ease;
+}
+
+/* Static mode — explicit override in case a header style sets sticky in
+   its own stylesheet. */
+html[data-brndle-sticky-mode="static"] #brndle-header {
+  position: relative;
+}
+
+/* Sticky-fade — once scrolled past the JS threshold, .is-scrolled is added.
+   Use it to add a stronger backdrop / shadow than the unscrolled state. */
+html[data-brndle-sticky-mode="sticky-fade"] #brndle-header.is-scrolled {
+  background-color: color-mix(in srgb, var(--color-surface-primary) 92%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Hide-on-scroll-down — translate the header out of view when the user
+   scrolls down past the threshold; reveal again on scroll up. The
+   `is-hidden` class is toggled by the JS controller. Inputs get focus
+   inside the header? Reveal regardless via :focus-within so keyboard
+   users don't lose track of where they are. */
+html[data-brndle-sticky-mode="sticky-hide-on-scroll"] #brndle-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+html[data-brndle-sticky-mode="sticky-hide-on-scroll"] #brndle-header:focus-within.is-hidden {
+  transform: translateY(0);
+}
+
+/* Reduced motion — kill the slide / fade transitions but keep the sticky
+   positioning so the header still works as expected. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-brndle-sticky-mode="sticky-fixed"] #brndle-header,
+  html[data-brndle-sticky-mode="sticky-fade"] #brndle-header,
+  html[data-brndle-sticky-mode="sticky-hide-on-scroll"] #brndle-header {
+    transition: none;
+  }
+}
+
+/* Search popover — fixed below the header, max-width centered, fades in via
+   the [hidden] attribute removal. Keep it z-index above mega panel (55) but
+   below modals. */
+.brndle-search-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.brndle-search-trigger:hover,
+.brndle-search-trigger:focus-visible {
+  background: color-mix(in srgb, var(--color-text-tertiary) 12%, transparent);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+#brndle-search-popover {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 56;
+  width: min(36rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  background: var(--color-surface-primary);
+  border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+}
+
+#brndle-search-popover[hidden] {
+  display: none;
+}
+
+#brndle-search-popover form,
+#brndle-search-popover .search-form {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+#brndle-search-popover label {
+  display: none;
+}
+
+#brndle-search-popover input[type="search"],
+#brndle-search-popover input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 25%, transparent);
+  background: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+#brndle-search-popover input[type="search"]:focus,
+#brndle-search-popover input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+#brndle-search-popover button[type="submit"],
+#brndle-search-popover input[type="submit"] {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+  font-weight: 600;
+  cursor: pointer;
+}
+
 /* ---- Conditional visibility (M3.B) ---- */
 /* `data-brndle-hide-on` is a space-separated list set by the walker on
    menu items where the user ticked "Hide on desktop/tablet/mobile" in
