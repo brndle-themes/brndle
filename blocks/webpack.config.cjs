@@ -9,6 +9,9 @@ module.exports = {
 		...defaultEntry,
 		'page-meta-sidebar': path.resolve( __dirname, 'src/page-meta-sidebar.js' ),
 		'lead-form-view': path.resolve( __dirname, 'src/lead-form-view.js' ),
+		'code-view': path.resolve( __dirname, 'src/code-view.js' ),
+		'timeline-view': path.resolve( __dirname, 'src/timeline-view.js' ),
+		'tabs-accordion-view': path.resolve( __dirname, 'src/tabs-accordion-view.js' ),
 	},
 	resolve: {
 		...defaults.resolve,

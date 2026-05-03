@@ -5,6 +5,16 @@
 @source "../**/*.js";
 @source "../../blocks/**/*.blade.php";
 
+/* v2.1 editorial blocks — scoped CSS lives under resources/css/blocks/.
+   Each file is wholly scoped to its block class so it can't leak into
+   the rest of the theme. Order matters only between _base and the
+   per-block files (base sets the column width). */
+@import "./blocks/_base.css";
+@import "./blocks/code.css";
+@import "./blocks/pull-quote.css";
+@import "./blocks/timeline.css";
+@import "./blocks/tabs-accordion.css";
+
 /* Tailwind dark variant — bind every `dark:*` utility to the brndle
    data-theme attribute system. Tailwind v4 defaults to
    `prefers-color-scheme: dark`, which would mean `dark:bg-foo` only fires

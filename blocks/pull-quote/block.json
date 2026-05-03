@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/pull-quote",
+  "title": "Pull Quote",
+  "category": "brndle-sections",
+  "description": "Editorial pull quote with three variants: bordered-left, centered-large, and outset.",
+  "keywords": ["quote", "pull quote", "blockquote", "editorial"],
+  "textdomain": "brndle",
+  "attributes": {
+    "quote": {
+      "type": "string",
+      "default": ""
+    },
+    "cite": {
+      "type": "string",
+      "default": ""
+    },
+    "citeUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "variant": {
+      "type": "string",
+      "default": "bordered-left",
+      "enum": ["bordered-left", "centered-large", "outset"]
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "accent",
+      "enum": ["accent", "text-primary", "text-tertiary"]
+    },
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "anchor": true
+  },
+  "variations": [
+    {
+      "name": "bordered-left",
+      "title": "Bordered left",
+      "description": "Classic editorial pull quote with an accent rule on the left.",
+      "isDefault": true,
+      "scope": ["inserter"],
+      "attributes": { "variant": "bordered-left" }
+    },
+    {
+      "name": "centered-large",
+      "title": "Centered display",
+      "description": "Full-width centered quote with a decorative open-quote glyph.",
+      "scope": ["inserter"],
+      "attributes": { "variant": "centered-large" }
+    },
+    {
+      "name": "outset",
+      "title": "Outset",
+      "description": "Breaks out of the article column for added emphasis on long-form features.",
+      "scope": ["inserter"],
+      "attributes": { "variant": "outset" }
+    }
+  ],
+  "example": {
+    "attributes": {
+      "quote": "The best designs are the ones you don't notice — until you try to imagine the product without them.",
+      "cite": "Brndle design notes",
+      "variant": "bordered-left"
+    }
+  },
+  "version": "1.0.0"
+}

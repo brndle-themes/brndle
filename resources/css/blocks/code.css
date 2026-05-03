@@ -1,0 +1,299 @@
+/* ========================================================================
+   brndle/code — code block w/ syntax highlighting + copy button
+   ========================================================================
+   Highlightjs theme tokens are scoped to `.brndle-code` so a darker
+   highlight palette doesn't leak into other code-like elements
+   (PHP backticks, inline `<code>` outside this block).
+*/
+
+.brndle-code {
+    position: relative;
+    margin-block: 2rem;
+}
+
+.brndle-code__figure {
+    margin: 0;
+}
+
+.brndle-code__frame {
+    position: relative;
+    border: 1px solid var(--color-border-subtle, rgba(15, 23, 42, 0.08));
+    border-radius: 12px;
+    background: var(--color-surface-secondary, #f8fafc);
+    overflow: hidden;
+}
+
+.brndle-code__pre {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    tab-size: 2;
+    color: var(--color-text-primary, #0f172a);
+}
+
+.brndle-code__pre:focus-visible {
+    outline: 2px solid var(--color-accent, #0ea5e9);
+    outline-offset: -2px;
+}
+
+.brndle-code__code {
+    background: transparent !important;
+    padding: 0 !important;
+    color: inherit;
+    font: inherit;
+    white-space: pre;
+}
+
+/* Line numbers — rendered server-side as a sibling <aside>. The flex
+   shell aligns them next to the <pre> so they share line height with
+   the first line of code (no JS post-processing needed). */
+.brndle-code__shell {
+    display: flex;
+    align-items: stretch;
+}
+
+.brndle-code__line-numbers {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.625rem 1rem 1.25rem;
+    border-right: 1px solid var(--color-border-subtle, rgba(15, 23, 42, 0.08));
+    background: var(--color-surface-tertiary, rgba(15, 23, 42, 0.02));
+    user-select: none;
+    text-align: right;
+    color: var(--color-text-tertiary, #64748b);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    opacity: 0.65;
+    -webkit-user-select: none;
+}
+
+.brndle-code__shell .brndle-code__pre {
+    flex: 1;
+    min-width: 0;
+}
+
+.brndle-code__ln {
+    display: block;
+}
+
+/* Copy button — fades in on wrapper hover, always visible on focus-within
+   so keyboard users can always get to it. */
+.brndle-code__copy {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--color-border-subtle, rgba(15, 23, 42, 0.08));
+    border-radius: 8px;
+    background: var(--color-surface-primary, #fff);
+    color: var(--color-text-secondary, #334155);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 160ms ease, transform 160ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.brndle-code:hover .brndle-code__copy,
+.brndle-code:focus-within .brndle-code__copy {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brndle-code__copy:hover {
+    background: var(--color-accent, #0ea5e9);
+    color: #fff;
+    border-color: transparent;
+}
+
+.brndle-code__copy:focus-visible {
+    outline: 2px solid var(--color-accent, #0ea5e9);
+    outline-offset: 2px;
+    opacity: 1;
+}
+
+.brndle-code__copy-default,
+.brndle-code__copy-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.brndle-code__copy-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.brndle-code__copy[aria-pressed="true"] .brndle-code__copy-default {
+    display: none;
+}
+
+.brndle-code__copy[aria-pressed="true"] .brndle-code__copy-success {
+    display: inline-flex !important;
+}
+
+.brndle-code__caption {
+    margin-top: 0.625rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-tertiary, #64748b);
+    font-style: italic;
+}
+
+.brndle-code__caption a {
+    color: var(--color-accent, #0ea5e9);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Highlight.js token palette — light theme baseline. Dark variant
+   below. Theme override (`data-theme="dark"` / `data-theme="light"`)
+   forces a single palette regardless of page mode. */
+.brndle-code .hljs {
+    color: var(--color-text-primary, #0f172a);
+}
+
+.brndle-code .hljs-comment,
+.brndle-code .hljs-quote {
+    color: #6b7280;
+    font-style: italic;
+}
+
+.brndle-code .hljs-keyword,
+.brndle-code .hljs-selector-tag,
+.brndle-code .hljs-literal,
+.brndle-code .hljs-section,
+.brndle-code .hljs-link,
+.brndle-code .hljs-meta-keyword {
+    color: #7c3aed;
+}
+
+.brndle-code .hljs-string,
+.brndle-code .hljs-regexp,
+.brndle-code .hljs-attr,
+.brndle-code .hljs-template-tag,
+.brndle-code .hljs-template-variable {
+    color: #059669;
+}
+
+.brndle-code .hljs-number,
+.brndle-code .hljs-type,
+.brndle-code .hljs-class .hljs-title,
+.brndle-code .hljs-built_in,
+.brndle-code .hljs-builtin-name {
+    color: #d97706;
+}
+
+.brndle-code .hljs-function .hljs-title,
+.brndle-code .hljs-title.function_,
+.brndle-code .hljs-name {
+    color: #2563eb;
+}
+
+.brndle-code .hljs-variable,
+.brndle-code .hljs-symbol,
+.brndle-code .hljs-bullet,
+.brndle-code .hljs-addition {
+    color: #ea580c;
+}
+
+.brndle-code .hljs-deletion {
+    color: #dc2626;
+}
+
+.brndle-code .hljs-emphasis {
+    font-style: italic;
+}
+
+.brndle-code .hljs-strong {
+    font-weight: 600;
+}
+
+/* Dark variant — applies when:
+   - the page is in dark mode AND theme is auto, OR
+   - theme is explicitly "dark" */
+[data-theme="dark"] .brndle-code[data-theme="auto"] .brndle-code__frame,
+.brndle-code[data-theme="dark"] .brndle-code__frame {
+    background: #0b1220;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .brndle-code__pre,
+.brndle-code[data-theme="dark"] .brndle-code__pre {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .brndle-code__copy,
+.brndle-code[data-theme="dark"] .brndle-code__copy {
+    background: rgba(255, 255, 255, 0.04);
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-comment,
+.brndle-code[data-theme="dark"] .hljs-comment {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-keyword,
+.brndle-code[data-theme="dark"] .hljs-keyword,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-selector-tag,
+.brndle-code[data-theme="dark"] .hljs-selector-tag,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-literal,
+.brndle-code[data-theme="dark"] .hljs-literal,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-section,
+.brndle-code[data-theme="dark"] .hljs-section,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-link,
+.brndle-code[data-theme="dark"] .hljs-link {
+    color: #c4b5fd;
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-string,
+.brndle-code[data-theme="dark"] .hljs-string,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-regexp,
+.brndle-code[data-theme="dark"] .hljs-regexp,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-attr,
+.brndle-code[data-theme="dark"] .hljs-attr {
+    color: #6ee7b7;
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-number,
+.brndle-code[data-theme="dark"] .hljs-number,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-built_in,
+.brndle-code[data-theme="dark"] .hljs-built_in,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-type,
+.brndle-code[data-theme="dark"] .hljs-type {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-function .hljs-title,
+.brndle-code[data-theme="dark"] .hljs-function .hljs-title,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-title.function_,
+.brndle-code[data-theme="dark"] .hljs-title.function_,
+[data-theme="dark"] .brndle-code[data-theme="auto"] .hljs-name,
+.brndle-code[data-theme="dark"] .hljs-name {
+    color: #93c5fd;
+}
+
+/* Editor-canvas textarea: keep the editor preview readable. */
+.brndle-code-editor-textarea textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.7 !important;
+    background: var(--color-surface-secondary, #f8fafc) !important;
+}
+
+/* Reduced motion: kill all transitions for the copy button. */
+@media (prefers-reduced-motion: reduce) {
+    .brndle-code__copy {
+        transition: none;
+    }
+}
