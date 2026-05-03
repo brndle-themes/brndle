@@ -364,7 +364,9 @@
 	flex-grow: 0;
 }
 
-@media (max-width: 1024px) {
+/* Below Tailwind's `lg:` (1024px) breakpoint — match the convention used
+   by the rest of the theme so all our breakpoints align with Tailwind. */
+@media (max-width: 1023px) {
 	.brndle-admin .components-tab-panel__tabs > button,
 	.brndle-admin .components-tab-panel__tabs-item {
 		padding: 12px 12px;
