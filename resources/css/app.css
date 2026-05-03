@@ -1640,3 +1640,217 @@ html[data-brndle-sticky-mode="sticky-hide-on-scroll"] #brndle-header:focus-withi
 .brndle-content-narrow article > div { max-width: 40rem; }
 .brndle-content-wide article > div { max-width: 80rem; }
 .brndle-content-full article > div { max-width: none; }
+
+/* ========================================================================
+   Back-to-top button (A6)
+   ======================================================================== */
+
+.brndle-back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.08));
+  background: var(--color-surface-primary, #fff);
+  color: var(--color-text-primary, #0f172a);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.brndle-back-to-top:hover {
+  background: var(--color-accent, #0ea5e9);
+  color: #fff;
+  border-color: transparent;
+}
+
+.brndle-back-to-top:focus-visible {
+  outline: 2px solid var(--color-accent, #0ea5e9);
+  outline-offset: 3px;
+}
+
+.brndle-back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .brndle-back-to-top {
+    right: 0.875rem;
+    bottom: 0.875rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brndle-back-to-top {
+    transition: opacity 80ms linear;
+    transform: none;
+  }
+}
+
+[data-theme="dark"] .brndle-back-to-top {
+  background: var(--color-surface-secondary, #1e293b);
+  color: var(--color-text-primary, #f1f5f9);
+  border-color: var(--color-border-subtle, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================================================
+   Print stylesheet (A7)
+   ========================================================================
+   Goal: a clean, ink-friendly article — title, byline, content, and a
+   URL footer for context. Hides chrome, share UI, comments, sidebars,
+   and floating affordances. Keeps code blocks legible (monospace +
+   wrap so listings don't run off the page).
+*/
+@media print {
+  :root,
+  body,
+  .brndle-section-dark,
+  .brndle-section-gradient {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  header.site-header,
+  .site-header,
+  footer.site-footer,
+  .site-footer,
+  nav,
+  .brndle-back-to-top,
+  .brndle-comments,
+  #comments,
+  .brndle-search-popover,
+  .brndle-mobile-drawer,
+  .brndle-progress-bar,
+  .brndle-share,
+  .brndle-social-share,
+  .brndle-related-posts,
+  .brndle-author-box,
+  .brndle-post-navigation,
+  .brndle-table-of-contents,
+  aside,
+  .sidebar,
+  .skip-link,
+  [role="search"],
+  form,
+  .wp-block-search,
+  iframe,
+  video,
+  .wp-block-buttons,
+  .ad,
+  .ads,
+  [data-brndle-back-to-top],
+  [data-brndle-cookie-consent] {
+    display: none !important;
+  }
+
+  main,
+  article,
+  .prose,
+  .brndle-article {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #000 !important;
+    background: transparent !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  h1 { font-size: 22pt; margin-bottom: 0.4em; }
+  h2 { font-size: 16pt; margin-top: 1.2em; }
+  h3 { font-size: 13pt; margin-top: 1em; }
+
+  p, li, blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  .prose a[href^="http"]::after,
+  article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after,
+  a[href^="tel:"]::after {
+    content: "" !important;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp,
+  .wp-block-code,
+  .wp-block-preformatted {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border: 1px solid #ddd !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+    font-size: 9.5pt !important;
+    page-break-inside: avoid;
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    padding: 0.5em !important;
+  }
+
+  img,
+  figure,
+  .wp-block-image {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  [style*="background-image"] {
+    background-image: none !important;
+  }
+
+  .brndle-print-source {
+    display: block !important;
+    margin-top: 1.5em;
+    padding-top: 0.75em;
+    border-top: 1px solid #aaa;
+    font-size: 9.5pt;
+    color: #444 !important;
+  }
+
+  @page {
+    margin: 0.6in;
+  }
+}
