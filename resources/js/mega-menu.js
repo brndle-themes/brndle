@@ -224,10 +224,77 @@
     });
   }
 
+  /**
+   * Tabbed mega controller (M3.A). Walker emits a [data-brndle-tabs]
+   * wrapper containing role=tablist with tabs and a sibling list of
+   * role=tabpanel elements. This handler implements the WAI-ARIA tabs
+   * pattern: click selects, ↑/↓/←/→ move between tabs (vertical orientation
+   * since the tablist is rendered as a left rail), Home/End jump to first/
+   * last, Enter/Space activate. Panels hide via the [hidden] attribute.
+   */
+  function attachTabbed(root) {
+    if (root.dataset.brndleTabsBound === '1') return;
+    root.dataset.brndleTabsBound = '1';
+
+    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    if (tabs.length === 0) return;
+
+    function activate(targetTab) {
+      tabs.forEach(function (tab) {
+        const isActive = tab === targetTab;
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        const panelId = tab.getAttribute('aria-controls');
+        const panel = panelId ? document.getElementById(panelId) : null;
+        if (panel) {
+          if (isActive) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        }
+      });
+      targetTab.focus();
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        activate(tab);
+      });
+
+      tab.addEventListener('keydown', function (e) {
+        let next = null;
+        switch (e.key) {
+          case 'ArrowDown':
+          case 'ArrowRight':
+            e.preventDefault();
+            next = tabs[(index + 1) % tabs.length];
+            break;
+          case 'ArrowUp':
+          case 'ArrowLeft':
+            e.preventDefault();
+            next = tabs[(index - 1 + tabs.length) % tabs.length];
+            break;
+          case 'Home':
+            e.preventDefault();
+            next = tabs[0];
+            break;
+          case 'End':
+            e.preventDefault();
+            next = tabs[tabs.length - 1];
+            break;
+        }
+        if (next) activate(next);
+      });
+    });
+  }
+
   // First pass.
   function init() {
     document.querySelectorAll('[data-brndle-has-submenu]').forEach(attach);
     document.querySelectorAll('[data-brndle-disclosure]').forEach(attachDisclosure);
+    document.querySelectorAll('[data-brndle-tabs]').forEach(attachTabbed);
   }
 
   if (document.readyState === 'loading') {

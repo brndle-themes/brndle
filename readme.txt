@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.7.1
+Stable tag: 1.8.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,11 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.8.0 =
+* **New: Tabbed mega menus (M3.A of mega-menu plan).** Per mega-enabled menu item: tick "Render as tabbed mega" and the children become a left-rail tab list, while their grandchildren become the right-panel content. Pattern matches UberMenu's tabbed mode + the Linear / GitHub product menu UX. Full WAI-ARIA tabs implementation: role=tablist with vertical orientation, role=tab buttons with aria-selected + aria-controls, role=tabpanel divs with aria-labelledby + hidden attribute. Click selects a tab; ↑/↓/←/→ arrow keys navigate between tabs; Home/End jump to first/last; Enter/Space activate; tabindex=-1 on inactive tabs so Tab cycles to the next focusable element rather than every tab.
+* **New: Conditional visibility per item (M3.B of mega-menu plan).** Five new visibility controls per menu item under "Brndle: Item details": Visibility — auth state (Anyone / Only logged-in / Only logged-out) plus three viewport toggles (Hide on desktop / tablet / mobile). Auth state hides server-side — items meant for logged-in users are never rendered into the DOM for anonymous visitors (so the markup can't be sniffed). Viewport hiding is CSS-driven via a `data-brndle-hide-on` attribute the walker emits + `@media` rules at Tailwind's 768/1024 breakpoints. The CSS layer correctly handles hiding inside both the desktop dropdowns and tabbed mega panels (including descendant menu items reached via `renderMegaChild`).
+* **Bumps to v1.8.0** rather than 1.7.2 because tabbed mega is a substantive new rendering path with its own walker branch + JS controller, not a polish patch.
 
 = 1.7.1 =
 * **New: alternate content sources for mega menus (M2.D + M2.E of mega-menu plan).** Each mega-enabled menu item now picks one of three sources: `manual` (this menu's children, current behavior), `widget-area` (drop any WP widget into the mega panel), or `auto-posts` (latest N posts from a chosen category as cards).

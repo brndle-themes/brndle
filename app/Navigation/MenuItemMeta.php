@@ -101,6 +101,34 @@ class MenuItemMeta
                 'type' => 'integer',
                 'sanitize' => static fn ($v) => max(1, min(12, absint($v) ?: 6)),
             ],
+            // Tabbed mega — when on, depth=1 children become left-rail tabs
+            // and depth=2 grandchildren become tab-panel content. Only
+            // applies when source=manual.
+            '_brndle_mega_tabbed' => [
+                'type' => 'boolean',
+                'sanitize' => static fn ($v) => (bool) $v,
+            ],
+            // Conditional visibility per item. Server-side auth gating;
+            // viewport gating via CSS data-attrs.
+            '_brndle_visibility_auth' => [
+                'type' => 'string',
+                'sanitize' => static function ($v) {
+                    $v = sanitize_text_field((string) $v);
+                    return in_array($v, ['any', 'logged-in', 'logged-out'], true) ? $v : 'any';
+                },
+            ],
+            '_brndle_hide_on_desktop' => [
+                'type' => 'boolean',
+                'sanitize' => static fn ($v) => (bool) $v,
+            ],
+            '_brndle_hide_on_tablet' => [
+                'type' => 'boolean',
+                'sanitize' => static fn ($v) => (bool) $v,
+            ],
+            '_brndle_hide_on_mobile' => [
+                'type' => 'boolean',
+                'sanitize' => static fn ($v) => (bool) $v,
+            ],
             '_brndle_mega_featured_image' => [
                 'type' => 'integer',
                 'sanitize' => static fn ($v) => absint($v),
@@ -402,6 +430,16 @@ class MenuItemMeta
                            class="widefat code">
                 </label>
             </p>
+
+            <p>
+                <label>
+                    <input type="checkbox"
+                           name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_mega_tabbed]"
+                           value="1"
+                           <?php checked(! empty($meta['_brndle_mega_tabbed'])); ?>>
+                    <?php esc_html_e('Render as tabbed mega — children become tabs, grandchildren become tab content (manual source only)', 'brndle'); ?>
+                </label>
+            </p>
         </fieldset>
 
         <fieldset class="field-brndle-item description description-wide" style="border-top:1px solid #ddd;margin-top:8px;padding-top:12px;">
@@ -465,6 +503,50 @@ class MenuItemMeta
                            name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_badge]"
                            value="<?php echo esc_attr((string) $meta['_brndle_badge']); ?>"
                            class="widefat code">
+                </label>
+            </p>
+
+            <p class="description">
+                <label>
+                    <?php esc_html_e('Visibility — auth state', 'brndle'); ?>
+                    <select name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_visibility_auth]">
+                        <?php
+                        $authState = $meta['_brndle_visibility_auth'] ?: 'any';
+                        $authOptions = [
+                            'any' => __('Anyone', 'brndle'),
+                            'logged-in' => __('Only when logged in', 'brndle'),
+                            'logged-out' => __('Only when logged out', 'brndle'),
+                        ];
+                        foreach ($authOptions as $val => $label): ?>
+                            <option value="<?php echo esc_attr($val); ?>" <?php selected($authState, $val); ?>>
+                                <?php echo esc_html($label); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+            </p>
+
+            <p>
+                <label style="display:inline-block;margin-right:12px;">
+                    <input type="checkbox"
+                           name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_hide_on_desktop]"
+                           value="1"
+                           <?php checked(! empty($meta['_brndle_hide_on_desktop'])); ?>>
+                    <?php esc_html_e('Hide on desktop', 'brndle'); ?>
+                </label>
+                <label style="display:inline-block;margin-right:12px;">
+                    <input type="checkbox"
+                           name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_hide_on_tablet]"
+                           value="1"
+                           <?php checked(! empty($meta['_brndle_hide_on_tablet'])); ?>>
+                    <?php esc_html_e('Hide on tablet', 'brndle'); ?>
+                </label>
+                <label style="display:inline-block;">
+                    <input type="checkbox"
+                           name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_hide_on_mobile]"
+                           value="1"
+                           <?php checked(! empty($meta['_brndle_hide_on_mobile'])); ?>>
+                    <?php esc_html_e('Hide on mobile', 'brndle'); ?>
                 </label>
             </p>
         </fieldset>
