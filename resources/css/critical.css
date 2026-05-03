@@ -39,6 +39,26 @@
 }
 
 @layer utilities {
+    /* Mobile menu collapse rules — these MUST be in critical.css because
+       the mobile menu element renders in the initial HTML at its natural
+       height (~191px on a typical menu) until app.css arrives. Without
+       these utilities in the critical payload, the menu shows expanded
+       during the gap between critical and app.css load, then snaps shut
+       once app.css applies — that single shift caused 0.93 CLS on
+       attowp.com mobile traffic in the v1.9.0 PageSpeed audit. */
+    .max-h-0 { max-height: 0; }
+    .overflow-hidden { overflow: hidden; }
+    .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .duration-300 { transition-duration: 300ms; }
+
+    /* Tailwind `md:hidden` — hides elements on viewports >= 768px. Used by
+       the mobile menu wrapper so it never paints on desktop. Critical-CSS
+       only needs the hide direction (default state on small screens is
+       visible per markup, so no rule needed there). */
+    @media (min-width: 768px) {
+        .md\:hidden { display: none; }
+    }
+
     /* Skip link (must be focusable instantly, even before app.css arrives) */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .focus\:not-sr-only:focus { position: static; width: auto; height: auto; padding: 0; margin: 0; overflow: visible; clip: auto; white-space: normal; }
