@@ -14,4 +14,11 @@ import './lead-form';
 import './comparison-table';
 import './team';
 import './video-embed';
+
+// v2.1 — editorial blocks
+import './code';
+import './pull-quote';
+import './timeline';
+import './tabs-accordion';
+
 import './editor.css';

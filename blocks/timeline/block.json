@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/timeline",
+  "title": "Timeline",
+  "category": "brndle-sections",
+  "description": "Vertical list of milestones with date, title, description, and an optional icon.",
+  "keywords": ["timeline", "milestones", "history", "process", "steps"],
+  "textdomain": "brndle",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "iconStyle": {
+      "type": "string",
+      "default": "dot",
+      "enum": ["dot", "numbered", "lucide"]
+    },
+    "connector": {
+      "type": "string",
+      "default": "solid",
+      "enum": ["solid", "dashed", "none"]
+    },
+    "density": {
+      "type": "string",
+      "default": "comfortable",
+      "enum": ["compact", "comfortable"]
+    },
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "anchor": true
+  },
+  "example": {
+    "attributes": {
+      "title": "Release history",
+      "iconStyle": "numbered",
+      "items": [
+        {
+          "date": "March 2025",
+          "title": "Beta launch",
+          "description": "First closed-beta cohort onboarded across three pilot sites."
+        },
+        {
+          "date": "May 2025",
+          "title": "Public 1.0",
+          "description": "Open release with 14 server-rendered blocks and the design-token system."
+        },
+        {
+          "date": "March 2026",
+          "title": "v2.0 baseline",
+          "description": "Editorial templates: comments, 404, search, schema enrichment, last-updated date."
+        }
+      ]
+    }
+  },
+  "version": "1.0.0"
+}

@@ -90,7 +90,9 @@ npm run blocks:build   # Block editor scripts
 - **5 archive layouts**: grid, list, magazine, editorial, minimal
 - **8 single post layouts**: standard, hero-immersive, sidebar, editorial, cinematic, presentation, split, minimal-dark
 - **4 page templates**: default, template-landing, template-canvas, template-transparent
-- **14 custom blocks**: hero, stats, features, testimonials, pricing, cta, faq, logos, content-image-split, how-it-works, lead-form, comparison-table, team, video-embed
+- **18 custom blocks**:
+  - **Marketing/landing (14)**: hero, stats, features, testimonials, pricing, cta, faq, logos, content-image-split, how-it-works, lead-form, comparison-table, team, video-embed
+  - **Editorial (4, v2.1+)**: code (syntax-highlighted with copy + line numbers), pull-quote (3 variants), timeline (3 icon styles), tabs-accordion (combined, WAI-ARIA tabs + disclosure)
 - **12 color schemes**: sapphire, indigo, cobalt, trust, commerce, signal, coral, aubergine, midnight, stone, carbon, neutral
 - **8 font pairs**: system, inter, geist, plex, dm-sans, editorial, magazine, humanist
 
@@ -126,6 +128,8 @@ The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 2.1.0 | 2026-05-04 | **Editorial block bundle.** 4 new blocks (code, pull-quote, timeline, tabs-accordion) bring library to 18. apiVersion 3, server-rendered Blade, scoped CSS, lazy view-script enqueue, full WAI-ARIA on interactive surfaces, prefers-reduced-motion safe. Code block lazy-loads highlight.js from CDN only when in viewport. Tabs/accordion is one block with displayMode toggle. Pull-quote has 3 variants registered as block.json variations. Timeline has dot/numbered/lucide icon styles + intersection-observer reveal. AI docs at `.claude/skills/brndle-pages.md` cover all 4. Plan at `plans/2026-05-04-v2.1-editorial-blocks.md`. |
+| 2.0.0 | 2026-05-03 | **Audit baseline.** Yoast/Rank Math Person schema enrichment (theme stops emitting Article/BreadcrumbList/Person — defers to plugin), Brndle-styled comments template + Walker, 404 polish (search + recent posts), search polish (count + topic chips), back-to-top floating button, print stylesheet, last-updated date pill on single posts. Plan at `plans/2026-05-03-theme-audit-roadmap.md` (v2.0 bundle, 8.5h). |
 | 1.5.8 | 2026-05-03 | Admin panel switched to fluid `max-width: 90%` + auto margins (was pixel-capped) so it scales with the viewport |
 | 1.5.7 | 2026-05-03 | Removed silent `array_slice` truncation in 4 of 7 section styles — count slider now honored end-to-end |
 | 1.5.6 | 2026-05-03 | Ticker scrollbar replaced with overlay arrow buttons (vanilla JS, hides on touch / at scroll boundaries); large-site perf hardening (auto-cats transient cache, thumbnail prime per section, 12-section cap, REST `_fields` trim) |

@@ -105,6 +105,110 @@ Full-width section blocks rendered server-side via Blade + Tailwind.
 <!-- wp:brndle/logos {"title":"Trusted by","companies":["Stripe","Vercel","Linear"],"variant":"light"} /-->
 ```
 
+### Brndle Editorial Blocks (v2.1+)
+
+These four are content-system blocks designed for inline use inside long-form posts and articles. Use them WITHIN core paragraphs / headings — not as full-width landing-page sections (use `brndle/hero`, `brndle/features`, etc. for that).
+
+**Aesthetic register:** editorial, restrained accent usage, generous typography. Don't combine these with marketing-register section blocks in the same content well — pick one register per page.
+
+#### `brndle/code` — Syntax-highlighted code block
+
+Lazy-loads highlight.js the first time it enters the viewport (never loads on pages without code). Copy button + line numbers + caption + theme override.
+
+```
+<!-- wp:brndle/code {"language":"js","showLineNumbers":true,"showCopy":true,"theme":"auto","caption":"Source: app/Compatibility/Yoast.php (line 18)","code":"add_filter('wpseo_schema_person', [self::class, 'enrichPerson'], 10, 2);"} /-->
+```
+
+- `language`: `plain` (no highlighting) | `bash` | `css` | `diff` | `dockerfile` | `html` | `js` | `json` | `jsx` | `markdown` | `nginx` | `php` | `python` | `scss` | `sql` | `ts` | `tsx` | `yaml` (18 + plain)
+- `showLineNumbers`: boolean (default `false`) — server-side rendered line numbers
+- `showCopy`: boolean (default `true`) — copy-to-clipboard button bottom-right
+- `theme`: `auto` (follows page) | `light` | `dark`
+- `caption`: optional one-line attribution under the code (file path / commit / source URL). Limited HTML allowed.
+- `code`: the raw source. Newlines are preserved. Don't HTML-escape — Blade does.
+- **Empty `code` → block doesn't render.**
+- **Print:** caption shown, copy button + line-number column hidden, monospace + pre-wrap preserved.
+
+**Use when:** technical posts with code samples, changelog entries, configuration examples, CLI snippets.
+
+#### `brndle/pull-quote` — Editorial pull quote (3 variants)
+
+```
+<!-- wp:brndle/pull-quote {"variant":"bordered-left","accentColor":"accent","quote":"The best designs are the ones you don't notice — until you try to imagine the product without them.","cite":"Brndle design notes","citeUrl":"https://example.com/notes"} /-->
+```
+
+- `variant`: `bordered-left` (default — accent rule on left, italic 1.5rem) | `centered-large` (decorative open-quote glyph, 2rem display weight, centered) | `outset` (breaks out of the article column ±80px at lg+, falls back to centered on narrow layouts)
+- `accentColor`: `accent` (default) | `text-primary` | `text-tertiary` — controls the bordered-left rule + the centered glyph color
+- `cite`: optional attribution (name, source). Supports inline `<strong>` / `<em>`.
+- `citeUrl`: optional hyperlink on the cite line. Renders `rel="nofollow noopener"`.
+- `align`: `wide` | `full` (block.json supports). `outset` is independent of `align`.
+- **Empty `quote` → block doesn't render.**
+
+**Use when:** breaking up long articles, calling out a key insight, giving editorial weight to a reader-favorite line.
+
+**Pick the variant:** `bordered-left` for in-flow editorial; `centered-large` for full-width emphasis; `outset` for long-form features that benefit from a visual breakout.
+
+#### `brndle/timeline` — Vertical milestones list
+
+```
+<!-- wp:brndle/timeline {"title":"Release history","iconStyle":"numbered","connector":"solid","density":"comfortable","items":[
+  {"date":"March 2025","title":"Beta","description":"First closed-beta cohort onboarded across three pilot sites."},
+  {"date":"May 2025","title":"Public 1.0","description":"Open release with 14 server-rendered blocks."},
+  {"date":"March 2026","title":"v2.0 baseline","description":"Editorial templates: comments, 404, search, schema enrichment."}
+]} /-->
+```
+
+- `title`: optional section heading rendered above the list (rendered as `<h2>`)
+- `iconStyle`: `dot` (small accent circle, default) | `numbered` (01, 02, 03 …) | `lucide` (per-item icon name from the Brndle Lucide set)
+- `connector`: `solid` (default) | `dashed` | `none` (the line between dots)
+- `density`: `comfortable` (2rem gap, default) | `compact` (1rem gap; mobile <640px is forced compact regardless)
+- `items[].date`: short label, rendered above the title in uppercase tracked text
+- `items[].title`: required-ish per item — if present rendered as `<h3>`
+- `items[].description`: paragraph below the title
+- `items[].icon`: only used when `iconStyle === 'lucide'`. Must be a Lucide name in the curated set (`bin/copy-lucide-icons.mjs`).
+- **Empty `items` → block doesn't render.**
+- Reveal animation: items fade-in + slide-from-left as they enter the viewport, 60ms stagger. Disabled under `prefers-reduced-motion`.
+
+**Use when:** changelog pages, "how it works" step-by-step, company history, project roadmap.
+
+#### `brndle/tabs-accordion` — Combined tabs + accordion (one block, two display modes)
+
+Same data shape (label + content panels). `displayMode` toggle picks tab vs accordion rendering. Full WAI-ARIA Tabs pattern (←/→/Home/End/Tab) for tabs; Disclosure pattern for accordion.
+
+**Tabs mode:**
+```
+<!-- wp:brndle/tabs-accordion {"displayMode":"tabs","tabsAlignment":"start","title":"How it works","items":[
+  {"label":"Plan","content":"Sketch the milestones, agree the constraints, write them down."},
+  {"label":"Build","content":"Ship phase-by-phase with tests on every change."},
+  {"label":"Verify","content":"Browser-check every feature at desktop and mobile before shipping."}
+]} /-->
+```
+
+**Accordion mode:**
+```
+<!-- wp:brndle/tabs-accordion {"displayMode":"accordion","accordionMode":"single","accordionDefault":"first","title":"Common questions","items":[
+  {"label":"Does this emit FAQPage schema?","content":"No. The dedicated <code>brndle/faq</code> block owns FAQPage. This block is a neutral disclosure pattern."},
+  {"label":"Can I open multiple at once?","content":"Yes — switch <strong>accordionMode</strong> to <code>multiple</code>."}
+]} /-->
+```
+
+- `displayMode`: `tabs` (default) | `accordion`
+- `tabsAlignment` (tabs only): `start` (default) | `center` | `end`
+- `accordionMode` (accordion only): `single` (default — opening one closes the others, radio-like) | `multiple` (any number open at once)
+- `accordionDefault` (accordion only): `closed` (default) | `first` (first item open) | `all` (only meaningful in multiple mode)
+- `items[].label`: required tab/accordion label
+- `items[].content`: panel content. Limited HTML allowed: `<strong>`, `<em>`, `<a>`, `<br>`, `<code>`. `wpautop` runs server-side so double-newlines become paragraphs.
+- **Empty `items` → block doesn't render.**
+- **Mobile (<640px):** tab strip becomes horizontally scrollable with snap; active tab auto-scrolls into view.
+- **NEVER emits `FAQPage` JSON-LD.** That's `brndle/faq`'s job. Use `brndle/faq` when you want the SEO benefit of FAQ schema; use `brndle/tabs-accordion` for everything else.
+
+**Use when:**
+- Tabs: "How it works" steps that share a focus area, comparison panels (e.g., "Free / Pro / Enterprise"), product walkthroughs.
+- Accordion: documentation collapse sections, common-questions lists that don't qualify as SEO FAQ, terms-and-conditions style content.
+
+**Don't use for:**
+- True FAQ → use `brndle/faq` (emits FAQPage schema for Google rich results).
+- Nested tabs → not supported.
+
 ### WordPress Core Blocks (Content Building)
 
 #### Layout
