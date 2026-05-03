@@ -1229,6 +1229,15 @@ html {
   }
 }
 
+/* Author bio (1.9.2) — WP `description` user_meta is rendered via
+   wp_kses_post so it can contain links / strong / em / paragraphs.
+   Style those inline children so they inherit Brndle's design tokens. */
+.brndle-author-bio p { margin: 0 0 0.5rem; }
+.brndle-author-bio p:last-child { margin-bottom: 0; }
+.brndle-author-bio a { color: var(--color-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.brndle-author-bio a:hover { text-decoration-thickness: 2px; }
+.brndle-author-bio strong { color: var(--color-text-primary); font-weight: 600; }
+
 /* ========================================================================
    Header behaviors (M4) — sticky modes + search popover
    ======================================================================== */
