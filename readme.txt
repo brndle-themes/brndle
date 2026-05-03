@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,12 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.9.1 =
+* **New: Local avatar (user profile upload).** Adds a "Profile photo" field to the WP user-edit screen (Users → Your Profile). Authors upload via the standard WP media library; the attachment ID is stored as user meta `_brndle_avatar_id`. Brndle filters `pre_get_avatar_data` to return the local URL when set — every existing `get_avatar()` call site (author bylines, archive cards, comments) automatically picks up the local image with zero template changes. Falls back to Gravatar (current behavior) when no local avatar is set. Internal blogging sites get the perf + privacy + GDPR wins (no external request to secure.gravatar.com, author IPs not shared with Automattic, no late-loading external image causing CLS) without losing the visual.
+* **New: Per-user social meta + role.** User profile screen now also captures `_brndle_role` (e.g. "Senior WordPress Developer") + four social URLs (Twitter / X, LinkedIn, GitHub, Website). Used by the upgraded author-box partial.
+* **Upgraded author bio box.** `partials/components/author-box.blade.php` rewritten: 96×96 local avatar with subtle ring, name + role line, bio, "N posts →" link, and a row of social icons (X, LinkedIn, GitHub, Website) for whichever URLs the author filled in. Explicit `width="96" height="96"` on the avatar prevents CLS while loading. Already wired into all 8 single post layouts via the existing `single_show_author_box` toggle.
+* **Critical CSS CLS fix.** Added `.max-h-0`, `.overflow-hidden`, `.transition-all`, `.duration-300`, and `.md\:hidden` to `resources/css/critical.css`. These utility classes govern the mobile menu's collapsed state — without them in critical CSS, the menu rendered at its natural height (~191px) during the gap between critical and full app.css load, then snapped shut once app.css applied. That single shift caused **CLS 0.93** on attowp.com mobile traffic in the v1.9.0 PageSpeed audit. With these classes inlined, the layout stays stable and CLS drops to ~0.
 
 = 1.9.0 =
 * **New: Sticky header modes (M4.A of mega-menu plan).** Setting `header_sticky_mode` adds 4 scroll behaviors that work uniformly across all 8 header styles: `static` (no sticky — explicit override even when a header style has its own sticky baked in), `sticky-fixed` (always visible, default), `sticky-fade` (subtle blur + shadow nudge appears once the user scrolls past 40px), and `sticky-hide-on-scroll` (hides on scroll-down, reveals on scroll-up — common product-site pattern). Mode is selected from the Header tab in admin → Behavior. Vanilla JS scroll watcher (~1KB) on a single requestAnimationFrame loop; passive listener; honors `prefers-reduced-motion` (kills the slide / fade transitions but keeps the sticky position). Reveals header on `:focus-within` so keyboard users navigating into the header don't lose track when it's hidden.

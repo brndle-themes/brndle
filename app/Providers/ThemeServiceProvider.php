@@ -22,6 +22,7 @@ class ThemeServiceProvider extends SageServiceProvider
         $this->app->make(\Brndle\Providers\FormServiceProvider::class)->boot();
         $this->app->make(\Brndle\Providers\PerformanceServiceProvider::class)->boot();
         $this->app->make(\Brndle\Providers\NavigationServiceProvider::class)->boot();
+        $this->app->make(\Brndle\Providers\AvatarsServiceProvider::class)->boot();
 
         // Compatibility — only boot when the plugin is active
         if (defined('WPSEO_VERSION')) {
