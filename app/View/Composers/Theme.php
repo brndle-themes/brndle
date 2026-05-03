@@ -93,6 +93,7 @@ class Theme extends Composer
             'singleShowRelatedPosts' => (bool) Settings::get('single_show_related_posts', true),
             'singleShowToc' => (bool) Settings::get('single_show_toc', false),
             'singleShowPostNav' => (bool) Settings::get('single_show_post_nav', true),
+            'singleShowUpdatedDate' => (bool) Settings::get('single_show_updated_date', true),
 
             // Page overrides
             'hideTitle' => $pageMetaBool('_brndle_hide_title'),

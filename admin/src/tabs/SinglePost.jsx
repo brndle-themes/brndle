@@ -192,6 +192,13 @@ export default function SinglePost( { settings, onChange } ) {
 				checked={ !! settings.single_show_post_nav }
 				onChange={ ( v ) => onChange( 'single_show_post_nav', v ) }
 			/>
+
+			<ToggleRow
+				label="Last-updated date"
+				description={ 'Show "Updated …" beside the publish date when the post was modified more than 24h after publishing' }
+				checked={ !! settings.single_show_updated_date }
+				onChange={ ( v ) => onChange( 'single_show_updated_date', v ) }
+			/>
 		</div>
 	);
 }

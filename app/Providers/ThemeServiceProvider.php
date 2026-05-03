@@ -28,6 +28,10 @@ class ThemeServiceProvider extends SageServiceProvider
         if (defined('WPSEO_VERSION')) {
             \Brndle\Compatibility\Yoast::boot();
         }
+        if (class_exists('RankMath')) {
+            \Brndle\Compatibility\RankMath::boot();
+        }
+        \Brndle\Compatibility\SeoPluginNotice::boot();
         if (class_exists('WooCommerce')) {
             \Brndle\Compatibility\WooCommerce::boot();
         }

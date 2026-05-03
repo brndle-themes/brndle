@@ -23,6 +23,7 @@
       <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
         {{ get_the_date() }}
       </time>
+      @include('partials.components.updated-date', ['withSeparator' => true])
     </div>
 
     <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.1] text-text-primary [text-wrap:balance] p-name">

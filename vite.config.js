@@ -18,6 +18,7 @@ export default defineConfig({
         'resources/js/view-transitions.js',
         'resources/js/mega-menu.js',
         'resources/js/header-behaviors.js',
+        'resources/js/back-to-top.js',
         'resources/css/editor.css',
         'resources/js/editor.js',
       ],

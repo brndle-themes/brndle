@@ -59,6 +59,7 @@
           <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
             {{ get_the_date() }}
           </time>
+          @include('partials.components.updated-date', ['withSeparator' => true, 'extraClass' => 'text-white/60'])
           @if($singleShowReadingTime)
             <span class="text-white/40">&middot;</span>
             <span>{{ $readingTime }}</span>
@@ -107,6 +108,7 @@
           <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
             {{ get_the_date() }}
           </time>
+          @include('partials.components.updated-date', ['withSeparator' => true, 'extraClass' => 'text-text-inverse/60'])
           @if($singleShowReadingTime)
             <span>&middot;</span>
             <span>{{ $readingTime }}</span>
