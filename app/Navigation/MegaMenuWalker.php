@@ -122,25 +122,39 @@ class MegaMenuWalker extends Walker_Nav_Menu
         // featured block, content uses the full `cols` count.
         $hasFeatured = ! empty($meta['_brndle_mega_featured_image']);
         $contentCols = $hasFeatured ? max(1, $cols - 1) : $cols;
+        $source = (string) ($meta['_brndle_mega_source'] ?: 'manual');
 
-        $output .= '<div class="brndle-mega" data-cols="' . $cols . '">';
+        $output .= '<div class="brndle-mega" data-cols="' . $cols . '" data-source="' . esc_attr($source) . '">';
         $output .= '<div class="brndle-mega__columns">';
 
-        // Group children by their `_brndle_column` meta. Items with column=0
-        // (auto) get round-robin distributed across the content columns.
-        $byColumn = $this->groupChildrenByColumn($children, $contentCols);
-
-        foreach ($byColumn as $columnItems) {
-            $output .= '<ul class="brndle-mega__col">';
-            foreach ($columnItems as $child) {
-                $this->renderMegaChild($output, $child);
-            }
-            $output .= '</ul>';
+        // Render the content area based on the chosen source. `manual`
+        // (default) groups menu children into columns. `widget-area` swaps
+        // for `dynamic_sidebar()`. `auto-posts` queries the configured
+        // category and renders post cards.
+        switch ($source) {
+            case 'widget-area':
+                $this->renderWidgetAreaSource($output, $element);
+                break;
+            case 'auto-posts':
+                $this->renderAutoPostsSource($output, $meta, $contentCols);
+                break;
+            case 'manual':
+            default:
+                $byColumn = $this->groupChildrenByColumn($children, $contentCols);
+                foreach ($byColumn as $columnItems) {
+                    $output .= '<ul class="brndle-mega__col">';
+                    foreach ($columnItems as $child) {
+                        $this->renderMegaChild($output, $child);
+                    }
+                    $output .= '</ul>';
+                }
+                break;
         }
 
         // Featured block — emitted INSIDE the columns grid as the last
         // grid cell, so it occupies one column-width naturally and stays
-        // visually balanced with the content columns.
+        // visually balanced with the content columns. Applies regardless
+        // of source — featured is a separate optional slot.
         if ($hasFeatured) {
             $output .= $this->renderFeaturedBlock($meta);
         }
@@ -250,6 +264,104 @@ class MegaMenuWalker extends Walker_Nav_Menu
             . '</span>'
             . '</a>'
             . '</li>';
+    }
+
+    /**
+     * Render the widget-area source — calls `dynamic_sidebar()` for the
+     * sidebar registered by `MegaSidebars` for this menu item. The whole
+     * sidebar output gets wrapped in a `.brndle-mega__widgets` div that
+     * spans the columns grid. If no widgets are configured, output is
+     * empty (graceful degradation rather than a placeholder message).
+     *
+     * @param  string $output
+     * @param  object $element  Top-level menu item.
+     * @return void
+     */
+    private function renderWidgetAreaSource(string &$output, $element): void
+    {
+        $sidebarId = 'brndle-mega-' . (int) $element->ID;
+        if (! is_active_sidebar($sidebarId)) {
+            return;
+        }
+
+        $output .= '<div class="brndle-mega__widgets">';
+        ob_start();
+        dynamic_sidebar($sidebarId);
+        $output .= (string) ob_get_clean();
+        $output .= '</div>';
+    }
+
+    /**
+     * Render the auto-posts source — pulls the latest N published posts
+     * from the configured category and renders them as cards inside the
+     * mega panel. Honors `update_post_thumbnail_cache` to avoid N+1 on
+     * featured images. Each card is image + title + date.
+     *
+     * @param  string $output
+     * @param  array  $meta
+     * @param  int    $contentCols
+     * @return void
+     */
+    private function renderAutoPostsSource(string &$output, array $meta, int $contentCols): void
+    {
+        $categoryId = (int) ($meta['_brndle_mega_auto_category'] ?? 0);
+        $count = max(1, min(12, (int) ($meta['_brndle_mega_auto_count'] ?: 6)));
+        if ($categoryId <= 0) {
+            return;
+        }
+
+        $posts = get_posts([
+            'post_type' => 'post',
+            'posts_per_page' => $count,
+            'post_status' => 'publish',
+            'category' => $categoryId,
+            'no_found_rows' => true,
+            'ignore_sticky_posts' => true,
+        ]);
+
+        if (empty($posts)) {
+            return;
+        }
+
+        // Prime thumbnail cache to avoid N+1 on featured images (same pattern
+        // as Blog Homepage Sections — see app/Providers/ThemeServiceProvider).
+        $thumbIds = array_filter(array_map(
+            static fn($p) => (int) get_post_meta($p->ID, '_thumbnail_id', true),
+            $posts
+        ));
+        if (! empty($thumbIds)) {
+            _prime_post_caches($thumbIds, true, true);
+        }
+
+        // Distribute posts across content columns round-robin so the grid
+        // stays balanced even when count isn't divisible by cols.
+        $buckets = array_fill(0, $contentCols, []);
+        foreach ($posts as $i => $post) {
+            $buckets[$i % $contentCols][] = $post;
+        }
+
+        foreach ($buckets as $bucket) {
+            if (empty($bucket)) {
+                continue;
+            }
+            $output .= '<ul class="brndle-mega__col brndle-mega__col--posts">';
+            foreach ($bucket as $post) {
+                $output .= '<li class="brndle-mega__post">';
+                $output .= '<a href="' . esc_url(get_permalink($post)) . '">';
+                if (has_post_thumbnail($post)) {
+                    $output .= '<span class="brndle-mega__post-thumb">'
+                        . get_the_post_thumbnail($post, 'thumbnail', ['loading' => 'lazy', 'decoding' => 'async'])
+                        . '</span>';
+                }
+                $output .= '<span class="brndle-mega__post-body">'
+                    . '<span class="brndle-mega__post-title">' . esc_html(get_the_title($post)) . '</span>'
+                    . '<span class="brndle-mega__post-date">' . esc_html(get_the_date('', $post)) . '</span>'
+                    . '</span>';
+                $output .= '</a>';
+                $output .= '</li>';
+            }
+            $output .= '</ul>';
+        }
     }
 
     /**
