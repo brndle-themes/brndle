@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/code",
+  "title": "Code Block",
+  "category": "brndle-sections",
+  "description": "Syntax-highlighted code with copy-to-clipboard, line numbers, and an optional caption. Highlightjs is lazy-loaded only when a code block is on the page.",
+  "keywords": ["code", "syntax", "highlight", "snippet", "developer"],
+  "textdomain": "brndle",
+  "attributes": {
+    "code": {
+      "type": "string",
+      "default": ""
+    },
+    "language": {
+      "type": "string",
+      "default": "plain"
+    },
+    "showLineNumbers": {
+      "type": "boolean",
+      "default": false
+    },
+    "showCopy": {
+      "type": "boolean",
+      "default": true
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "theme": {
+      "type": "string",
+      "default": "auto",
+      "enum": ["auto", "light", "dark"]
+    },
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "anchor": true,
+    "spacing": {
+      "margin": ["top", "bottom"]
+    }
+  },
+  "example": {
+    "attributes": {
+      "language": "js",
+      "code": "// Lazy-load highlightjs on intersection\nconst io = new IntersectionObserver((entries) => {\n  if (entries.some(e => e.isIntersecting)) {\n    import('highlight.js').then(({ default: hljs }) => hljs.highlightAll());\n  }\n}, { rootMargin: '200px' });\nio.observe(document.querySelector('.brndle-code'));",
+      "showLineNumbers": true,
+      "caption": "Lazy-load pattern used by every Brndle code block on the page."
+    }
+  },
+  "version": "1.0.0"
+}

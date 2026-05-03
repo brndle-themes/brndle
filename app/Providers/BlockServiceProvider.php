@@ -25,6 +25,11 @@ class BlockServiceProvider
         'comparison-table',
         'team',
         'video-embed',
+        // v2.1 editorial blocks
+        'code',
+        'pull-quote',
+        'timeline',
+        'tabs-accordion',
     ];
 
     public function boot(): void
@@ -40,18 +45,27 @@ class BlockServiceProvider
      */
     public function registerFrontendScripts(): void
     {
-        $asset_file = get_theme_file_path('blocks/build/lead-form-view.asset.php');
-        if (! file_exists($asset_file)) {
-            return;
+        $viewScripts = [
+            'lead-form-view' => 'brndle-lead-form-view',
+            'code-view' => 'brndle-code-view',
+            'timeline-view' => 'brndle-timeline-view',
+            'tabs-accordion-view' => 'brndle-tabs-accordion-view',
+        ];
+
+        foreach ($viewScripts as $entry => $handle) {
+            $asset_file = get_theme_file_path("blocks/build/{$entry}.asset.php");
+            if (! file_exists($asset_file)) {
+                continue;
+            }
+            $asset = require $asset_file;
+            wp_register_script(
+                $handle,
+                get_theme_file_uri("blocks/build/{$entry}.js"),
+                $asset['dependencies'] ?? [],
+                $asset['version'] ?? false,
+                true
+            );
         }
-        $asset = require $asset_file;
-        wp_register_script(
-            'brndle-lead-form-view',
-            get_theme_file_uri('blocks/build/lead-form-view.js'),
-            $asset['dependencies'] ?? [],
-            $asset['version'] ?? false,
-            true
-        );
     }
 
     public function registerBlocks(): void
@@ -106,9 +120,18 @@ class BlockServiceProvider
                     // `is_string($x) || is_array($x)` branches forever).
                     $attributes = \Brndle\Blocks\AttributeMigrations::apply($blockName, $attributes);
 
-                    // Lazily enqueue the lead-form view script only when the block actually renders.
+                    // Lazily enqueue per-block view scripts only when the block actually renders.
                     if ($blockSlug === 'lead-form' && empty($attributes['form_action'] ?? '')) {
                         wp_enqueue_script('brndle-lead-form-view');
+                    }
+                    if ($blockSlug === 'code' && ! empty($attributes['code'] ?? '')) {
+                        wp_enqueue_script('brndle-code-view');
+                    }
+                    if ($blockSlug === 'timeline' && ! empty($attributes['items'] ?? [])) {
+                        wp_enqueue_script('brndle-timeline-view');
+                    }
+                    if ($blockSlug === 'tabs-accordion' && ! empty($attributes['items'] ?? [])) {
+                        wp_enqueue_script('brndle-tabs-accordion-view');
                     }
 
                     // Render through Acorn's Blade engine

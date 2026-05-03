@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/tabs-accordion",
+  "title": "Tabs / Accordion",
+  "category": "brndle-sections",
+  "description": "One block, two display modes — tabs or accordion — sharing the same data. Full WAI-ARIA tabs and disclosure behaviour.",
+  "keywords": ["tabs", "accordion", "panels", "expander", "disclosure"],
+  "textdomain": "brndle",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "displayMode": {
+      "type": "string",
+      "default": "tabs",
+      "enum": ["tabs", "accordion"]
+    },
+    "tabsAlignment": {
+      "type": "string",
+      "default": "start",
+      "enum": ["start", "center", "end"]
+    },
+    "accordionMode": {
+      "type": "string",
+      "default": "single",
+      "enum": ["single", "multiple"]
+    },
+    "accordionDefault": {
+      "type": "string",
+      "default": "closed",
+      "enum": ["closed", "first", "all"]
+    },
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "anchor": true
+  },
+  "example": {
+    "attributes": {
+      "title": "How it works",
+      "displayMode": "tabs",
+      "items": [
+        {
+          "label": "Plan",
+          "content": "Sketch the milestones, agree the constraints, write them down."
+        },
+        {
+          "label": "Build",
+          "content": "Ship phase-by-phase with tests on every change."
+        },
+        {
+          "label": "Verify",
+          "content": "Browser-check every feature at desktop and mobile before shipping."
+        }
+      ]
+    }
+  },
+  "version": "1.0.0"
+}

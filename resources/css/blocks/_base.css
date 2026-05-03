@@ -1,0 +1,45 @@
+/* ========================================================================
+   Editorial blocks — shared base
+   ========================================================================
+   Every v2.1 editorial block (code / pull-quote / timeline /
+   tabs-accordion) has its own scoped class (e.g. `.brndle-code`). The
+   rules in this file only apply to those scoped classes — never to bare
+   elements — so other block themes / pages are untouched.
+
+   Tokens used: surface-primary, surface-secondary, surface-tertiary,
+   text-primary, text-secondary, text-tertiary, accent, border-subtle.
+   Defined as `--color-*` in resources/css/app.css.
+*/
+
+:where(.brndle-code,
+       .brndle-pull-quote,
+       .brndle-timeline,
+       .brndle-tabs-accordion) {
+    color: var(--color-text-primary);
+}
+
+/* Editorial blocks default to the article column width — they only opt
+   into wider via `alignwide` / `alignfull`. The `wide` cap matches the
+   single-post layouts (5xl) so an outset pull quote inside .alignwide
+   reads as a real break-out rather than overflowing. */
+:where(.brndle-code,
+       .brndle-pull-quote,
+       .brndle-timeline,
+       .brndle-tabs-accordion) {
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+:where(.brndle-code.alignwide,
+       .brndle-pull-quote.alignwide,
+       .brndle-timeline.alignwide,
+       .brndle-tabs-accordion.alignwide) {
+    max-width: 80rem;
+}
+
+:where(.brndle-code.alignfull,
+       .brndle-pull-quote.alignfull,
+       .brndle-timeline.alignfull,
+       .brndle-tabs-accordion.alignfull) {
+    max-width: none;
+}
