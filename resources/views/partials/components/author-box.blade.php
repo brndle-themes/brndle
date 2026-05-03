@@ -50,9 +50,13 @@
       </div>
 
       @if($authorBio)
-        <p class="mt-2 text-sm text-text-secondary leading-relaxed">
-          {{ $authorBio }}
-        </p>
+        {{-- WP user `description` meta intentionally allows HTML (links,
+             strong, em). Render via wp_kses_post so authors can keep
+             rich-text bios without exposing XSS. The wpautop converts
+             double newlines into paragraph breaks for legacy bios. --}}
+        <div class="brndle-author-bio mt-2 text-sm text-text-secondary leading-relaxed">
+          {!! wp_kses_post(wpautop($authorBio)) !!}
+        </div>
       @endif
 
       <div class="mt-4 flex items-center gap-4 flex-wrap">

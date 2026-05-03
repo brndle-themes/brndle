@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,9 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.9.2 =
+* **Hotfix:** Author bio in `partials/components/author-box.blade.php` was rendering raw HTML markup (visible as literal `<strong>`, `<a href=...>` text on screen) on attowp.com after upgrading to 1.9.1. Root cause: the partial used Blade's auto-escaping `{{ $authorBio }}` syntax, but WordPress's `description` user_meta intentionally allows safe HTML (links, strong, em, paragraphs) — that's how every author bio in WP since the 2010s has been stored. Replaced with `{!! wp_kses_post(wpautop($bio)) !!}` so HTML renders, but only after passing through `wp_kses_post()` (allows the same tag set as post content; strips `<script>` etc.) and `wpautop()` (converts double newlines to paragraph breaks for legacy bios). Added inline CSS so links inside bios pick up the accent color + underline-on-hover, and `<strong>` text uses the primary text token instead of the secondary one.
 
 = 1.9.1 =
 * **New: Local avatar (user profile upload).** Adds a "Profile photo" field to the WP user-edit screen (Users → Your Profile). Authors upload via the standard WP media library; the attachment ID is stored as user meta `_brndle_avatar_id`. Brndle filters `pre_get_avatar_data` to return the local URL when set — every existing `get_avatar()` call site (author bylines, archive cards, comments) automatically picks up the local image with zero template changes. Falls back to Gravatar (current behavior) when no local avatar is set. Internal blogging sites get the perf + privacy + GDPR wins (no external request to secure.gravatar.com, author IPs not shared with Automattic, no late-loading external image causing CLS) without losing the visual.
