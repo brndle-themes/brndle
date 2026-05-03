@@ -47,6 +47,8 @@ class Defaults
             'header_style' => 'sticky',
             'header_cta_text' => '',
             'header_cta_url' => '',
+            'header_sticky_mode' => 'sticky-fixed',
+            'header_search_enabled' => false,
             'header_banner_text' => 'Free shipping on all orders',
             'header_mobile_style' => 'slide',
 
@@ -158,6 +160,8 @@ class Defaults
             'header_cta_url' => ['section' => 'header', 'label' => 'CTA button URL', 'control' => 'url'],
             'header_banner_text' => ['section' => 'header', 'label' => 'Top banner text', 'description' => 'Optional one-line marketing message above the header.', 'control' => 'text'],
             'header_mobile_style' => ['section' => 'header', 'label' => 'Mobile menu style', 'control' => 'select', 'options' => ['slide' => 'Slide-in', 'fullscreen' => 'Fullscreen', 'dropdown' => 'Dropdown']],
+            'header_sticky_mode' => ['section' => 'header', 'label' => 'Sticky mode', 'description' => 'How the header behaves on scroll.', 'control' => 'select', 'options' => ['static' => 'Static (no sticky)', 'sticky-fixed' => 'Sticky (always visible)', 'sticky-fade' => 'Sticky with fade-on-scroll', 'sticky-hide-on-scroll' => 'Hide on scroll down, reveal on scroll up']],
+            'header_search_enabled' => ['section' => 'header', 'label' => 'Show header search', 'description' => 'Adds a search icon button to the header that opens a popover with the WordPress search form.', 'control' => 'toggle'],
 
             // ── Footer ──────────────────────────────────────────
             'footer_columns' => ['section' => 'footer', 'label' => 'Columns', 'control' => 'range', 'min' => 1, 'max' => 4, 'step' => 1],
@@ -244,6 +248,7 @@ class Defaults
             'perf_view_transitions',
             'perf_critical_css',
             'homepage_sections_enabled',
+            'header_search_enabled',
             'form_store_submissions',
             'form_email_notifications',
         ];
