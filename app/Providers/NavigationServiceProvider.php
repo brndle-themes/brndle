@@ -14,6 +14,7 @@
 
 namespace Brndle\Providers;
 
+use Brndle\Navigation\MegaSidebars;
 use Brndle\Navigation\MenuItemMeta;
 
 class NavigationServiceProvider
@@ -26,5 +27,6 @@ class NavigationServiceProvider
     public function boot(): void
     {
         MenuItemMeta::boot();
+        MegaSidebars::boot();
     }
 }

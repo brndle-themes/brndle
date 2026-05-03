@@ -80,6 +80,27 @@ class MenuItemMeta
                 'type' => 'integer',
                 'sanitize' => static fn ($v) => max(2, min(4, (int) $v)),
             ],
+            // Content source for the mega panel: `manual` uses the menu's
+            // child items as columns (default), `widget-area` swaps the
+            // columns for a dynamic sidebar, `auto-posts` renders the
+            // latest N posts from a chosen category as cards.
+            '_brndle_mega_source' => [
+                'type' => 'string',
+                'sanitize' => static function ($v) {
+                    $v = sanitize_text_field((string) $v);
+                    return in_array($v, ['manual', 'widget-area', 'auto-posts'], true) ? $v : 'manual';
+                },
+            ],
+            // Auto-posts: which category to pull from + how many posts to
+            // show. Both ignored when source != auto-posts.
+            '_brndle_mega_auto_category' => [
+                'type' => 'integer',
+                'sanitize' => static fn ($v) => absint($v),
+            ],
+            '_brndle_mega_auto_count' => [
+                'type' => 'integer',
+                'sanitize' => static fn ($v) => max(1, min(12, absint($v) ?: 6)),
+            ],
             '_brndle_mega_featured_image' => [
                 'type' => 'integer',
                 'sanitize' => static fn ($v) => absint($v),
@@ -270,6 +291,54 @@ class MenuItemMeta
                             </option>
                         <?php endforeach; ?>
                     </select>
+                </label>
+            </p>
+
+            <p class="description">
+                <label>
+                    <?php esc_html_e('Content source', 'brndle'); ?>
+                    <select name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_mega_source]">
+                        <?php
+                        $currentSource = $meta['_brndle_mega_source'] ?: 'manual';
+                        $sources = [
+                            'manual' => __('Manual — use this menu item\'s children', 'brndle'),
+                            'widget-area' => __('Widget area — drop in any WP widgets', 'brndle'),
+                            'auto-posts' => __('Auto-posts — latest N from a category', 'brndle'),
+                        ];
+                        foreach ($sources as $val => $label): ?>
+                            <option value="<?php echo esc_attr($val); ?>" <?php selected($currentSource, $val); ?>>
+                                <?php echo esc_html($label); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+            </p>
+
+            <p class="description description-wide">
+                <label>
+                    <?php esc_html_e('Auto-posts: category', 'brndle'); ?>
+                    <?php
+                    wp_dropdown_categories([
+                        'name' => 'brndle_menu_meta[' . esc_attr((string) $itemId) . '][_brndle_mega_auto_category]',
+                        'selected' => (int) $meta['_brndle_mega_auto_category'],
+                        'show_option_none' => __('— select a category —', 'brndle'),
+                        'option_none_value' => '0',
+                        'hide_empty' => false,
+                        'hierarchical' => true,
+                        'orderby' => 'name',
+                    ]);
+                    ?>
+                </label>
+            </p>
+
+            <p class="description">
+                <label>
+                    <?php esc_html_e('Auto-posts: count (1-12)', 'brndle'); ?>
+                    <input type="number"
+                           min="1" max="12"
+                           name="brndle_menu_meta[<?php echo esc_attr((string) $itemId); ?>][_brndle_mega_auto_count]"
+                           value="<?php echo esc_attr((string) ($meta['_brndle_mega_auto_count'] ?: 6)); ?>"
+                           class="widefat code">
                 </label>
             </p>
 

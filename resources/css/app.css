@@ -797,6 +797,258 @@ html {
     line-height: 1.5;
   }
 
+  /* Widget-area source — wraps `dynamic_sidebar()` output so widgets span
+     the full columns grid. WP widgets render arbitrary markup (form / ul /
+     img / raw HTML) so the rules below normalize that into Brndle's design
+     tokens — every widget should feel native, not "WP default 2010". */
+  #brndle-header .brndle-mega__widgets {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  #brndle-header .brndle-mega__widget {
+    min-width: 0;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  #brndle-header .brndle-mega__widget-title {
+    margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-accent) 60%, var(--color-text-tertiary));
+  }
+
+  /* Lists inside widgets (Recent Posts, Categories, Archives, Pages, etc.).
+     Strip default browser bullets, tighten vertical rhythm, give links
+     focus + hover states matching the rest of the mega panel. */
+  #brndle-header .brndle-mega__widget ul,
+  #brndle-header .brndle-mega__widget ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #brndle-header .brndle-mega__widget li {
+    margin: 0;
+    padding: 0;
+  }
+
+  #brndle-header .brndle-mega__widget li + li {
+    margin-top: 2px;
+  }
+
+  #brndle-header .brndle-mega__widget a {
+    display: block;
+    padding: 6px 8px;
+    margin: 0 -8px;
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  #brndle-header .brndle-mega__widget a:hover,
+  #brndle-header .brndle-mega__widget a:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    color: var(--color-accent);
+    outline: none;
+  }
+
+  /* Paragraphs inside Custom HTML / Text widgets — match body color and
+     sit comfortably with the column rhythm. */
+  #brndle-header .brndle-mega__widget p {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-secondary);
+  }
+
+  #brndle-header .brndle-mega__widget p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Strong / em / code inside text widgets — keep token colors. */
+  #brndle-header .brndle-mega__widget strong { color: var(--color-text-primary); }
+  #brndle-header .brndle-mega__widget code {
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--color-text-tertiary) 12%, transparent);
+    font-size: 0.85em;
+  }
+
+  /* Images (Image widget, Media widgets, custom HTML) — fill width with
+     reasonable rounding so they slot into the column rhythm. */
+  #brndle-header .brndle-mega__widget img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  /* Search form — the WP core Search widget renders <form><label><input
+     type=search><button type=submit>. Style each piece to match Brndle. */
+  #brndle-header .brndle-mega__widget form,
+  #brndle-header .brndle-mega__widget .search-form,
+  #brndle-header .brndle-mega__widget form[role="search"] {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  #brndle-header .brndle-mega__widget label {
+    display: none; /* Visible only via aria-label / placeholder */
+  }
+
+  #brndle-header .brndle-mega__widget input[type="text"],
+  #brndle-header .brndle-mega__widget input[type="search"],
+  #brndle-header .brndle-mega__widget input[type="email"],
+  #brndle-header .brndle-mega__widget input[type="url"] {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 25%, transparent);
+    background: var(--color-surface-primary);
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  #brndle-header .brndle-mega__widget input[type="text"]:focus,
+  #brndle-header .brndle-mega__widget input[type="search"]:focus,
+  #brndle-header .brndle-mega__widget input[type="email"]:focus,
+  #brndle-header .brndle-mega__widget input[type="url"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
+  #brndle-header .brndle-mega__widget button,
+  #brndle-header .brndle-mega__widget input[type="submit"] {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 0;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 120ms ease, transform 120ms ease;
+  }
+
+  #brndle-header .brndle-mega__widget button:hover,
+  #brndle-header .brndle-mega__widget input[type="submit"]:hover,
+  #brndle-header .brndle-mega__widget button:focus-visible,
+  #brndle-header .brndle-mega__widget input[type="submit"]:focus-visible {
+    opacity: 0.9;
+    outline: none;
+  }
+
+  /* Select dropdowns (Archives widget when 'display as dropdown' is ticked,
+     Categories widget similar). */
+  #brndle-header .brndle-mega__widget select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 25%, transparent);
+    background: var(--color-surface-primary);
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+  }
+
+  /* Navigation Menu widget (when someone drops a menu inside another menu's
+     mega panel — silly but possible). Strip its own dropdown / hover behavior
+     so it just shows as a flat list inside the mega. */
+  #brndle-header .brndle-mega__widget .menu,
+  #brndle-header .brndle-mega__widget .nav-menu {
+    display: block;
+  }
+  #brndle-header .brndle-mega__widget .menu .sub-menu {
+    position: static;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: 0;
+    background: transparent;
+    padding: 0 0 0 12px;
+    pointer-events: auto;
+  }
+
+  /* Tag Cloud — the WP widget renders <a> with inline style="font-size: ..."
+     which we honor; just normalize spacing. */
+  #brndle-header .brndle-mega__widget .tagcloud,
+  #brndle-header .brndle-mega__widget .wp-block-tag-cloud {
+    line-height: 1.6;
+  }
+  #brndle-header .brndle-mega__widget .tagcloud a,
+  #brndle-header .brndle-mega__widget .wp-block-tag-cloud a {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0 4px 4px 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
+  /* Auto-posts source — post cards with thumbnail + title + date. Lighter
+     density than the manual mega items (no icon slot, no description). */
+  #brndle-header .brndle-mega__col--posts {
+    gap: 0.75rem;
+  }
+
+  #brndle-header .brndle-mega__post > a {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 120ms ease;
+  }
+
+  #brndle-header .brndle-mega__post > a:hover,
+  #brndle-header .brndle-mega__post > a:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    outline: none;
+  }
+
+  #brndle-header .brndle-mega__post-thumb img {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  #brndle-header .brndle-mega__post-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  #brndle-header .brndle-mega__post-title {
+    font-weight: 600;
+    line-height: 1.3;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #brndle-header .brndle-mega__post-date {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+  }
+
   /* Bottom CTA row — "View all →" */
   #brndle-header .brndle-mega__cta {
     margin-top: 1rem;

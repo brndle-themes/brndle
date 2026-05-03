@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,13 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.7.1 =
+* **New: alternate content sources for mega menus (M2.D + M2.E of mega-menu plan).** Each mega-enabled menu item now picks one of three sources: `manual` (this menu's children, current behavior), `widget-area` (drop any WP widget into the mega panel), or `auto-posts` (latest N posts from a chosen category as cards).
+* **Widget-area source.** When selected, Brndle dynamically registers a sidebar named `brndle-mega-{menu_item_id}` so it appears in Appearance → Widgets and in the Customizer's widget panel. The walker calls `dynamic_sidebar()` for that ID inside the mega panel — drop in Search, Recent Posts, Custom HTML, Image, or any third-party widget. Per-item sidebars (rather than one shared) let different mega panels carry different widget palettes (Stripe-style "products" mega vs Linear-style "resources" mega) without conditional visibility hacks.
+* **Auto-posts source.** Per mega-enabled item: pick a category + count (1-12). Walker queries `get_posts()` with `posts_per_page=N`, primes the thumbnail cache via `_prime_post_caches()` (so featured images don't N+1 on the attachments table), and renders the posts as cards (thumbnail + title + date) round-robin distributed across the content columns. Honors the `_brndle_mega_featured_image` slot — featured block still renders as the last column when set.
+* **Admin UI.** Source dropdown added to the "Brndle: Mega menu" fieldset. Auto-posts category + count fields appear below it; they're inert when source is `manual` or `widget-area`. Source value is sanitized to the fixed enum (manual / widget-area / auto-posts), defaults to `manual`.
+* **Verified.** Auto-posts: 4 cards in 2 content columns + featured = 3-col panel as configured. Widget-area: search + text widgets render with uppercase widget titles and the featured block on the side. Both modes work alongside the existing manual mode and the bottom CTA row.
 
 = 1.7.0 =
 * **New: Mega menu rendering + admin UI (M2 of mega-menu plan).** v1.6.0 shipped the walker scaffold and dropdown CSS; v1.7.0 makes mega menus actually configurable and usable from the WP menu editor. Tick "Display children as mega menu" on any top-level menu item, choose 2-4 columns, optionally add a featured image block + bottom CTA, and the children render in a viewport-centered mega panel with per-item icons (Lucide), descriptions, and badges (`NEW` / `BETA` / `PRO` / custom). Children can be assigned to specific columns via the `_brndle_column` meta or auto-distributed round-robin.
