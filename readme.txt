@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.5.8
+Stable tag: 1.6.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,15 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.6.0 =
+* **New: Multi-level menu support in header (M1 of mega-menu plan).** Until now, header navs that had nested menu items rendered the children inline as a raw `<ul>` because no CSS handled `.sub-menu`. v1.6.0 ships a custom `Brndle\Navigation\MegaMenuWalker` that produces production-grade dropdown markup, plus the styles + JS to make 2-level dropdowns and 3-level fly-outs work cleanly across all 8 header styles. Mobile drawers gain a disclosure-button accordion so parents with children can be expanded inline.
+* **Walker.** Custom `Walker_Nav_Menu` subclass passed to all 15 `wp_nav_menu()` invocations in `resources/views/sections/header.blade.php`. Desktop context: emits additive `data-brndle-has-submenu`, `aria-haspopup`, `aria-expanded` on parents — markup is byte-identical to the default walker for items without children. Mobile context: appends a `<button data-brndle-disclosure aria-expanded="false">` next to each parent `<a>`, plus `[hidden]` on the nested `<ul.sub-menu>` so the disclosure JS can toggle a `max-height` accordion.
+* **Per-menu-item meta scaffold (`_brndle_*` keys registered).** Foundation for upcoming mega-menu features. Keys registered: `_brndle_mega_menu`, `_brndle_mega_columns`, `_brndle_mega_featured_image`, `_brndle_mega_featured_heading`, `_brndle_mega_featured_description`, `_brndle_mega_featured_url`, `_brndle_mega_cta_text`, `_brndle_mega_cta_url`, `_brndle_column`, `_brndle_column_heading`, `_brndle_icon`, `_brndle_description`, `_brndle_badge`. Save handler in place; admin UI fields ship in M2.
+* **CSS.** ~250 lines under `resources/css/app.css` adds: standard 2-level dropdown (position absolute, fade + slide reveal, accent-leaning chevron indicator that rotates open), 3-level fly-out right-of-parent, mega panel scaffolding (columns 2-4, featured block, bottom CTA, opaque bg through `glass`/`transparent` blur), z-index 55 between the header bar and any future modal. `(hover: none)` kills hover triggers on touch-primary devices; `prefers-reduced-motion` disables transitions. Breakpoint matches Brndle's existing `md:` (768px) so iPad portrait works correctly.
+* **JS controller.** `resources/js/mega-menu.js` (3.13 KB) — vanilla, idempotent, lazily attached. Hover open with 100ms debounce + 200ms close grace, click parity for touch + keyboard, aria-expanded flip, click-outside + Esc closes, Tab + ↑/↓ arrow nav within open submenu. Handles disclosure buttons in mobile drawer — animates `max-height` from 0 to `scrollHeight` on open, reverses on close, restores `[hidden]` after the transition completes.
+* **Audit + verification.** All 8 header styles (sticky, solid, centered, transparent, split, banner, glass, minimal) verified at desktop (1280px), tablet (820px iPad portrait), and mobile (390px iPhone 14 Pro) viewports. Six audit findings called out in `plans/2026-05-03-mega-menu.md` are addressed: drawer-vs-collapse mismatch, minimal style flat-list rendering, split-style two-row anchor positioning, glass/transparent backdrop-blur leak, mobile accordion as new behavior, inline-script coexistence with existing per-style mobile toggles.
+* **Plan + milestones.** Full design doc at `plans/2026-05-03-mega-menu.md` covers M1 (this release) + M2 (widget areas + auto-populated post columns) + M3 (tabbed mega + conditional visibility) + M4 (header slot integrations). 31 capabilities mapped against Max Mega Menu, UberMenu, Pearl Mega Menu, Elementor Pro Mega for plugin parity.
 
 = 1.5.8 =
 * **Polish:** Brndle admin panel switched from a fixed pixel cap (was 960px → 1280px in earlier 1.5.x) to a fluid `max-width: 90%` with auto-centered margins. The panel now scales with the viewport — ~1568px wide on a 1920px screen, ~1152px on 1280px — with a 5% gutter on each side that prevents the card from running edge-to-edge while still using most of the available real estate. Resolves the "fixed-width feels cramped on wide displays" feedback after 1.5.7.

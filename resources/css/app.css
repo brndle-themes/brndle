@@ -454,6 +454,439 @@ html {
   .brndle-ticker__track { scroll-behavior: auto; }
 }
 
+/* ========================================================================
+   Header navigation — multi-level menus + mega panel (M1)
+
+   Powered by Brndle\Navigation\MegaMenuWalker. Three modes:
+     • Standard — 2-level dropdown (default for any submenu)
+     • Flyout   — 3-level fly-out right (M1, opt-in via menu item meta)
+     • Mega     — multi-column panel (M1, opt-in via menu item meta)
+
+   Positioning rules (all desktop styles):
+     • Submenu / mega is `position: absolute` from the parent <li>, which is
+       made `position: relative` here. This keeps the math working in `split`
+       style (where the menu lives in the bottom row) — header-level
+       positioning is never used.
+     • Z-index 55 — above header (z-50), below `minimal` hamburger (z-60)
+       and any future modal at z-100.
+
+   Mobile (≤ 1023px) collapses everything to the existing
+   `#brndle-mobile-menu` accordion — submenu styles are scoped to
+   `min-width: 1024px` so they never leak into the mobile drawer. Mobile
+   accordion behavior ships in M1.D.
+
+   See plans/2026-05-03-mega-menu.md for the full design + audit.
+   ======================================================================== */
+
+/* Make every nav <li> the positioning context for its submenu / mega panel.
+   Scoped to #brndle-header so it doesn't leak into footer / sidebar menus. */
+#brndle-header .menu-item,
+#brndle-header li.menu-item {
+  position: relative;
+}
+
+/* ---- Desktop nav active: 768px and up ----
+   Matches Tailwind's `md:` breakpoint, which controls when Brndle's
+   headers swap from mobile burger button to inline desktop nav (the
+   `md:flex` / `md:hidden` utility classes throughout header.blade.php).
+   Lowering this from the originally-planned 1024px caught a regression
+   at 820px (iPad portrait): desktop nav was visible but dropdown CSS
+   wasn't, so submenus rendered inline and broke the layout. */
+@media (min-width: 768px) {
+
+  /* Standard 2-level dropdown.
+     Default state: `display: none` + `pointer-events: none` so the panel
+     doesn't catch hover when off-screen. The walker emits `aria-expanded`
+     on the parent <a>; CSS reveals on hover OR aria-expanded=true (JS
+     controller, M1.C). */
+  #brndle-header ul.sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 55;
+    min-width: 220px;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: var(--color-surface-primary);
+    border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+    pointer-events: none;
+  }
+
+  /* Reveal on hover OR when JS flips aria-expanded. Both paths need the
+     same final state so keyboard + mouse + touch agree. */
+  #brndle-header li.menu-item:hover > ul.sub-menu,
+  #brndle-header li.menu-item:focus-within > ul.sub-menu,
+  #brndle-header li.menu-item > a[aria-expanded="true"] + ul.sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Submenu items — sensible padding, color tokens, hover state. The
+     parent walker's `link_before` / `link_after` wraps each child link in
+     a styled <span>, but those styles are pill / inline tuned for the
+     top-level. Inside a dropdown we want plain padded rows — override the
+     wrapper span here so children look like menu items, not pills. */
+  #brndle-header ul.sub-menu > li > a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  #brndle-header ul.sub-menu > li > a > span {
+    /* Neutralize the pill / inline span the parent walker injected via
+       link_before. Inside a dropdown we don't want pill styling. */
+    display: inline;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    color: inherit;
+  }
+
+  #brndle-header ul.sub-menu > li > a:hover,
+  #brndle-header ul.sub-menu > li > a:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    color: var(--color-accent);
+    outline: none;
+  }
+
+  /* 3-level fly-out — sub-sub-menu opens to the RIGHT of its parent.
+     Reverses to the left if it would overflow viewport (handled by JS in
+     M1.C; pure-CSS fallback works for left-aligned menus). */
+  #brndle-header ul.sub-menu ul.sub-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
+    transform: translateX(-4px);
+  }
+
+  #brndle-header li.menu-item:hover > ul.sub-menu ul.sub-menu,
+  #brndle-header li.menu-item:focus-within > ul.sub-menu ul.sub-menu {
+    /* Don't auto-open level-3 when level-2 opens — only open level-3 when
+       its OWN parent is hovered. Tighten with explicit selector below. */
+    transform: translateX(-4px);
+  }
+
+  #brndle-header ul.sub-menu > li.menu-item:hover > ul.sub-menu,
+  #brndle-header ul.sub-menu > li.menu-item:focus-within > ul.sub-menu {
+    transform: translateX(0);
+  }
+
+  /* Subtle chevron on parent links to signal "has children". Uses ::after
+     so the link's own text isn't affected. The chevron rotates when the
+     submenu is open (aria-expanded=true). */
+  #brndle-header [data-brndle-has-submenu] > a::after {
+    content: "";
+    display: inline-block;
+    margin-left: 0.4em;
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 180ms ease;
+    opacity: 0.6;
+    vertical-align: middle;
+  }
+
+  #brndle-header [data-brndle-has-submenu] > a[aria-expanded="true"]::after {
+    transform: translateY(0) rotate(225deg);
+    opacity: 1;
+  }
+
+  /* Mega panel — emitted by the walker (M1 sub-chunk that follows) when a
+     top-level item has _brndle_mega_menu = 1. Layout: full-width up to the
+     same `max-w-7xl` constraint the rest of the theme uses, anchored under
+     the parent <li> but spanning across the whole header row. */
+  #brndle-header .brndle-mega {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 4px);
+    z-index: 55;
+    width: min(80rem, calc(100vw - 2rem));
+    margin-top: 8px;
+    padding: 1.5rem;
+    background: var(--color-surface-primary);
+    border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+    pointer-events: none;
+  }
+
+  #brndle-header li.menu-item:hover > .brndle-mega,
+  #brndle-header li.menu-item:focus-within > .brndle-mega,
+  #brndle-header li.menu-item > a[aria-expanded="true"] + .brndle-mega {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+
+  /* Mega columns grid — column count from data-cols. Auto-collapse empty
+     columns by counting non-empty children in the walker (M1.B follow-up). */
+  #brndle-header .brndle-mega__columns {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  #brndle-header .brndle-mega[data-cols="2"] .brndle-mega__columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #brndle-header .brndle-mega[data-cols="3"] .brndle-mega__columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #brndle-header .brndle-mega[data-cols="4"] .brndle-mega__columns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  /* Per-column heading (small caps, accent-leaning color). Walker emits
+     items with `_brndle_column_heading` as <h4> instead of <a>. */
+  #brndle-header .brndle-mega__heading {
+    margin: 0 0 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-accent) 60%, var(--color-text-tertiary));
+  }
+
+  /* Per-item layout inside a mega panel: icon (24px) on the left,
+     title + description on the right. */
+  #brndle-header .brndle-mega li > a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 120ms ease;
+  }
+
+  #brndle-header .brndle-mega li > a:hover,
+  #brndle-header .brndle-mega li > a:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    outline: none;
+  }
+
+  #brndle-header .brndle-mega__icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent);
+  }
+
+  #brndle-header .brndle-mega__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #brndle-header .brndle-mega__title {
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  #brndle-header .brndle-mega__desc {
+    margin-top: 2px;
+    font-size: 0.85rem;
+    color: var(--color-text-tertiary);
+    line-height: 1.4;
+  }
+
+  #brndle-header .brndle-mega__badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    color: var(--color-accent);
+    vertical-align: 2px;
+  }
+
+  /* Featured block — image + heading + description + CTA chevron.
+     Sits as the last child of `.brndle-mega__columns` when present. */
+  #brndle-header .brndle-mega__featured {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
+  #brndle-header .brndle-mega__featured img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  #brndle-header .brndle-mega__featured-heading {
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  #brndle-header .brndle-mega__featured-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-tertiary);
+    line-height: 1.5;
+  }
+
+  /* Bottom CTA row — "View all →" */
+  #brndle-header .brndle-mega__cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+  }
+
+  #brndle-header .brndle-mega__cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+/* ---- Touch-primary devices ---- */
+/* When the primary pointer can't hover (iPad-with-finger, phones, kiosks),
+   kill all hover-only triggers. The JS controller (M1.C) handles tap-to-
+   open instead via aria-expanded. */
+@media (hover: none) {
+  #brndle-header li.menu-item:hover > ul.sub-menu,
+  #brndle-header li.menu-item:hover > .brndle-mega {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(4px);
+  }
+
+  #brndle-header li.menu-item > a[aria-expanded="true"] + ul.sub-menu,
+  #brndle-header li.menu-item > a[aria-expanded="true"] + .brndle-mega {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  #brndle-header li.menu-item > a[aria-expanded="true"] + .brndle-mega {
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ---- Mobile accordion (M1.D) ----
+   The walker emits a disclosure <button> next to each parent <a> in mobile
+   context. Tapping the button toggles aria-expanded on the button and
+   reveals/hides the matching <ul.sub-menu>[hidden]>. JS handles the
+   max-height animation. CSS keeps the whole thing visually consistent
+   with the existing `#brndle-mobile-menu` collapse panel. */
+
+.brndle-mobile-disclosure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 200ms ease;
+  /* iOS Safari: eliminates 300ms tap delay on legacy webview cases. */
+  touch-action: manipulation;
+}
+
+.brndle-mobile-disclosure:hover,
+.brndle-mobile-disclosure:focus-visible {
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+  outline: none;
+}
+
+.brndle-mobile-disclosure[aria-expanded="true"] {
+  transform: rotate(180deg);
+}
+
+/* The mobile parent <li> needs to be a flex row so the link and the
+   disclosure button sit on the same line. The default walker outputs
+   <li><a>...</a><button>...</button><ul>...</ul></li> so we make the LI
+   a flex container that wraps the UL onto a new line. */
+#brndle-mobile-menu li.menu-item-has-children {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#brndle-mobile-menu li.menu-item-has-children > a {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Submenu UL inside the mobile drawer — full width on the next line,
+   indented to signal hierarchy. The walker adds [hidden] by default;
+   removing it lets max-height animate. */
+#brndle-mobile-menu ul.sub-menu {
+  flex: 1 0 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  border-left: 2px solid color-mix(in srgb, var(--color-text-tertiary) 20%, transparent);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 240ms ease;
+}
+
+/* When the disclosure button is open, JS removes [hidden] AND the
+   adjacent CSS sibling combinator can't reach across the button to the
+   UL — so the JS sets a max-height inline. The CSS rule below provides
+   a reasonable fallback for users without JS (always-expanded). */
+#brndle-mobile-menu ul.sub-menu:not([hidden]) {
+  max-height: 1000px;
+}
+
+/* Tap-target floor — every menu link + disclosure on touch devices
+   hits 44x44 minimum (Apple HIG + WCAG 2.5.5 + Material 48dp converge
+   here). The .brndle-mobile-disclosure button is already 36x36 visually
+   but expands its hit area via padding. Scoped to < 768px since that's
+   where the mobile drawer shows (matches Tailwind `md:hidden`). */
+@media (max-width: 767px) {
+  #brndle-mobile-menu a,
+  #brndle-mobile-menu button {
+    min-height: 44px;
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  #brndle-header ul.sub-menu,
+  #brndle-header .brndle-mega,
+  #brndle-header [data-brndle-has-submenu] > a::after,
+  #brndle-mobile-menu ul.sub-menu,
+  .brndle-mobile-disclosure {
+    transition: none;
+  }
+}
+
 @media (max-width: 640px) {
   .brndle-homepage-section {
     padding: 2.5rem 0;

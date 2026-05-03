@@ -16,6 +16,7 @@ export default defineConfig({
         'resources/css/app.css',
         'resources/js/dark-mode.js',
         'resources/js/view-transitions.js',
+        'resources/js/mega-menu.js',
         'resources/css/editor.css',
         'resources/js/editor.js',
       ],

@@ -1,6 +1,15 @@
 @php
   $style = $headerStyle ?? 'sticky';
   $toggleInHeader = ($showDarkModeToggle ?? false) && ($darkModeTogglePosition ?? '') === 'header';
+
+  // Walker factory — keeps each wp_nav_menu() call site readable. Desktop
+  // contexts pass false; mobile drawer / collapse contexts pass true so the
+  // walker emits accordion-friendly markup. The header style is forwarded so
+  // the walker can adapt (`minimal` flattens mega config; `glass` triggers
+  // opaque mega bg etc — handled in later M1 sub-chunks).
+  $brndleNavWalker = static function (bool $isMobile = false) use ($style) {
+    return new \Brndle\Navigation\MegaMenuWalker($isMobile, $style);
+  };
 @endphp
 
 {{-- ============================================================
@@ -54,6 +63,7 @@
         'menu_class' => 'flex flex-col items-center gap-6',
         'container' => false,
         'echo' => false,
+        'walker' => $brndleNavWalker(true),
         'link_before' => '<span class="text-2xl font-light text-text-secondary hover:text-text-primary transition-colors">',
         'link_after' => '</span>',
       ]) !!}
@@ -122,6 +132,7 @@
           'menu_class' => 'flex items-center gap-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="px-4 py-1.5 text-base font-medium text-text-secondary hover:text-text-primary hover:bg-surface-secondary rounded-full transition-all">',
           'link_after' => '</span>',
         ]) !!}
@@ -162,6 +173,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -219,6 +231,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -258,6 +271,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -330,6 +344,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -369,6 +384,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -462,6 +478,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -478,6 +495,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -550,6 +568,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -589,6 +608,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -660,6 +680,7 @@
             'menu_class' => 'flex items-center gap-8',
             'container' => false,
             'echo' => false,
+            'walker' => $brndleNavWalker(false),
             'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
             'link_after' => '</span>',
           ]) !!}
@@ -699,6 +720,7 @@
             'menu_class' => 'space-y-1',
             'container' => false,
             'echo' => false,
+            'walker' => $brndleNavWalker(true),
             'link_before' => '<span class="block text-base font-medium text-white/60 hover:text-white py-2.5 transition-colors">',
             'link_after' => '</span>',
           ]) !!}
@@ -766,6 +788,7 @@
           'menu_class' => 'flex items-center gap-8',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(false),
           'link_before' => '<span class="text-base font-medium text-text-secondary hover:text-text-primary transition-colors">',
           'link_after' => '</span>',
         ]) !!}
@@ -805,6 +828,7 @@
           'menu_class' => 'space-y-1',
           'container' => false,
           'echo' => false,
+          'walker' => $brndleNavWalker(true),
           'link_before' => '<span class="block text-base font-medium text-text-secondary hover:text-accent py-2.5 transition-colors">',
           'link_after' => '</span>',
         ]) !!}
