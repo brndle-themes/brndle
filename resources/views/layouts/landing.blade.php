@@ -22,6 +22,10 @@
   if (\Brndle\Settings\Settings::get('perf_view_transitions', false)) {
     $viteEntries[] = 'resources/js/view-transitions.js';
   }
+  // Mega menu controller (M1.C). Same conditional as app.blade.php.
+  if (has_nav_menu('primary_navigation')) {
+    $viteEntries[] = 'resources/js/mega-menu.js';
+  }
 @endphp
 <!doctype html>
 <html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}">

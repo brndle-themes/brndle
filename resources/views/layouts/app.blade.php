@@ -36,6 +36,13 @@
   if (\Brndle\Settings\Settings::get('perf_view_transitions', false)) {
     $viteEntries[] = 'resources/js/view-transitions.js';
   }
+  // Mega menu controller (M1.C) — only needed when the primary nav exists.
+  // The script is idempotent + early-exits if no `[data-brndle-has-submenu]`
+  // elements are found, but skipping the request entirely on pages without
+  // a registered nav is cheaper.
+  if (has_nav_menu('primary_navigation')) {
+    $viteEntries[] = 'resources/js/mega-menu.js';
+  }
 @endphp
 <!doctype html>
 <html <?php language_attributes(); ?> class="scroll-smooth" data-theme="{{ $initialTheme }}">
