@@ -1049,6 +1049,58 @@ html {
     color: var(--color-text-tertiary);
   }
 
+  /* Tabbed mega — left-rail tabs + right-panel content. Pattern matches
+     UberMenu's tabbed mode + the GitHub / Linear product menu UX. The
+     wrapper spans the entire columns grid (grid-column: 1/-1) since we
+     manage the internal split (tabs vs panels) ourselves. */
+  #brndle-header .brndle-mega__tabbed {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #brndle-header .brndle-mega__tablist {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-right: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
+    padding-right: 0.75rem;
+  }
+
+  #brndle-header .brndle-mega__tab {
+    text-align: left;
+    padding: 8px 12px;
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  #brndle-header .brndle-mega__tab:hover,
+  #brndle-header .brndle-mega__tab:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    outline: none;
+  }
+
+  #brndle-header .brndle-mega__tab[aria-selected="true"] {
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  #brndle-header .brndle-mega__panels {
+    min-width: 0;
+  }
+
+  #brndle-header .brndle-mega__panel {
+    min-height: 200px;
+  }
+
   /* Bottom CTA row — "View all →" */
   #brndle-header .brndle-mega__cta {
     margin-top: 1rem;
@@ -1177,13 +1229,33 @@ html {
   }
 }
 
+/* ---- Conditional visibility (M3.B) ---- */
+/* `data-brndle-hide-on` is a space-separated list set by the walker on
+   menu items where the user ticked "Hide on desktop/tablet/mobile" in
+   the menu editor. Auth-state hiding is done server-side in the walker;
+   this is the viewport gating layer. Breakpoints align with Tailwind
+   (640 sm / 768 md / 1024 lg). */
+@media (min-width: 1024px) {
+  /* Desktop = lg and up. */
+  [data-brndle-hide-on~="desktop"] { display: none !important; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet = md to just-below-lg. */
+  [data-brndle-hide-on~="tablet"] { display: none !important; }
+}
+@media (max-width: 767px) {
+  /* Mobile = below md. */
+  [data-brndle-hide-on~="mobile"] { display: none !important; }
+}
+
 /* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   #brndle-header ul.sub-menu,
   #brndle-header .brndle-mega,
   #brndle-header [data-brndle-has-submenu] > a::after,
   #brndle-mobile-menu ul.sub-menu,
-  .brndle-mobile-disclosure {
+  .brndle-mobile-disclosure,
+  #brndle-header .brndle-mega__tab {
     transition: none;
   }
 }
