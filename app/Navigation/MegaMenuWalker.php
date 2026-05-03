@@ -80,15 +80,52 @@ class MegaMenuWalker extends Walker_Nav_Menu
      */
     public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
     {
-        if ($depth === 0 && $element && ! $this->isMobile) {
-            $meta = MenuItemMeta::get((int) $element->ID);
-            if (! empty($meta['_brndle_mega_menu'])) {
-                $this->renderMegaItem($element, $children_elements, $max_depth, $depth, $args, $output, $meta);
-                return;
+        if (! $element) {
+            return;
+        }
+
+        $meta = MenuItemMeta::get((int) $element->ID);
+
+        // Conditional visibility — auth state. Server-side gating: items
+        // hidden by auth never reach the DOM, so login state can't be
+        // sniffed from the menu markup. Viewport hiding (`hide_on_*`) is
+        // CSS-driven via data-attrs on the rendered element since we can't
+        // know the client viewport server-side.
+        if (! $this->itemIsVisibleForCurrentUser($meta)) {
+            // Skip entirely — also drop its children so we don't orphan them.
+            if (isset($children_elements[$element->ID])) {
+                unset($children_elements[$element->ID]);
             }
+            return;
+        }
+
+        // Mega path — desktop only, depth 0, mega flag set.
+        if ($depth === 0 && ! $this->isMobile && ! empty($meta['_brndle_mega_menu'])) {
+            $this->renderMegaItem($element, $children_elements, $max_depth, $depth, $args, $output, $meta);
+            return;
         }
 
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+    }
+
+    /**
+     * Auth-state visibility check. Items meant for logged-in users render
+     * only when the request is authenticated (and vice versa for logged-out
+     * targeted items). Default `any` always renders.
+     *
+     * @param  array $meta
+     * @return bool
+     */
+    private function itemIsVisibleForCurrentUser(array $meta): bool
+    {
+        $auth = $meta['_brndle_visibility_auth'] ?? 'any';
+        if ($auth === 'logged-in' && ! is_user_logged_in()) {
+            return false;
+        }
+        if ($auth === 'logged-out' && is_user_logged_in()) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -128,17 +165,22 @@ class MegaMenuWalker extends Walker_Nav_Menu
         $output .= '<div class="brndle-mega__columns">';
 
         // Render the content area based on the chosen source. `manual`
-        // (default) groups menu children into columns. `widget-area` swaps
+        // (default) groups menu children into columns OR — when tabbed
+        // mode is on — into a tab list + tab panels. `widget-area` swaps
         // for `dynamic_sidebar()`. `auto-posts` queries the configured
         // category and renders post cards.
-        switch ($source) {
-            case 'widget-area':
+        $tabbed = $source === 'manual' && ! empty($meta['_brndle_mega_tabbed']);
+
+        switch (true) {
+            case $tabbed:
+                $this->renderTabbedSource($output, $element, $children, $children_elements);
+                break;
+            case $source === 'widget-area':
                 $this->renderWidgetAreaSource($output, $element);
                 break;
-            case 'auto-posts':
+            case $source === 'auto-posts':
                 $this->renderAutoPostsSource($output, $meta, $contentCols);
                 break;
-            case 'manual':
             default:
                 $byColumn = $this->groupChildrenByColumn($children, $contentCols);
                 foreach ($byColumn as $columnItems) {
@@ -221,9 +263,19 @@ class MegaMenuWalker extends Walker_Nav_Menu
     {
         $meta = MenuItemMeta::get((int) $child->ID);
 
+        // Viewport-hide data-attr — CSS @media reads this to hide / show
+        // per breakpoint. Auth-state hiding was already filtered upstream
+        // in display_element / renderTabbedSource, so any item that reaches
+        // here is auth-visible.
+        $hides = [];
+        if (! empty($meta['_brndle_hide_on_desktop'])) $hides[] = 'desktop';
+        if (! empty($meta['_brndle_hide_on_tablet'])) $hides[] = 'tablet';
+        if (! empty($meta['_brndle_hide_on_mobile'])) $hides[] = 'mobile';
+        $hideAttr = ! empty($hides) ? ' data-brndle-hide-on="' . esc_attr(implode(' ', $hides)) . '"' : '';
+
         // Column heading — `_brndle_column_heading` overrides the link.
         if (! empty($meta['_brndle_column_heading'])) {
-            $output .= '<li class="brndle-mega__heading-item">'
+            $output .= '<li class="brndle-mega__heading-item"' . $hideAttr . '>'
                 . '<h4 class="brndle-mega__heading">' . esc_html($meta['_brndle_column_heading']) . '</h4>'
                 . '</li>';
             return;
@@ -255,7 +307,7 @@ class MegaMenuWalker extends Walker_Nav_Menu
             $descHtml = '<span class="brndle-mega__desc">' . esc_html($meta['_brndle_description']) . '</span>';
         }
 
-        $output .= '<li class="brndle-mega__item">'
+        $output .= '<li class="brndle-mega__item"' . $hideAttr . '>'
             . '<a href="' . esc_url($url) . '">'
             . $iconHtml
             . '<span class="brndle-mega__body">'
@@ -264,6 +316,114 @@ class MegaMenuWalker extends Walker_Nav_Menu
             . '</span>'
             . '</a>'
             . '</li>';
+    }
+
+    /**
+     * Render the tabbed mega source — children become left-rail tabs and
+     * grandchildren become each tab's content panel. Pattern matches
+     * UberMenu's tabbed mode + the GitHub / Linear product menu UX.
+     *
+     * Markup:
+     *   <div class="brndle-mega__tabbed" data-brndle-tabs>
+     *     <div role="tablist" class="brndle-mega__tablist">
+     *       <button role="tab" aria-selected="true" id="tab-X" aria-controls="panel-X">Tab 1</button>
+     *       <button role="tab" aria-selected="false" ...>Tab 2</button>
+     *     </div>
+     *     <div role="tabpanel" id="panel-X" aria-labelledby="tab-X">
+     *       <ul class="brndle-mega__col">...grandchildren as mega items...</ul>
+     *     </div>
+     *     <div role="tabpanel" hidden ...>...</div>
+     *   </div>
+     *
+     * The tab-switch JS in mega-menu.js handles aria-selected flips +
+     * panel hidden toggling on click + arrow keys (per WAI-ARIA tabs
+     * pattern).
+     *
+     * Auth + viewport visibility for the children/grandchildren is honored
+     * by short-circuiting in display_element above; tabs and panels for
+     * hidden items never reach this method.
+     *
+     * @param  string $output
+     * @param  object $element              Top-level menu item.
+     * @param  array  $children             Direct children = tabs.
+     * @param  array  $children_elements    Whole tree (so we can pull grandchildren).
+     * @return void
+     */
+    private function renderTabbedSource(string &$output, $element, array $children, array &$children_elements): void
+    {
+        if (empty($children)) {
+            return;
+        }
+
+        // Filter children by auth visibility — the parent display_element
+        // already filtered grandchildren before they landed in $children_elements.
+        $visibleTabs = array_values(array_filter($children, function ($child) {
+            $childMeta = MenuItemMeta::get((int) $child->ID);
+            return $this->itemIsVisibleForCurrentUser($childMeta);
+        }));
+
+        if (empty($visibleTabs)) {
+            return;
+        }
+
+        $output .= '<div class="brndle-mega__tabbed" data-brndle-tabs style="grid-column: 1 / -1;">';
+        $output .= '<div class="brndle-mega__tablist" role="tablist" aria-orientation="vertical">';
+        foreach ($visibleTabs as $i => $child) {
+            $tabId = 'brndle-tab-' . (int) $element->ID . '-' . (int) $child->ID;
+            $panelId = 'brndle-panel-' . (int) $element->ID . '-' . (int) $child->ID;
+            $isFirst = $i === 0;
+            $output .= sprintf(
+                '<button type="button" role="tab" id="%s" aria-controls="%s" aria-selected="%s" tabindex="%s" class="brndle-mega__tab">%s</button>',
+                esc_attr($tabId),
+                esc_attr($panelId),
+                $isFirst ? 'true' : 'false',
+                $isFirst ? '0' : '-1',
+                esc_html($child->title ?? '')
+            );
+        }
+        $output .= '</div>';
+
+        $output .= '<div class="brndle-mega__panels">';
+        foreach ($visibleTabs as $i => $child) {
+            $tabId = 'brndle-tab-' . (int) $element->ID . '-' . (int) $child->ID;
+            $panelId = 'brndle-panel-' . (int) $element->ID . '-' . (int) $child->ID;
+            $isFirst = $i === 0;
+            $hiddenAttr = $isFirst ? '' : 'hidden';
+
+            $output .= sprintf(
+                '<div role="tabpanel" id="%s" aria-labelledby="%s" %s class="brndle-mega__panel">',
+                esc_attr($panelId),
+                esc_attr($tabId),
+                $hiddenAttr
+            );
+
+            $grandchildren = $children_elements[$child->ID] ?? [];
+            // Filter grandchildren by visibility too.
+            $grandchildren = array_filter($grandchildren, function ($gc) {
+                $gcMeta = MenuItemMeta::get((int) $gc->ID);
+                return $this->itemIsVisibleForCurrentUser($gcMeta);
+            });
+
+            if (! empty($grandchildren)) {
+                $output .= '<ul class="brndle-mega__col">';
+                foreach ($grandchildren as $gc) {
+                    $this->renderMegaChild($output, $gc);
+                }
+                $output .= '</ul>';
+            } else {
+                // No grandchildren — show the tab's own link as fallback content.
+                $url = ! empty($child->url) ? $child->url : '#';
+                $title = $child->title ?? '';
+                $output .= '<p style="margin:0.5rem 0.75rem;"><a href="' . esc_url($url) . '" style="color:var(--color-accent);font-weight:600;">' . esc_html($title) . ' &rarr;</a></p>';
+            }
+
+            // Prevent the walker from re-iterating these grandchildren elsewhere.
+            unset($children_elements[$child->ID]);
+
+            $output .= '</div>';
+        }
+        $output .= '</div>'; // close .brndle-mega__panels
+        $output .= '</div>'; // close .brndle-mega__tabbed
     }
 
     /**
@@ -493,6 +653,27 @@ class MegaMenuWalker extends Walker_Nav_Menu
     {
         $before = $output;
         parent::start_el($output, $item, $depth, $args, $id);
+
+        // Add viewport-hide data attrs to every item that has them set.
+        // CSS @media rules read these to hide / show per breakpoint. Auth
+        // visibility was already filtered server-side in display_element.
+        $itemMeta = MenuItemMeta::get((int) $item->ID);
+        $viewportHides = [];
+        if (! empty($itemMeta['_brndle_hide_on_desktop'])) $viewportHides[] = 'desktop';
+        if (! empty($itemMeta['_brndle_hide_on_tablet'])) $viewportHides[] = 'tablet';
+        if (! empty($itemMeta['_brndle_hide_on_mobile'])) $viewportHides[] = 'mobile';
+        if (! empty($viewportHides)) {
+            $delta = substr($output, strlen($before));
+            $hideAttr = implode(' ', $viewportHides);
+            $delta = preg_replace(
+                '/^(<li\b)([^>]*)>/',
+                '$1$2 data-brndle-hide-on="' . esc_attr($hideAttr) . '">',
+                $delta,
+                1
+            );
+            $output = $before . $delta;
+            $before = $output; // re-anchor for the next pass below
+        }
 
         $hasChildren = ! empty($item->classes) && in_array('menu-item-has-children', (array) $item->classes, true);
         if (! $hasChildren) {
