@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Brndle 1.9.1\n"
+"Project-Id-Version: Brndle 2.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/brndle\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-03T07:50:06+00:00\n"
+"POT-Creation-Date: 2026-05-03T11:47:34+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: brndle\n"
@@ -58,11 +58,42 @@ msgstr ""
 #: blocks/src/comparison-table.js:186
 #: blocks/src/components/image-control.js:94
 #: blocks/src/stats.js:70
+#: blocks/src/tabs-accordion.js:187
+#: blocks/src/timeline.js:160
 msgid "Remove"
 msgstr ""
 
 #: app/Avatars/LocalAvatar.php:112
 msgid "Square images work best (512×512+). Falls back to Gravatar if not set."
+msgstr ""
+
+#: app/Comments/Walker.php:54
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: app/Comments/Walker.php:58
+msgid "Author"
+msgstr ""
+
+#. translators: 1: comment date, 2: comment time
+#: app/Comments/Walker.php:67
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: app/Comments/Walker.php:79
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: app/Comments/Walker.php:97
+msgid "Edit"
+msgstr ""
+
+#. translators: 1: Yoast SEO plugin name, 2: Rank Math plugin name
+#: app/Compatibility/SeoPluginNotice.php:32
+#, php-format
+msgid "Brndle expects %1$s or %2$s to be active. Without an SEO plugin, post pages publish without Article / Person / Breadcrumb structured data — the theme deliberately does not emit competing schema."
 msgstr ""
 
 #: app/filters.php:16
@@ -164,6 +195,8 @@ msgid "Column heading (renders this item as a section title instead of a link)"
 msgstr ""
 
 #: app/Navigation/MenuItemMeta.php:473
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:129
 msgid "Icon (Lucide name)"
 msgstr ""
 
@@ -1801,6 +1834,7 @@ msgid "We respond within one business day."
 msgstr ""
 
 #: app/Providers/BlockPatternServiceProvider.php:611
+#: resources/views/partials/components/comments.blade.php:26
 #: blocks/build/index.js:1
 #: blocks/src/team.js:106
 #: blocks/src/testimonials.js:84
@@ -1812,6 +1846,7 @@ msgid "Your name"
 msgstr ""
 
 #: app/Providers/BlockPatternServiceProvider.php:612
+#: resources/views/partials/components/comments.blade.php:27
 #: blocks/build/index.js:1
 #: blocks/src/lead-form.js:151
 msgid "Email"
@@ -1835,7 +1870,7 @@ msgstr ""
 msgid "Got it — we will be in touch within 24 hours."
 msgstr ""
 
-#: app/Providers/BlockServiceProvider.php:133
+#: app/Providers/BlockServiceProvider.php:156
 msgid "Brndle Sections"
 msgstr ""
 
@@ -2050,12 +2085,62 @@ msgstr ""
 msgid "Homepage Canvas"
 msgstr ""
 
-#: resources/views/404.blade.php:7
-msgid "Sorry, we couldn't find the page you're looking for."
+#: resources/views/404.blade.php:20
+msgid "We can't find that page"
 msgstr ""
 
-#: resources/views/404.blade.php:9
-msgid "Go home"
+#: resources/views/404.blade.php:24
+msgid "The link may be broken or the page moved. Try a search or browse the latest articles below."
+msgstr ""
+
+#: resources/views/404.blade.php:30
+#: resources/views/404.blade.php:45
+#: resources/views/forms/search.blade.php:2
+#: resources/views/forms/search.blade.php:14
+#: resources/views/partials/header/search.blade.php:30
+#: resources/views/search.blade.php:15
+#: resources/views/search.blade.php:27
+#: resources/views/search.blade.php:41
+#: resources/views/sections/header.blade.php:456
+#: blocks/build/index.js:1
+#: blocks/src/features.js:138
+msgid "Search"
+msgstr ""
+
+#: resources/views/404.blade.php:40
+#: resources/views/search.blade.php:51
+msgid "Search articles…"
+msgstr ""
+
+#: resources/views/404.blade.php:54
+#: resources/views/search.blade.php:124
+msgid "Back to home"
+msgstr ""
+
+#: resources/views/404.blade.php:64
+msgid "Latest articles"
+msgstr ""
+
+#: resources/views/blocks/code.blade.php:40
+msgid "Copy code to clipboard"
+msgstr ""
+
+#: resources/views/blocks/code.blade.php:44
+msgid "Copy"
+msgstr ""
+
+#: resources/views/blocks/code.blade.php:48
+msgid "Copied"
+msgstr ""
+
+#. translators: %s: programming language name
+#: resources/views/blocks/code.blade.php:69
+#, php-format
+msgid "Code block: %s"
+msgstr ""
+
+#: resources/views/blocks/code.blade.php:70
+msgid "plain text"
 msgstr ""
 
 #: resources/views/blocks/content-image-split.blade.php:44
@@ -2099,15 +2184,6 @@ msgstr ""
 msgid "Add a video URL in the block settings"
 msgstr ""
 
-#: resources/views/forms/search.blade.php:2
-#: resources/views/forms/search.blade.php:14
-#: resources/views/partials/header/search.blade.php:30
-#: resources/views/sections/header.blade.php:456
-#: blocks/build/index.js:1
-#: blocks/src/features.js:138
-msgid "Search"
-msgstr ""
-
 #: resources/views/forms/search.blade.php:9
 msgid "Search..."
 msgstr ""
@@ -2117,40 +2193,33 @@ msgid "No posts found."
 msgstr ""
 
 #: resources/views/index.blade.php:53
-#: resources/views/search.blade.php:20
+#: resources/views/search.blade.php:68
 msgid "&larr; Previous"
 msgstr ""
 
 #: resources/views/index.blade.php:54
-#: resources/views/search.blade.php:21
+#: resources/views/search.blade.php:69
 msgid "Next &rarr;"
 msgstr ""
 
-#: resources/views/layouts/app.blade.php:88
+#: resources/views/layouts/app.blade.php:96
 #: resources/views/layouts/landing.blade.php:64
 #: resources/views/template-canvas.blade.php:32
 #: resources/views/template-transparent.blade.php:34
 msgid "Skip to content"
 msgstr ""
 
-#. translators: %s: number of comments
-#: resources/views/partials/comments.blade.php:6
-#, php-format
-msgid "%s Comment"
-msgid_plural "%s Comments"
-msgstr[0] ""
-msgstr[1] ""
-
-#: resources/views/partials/comments.blade.php:17
-msgid "Comments are closed."
-msgstr ""
-
-#: resources/views/partials/components/author-box.blade.php:64
+#: resources/views/partials/components/author-box.blade.php:68
 #, php-format
 msgid "%d post"
 msgid_plural "%d posts"
 msgstr[0] ""
 msgstr[1] ""
+
+#: resources/views/partials/components/back-to-top.blade.php:12
+#: resources/views/sections/footer.blade.php:344
+msgid "Back to top"
+msgstr ""
 
 #: resources/views/partials/components/category-filter.blade.php:12
 msgid "Filter posts by category"
@@ -2158,6 +2227,63 @@ msgstr ""
 
 #: resources/views/partials/components/category-filter.blade.php:23
 msgid "All"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:28
+msgid "Website"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:34
+msgid "Comment"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:37
+msgid "Leave a comment"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:38
+#, php-format
+msgid "Reply to %s"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:41
+msgid "Cancel reply"
+msgstr ""
+
+#. translators: %s: login URL
+#: resources/views/partials/components/comments.blade.php:44
+#, php-format
+msgid "You must be <a href=\"%s\" class=\"text-accent hover:text-accent-strong underline\">logged in</a> to post a comment."
+msgstr ""
+
+#. translators: 1: profile URL, 2: display name, 3: logout URL
+#: resources/views/partials/components/comments.blade.php:49
+#, php-format
+msgid "Logged in as <a href=\"%1$s\" class=\"text-accent hover:underline\">%2$s</a>. <a href=\"%3$s\" class=\"hover:underline\">Log out?</a>"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:54
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr ""
+
+#. translators: %s: number of comments
+#: resources/views/partials/components/comments.blade.php:63
+#, php-format
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/partials/components/comments.blade.php:74
+msgid "Older comments"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:78
+msgid "Newer comments"
+msgstr ""
+
+#: resources/views/partials/components/comments.blade.php:87
+msgid "Comments are closed."
 msgstr ""
 
 #: resources/views/partials/components/dark-mode-toggle.blade.php:31
@@ -2174,6 +2300,10 @@ msgstr ""
 
 #: resources/views/partials/components/post-navigation.blade.php:26
 msgid "Next"
+msgstr ""
+
+#: resources/views/partials/components/print-source.blade.php:19
+msgid "Source:"
 msgstr ""
 
 #: resources/views/partials/components/related-posts.blade.php:33
@@ -2223,12 +2353,16 @@ msgid "Copied!"
 msgstr ""
 
 #: resources/views/partials/components/table-of-contents.blade.php:17
-#: resources/views/partials/single/sidebar.blade.php:77
+#: resources/views/partials/single/sidebar.blade.php:78
 msgid "Table of Contents"
 msgstr ""
 
 #: resources/views/partials/components/table-of-contents.blade.php:18
 msgid "On this page"
+msgstr ""
+
+#: resources/views/partials/components/updated-date.blade.php:29
+msgid "Updated"
 msgstr ""
 
 #: resources/views/partials/header/search.blade.php:21
@@ -2252,8 +2386,39 @@ msgstr ""
 msgid "View all"
 msgstr ""
 
-#: resources/views/search.blade.php:9
-msgid "No results found."
+#. translators: %s: search query, wrapped in <span> for accent styling
+#: resources/views/search.blade.php:22
+#, php-format
+msgid "Results for %s"
+msgstr ""
+
+#: resources/views/search.blade.php:34
+#, php-format
+msgid "%s result found"
+msgid_plural "%s results found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/search.blade.php:56
+msgid "Refine"
+msgstr ""
+
+#. translators: %s: search query
+#: resources/views/search.blade.php:80
+#, php-format
+msgid "No matches for %s"
+msgstr ""
+
+#: resources/views/search.blade.php:85
+msgid "Try a different search"
+msgstr ""
+
+#: resources/views/search.blade.php:90
+msgid "Check the spelling or try fewer / more general words."
+msgstr ""
+
+#: resources/views/search.blade.php:106
+msgid "Or browse by topic"
 msgstr ""
 
 #: resources/views/sections/footer.blade.php:15
@@ -2311,10 +2476,6 @@ msgstr ""
 
 #: resources/views/sections/footer.blade.php:221
 msgid "Subscribe"
-msgstr ""
-
-#: resources/views/sections/footer.blade.php:344
-msgid "Back to top"
 msgstr ""
 
 #: resources/views/sections/footer.blade.php:383
@@ -2405,6 +2566,7 @@ msgstr ""
 #: blocks/src/cta.js:22
 #: blocks/src/hero.js:23
 #: blocks/src/lead-form.js:46
+#: blocks/src/tabs-accordion.js:157
 #: blocks/src/video-embed.js:23
 msgid "Content"
 msgstr ""
@@ -2438,6 +2600,8 @@ msgstr ""
 #: blocks/src/pricing.js:65
 #: blocks/src/team.js:62
 #: blocks/src/testimonials.js:61
+#: blocks/src/timeline.js:61
+#: blocks/src/timeline.js:115
 #: blocks/src/video-embed.js:30
 msgid "Title"
 msgstr ""
@@ -2515,6 +2679,7 @@ msgstr ""
 #: blocks/src/lead-form.js:119
 #: blocks/src/logos.js:70
 #: blocks/src/pricing.js:78
+#: blocks/src/pull-quote.js:71
 #: blocks/src/stats.js:81
 #: blocks/src/team.js:87
 #: blocks/src/video-embed.js:101
@@ -2523,6 +2688,7 @@ msgstr ""
 
 #: blocks/build/index.js:1
 #: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/code.js:113
 #: blocks/src/comparison-table.js:245
 #: blocks/src/content-image-split.js:99
 #: blocks/src/cta.js:74
@@ -2541,6 +2707,7 @@ msgstr ""
 
 #: blocks/build/index.js:1
 #: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/code.js:112
 #: blocks/src/comparison-table.js:244
 #: blocks/src/content-image-split.js:98
 #: blocks/src/cta.js:75
@@ -2621,6 +2788,7 @@ msgstr ""
 #: blocks/src/features.js:100
 #: blocks/src/how-it-works.js:92
 #: blocks/src/pricing.js:104
+#: blocks/src/timeline.js:122
 msgid "Description"
 msgstr ""
 
@@ -3076,12 +3244,14 @@ msgstr ""
 
 #: blocks/build/index.js:1
 #: blocks/src/lead-form.js:124
+#: blocks/src/pull-quote.js:30
 msgid "Accent"
 msgstr ""
 
 #: blocks/build/index.js:1
 #: blocks/src/comparison-table.js:146
 #: blocks/src/lead-form.js:140
+#: blocks/src/tabs-accordion.js:150
 msgid "Label"
 msgstr ""
 
@@ -3324,6 +3494,352 @@ msgstr ""
 msgid "Narrow"
 msgstr ""
 
+#: blocks/build/index.js:1
+#: blocks/src/code.js:31
+msgid "Plain text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:63
+#: blocks/src/code.js:77
+msgid "Language"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:75
+#: blocks/src/code.js:128
+msgid "Code"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:85
+msgid "Caption"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:86
+msgid "One-line attribution under the code (file path / commit / source URL)."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:93
+msgid "Show line numbers"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:99
+msgid "Show copy button"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:105
+msgid "Theme"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:107
+msgid "Color theme"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:108
+msgid "Auto follows the page dark-mode setting. Override only when a specific snippet reads better one way."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:111
+msgid "Auto (follows page)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:129
+msgid "Paste or type the snippet. Switch language in the toolbar above."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/code.js:139
+msgid "Edit code"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:24
+msgid "Bordered left"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:25
+msgid "Centered display"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:26
+msgid "Outset"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:31
+msgid "Primary text"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:32
+msgid "Subdued"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:62
+msgid "Cycle variant"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:73
+msgid "Visual variant"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:79
+msgid "Accent color"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:80
+msgid "Used by the bordered-left rule and the centered open-quote glyph."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:86
+msgid "Citation"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:88
+msgid "Cite URL"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:89
+msgid "Optional link on the cite line."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:106
+msgid "Enter the quote…"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/pull-quote.js:115
+msgid "Optional cite (name, source)…"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:59
+msgid "Section"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:68
+msgid "Style"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:70
+msgid "Icon style"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:73
+msgid "Solid dot"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:74
+msgid "Numbered (01, 02 …)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:75
+msgid "Lucide icon (per item)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:82
+msgid "Connector line"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/build/page-meta-sidebar.js:1
+#: blocks/src/page-meta-sidebar.js:160
+#: blocks/src/timeline.js:85
+msgid "Solid"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:86
+msgid "Dashed"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:87
+msgid "None"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:92
+msgid "Density"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:95
+msgid "Comfortable"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:96
+msgid "Compact"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:146
+#: blocks/src/timeline.js:104
+msgid "Untitled"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:108
+msgid "Date / label"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:130
+msgid "Lucide icon name (kebab-case). Must be in the Brndle icon set."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:171
+#: blocks/src/timeline.js:144
+msgid "Up"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:179
+#: blocks/src/timeline.js:152
+msgid "Down"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:165
+msgid "Add milestone"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/timeline.js:167
+msgid "Add timeline item"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:66
+msgid "Toggle tabs / accordion"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:74
+#: blocks/src/tabs-accordion.js:86
+#: blocks/src/tabs-accordion.js:101
+msgid "Tabs"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:75
+#: blocks/src/tabs-accordion.js:87
+#: blocks/src/tabs-accordion.js:116
+msgid "Accordion"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:81
+msgid "Display"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:83
+msgid "Display mode"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:92
+msgid "Section title (optional)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:103
+msgid "Tab strip alignment"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:106
+msgid "Start"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:107
+msgid "Center"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:108
+msgid "End"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:118
+msgid "Mode"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:121
+msgid "Single — opening one closes the others"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:122
+msgid "Multiple — any number can be open"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:129
+msgid "Default state"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:132
+msgid "All closed"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:133
+msgid "First open"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:134
+msgid "All open (multiple only)"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:158
+msgid "Limited HTML allowed: bold, italic, links, line breaks, inline code."
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:192
+msgid "Add item"
+msgstr ""
+
+#: blocks/build/index.js:1
+#: blocks/src/tabs-accordion.js:194
+msgid "Add panel"
+msgstr ""
+
 #: blocks/build/page-meta-sidebar.js:1
 #: blocks/src/page-meta-sidebar.js:122
 msgid "Hide Page Title"
@@ -3369,11 +3885,6 @@ msgstr ""
 #: blocks/build/page-meta-sidebar.js:1
 #: blocks/src/page-meta-sidebar.js:159
 msgid "Sticky"
-msgstr ""
-
-#: blocks/build/page-meta-sidebar.js:1
-#: blocks/src/page-meta-sidebar.js:160
-msgid "Solid"
 msgstr ""
 
 #: blocks/build/page-meta-sidebar.js:1
@@ -3440,6 +3951,41 @@ msgstr ""
 #: blocks/build/page-meta-sidebar.js:1
 #: blocks/src/page-meta-sidebar.js:235
 msgid "Extra Body Classes"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block title"
+msgid "Code Block"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block description"
+msgid "Syntax-highlighted code with copy-to-clipboard, line numbers, and an optional caption. Highlightjs is lazy-loaded only when a code block is on the page."
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block keyword"
+msgid "code"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block keyword"
+msgid "syntax"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block keyword"
+msgid "highlight"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block keyword"
+msgid "snippet"
+msgstr ""
+
+#: blocks/code/block.json
+msgctxt "block keyword"
+msgid "developer"
 msgstr ""
 
 #: blocks/comparison-table/block.json
@@ -3563,6 +4109,7 @@ msgid "questions"
 msgstr ""
 
 #: blocks/faq/block.json
+#: blocks/tabs-accordion/block.json
 msgctxt "block keyword"
 msgid "accordion"
 msgstr ""
@@ -3648,11 +4195,13 @@ msgid "Numbered process steps with optional icons and descriptions."
 msgstr ""
 
 #: blocks/how-it-works/block.json
+#: blocks/timeline/block.json
 msgctxt "block keyword"
 msgid "steps"
 msgstr ""
 
 #: blocks/how-it-works/block.json
+#: blocks/timeline/block.json
 msgctxt "block keyword"
 msgid "process"
 msgstr ""
@@ -3747,6 +4296,66 @@ msgctxt "block keyword"
 msgid "plans"
 msgstr ""
 
+#: blocks/pull-quote/block.json
+msgctxt "block title"
+msgid "Pull Quote"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block description"
+msgid "Editorial pull quote with three variants: bordered-left, centered-large, and outset."
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block keyword"
+msgid "quote"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block keyword"
+msgid "pull quote"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block keyword"
+msgid "blockquote"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block keyword"
+msgid "editorial"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation title"
+msgid "Bordered left"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation description"
+msgid "Classic editorial pull quote with an accent rule on the left."
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation title"
+msgid "Centered display"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation description"
+msgid "Full-width centered quote with a decorative open-quote glyph."
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation title"
+msgid "Outset"
+msgstr ""
+
+#: blocks/pull-quote/block.json
+msgctxt "block variation description"
+msgid "Breaks out of the article column for added emphasis on long-form features."
+msgstr ""
+
 #: blocks/stats/block.json
 msgctxt "block title"
 msgid "Stats Section"
@@ -3770,6 +4379,36 @@ msgstr ""
 #: blocks/stats/block.json
 msgctxt "block keyword"
 msgid "metrics"
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block title"
+msgid "Tabs / Accordion"
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block description"
+msgid "One block, two display modes — tabs or accordion — sharing the same data. Full WAI-ARIA tabs and disclosure behaviour."
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block keyword"
+msgid "tabs"
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block keyword"
+msgid "panels"
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block keyword"
+msgid "expander"
+msgstr ""
+
+#: blocks/tabs-accordion/block.json
+msgctxt "block keyword"
+msgid "disclosure"
 msgstr ""
 
 #: blocks/team/block.json
@@ -3825,6 +4464,31 @@ msgstr ""
 #: blocks/testimonials/block.json
 msgctxt "block keyword"
 msgid "social-proof"
+msgstr ""
+
+#: blocks/timeline/block.json
+msgctxt "block title"
+msgid "Timeline"
+msgstr ""
+
+#: blocks/timeline/block.json
+msgctxt "block description"
+msgid "Vertical list of milestones with date, title, description, and an optional icon."
+msgstr ""
+
+#: blocks/timeline/block.json
+msgctxt "block keyword"
+msgid "timeline"
+msgstr ""
+
+#: blocks/timeline/block.json
+msgctxt "block keyword"
+msgid "milestones"
+msgstr ""
+
+#: blocks/timeline/block.json
+msgctxt "block keyword"
+msgid "history"
 msgstr ""
 
 #: blocks/video-embed/block.json
