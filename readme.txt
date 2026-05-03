@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,16 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 1.7.0 =
+* **New: Mega menu rendering + admin UI (M2 of mega-menu plan).** v1.6.0 shipped the walker scaffold and dropdown CSS; v1.7.0 makes mega menus actually configurable and usable from the WP menu editor. Tick "Display children as mega menu" on any top-level menu item, choose 2-4 columns, optionally add a featured image block + bottom CTA, and the children render in a viewport-centered mega panel with per-item icons (Lucide), descriptions, and badges (`NEW` / `BETA` / `PRO` / custom). Children can be assigned to specific columns via the `_brndle_column` meta or auto-distributed round-robin.
+* **Walker.** `Brndle\Navigation\MegaMenuWalker` overrides `display_element()` for top-level items with `_brndle_mega_menu = 1`. Renders a `<div class="brndle-mega" data-cols="N">` containing a CSS Grid columns container + featured block (when set) + bottom CTA row. Children grouped by `_brndle_column` (1-N) or auto round-robin. Items with `_brndle_column_heading` render as small-caps `<h4>` section titles instead of links. Standard / flyout dropdowns continue to work for items without mega config — same walker handles all three modes.
+* **Admin UI.** Two fieldsets render under each menu item in the menu editor (Appearance → Menus). "Brndle: Mega menu" — toggle, columns select, featured image (attachment ID), featured heading + description + URL, bottom CTA text + URL. "Brndle: Item details" — column assignment, column heading, Lucide icon picker (with `<datalist>` autocomplete from the installed icon set), 1-line description, badge.
+* **Featured block + bottom CTA.** Featured block renders as the LAST grid cell so it occupies one column width naturally rather than full-panel-width — matches the Stripe / Shopify / Linear pattern. Image via `wp_get_attachment_image('medium')` with lazy loading. Bottom CTA row sits below the columns grid with a top border.
+* **Positioning.** Mega panel uses `position: fixed` so it's viewport-centered (max-w-7xl) regardless of which top-level item triggered it. JS controller measures the trigger's bottom rect and sets `--brndle-mega-top` on every open so the panel tracks sticky / banner / glass header offsets and any future scroll-shrink behavior.
+* **Lucide icon support.** Inline SVG read from `resources/icons/{name}.svg` (the existing Brndle Lucide set, ~50 icons). The admin icon picker offers an autocomplete `<datalist>` of all installed names. Empty / unknown icons render with no slot (no broken icon glyph).
+* **Verified.** All 8 header styles × desktop (1280) / tablet (820) / mobile (390). Mega panel renders correctly through `glass` / `transparent` backdrop-blur (opaque own-bg). Mobile drawer keeps the disclosure-button accordion from M1; mobile mega is treated as a flat accordion (the panel layout is desktop-only).
+* **Deferred to next.** M2.D widget-area mega slot (drop any WP widget inside a mega panel) and M2.E auto-populated post columns (latest N posts from a category as cards). Both queued for v1.7.1.
 
 = 1.6.0 =
 * **New: Multi-level menu support in header (M1 of mega-menu plan).** Until now, header navs that had nested menu items rendered the children inline as a raw `<ul>` because no CSS handled `.sub-menu`. v1.6.0 ships a custom `Brndle\Navigation\MegaMenuWalker` that produces production-grade dropdown markup, plus the styles + JS to make 2-level dropdowns and 3-level fly-outs work cleanly across all 8 header styles. Mobile drawers gain a disclosure-button accordion so parents with children can be expanded inline.

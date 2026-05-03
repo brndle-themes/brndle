@@ -604,18 +604,21 @@ html {
     opacity: 1;
   }
 
-  /* Mega panel — emitted by the walker (M1 sub-chunk that follows) when a
-     top-level item has _brndle_mega_menu = 1. Layout: full-width up to the
-     same `max-w-7xl` constraint the rest of the theme uses, anchored under
-     the parent <li> but spanning across the whole header row. */
+  /* Mega panel — emitted by the walker when a top-level item has
+     _brndle_mega_menu = 1. Layout: viewport-centered, max-w-7xl wide.
+     Uses `position: fixed` so the panel stays viewport-anchored rather
+     than trigger-anchored — this is what every real mega menu plugin
+     does (Stripe, Linear, Shopify). The JS controller (mega-menu.js)
+     sets `--brndle-mega-top` to the trigger's bottom position when the
+     menu opens, so the panel always drops directly below the header
+     regardless of style (sticky, banner offset, glass etc.). */
   #brndle-header .brndle-mega {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: var(--brndle-mega-top, 80px);
     left: 50%;
     transform: translate(-50%, 4px);
     z-index: 55;
     width: min(80rem, calc(100vw - 2rem));
-    margin-top: 8px;
     padding: 1.5rem;
     background: var(--color-surface-primary);
     border: 1px solid color-mix(in srgb, var(--color-text-tertiary) 18%, transparent);
@@ -636,8 +639,9 @@ html {
     pointer-events: auto;
   }
 
-  /* Mega columns grid — column count from data-cols. Auto-collapse empty
-     columns by counting non-empty children in the walker (M1.B follow-up). */
+  /* Mega columns grid — column count from data-cols. Each column is a
+     separate <ul class="brndle-mega__col"> so items stack vertically
+     within their column. Walker groups items by `_brndle_column` meta. */
   #brndle-header .brndle-mega__columns {
     display: grid;
     gap: 1.5rem;
@@ -647,11 +651,26 @@ html {
   #brndle-header .brndle-mega[data-cols="3"] .brndle-mega__columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #brndle-header .brndle-mega[data-cols="4"] .brndle-mega__columns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+  #brndle-header .brndle-mega__col {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
   /* Per-column heading (small caps, accent-leaning color). Walker emits
-     items with `_brndle_column_heading` as <h4> instead of <a>. */
+     items with `_brndle_column_heading` as <h4> instead of <a>. The
+     wrapping <li> is decorative — strip its list affordance. */
+  #brndle-header .brndle-mega__heading-item {
+    list-style: none;
+    margin-bottom: 0.5rem;
+  }
+
   #brndle-header .brndle-mega__heading {
-    margin: 0 0 0.5rem;
-    padding: 0.25rem 0;
+    margin: 0;
+    padding: 0.25rem 0.75rem;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -659,12 +678,15 @@ html {
     color: color-mix(in srgb, var(--color-accent) 60%, var(--color-text-tertiary));
   }
 
-  /* Per-item layout inside a mega panel: icon (24px) on the left,
-     title + description on the right. */
-  #brndle-header .brndle-mega li > a {
+  /* Per-item layout inside a mega panel: icon (36px) on the left,
+     title + description on the right. The walker emits:
+       <li><a><span.icon><svg></span><span.body><span.title>Title<span.badge></span></span><span.desc>...</span></span></a></li>
+  */
+  #brndle-header .brndle-mega__item > a {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.75rem;
+    align-items: start;
     padding: 0.5rem 0.75rem;
     border-radius: 8px;
     color: var(--color-text-primary);
@@ -672,8 +694,14 @@ html {
     transition: background-color 120ms ease;
   }
 
-  #brndle-header .brndle-mega li > a:hover,
-  #brndle-header .brndle-mega li > a:focus-visible {
+  /* Items WITHOUT an icon: still grid, but single column. The walker omits
+     the icon span entirely, so the body becomes the only grid child. */
+  #brndle-header .brndle-mega__item > a:has(> .brndle-mega__body:only-child) {
+    grid-template-columns: 1fr;
+  }
+
+  #brndle-header .brndle-mega__item > a:hover,
+  #brndle-header .brndle-mega__item > a:focus-visible {
     background: color-mix(in srgb, var(--color-accent) 8%, transparent);
     outline: none;
   }
@@ -686,6 +714,7 @@ html {
     border-radius: 8px;
     background: color-mix(in srgb, var(--color-accent) 10%, transparent);
     color: var(--color-accent);
+    flex-shrink: 0;
   }
 
   #brndle-header .brndle-mega__icon svg {
@@ -693,7 +722,16 @@ html {
     height: 20px;
   }
 
+  #brndle-header .brndle-mega__body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
   #brndle-header .brndle-mega__title {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
     font-weight: 600;
     line-height: 1.3;
   }
@@ -707,7 +745,6 @@ html {
 
   #brndle-header .brndle-mega__badge {
     display: inline-block;
-    margin-left: 6px;
     padding: 1px 6px;
     font-size: 0.65rem;
     font-weight: 700;
@@ -715,18 +752,28 @@ html {
     border-radius: 999px;
     background: color-mix(in srgb, var(--color-accent) 15%, transparent);
     color: var(--color-accent);
-    vertical-align: 2px;
   }
 
-  /* Featured block — image + heading + description + CTA chevron.
-     Sits as the last child of `.brndle-mega__columns` when present. */
+  /* Featured block — sits as the LAST grid cell inside
+     `.brndle-mega__columns`, so it takes one column's width naturally.
+     The walker shrinks content columns by 1 when featured is present so
+     the user-configured cols total stays accurate (e.g. cols=3 with
+     featured = 2 content cols + featured). */
   #brndle-header .brndle-mega__featured {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    display: block;
     padding: 1rem;
     border-radius: 12px;
     background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 120ms ease;
+    align-self: start;
+  }
+
+  #brndle-header a.brndle-mega__featured:hover,
+  #brndle-header a.brndle-mega__featured:focus-visible {
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+    outline: none;
   }
 
   #brndle-header .brndle-mega__featured img {
@@ -735,6 +782,7 @@ html {
     border-radius: 8px;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    margin-bottom: 0.75rem;
   }
 
   #brndle-header .brndle-mega__featured-heading {
@@ -743,6 +791,7 @@ html {
   }
 
   #brndle-header .brndle-mega__featured-desc {
+    margin-top: 4px;
     font-size: 0.85rem;
     color: var(--color-text-tertiary);
     line-height: 1.5;

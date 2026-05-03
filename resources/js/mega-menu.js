@@ -50,6 +50,19 @@
     if (openTrigger && openTrigger !== t) {
       closeMenu(openTrigger.closest('[data-brndle-has-submenu]'));
     }
+    // Mega panels are `position: fixed` for viewport-centered layout
+    // (matches what real mega menu plugins do — Stripe, Linear, Shopify).
+    // The CSS reads `--brndle-mega-top` for vertical positioning; we set
+    // it to the trigger's bottom position on every open so it tracks
+    // sticky / banner / glass headers and any future scroll-shrink behavior.
+    const mega = item.querySelector(':scope > .brndle-mega');
+    if (mega) {
+      const rect = t.getBoundingClientRect();
+      document.documentElement.style.setProperty(
+        '--brndle-mega-top',
+        Math.round(rect.bottom + 8) + 'px'
+      );
+    }
     t.setAttribute('aria-expanded', 'true');
     openTrigger = t;
   }
