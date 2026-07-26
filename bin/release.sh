@@ -141,6 +141,7 @@ rsync -a \
     --exclude='CLAUDE.md' \
     --exclude='.claude/' \
     --exclude='docs/' \
+    --exclude='plans/' \
     --exclude='tests/' \
     --exclude='bin/' \
     --exclude='vite.config.js' \
@@ -160,6 +161,34 @@ rsync -a \
     --exclude="${ZIP_NAME}" \
     --exclude='brndle-*.zip' \
     "$THEME_DIR/" "$DIST_DIR/"
+
+# Leak guard: an --exclude typo, or a new internal directory nobody remembers
+# to add above, silently ships internal material to every customer. `plans/`
+# (roadmaps, strategy notes) shipped in 2.1.0 and earlier this way. Assert the
+# assembled tree is clean rather than trusting the exclude list.
+LEAKS=0
+for forbidden in \
+    "plans" \
+    "docs" \
+    "tests" \
+    "bin" \
+    ".claude" \
+    ".github" \
+    "node_modules" \
+    "CLAUDE.md" \
+    ".env"; do
+    if [ -e "${DIST_DIR}/${forbidden}" ]; then
+        echo "ERROR: ${forbidden} leaked into the release tree"
+        LEAKS=$((LEAKS + 1))
+    fi
+done
+
+if [ "$LEAKS" -gt 0 ]; then
+    echo "==> ${LEAKS} internal path(s) leaked. Aborting."
+    rm -rf "$BUILD_DIR"
+    exit 1
+fi
+echo "==> Leak guard passed - no internal paths in release tree."
 
 echo "==> Creating ${ZIP_NAME}..."
 cd "$BUILD_DIR"
