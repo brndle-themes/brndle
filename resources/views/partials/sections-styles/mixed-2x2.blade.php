@@ -22,10 +22,12 @@
       @php(setup_postdata($GLOBALS['post'] = $hero))
       <article @php(post_class('group rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
         <a href="{{ get_permalink() }}" class="grid lg:grid-cols-[5fr_4fr]">
-          <div class="aspect-[16/10] lg:aspect-auto lg:min-h-[320px] overflow-hidden bg-surface-secondary">
+          {{-- self-center: a stretched grid item resolves its own height, which
+               would override aspect-ratio and crop the card again. --}}
+          <div class="aspect-card self-center w-full overflow-hidden bg-surface-secondary">
             @include('partials.components.post-thumbnail', [
               'size'  => 'brndle-hero',
-              'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+              'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
             ])
           </div>
           <div class="p-6 lg:p-10 flex flex-col justify-center">
@@ -52,9 +54,9 @@
           @php(setup_postdata($GLOBALS['post'] = $restPost))
           <article @php(post_class('group rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
             <a href="{{ get_permalink() }}" class="block h-full">
-              <div class="aspect-video overflow-hidden bg-surface-secondary">
+              <div class="aspect-card overflow-hidden bg-surface-secondary">
                 @include('partials.components.post-thumbnail', [
-                  'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                  'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
                 ])
               </div>
               <div class="p-4">

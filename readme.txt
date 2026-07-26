@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.1.0
+Stable tag: 2.2.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,27 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.2.1 - July 2026 =
+
+Cards still looked cropped on sites upgraded from 2.1.0, because the old cropped files were still on disk. The theme no longer asks for them.
+
+* Fix      - Post cards requested the brndle-card size. On any site that ran 2.1.0 or earlier that name still resolves to the 600x400 hard-cropped file already written to disk, so cards kept looking cropped no matter how correct the CSS was. Cards now request medium_large, a core soft resize that has always preserved the source ratio, so the fix applies on old and new installs with no thumbnail regeneration required.
+* Fix      - Archive minimal and 404 requested brndle-card directly and had the same problem. Both now use medium_large.
+
+= 2.2.0 - July 2026 =
+
+Featured images are no longer cropped anywhere. Every post image now renders at one uniform 1200x630 ratio across archives, homepage sections and single posts.
+
+* Fix      - The brndle-card image size was a 600x400 hard crop, so WordPress discarded about a fifth of the width of every 1200x630 featured image when it generated the file. It is now a soft resize at 1200x630 and no image data is lost. Run a thumbnail regeneration after updating to rebuild images cropped by earlier versions.
+* Fix      - Archive minimal used the core 150x150 thumbnail size, a square hard crop, for its inline image. It now uses brndle-card.
+* Fix      - Single cinematic rendered the featured image in a 21:9 box and cropped the top and bottom off.
+* Fix      - Single hero-immersive stretched the featured image to fill an 80vh viewport hero and cropped it heavily on both axes. The header now sizes to the image, and on narrow screens it grows to fit the headline instead of clipping it.
+* Fix      - The hero-immersive headline rendered in the dark body color on top of the image and was effectively invisible. theme.json emits an unlayered h1 color rule that outranks Tailwind's layered text-white utility, the same root cause already patched for dark block sections.
+* Improve  - Every post image container across 5 archive layouts, 7 homepage section styles, 8 single post layouts, related posts and 404 now shares one aspect-card ratio and object-contain, so an off-ratio upload letterboxes rather than losing content.
+* Improve  - The list-with-thumb and magazine-strip thumbnails were square or 4:3 and are now wide cards, wide enough to read at a glance.
+* Dev      - New --aspect-card theme token (40 / 21) in app.css is the single source of truth for the card ratio. Change it once to reshape every card, archive and hero.
+* Dev      - The release zip no longer ships the internal plans directory. Every release up to 2.1.0 included 7 internal roadmap and strategy documents. The build now aborts if any internal path reaches the release tree.
 
 = 2.1.0 =
 * **New: 4 editorial blocks (M1–M4 of `plans/2026-05-04-v2.1-editorial-blocks.md`).** Brings the block library from 14 to 18 with content-system blocks designed for inline use inside long-form posts and articles. All four follow the v2.0 quality bar: apiVersion 3, server-side rendered via Blade, Tailwind utilities + scoped CSS in `resources/css/blocks/`, full WAI-ARIA on interactive surfaces, `prefers-reduced-motion` neutralized, no jQuery, lazy view-script enqueue.

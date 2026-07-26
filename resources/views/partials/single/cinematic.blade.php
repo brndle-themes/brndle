@@ -10,9 +10,9 @@
   {{-- Ultra-wide hero image --}}
   @if(has_post_thumbnail())
     <div class="w-full overflow-hidden">
-      <div class="aspect-[21/9] w-full">
+      <div class="aspect-card w-full bg-surface-secondary">
         {!! get_the_post_thumbnail(get_the_ID(), 'brndle-hero', [
-          'class' => 'w-full h-full object-cover',
+          'class' => 'w-full h-full object-contain',
           'loading' => 'eager',
           'decoding' => 'async',
           'fetchpriority' => 'high',

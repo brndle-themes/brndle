@@ -23,11 +23,11 @@
       @php(setup_postdata($GLOBALS['post'] = $hero))
       <article @php(post_class('group relative rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
         <a href="{{ get_permalink() }}" class="block h-full">
-          <div class="aspect-[16/10] overflow-hidden bg-surface-secondary">
+          <div class="aspect-card overflow-hidden bg-surface-secondary">
             @include('partials.components.post-thumbnail', [
               'size'     => 'brndle-hero',
               'priority' => true,
-              'class'    => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+              'class'    => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
             ])
           </div>
           <div class="p-6 lg:p-8">
@@ -54,10 +54,10 @@
       @foreach ($sidebar as $sidebarPost)
         @php(setup_postdata($GLOBALS['post'] = $sidebarPost))
         <article @php(post_class('group rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
-          <a href="{{ get_permalink() }}" class="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-4 items-stretch p-3">
-            <div class="aspect-square sm:aspect-[4/3] overflow-hidden rounded-xl bg-surface-secondary">
+          <a href="{{ get_permalink() }}" class="grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] gap-4 items-center p-3">
+            <div class="aspect-card overflow-hidden rounded-xl bg-surface-secondary">
               @include('partials.components.post-thumbnail', [
-                'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
               ])
             </div>
             <div class="py-1 pr-1 flex flex-col justify-center">

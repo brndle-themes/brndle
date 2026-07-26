@@ -9,11 +9,11 @@
       <a href="{{ get_permalink() }}" class="block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg transition-all duration-300">
         <div class="grid lg:grid-cols-2 gap-0">
           {{-- Image --}}
-          <div class="aspect-[4/3] overflow-hidden rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none">
+          <div class="aspect-card self-center overflow-hidden rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none bg-surface-secondary">
             @include('partials.components.post-thumbnail', [
               'size' => 'brndle-hero',
               'priority' => true,
-              'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+              'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
             ])
           </div>
 
@@ -52,9 +52,9 @@
     {{-- Remaining posts: grid cards --}}
     <article @php(post_class('group'))>
       <a href="{{ get_permalink() }}" class="block rounded-2xl border border-surface-tertiary bg-surface-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <div class="aspect-video overflow-hidden rounded-t-2xl bg-surface-secondary">
+        <div class="aspect-card overflow-hidden rounded-t-2xl bg-surface-secondary">
           @include('partials.components.post-thumbnail', [
-            'class' => 'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500',
+            'class' => 'w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500',
           ])
         </div>
 
