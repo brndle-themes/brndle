@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,13 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.2.1 - July 2026 =
+
+Cards still looked cropped on sites upgraded from 2.1.0, because the old cropped files were still on disk. The theme no longer asks for them.
+
+* Fix      - Post cards requested the brndle-card size. On any site that ran 2.1.0 or earlier that name still resolves to the 600x400 hard-cropped file already written to disk, so cards kept looking cropped no matter how correct the CSS was. Cards now request medium_large, a core soft resize that has always preserved the source ratio, so the fix applies on old and new installs with no thumbnail regeneration required.
+* Fix      - Archive minimal and 404 requested brndle-card directly and had the same problem. Both now use medium_large.
 
 = 2.2.0 - July 2026 =
 

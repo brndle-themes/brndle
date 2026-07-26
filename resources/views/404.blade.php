@@ -66,7 +66,7 @@
               <a href="{{ esc_url(get_permalink($post)) }}" class="group block h-full rounded-xl border border-surface-tertiary bg-surface-primary overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 @if(has_post_thumbnail($post))
                   <div class="aspect-card overflow-hidden bg-surface-secondary">
-                    {!! get_the_post_thumbnail($post, 'brndle-card', ['class' => 'h-full w-full object-contain transition-transform duration-500 group-hover:scale-105', 'loading' => 'lazy']) !!}
+                    {!! get_the_post_thumbnail($post, 'medium_large', ['class' => 'h-full w-full object-contain transition-transform duration-500 group-hover:scale-105', 'loading' => 'lazy']) !!}
                   </div>
                 @endif
                 <div class="p-4">
