@@ -12,9 +12,9 @@
       <li class="py-5 first:pt-0 last:pb-0">
         <article @php(post_class('group'))>
           <a href="{{ get_permalink() }}" class="grid gap-4 sm:gap-6 sm:grid-cols-[200px_1fr] md:grid-cols-[260px_1fr] items-start">
-            <div class="aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-xl bg-surface-secondary">
+            <div class="aspect-card overflow-hidden rounded-xl bg-surface-secondary">
               @include('partials.components.post-thumbnail', [
-                'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
               ])
             </div>
             <div class="min-w-0">

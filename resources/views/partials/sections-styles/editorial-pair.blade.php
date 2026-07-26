@@ -14,10 +14,10 @@
       @php(setup_postdata($GLOBALS['post'] = $sectionPost))
       <article @php(post_class('group rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
         <a href="{{ get_permalink() }}" class="block h-full">
-          <div class="aspect-[16/10] overflow-hidden bg-surface-secondary">
+          <div class="aspect-card overflow-hidden bg-surface-secondary">
             @include('partials.components.post-thumbnail', [
               'size'  => 'brndle-hero',
-              'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+              'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
             ])
           </div>
           <div class="p-6 lg:p-8">

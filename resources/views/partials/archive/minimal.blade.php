@@ -37,10 +37,12 @@
 
           {{-- Optional small inline thumbnail --}}
           @if(has_post_thumbnail())
-            <div class="w-28 h-28 shrink-0 rounded-lg overflow-hidden hidden sm:block">
+            {{-- Not the core `thumbnail` size: that is a 150x150 hard crop, which
+                 guts a 1200x630 card. Use the soft-resized brndle-card instead. --}}
+            <div class="w-40 shrink-0 aspect-card self-center rounded-lg overflow-hidden bg-surface-secondary hidden sm:block">
               @include('partials.components.post-thumbnail', [
-                'size' => 'thumbnail',
-                'class' => 'w-full h-full object-cover',
+                'size' => 'brndle-card',
+                'class' => 'w-full h-full object-contain',
               ])
             </div>
           @endif

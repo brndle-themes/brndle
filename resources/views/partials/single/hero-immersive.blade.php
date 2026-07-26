@@ -8,12 +8,21 @@
 <article @php(post_class('h-entry'))>
 
   @if(has_post_thumbnail())
-    {{-- Full-viewport hero with featured image --}}
-    <header class="relative min-h-[80vh] flex items-end overflow-hidden">
+    {{--
+      Hero with featured image. Image and content share one grid cell so they
+      stack without absolute positioning: the cell grows to whichever is taller.
+      On wide screens the aspect-card image sets the height and the title
+      overlays its lower edge; on narrow screens the title is taller, the cell
+      grows, and the image letterboxes against the dark surface. Either way the
+      card is never cropped and the title is never clipped — which the previous
+      `min-h-[80vh]` + `absolute inset-0` + `object-cover` combination could not
+      guarantee at both ends.
+    --}}
+    <header class="relative grid overflow-hidden bg-surface-inverse">
       {{-- Background image --}}
-      <div class="absolute inset-0">
+      <div class="col-start-1 row-start-1 self-start w-full aspect-card">
         {!! get_the_post_thumbnail(get_the_ID(), 'brndle-hero', [
-          'class' => 'w-full h-full object-cover',
+          'class' => 'w-full h-full object-contain',
           'loading' => 'eager',
           'decoding' => 'async',
           'fetchpriority' => 'high',
@@ -21,10 +30,10 @@
       </div>
 
       {{-- Gradient overlay --}}
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+      <div class="col-start-1 row-start-1 w-full h-full bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
       {{-- Hero content overlaid at bottom --}}
-      <div class="relative z-10 w-full max-w-4xl mx-auto px-6 pb-20 pt-40">
+      <div class="brndle-hero-overlay col-start-1 row-start-1 self-end relative z-10 w-full max-w-4xl mx-auto px-6 pb-12 sm:pb-20 pt-24 sm:pt-40">
         @if($category = get_the_category())
           <a
             href="{{ get_category_link($category[0]->term_id) }}"
