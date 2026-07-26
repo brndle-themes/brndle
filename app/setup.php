@@ -101,8 +101,12 @@ add_action('after_setup_theme', function () {
         'flex-width'  => true,
     ]);
 
-    // Custom image sizes for blog
-    add_image_size('brndle-card', 600, 400, true);
+    // Custom image sizes for blog.
+    // Both are soft resizes (crop = false). Featured images are 1200x630 OG
+    // cards with text baked into the graphic — a hard crop destroys words in
+    // the generated file, and no CSS can recover them. Ratio is enforced in
+    // the templates via the `aspect-card` utility instead.
+    add_image_size('brndle-card', 1200, 630, false);
     add_image_size('brndle-hero', 1920, 1080, false);
 
     // Disable unused default sizes — theme only uses thumbnail, medium_large, brndle-card, brndle-hero

@@ -5,9 +5,9 @@
     <article @php(post_class('group'))>
       <a href="{{ get_permalink() }}" class="flex flex-col md:flex-row gap-6 pb-8 border-b border-surface-tertiary last:border-b-0">
         {{-- Thumbnail --}}
-        <div class="w-full md:w-72 shrink-0 aspect-[16/9] rounded-xl overflow-hidden">
+        <div class="w-full md:w-72 shrink-0 aspect-card self-start rounded-xl overflow-hidden bg-surface-secondary">
           @include('partials.components.post-thumbnail', [
-            'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+            'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
           ])
         </div>
 

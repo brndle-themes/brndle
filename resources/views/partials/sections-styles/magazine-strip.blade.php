@@ -21,10 +21,10 @@
       @php(setup_postdata($GLOBALS['post'] = $feature))
       <article @php(post_class('group rounded-2xl overflow-hidden border border-surface-tertiary bg-surface-primary'))>
         <a href="{{ get_permalink() }}" class="block h-full">
-          <div class="aspect-[16/10] lg:aspect-[4/3] overflow-hidden bg-surface-secondary">
+          <div class="aspect-card overflow-hidden bg-surface-secondary">
             @include('partials.components.post-thumbnail', [
               'size'  => 'brndle-hero',
-              'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+              'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
             ])
           </div>
           <div class="p-6 lg:p-8">
@@ -53,9 +53,9 @@
               <span aria-hidden="true" class="shrink-0 w-8 text-center self-center font-bold text-2xl text-text-tertiary tabular-nums">
                 {{ str_pad((string) ($i + 2), 2, '0', STR_PAD_LEFT) }}
               </span>
-              <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 overflow-hidden rounded-lg bg-surface-secondary">
+              <div class="shrink-0 w-32 sm:w-40 aspect-card self-center overflow-hidden rounded-lg bg-surface-secondary">
                 @include('partials.components.post-thumbnail', [
-                  'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                  'class' => 'w-full h-full object-contain group-hover:scale-105 transition-transform duration-500',
                 ])
               </div>
               <div class="min-w-0 flex flex-col justify-center">

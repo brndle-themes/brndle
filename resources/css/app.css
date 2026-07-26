@@ -93,6 +93,12 @@
 
   /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Media — every post featured image renders in this ratio, everywhere.
+     1200x630 is the OG card size our content pipeline generates, and those
+     graphics carry baked-in text, so any other box ratio crops words off.
+     Change this one token to reshape every card, archive and hero at once. */
+  --aspect-card: 40 / 21;
 }
 
 /* Heading font utility */
@@ -327,8 +333,18 @@ html {
    exposing the bug because dark-mode sessions hid it behind the global
    white text). */
 .brndle-section-dark :is(h1, h2, h3, h4, h5, h6),
-.brndle-section-gradient :is(h1, h2, h3, h4, h5, h6) {
+.brndle-section-gradient :is(h1, h2, h3, h4, h5, h6),
+.brndle-hero-overlay :is(h1, h2, h3, h4, h5, h6) {
   color: inherit;
+}
+
+/* Text overlaid on a featured image (single/hero-immersive). Same root cause
+   as the dark-section rule above: theme.json emits an unlayered `h1 { color }`
+   which outranks Tailwind's layered `.text-white`, so the headline rendered in
+   the dark body color on top of a dark image and disappeared. This block owns
+   the white base color; the rule above lets headings inherit it. */
+.brndle-hero-overlay {
+  color: #fff;
 }
 
 /* Hero gradient variant — accent gradient background */
