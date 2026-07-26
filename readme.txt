@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -36,7 +36,7 @@ No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
 
-= 2.1.1 - July 2026 =
+= 2.2.0 - July 2026 =
 
 Featured images are no longer cropped anywhere. Every post image now renders at one uniform 1200x630 ratio across archives, homepage sections and single posts.
 
@@ -48,6 +48,7 @@ Featured images are no longer cropped anywhere. Every post image now renders at 
 * Improve  - Every post image container across 5 archive layouts, 7 homepage section styles, 8 single post layouts, related posts and 404 now shares one aspect-card ratio and object-contain, so an off-ratio upload letterboxes rather than losing content.
 * Improve  - The list-with-thumb and magazine-strip thumbnails were square or 4:3 and are now wide cards, wide enough to read at a glance.
 * Dev      - New --aspect-card theme token (40 / 21) in app.css is the single source of truth for the card ratio. Change it once to reshape every card, archive and hero.
+* Dev      - The release zip no longer ships the internal plans directory. Every release up to 2.1.0 included 7 internal roadmap and strategy documents. The build now aborts if any internal path reaches the release tree.
 
 = 2.1.0 =
 * **New: 4 editorial blocks (M1–M4 of `plans/2026-05-04-v2.1-editorial-blocks.md`).** Brings the block library from 14 to 18 with content-system blocks designed for inline use inside long-form posts and articles. All four follow the v2.0 quality bar: apiVersion 3, server-side rendered via Blade, Tailwind utilities + scoped CSS in `resources/css/blocks/`, full WAI-ARIA on interactive surfaces, `prefers-reduced-motion` neutralized, no jQuery, lazy view-script enqueue.
