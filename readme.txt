@@ -40,6 +40,7 @@ No build tools required for end users — the release zip ships compiled assets.
 
 Headings now use the heading face of the selected font pair. Sites on a pair whose heading and body faces differ will look different after updating.
 
+* Fix      - Navigation and section "view all" links had a hit area of roughly 19x20px, under the 24px minimum target size in the accessibility spec and far under the 40px portfolio floor. The padding sat on an inner span, so it painted a pill without growing the anchor. The anchor now carries the box.
 * Improve  - Stat figures are set as instruments rather than slogans: monospace with tabular numerals, hung on a 2px accent rule, with an uppercase monospace label beneath. Left-aligned instead of centred, so a row of figures reads as data.
 * Fix      - The logo strip applied grayscale and invert to every mark regardless of variant. That treatment is for dark grounds; on the light variant it turned coloured brand marks into pale ghosts. Marks now keep their colour on light and are only inverted on dark.
 * New      - Card Grid block. A compact grid of linked cards for short parallel items such as service lanes, with 2 or 3 columns, an optional promoted first card, and per-card title, description and link. Features remains the right block for a full-width spotlight with an image; Card Grid is for the case where four short items should not become four full-height rows.
