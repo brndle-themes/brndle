@@ -101,6 +101,13 @@
   --aspect-card: 40 / 21;
 }
 
+/* Headings take the pair's heading face. Without this the heading half of
+   every font pair is dead: --font-family-heading was only ever reachable
+   through the .font-heading utility, used in one template. */
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-heading);
+}
+
 /* Heading font utility */
 .font-heading {
   font-family: var(--font-family-heading);
