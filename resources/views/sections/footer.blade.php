@@ -17,6 +17,8 @@
     <p class="text-sm text-text-tertiary text-center">
       {!! $footerCopyright !!}
     </p>
+
+    @include('partials.footer-legal')
   </div>
 </footer>
 
@@ -116,6 +118,8 @@
         {!! $footerCopyright !!}
       </p>
 
+      @include('partials.footer-legal')
+
       @if($footerShowSocial && !empty($links))
         <div class="flex items-center gap-5">
           @if(!empty($links['twitter']))
@@ -172,6 +176,8 @@
       <p class="text-sm text-text-tertiary">
         {!! $footerCopyright !!}
       </p>
+
+      @include('partials.footer-legal')
 
       {{-- Social icons --}}
       @if($footerShowSocial && !empty($links))
@@ -309,6 +315,8 @@
         <p class="text-sm text-text-tertiary">
           {!! $footerCopyright !!}
         </p>
+
+        @include('partials.footer-legal')
 
         <div class="flex items-center gap-6">
           @if($footerShowSocial && !empty($links))
@@ -453,6 +461,8 @@
       <p class="text-sm text-text-tertiary">
         {!! $footerCopyright !!}
       </p>
+
+      @include('partials.footer-legal')
 
       {{-- Social icons --}}
       @if($footerShowSocial && !empty($links))
