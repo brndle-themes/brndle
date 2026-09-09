@@ -2,7 +2,7 @@
 
 <section class="py-24 md:py-32 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-primary' }}">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center {{ ($a['image_position'] ?? 'right') === 'left' ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
+    <div class="grid {{ $a['image'] ? 'lg:grid-cols-2' : '' }} gap-12 lg:gap-20 items-center {{ ($a['image_position'] ?? 'right') === 'left' ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
       <div class="reveal">
         @if($a['eyebrow'])
           <p class="text-sm font-semibold text-accent uppercase tracking-[0.15em] mb-3">{{ $a['eyebrow'] }}</p>
@@ -25,24 +25,29 @@
         @endif
         @if($a['cta_text'])
           <div class="mt-8">
-            <a href="{{ esc_url($a['cta_url'] ?: '#') }}" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-accent text-on-accent hover:opacity-90 transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
+            <a href="{{ esc_url($a['cta_url'] ?: '#') }}" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl brndle-section-accent bg-accent text-on-accent hover:opacity-90 transition-all focus:outline-2 focus:outline-offset-2 focus:outline-accent">
               {{ $a['cta_text'] }}
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
         @endif
       </div>
-      <div class="reveal">
-        @if($a['image'])
+      @if($a['image'])
+        <div class="reveal">
           <div class="rounded-2xl {{ ($a['variant'] ?? 'light') === 'dark' ? 'border border-white/10' : 'bg-surface-secondary border border-surface-tertiary shadow-lg' }} overflow-hidden">
             <x-img :src="$a['image']" :alt="$a['image_alt'] ?? ''" class="w-full" />
           </div>
-        @else
+        </div>
+      @elseif(defined('REST_REQUEST') && REST_REQUEST)
+        {{-- Editor preview only: ServerSideRender runs through the REST API, so
+             this prompt reaches the author and never the public site, where an
+             empty grey box reading "Add an image URL" is worse than no column. --}}
+        <div class="reveal">
           <div class="aspect-[4/3] rounded-2xl {{ ($a['variant'] ?? 'light') === 'dark' ? 'bg-white/5 border border-white/10' : 'bg-surface-secondary border border-surface-tertiary' }} flex items-center justify-center">
             <span class="text-text-tertiary text-sm">{{ __('Add an image URL', 'brndle') }}</span>
           </div>
-        @endif
-      </div>
+        </div>
+      @endif
     </div>
   </div>
 </section>

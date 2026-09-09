@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/post-feed",
+  "title": "Post Feed",
+  "category": "brndle-sections",
+  "description": "A category-curated row of posts, using the homepage section styles.",
+  "keywords": [
+    "posts",
+    "blog",
+    "feed",
+    "category"
+  ],
+  "textdomain": "brndle",
+  "attributes": {
+    "categoryId": {
+      "type": "number",
+      "default": 0
+    },
+    "style": {
+      "type": "string",
+      "default": "grid-3col"
+    },
+    "count": {
+      "type": "number",
+      "default": 3
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "showViewAll": {
+      "type": "boolean",
+      "default": true
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": [
+      "full"
+    ],
+    "html": false,
+    "anchor": true
+  },
+  "example": {
+    "attributes": {
+      "style": "grid-3col",
+      "count": 3
+    }
+  },
+  "version": "1.0.0"
+}

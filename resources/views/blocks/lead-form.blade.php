@@ -57,7 +57,7 @@
               @if(!$isInline)
                 <label for="{{ $fieldId }}" class="block text-sm font-medium mb-1.5 {{ $isDark || $isAccent ? 'text-white/90' : 'text-text-primary' }}">
                   {{ $field['label'] ?? '' }}
-                  @if($field['required'] ?? false) <span class="text-red-400">*</span> @endif
+                  @if($field['required'] ?? false) <span class="text-red-700" aria-hidden="true">*</span> @endif
                 </label>
               @endif
 
@@ -86,7 +86,7 @@
           @endforeach
 
           <div class="{{ $isInline ? '' : 'pt-2' }}">
-            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'bg-accent text-on-accent hover:opacity-90' }} transition-all motion-reduce:transition-none focus:outline-2 focus:outline-offset-2 focus:outline-accent">
+            <button type="submit" class="{{ $isInline ? '' : 'w-full' }} px-8 py-3 text-sm font-semibold rounded-xl {{ $isAccent ? 'bg-white text-accent hover:bg-white/90' : 'brndle-section-accent bg-accent text-on-accent hover:opacity-90' }} transition-all motion-reduce:transition-none focus:outline-2 focus:outline-offset-2 focus:outline-accent">
               {{ $a['button_text'] ?? __('Get Started', 'brndle') }}
             </button>
           </div>

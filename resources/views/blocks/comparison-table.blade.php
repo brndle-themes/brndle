@@ -30,7 +30,7 @@
                 @php
                   $isHL = $ci === $highlight;
                 @endphp
-                <th scope="col" class="p-4 text-center font-bold min-w-[8rem] {{ $isHL ? 'bg-accent text-on-accent rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
+                <th scope="col" class="p-4 text-center font-bold min-w-[8rem] {{ $isHL ? 'brndle-section-accent bg-accent text-on-accent rounded-t-2xl' : ($isDark ? 'text-white' : 'text-text-primary') }}">
                   <div class="text-base font-bold">{{ $col['label'] ?? '' }}</div>
                   @if(!empty($col['sublabel']))
                     <div class="text-xs {{ $isHL ? 'text-white/70' : ($isDark ? 'text-white/50' : 'text-text-tertiary') }} font-normal mt-0.5">{{ $col['sublabel'] }}</div>

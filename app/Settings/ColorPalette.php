@@ -132,7 +132,7 @@ class ColorPalette
             // ── Light-mode text ─────────────────────────────
             'light-text-primary' => '#09090b',
             'light-text-secondary' => '#52525b',
-            'light-text-tertiary' => '#a1a1aa',
+            'light-text-tertiary' => '#68686f',   // was #a1a1aa: 2.34:1 on the light surfaces, below AA
 
             // ── Light-mode borders ──────────────────────────
             'light-border' => '#e4e4e7',
@@ -146,7 +146,7 @@ class ColorPalette
             // ── Dark-mode text ──────────────────────────────
             'dark-text-primary' => '#fafafa',
             'dark-text-secondary' => '#a1a1aa',
-            'dark-text-tertiary' => '#71717a',
+            'dark-text-tertiary' => '#9a9aa5',    // was #71717a: 3.7:1 on the dark surfaces, below AA
 
             // ── Dark-mode borders ───────────────────────────
             'dark-border' => '#27272a',
