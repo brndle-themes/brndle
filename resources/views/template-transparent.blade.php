@@ -40,8 +40,11 @@
           {{-- Logo --}}
           <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
             @if(!empty($siteLogo))
-              <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-              <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+              <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+              <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
             @else
               <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
                 <span class="text-on-accent text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
