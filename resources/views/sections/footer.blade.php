@@ -23,8 +23,8 @@
 {{-- ============================================================
      STYLE: COLUMNS — Multi-column with menus
      ============================================================ --}}
-@elseif($style === 'columns')
-<footer class="bg-surface-secondary text-text-primary border-t border-surface-tertiary/50" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
+@elseif($style === 'columns' || $style === 'dark')
+<footer class="{{ $style === 'dark' ? 'brndle-section-dark bg-surface-inverse text-white' : 'bg-surface-secondary text-text-primary' }} border-t border-surface-tertiary/50" aria-label="{{ esc_attr__('Site footer', 'brndle') }}">
   <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
     {{-- Columns grid --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 {{ $colsClass }} gap-10 pb-12 border-b border-surface-tertiary/50">
