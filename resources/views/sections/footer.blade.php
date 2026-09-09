@@ -60,7 +60,7 @@
         <div>
           @php($col1_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_1'] ?? 0))
           @if($col1_obj)
-            <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col1_obj->name }}</h4>
+            <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col1_obj->name }}</h2>
           @endif
           {!! wp_nav_menu([
             'theme_location' => 'footer_col_1',
@@ -78,7 +78,7 @@
         <div>
           @php($col2_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_2'] ?? 0))
           @if($col2_obj)
-            <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col2_obj->name }}</h4>
+            <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col2_obj->name }}</h2>
           @endif
           {!! wp_nav_menu([
             'theme_location' => 'footer_col_2',
@@ -96,7 +96,7 @@
         <div>
           @php($col3_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_3'] ?? 0))
           @if($col3_obj)
-            <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col3_obj->name }}</h4>
+            <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col3_obj->name }}</h2>
           @endif
           {!! wp_nav_menu([
             'theme_location' => 'footer_col_3',
@@ -254,7 +254,7 @@
           <div>
             @php($col1_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_1'] ?? 0))
             @if($col1_obj)
-              <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col1_obj->name }}</h4>
+              <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col1_obj->name }}</h2>
             @endif
             {!! wp_nav_menu([
               'theme_location' => 'footer_col_1',
@@ -272,7 +272,7 @@
           <div>
             @php($col2_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_2'] ?? 0))
             @if($col2_obj)
-              <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col2_obj->name }}</h4>
+              <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col2_obj->name }}</h2>
             @endif
             {!! wp_nav_menu([
               'theme_location' => 'footer_col_2',
@@ -290,7 +290,7 @@
           <div>
             @php($col3_obj = wp_get_nav_menu_object(get_nav_menu_locations()['footer_col_3'] ?? 0))
             @if($col3_obj)
-              <h4 class="text-sm font-semibold text-text-primary mb-4">{{ $col3_obj->name }}</h4>
+              <h2 class="text-sm font-semibold text-text-primary mb-4">{{ $col3_obj->name }}</h2>
             @endif
             {!! wp_nav_menu([
               'theme_location' => 'footer_col_3',
