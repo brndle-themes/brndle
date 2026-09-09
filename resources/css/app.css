@@ -442,6 +442,17 @@ footer li > a,
   min-height: 40px;
 }
 
+/* The dark-mode toggle is fixed in a bottom corner (bottom-6 right-6, 40px
+   box), so it hovers over whatever occupies the last ~64px of the viewport.
+   Scrolled to the end of a page that is the footer's final row, where it
+   covered the last legal link and stole part of its tap target. Reserve the
+   band so the toggle always lands on empty space. Scoped with :has() so a
+   site that renders no floating toggle keeps its original footer spacing. */
+body:has([data-brndle-dark-toggle].fixed) > footer,
+body:has([data-brndle-dark-toggle].fixed) footer:last-of-type {
+  padding-bottom: 4.5rem;
+}
+
 /* Telemetry treatment for figures. A stat is data, so it is set in mono with
    tabular numerals and hung on a rule, rather than centred like a slogan.
    System mono stack: sharp on every platform, zero download. */
