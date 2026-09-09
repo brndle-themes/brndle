@@ -21,8 +21,11 @@
     {{-- Logo (hidden on minimal — shows only in overlay) --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0 opacity-0 pointer-events-none">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -48,8 +51,11 @@
        class="fixed inset-0 z-50 bg-surface-primary flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
     <a href="{{ home_url('/') }}" class="mb-12 flex items-center gap-3">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-base font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -111,8 +117,11 @@
   <div class="max-w-7xl mx-auto px-6 pt-6 pb-3 flex items-center justify-center">
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-9 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-11 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-11 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -215,6 +224,9 @@
       @if(!empty($siteLogo))
         <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto dark:hidden">
         <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-[52px] w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -326,8 +338,11 @@
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -426,8 +441,11 @@
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -550,8 +568,11 @@
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -663,7 +684,7 @@
       {{-- Logo --}}
       <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
         @if(!empty($siteLogo))
-          <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto">
+          <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto">
         @else
           <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
             <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
@@ -770,8 +791,11 @@
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 shrink-0">
       @if(!empty($siteLogo))
-        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+        <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto dark:hidden">
+        <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-12 w-auto hidden dark:block">
+        @unless($siteLogoIsLockup ?? false)
+          <span class="text-lg font-bold tracking-tight text-text-primary">{{ $siteName }}</span>
+        @endunless
       @else
         <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-lg shadow-accent/20">
           <span class="text-white text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
