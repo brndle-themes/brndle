@@ -9,7 +9,7 @@
   $isInverse = $isDark || $isGradient;
 @endphp
 
-<section class="relative min-h-screen flex items-center overflow-hidden {{ $sectionClass }} noise">
+<section class="relative min-h-[34rem] md:min-h-[38rem] py-24 md:py-28 flex items-center overflow-hidden {{ $sectionClass }} noise">
   {{-- Ambient --}}
   <div class="absolute inset-0 overflow-hidden">
     <div class="absolute inset-0 ambient-grid bg-[size:64px_64px]"></div>
@@ -17,9 +17,9 @@
     <div class="absolute bottom-[-15%] right-[-5%] w-[35rem] h-[35rem] rounded-full bg-accent/[0.08] blur-[128px]"></div>
   </div>
 
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6">
     <div class="{{ $a['image'] ? 'grid md:grid-cols-2 gap-12 items-center' : '' }}">
-      <div class="{{ $a['image'] ? '' : 'max-w-4xl' }}">
+      <div class="{{ $a['image'] ? '' : 'max-w-5xl mx-auto text-center' }}">
         @if($a['eyebrow'])
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm mb-8">
             <span class="relative flex h-2 w-2">
@@ -30,17 +30,17 @@
           </div>
         @endif
 
-        <h1 class="{{ $a['image'] ? 'text-[clamp(2.5rem,5vw,4rem)]' : 'text-[clamp(3rem,7vw,5rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
+        <h1 class="{{ $a['image'] ? 'text-[clamp(2.5rem,5vw,4rem)]' : 'text-[clamp(3rem,8.5vw,6.5rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
           {!! wp_kses_post($a['title']) !!}
         </h1>
 
         @if($a['subtitle'])
-          <p class="mt-6 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-relaxed {{ $isInverse ? 'text-white/70' : 'text-text-secondary' }} {{ $a['image'] ? '' : 'max-w-2xl' }}">
+          <p class="mt-6 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-relaxed {{ $isInverse ? 'text-white/70' : 'text-text-secondary' }} {{ $a['image'] ? '' : 'max-w-2xl mx-auto' }}">
             {{ $a['subtitle'] }}
           </p>
         @endif
 
-        <div class="mt-10 flex flex-wrap items-center gap-4">
+        <div class="mt-10 flex flex-wrap items-center gap-4 {{ $a['image'] ? '' : 'justify-center' }}">
           @if($a['cta_primary'])
             <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-semibold rounded-xl focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isInverse ? 'brndle-cta-inverse bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]' : 'bg-surface-inverse text-white hover:opacity-90' }} transition-all duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
               {{ $a['cta_primary'] }}
