@@ -61,7 +61,11 @@
 @endphp
 
 @if (! empty($feedPosts))
-  <div class="brndle-homepage-section brndle-post-feed" data-section-style="{{ $style }}">
+  {{-- On the blog front page the parent .brndle-homepage-sections wrapper supplies
+       the container. Placed inside a page there is no parent, so the rail rendered
+       flush against the viewport edge while every other section sat in max-w-7xl. --}}
+  <div class="brndle-post-feed-outer max-w-7xl mx-auto px-6 py-16 md:py-20">
+    <div class="brndle-homepage-section brndle-post-feed" data-section-style="{{ $style }}">
     @include('partials.sections-styles.' . $style, [
       'sectionCategory'    => $category,
       'sectionPosts'       => $feedPosts,
@@ -69,5 +73,6 @@
       'sectionShowViewAll' => ! empty($a['showViewAll']),
       'sectionNumber'      => '',
     ])
+    </div>
   </div>
 @endif
