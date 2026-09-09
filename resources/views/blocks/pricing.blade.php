@@ -36,7 +36,7 @@
               aria-checked="{{ $i === 0 ? 'true' : 'false' }}"
               data-toggle="{{ $toggleId }}"
               data-group="{{ esc_attr($group) }}"
-              class="brndle-billing-btn px-6 py-2 text-sm font-semibold rounded-full transition-all duration-200 {{ $i === 0 ? 'bg-accent text-on-accent shadow-sm' : ($isDark ? 'text-white/60 hover:text-white/80' : 'text-text-secondary hover:text-text-primary') }}"
+              class="brndle-billing-btn px-6 py-2 text-sm font-semibold rounded-full transition-all duration-200 {{ $i === 0 ? 'brndle-section-accent bg-accent text-on-accent shadow-sm' : ($isDark ? 'text-white/60 hover:text-white/80' : 'text-text-secondary hover:text-text-primary') }}"
             >
               {{ ucfirst($group) }}
               @if($group === 'lifetime')
@@ -80,7 +80,7 @@
           @if($billingGroup) data-billing-group="{{ esc_attr($billingGroup) }}" @endif
         >
           @if($featured)
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-on-accent text-xs font-bold" aria-hidden="true">{{ $plan['badge'] ?? __('Most Popular', 'brndle') }}</div>
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full brndle-section-accent bg-accent text-on-accent text-xs font-bold" aria-hidden="true">{{ $plan['badge'] ?? __('Most Popular', 'brndle') }}</div>
           @endif
 
           <h3 class="text-lg font-bold">{{ $plan['name'] ?? '' }}</h3>

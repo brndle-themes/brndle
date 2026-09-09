@@ -62,7 +62,7 @@
             </div>
             <div class="py-1 pr-1 flex flex-col justify-center">
               @if ($cat = get_the_category())
-                <span class="text-[10px] font-semibold uppercase tracking-wider text-accent">{!! esc_html($cat[0]->name) !!}</span>
+                <span class="brndle-card__cat text-[10px] font-semibold uppercase tracking-wider text-accent">{!! esc_html($cat[0]->name) !!}</span>
               @endif
               <h3 class="mt-1 text-base sm:text-lg font-bold leading-snug text-text-primary group-hover:text-accent transition-colors line-clamp-3">
                 {!! get_the_title() !!}
