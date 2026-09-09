@@ -30,6 +30,9 @@ class BlockServiceProvider
         'pull-quote',
         'timeline',
         'tabs-accordion',
+
+        // v2.3
+        'post-feed',
     ];
 
     public function boot(): void

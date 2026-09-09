@@ -40,6 +40,8 @@ No build tools required for end users — the release zip ships compiled assets.
 
 Headings now use the heading face of the selected font pair. Sites on a pair whose heading and body faces differ will look different after updating.
 
+* New      - Post Feed block. The 7 homepage section styles (featured hero, editorial pair, grid, list with thumbnails, magazine strip, mixed 2x2, ticker) were previously reachable only when the blog was the site front page. The block places a category-curated rail inside any page, with category, style, post count, heading override and show/hide toggles as editable attributes. Empty categories render nothing rather than an empty heading, and thumbnails are cache-primed in one query.
+* Dev      - docs/BLOCK-CATALOG.md lists all 19 blocks with their attributes, array item shapes and layout behaviour, generated from the block.json files. Check it before adding a block that may already exist.
 * Fix      - The heading half of all 8 font pairs never rendered. --font-family-heading was only reachable through the .font-heading utility class, which appears in exactly one template, so every other h1 to h6 across pages, blocks, archives and heroes inherited the body font. Headings now take the pair's heading face, wrapped in :where() so specificity stays at zero and existing overrides still win.
 
 = 2.2.1 - July 2026 =
