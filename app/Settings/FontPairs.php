@@ -107,6 +107,19 @@ class FontPairs
                 ],
                 'source' => 'Publishing',
             ],
+            'technical' => [
+                'name' => __('Technical', 'brndle'),
+                'heading' => '"Fraunces", serif',
+                'body' => '"IBM Plex Sans", sans-serif',
+                'fonts' => [
+                    ['family' => 'Fraunces', 'file' => 'fraunces-latin-wght-normal.woff2', 'weight' => '100 900', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-400-normal.woff2', 'weight' => '400', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-500-normal.woff2', 'weight' => '500', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-600-normal.woff2', 'weight' => '600', 'style' => 'normal'],
+                    ['family' => 'IBM Plex Sans', 'file' => 'ibm-plex-sans-latin-700-normal.woff2', 'weight' => '700', 'style' => 'normal'],
+                ],
+                'source' => 'Technical product',
+            ],
         ];
 
         /** @var array<string, array{name: string, heading: string, body: string, fonts: array, source: string}> */
