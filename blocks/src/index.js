@@ -21,4 +21,8 @@ import './pull-quote';
 import './timeline';
 import './tabs-accordion';
 
+// v2.3 - category-curated post rails inside any page
+import './post-feed';
+import './card-grid';
+
 import './editor.css';

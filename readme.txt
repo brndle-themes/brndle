@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.2.1
+Stable tag: 2.3.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,40 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.0 - September 2026 =
+
+Headings now use the heading face of the selected font pair. Sites on a pair whose heading and body faces differ will look different after updating.
+
+* Fix      - Navigation and section "view all" links had a hit area of roughly 19x20px, under the 24px minimum target size in the accessibility spec and far under the 40px portfolio floor. The padding sat on an inner span, so it painted a pill without growing the anchor. The anchor now carries the box.
+* Improve  - Stat figures are set as instruments rather than slogans: monospace with tabular numerals, hung on a 2px accent rule, with an uppercase monospace label beneath. Left-aligned instead of centred, so a row of figures reads as data.
+* Fix      - The logo strip applied grayscale and invert to every mark regardless of variant. That treatment is for dark grounds; on the light variant it turned coloured brand marks into pale ghosts. Marks now keep their colour on light and are only inverted on dark.
+* Fix      - The footer chose its logo with a dark:hidden pair, which tests the page colour scheme. A dark-surfaced footer is dark in BOTH schemes, so in light mode it served the light logo onto a near-black ground, where an accent-coloured mark is close to invisible. It now picks by the footer's own surface, prints the site name beside an icon mark, and renders the mark at 40px instead of 32px.
+* Fix      - The default footer style, dark, had no branch in the footer template. The chain covered minimal, columns, light, big and stacked, so every site left on the default fell through to a bare brand-and-copyright row with no columns and no menus. Dark now renders the columned footer on a dark surface, which is what the setting always claimed to do.
+* Fix      - Uploading a logo removed the site name from the header entirely. That is correct for a wide lockup, which already contains the wordmark, but a square icon-mark carries no name at all, so the header lost the brand. The name now prints beside the mark, and is suppressed only when the uploaded logo is itself a lockup, decided by aspect ratio rather than by asking the site owner.
+* Improve  - Header logo sizes raised across all four header styles. A 32 to 36px mark reads as an icon rather than a brand.
+* New      - Technical font pair: Fraunces headings with IBM Plex Sans body. Nine pairs now. IBM Plex Sans was already self-hosted in the theme but had no pair using it, and its technical character suits products that put data on the page.
+* Improve  - A hero with no image now renders as a centred manifesto rather than a left column inside a full-width section, which left half the fold empty. Display type scales to 6.5rem so the type carries the fold.
+* Fix      - The hero used min-h-screen, so it was always a full viewport tall regardless of how little it contained, and vh units are the known iOS address-bar trap. It is now sized to its content.
+* Improve  - The logo strip greys marks at rest and restores full colour on hover, the standard logo-wall treatment. Six brand marks in six different colours were fighting the page's single accent.
+* Fix      - Text colour token text-tertiary failed WCAG AA everywhere it was used: 2.34:1 on light surfaces and 3.7:1 on dark, against a 4.5:1 floor. Light is now #68686f (5.05:1) and dark #9a9aa5 (6.42:1). This affected captions, pricing period suffixes and metadata on every brndle site.
+* Fix      - Headings on an accent-coloured section rendered in the primary text colour rather than the on-accent colour, because theme.json emits an unlayered heading colour that outranks the inherited utility. Near-black on aubergine measured about 2:1. Accent-ground sections now carry .brndle-section-accent and are covered by the same inherit rule that already fixed dark and gradient sections. Six blocks were affected.
+* Fix      - The required-field asterisk used red-400, 2.53:1 on light. Now red-700, and hidden from assistive technology since the input already carries the required attribute.
+* Improve  - A post-feed rail no longer stamps its own category name on every card inside it. The rail is filtered to one category, so the chip repeated the word the reader is already standing in, five times on a hub page.
+* New      - Hero readout panel. A `facts` attribute renders a list of label and value pairs beside the headline, set in monospace with tabular figures on hairline rows. A hero with no photograph now has something true to show instead of empty space, and every page's readout differs, so heroes stop looking like one template repeated.
+* Improve  - Hero display type was 700 weight at up to 6.5rem with -0.03em tracking. A serif at that size needs less optical weight, not more, and tight tracking meant for a grotesque crowds the serifs. Now 600 weight, up to 4.75rem, -0.018em, with balanced wrapping so the last line does not strand a word.
+* Fix      - The solid CTA on a light hero rendered accent-on-near-black at 1.4:1. Fifth instance of the same root cause: an unlayered theme.json colour outranking Tailwind's layered text-white. Now 19.6:1.
+* New      - The theme emits a meta description when nothing else has. It yields to Yoast, Rank Math, SEOPress and AIOSEO rather than competing with them, and falls back through the post excerpt, the first paragraph of content, then the site tagline, trimmed at 155 characters on a word boundary. Until now a brndle site with no SEO plugin shipped every page with no description at all and let the search engine invent the snippet.
+* Fix      - Footer column headings were h4 immediately after page content ending in h2, so every brndle page with a columned footer shipped a skipped heading level. They are now h2; the visual size comes from classes and is unchanged.
+* Fix      - Content + Image rendered an "Add an image URL" placeholder box on the PUBLIC site when no image was set. That prompt is an editor affordance and now renders only inside the block editor's REST preview. Without an image the text column spans the full width instead of sitting beside an empty grey box.
+* Fix      - Pricing capped its grid at three columns, so a four-tier plan set always left the fourth plan orphaned on a row of its own. Four tiers is an ordinary shape for a care plan or a SaaS ladder. Four columns are now supported, two-up on tablet, and the container widens to match.
+* Fix      - Footer column links were 20px tall. The earlier tap-target fix scoped to `footer nav li > a`, but footer columns render inside a div rather than a nav, so the selector missed every one of them.
+* New      - Card Grid block. A compact grid of linked cards for short parallel items such as service lanes, with 2 or 3 columns, an optional promoted first card, and per-card title, description and link. Features remains the right block for a full-width spotlight with an image; Card Grid is for the case where four short items should not become four full-height rows.
+* New      - Post Feed block. The 7 homepage section styles (featured hero, editorial pair, grid, list with thumbnails, magazine strip, mixed 2x2, ticker) were previously reachable only when the blog was the site front page. The block places a category-curated rail inside any page, with category, style, post count, heading override and show/hide toggles as editable attributes. Empty categories render nothing rather than an empty heading, and thumbnails are cache-primed in one query.
+* Dev      - docs/BLOCK-CATALOG.md lists all 19 blocks with their attributes, array item shapes and layout behaviour, generated from the block.json files. Check it before adding a block that may already exist.
+* Fix      - Post Feed rendered flush against the viewport edge when placed inside a page. On the blog front page its container comes from the parent sections wrapper, which does not exist on a normal page, so the rail ignored the max-w-7xl every other section uses.
+* Fix      - The hero's secondary CTA was unreadable on the dark and gradient variants. theme.json emits an unlayered link color that outranks Tailwind's layered text-white/80 utility, so the button rendered accent-on-dark at 1.36:1 against a 4.5:1 AA floor. The primary button already carried a .brndle-cta-inverse override for the same root cause; the secondary now carries the matching .brndle-cta-inverse-outline and measures 19:1.
+* Fix      - The heading half of all 8 font pairs never rendered. --font-family-heading was only reachable through the .font-heading utility class, which appears in exactly one template, so every other h1 to h6 across pages, blocks, archives and heroes inherited the body font. Headings now take the pair's heading face, wrapped in :where() so specificity stays at zero and existing overrides still win.
 
 = 2.2.1 - July 2026 =
 

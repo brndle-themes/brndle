@@ -36,7 +36,7 @@
               aria-checked="{{ $i === 0 ? 'true' : 'false' }}"
               data-toggle="{{ $toggleId }}"
               data-group="{{ esc_attr($group) }}"
-              class="brndle-billing-btn px-6 py-2 text-sm font-semibold rounded-full transition-all duration-200 {{ $i === 0 ? 'bg-accent text-on-accent shadow-sm' : ($isDark ? 'text-white/60 hover:text-white/80' : 'text-text-secondary hover:text-text-primary') }}"
+              class="brndle-billing-btn px-6 py-2 text-sm font-semibold rounded-full transition-all duration-200 {{ $i === 0 ? 'brndle-section-accent bg-accent text-on-accent shadow-sm' : ($isDark ? 'text-white/60 hover:text-white/80' : 'text-text-secondary hover:text-text-primary') }}"
             >
               {{ ucfirst($group) }}
               @if($group === 'lifetime')
@@ -62,10 +62,12 @@
       } else {
           $visibleCount = count($plans);
       }
-      $gridCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3'];
+      // Four-tier pricing is ordinary. Capping at three left the fourth plan
+      // orphaned on a row of its own, which reads as a layout bug.
+      $gridCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3', 'md:grid-cols-2 lg:grid-cols-4'];
     @endphp
 
-    <div class="grid {{ $gridCols[min(max($visibleCount, 1), 3) - 1] ?? 'md:grid-cols-3' }} gap-6 max-w-5xl mx-auto" @if($hasGroups) data-pricing-grid="{{ $toggleId }}" @endif>
+    <div class="grid {{ $gridCols[min(max($visibleCount, 1), 4) - 1] ?? 'md:grid-cols-3' }} gap-6 {{ $visibleCount >= 4 ? 'max-w-7xl' : 'max-w-5xl' }} mx-auto" @if($hasGroups) data-pricing-grid="{{ $toggleId }}" @endif>
       @foreach($plans as $plan)
         @php
           $featured = $plan['featured'] ?? false;
@@ -78,7 +80,7 @@
           @if($billingGroup) data-billing-group="{{ esc_attr($billingGroup) }}" @endif
         >
           @if($featured)
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-on-accent text-xs font-bold" aria-hidden="true">{{ $plan['badge'] ?? __('Most Popular', 'brndle') }}</div>
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full brndle-section-accent bg-accent text-on-accent text-xs font-bold" aria-hidden="true">{{ $plan['badge'] ?? __('Most Popular', 'brndle') }}</div>
           @endif
 
           <h3 class="text-lg font-bold">{{ $plan['name'] ?? '' }}</h3>
@@ -146,7 +148,7 @@
           grid.querySelectorAll(':scope > div:not([data-billing-group])').forEach(function(){visible++});
           // Update grid columns
           var cols=Math.min(Math.max(visible,1),3);
-          grid.classList.remove('md:grid-cols-1','md:grid-cols-2','md:grid-cols-3');
+          grid.classList.remove('md:grid-cols-1','md:grid-cols-2','md:grid-cols-3','md:grid-cols-4','lg:grid-cols-4');
           grid.classList.add('md:grid-cols-'+cols);
           var announce=document.querySelector('[data-billing-announce="'+tid+'"]');
           if(announce){announce.textContent='Showing '+group+' plans';}

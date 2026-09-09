@@ -11,6 +11,7 @@ class PageMetaServiceProvider
     {
         add_action('init', [$this, 'registerMeta']);
         add_filter('body_class', [$this, 'addBodyClass']);
+        add_action('wp_head', [$this, 'outputMetaDescription'], 2);
         add_action('wp_head', [$this, 'outputPageCss'], 5);
         add_action('wp_head', [$this, 'outputColorSchemeOverride'], 3);
         add_action('add_meta_boxes', [$this, 'registerMetaBox']);
@@ -96,6 +97,63 @@ class PageMetaServiceProvider
     /**
      * Output per-page custom CSS in the document head.
      */
+    /**
+     * Emit a meta description when nothing else has.
+     *
+     * The theme previously emitted none at all, so a site without an SEO
+     * plugin shipped every page with no description and let the search engine
+     * invent a snippet. Yields to Yoast, Rank Math, SEOPress and AIOSEO rather
+     * than competing with them, since a duplicate description is worse than
+     * none.
+     *
+     * Source order: the post excerpt, then the first paragraph of content,
+     * then the site tagline.
+     */
+    public function outputMetaDescription(): void
+    {
+        if (
+            defined('WPSEO_VERSION')
+            || class_exists('RankMath')
+            || defined('SEOPRESS_VERSION')
+            || function_exists('aioseo')
+        ) {
+            return;
+        }
+
+        $description = '';
+
+        if (is_singular()) {
+            $post = get_queried_object();
+            $description = has_excerpt($post) ? get_the_excerpt($post) : '';
+
+            if ($description === '' && ! empty($post->post_content)) {
+                $plain = wp_strip_all_tags(strip_shortcodes($post->post_content), true);
+                $description = trim(preg_replace('/\s+/', ' ', $plain));
+            }
+        } elseif (is_home() || is_front_page()) {
+            $description = get_bloginfo('description', 'display');
+        } elseif (is_category() || is_tag() || is_tax()) {
+            $term = get_queried_object();
+            $description = $term instanceof \WP_Term ? $term->description : '';
+        }
+
+        if ($description === '') {
+            $description = get_bloginfo('description', 'display');
+        }
+
+        if ($description === '') {
+            return;
+        }
+
+        // 155 characters is where Google reliably truncates. Cut on a word.
+        $description = wp_trim_words($description, 40, '');
+        if (mb_strlen($description) > 155) {
+            $description = rtrim(mb_substr($description, 0, mb_strrpos(mb_substr($description, 0, 156), ' ') ?: 155));
+        }
+
+        printf('<meta name="description" content="%s">' . "\n", esc_attr($description));
+    }
+
     public function outputPageCss(): void
     {
         if (! is_singular('page')) {

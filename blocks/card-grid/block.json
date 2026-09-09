@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "brndle/card-grid",
+  "title": "Card Grid",
+  "category": "brndle-sections",
+  "description": "A compact grid of linked cards. For short items that do not each deserve a full-width spotlight.",
+  "keywords": ["cards", "grid", "services", "lanes"],
+  "textdomain": "brndle",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "columns": { "type": "number", "default": 2 },
+    "featureFirst": { "type": "boolean", "default": false },
+    "items": { "type": "array", "default": [] },
+    "variant": { "type": "string", "default": "light" }
+  },
+  "supports": { "align": ["full"], "html": false, "anchor": true },
+  "example": {
+    "attributes": {
+      "title": "What we fix",
+      "columns": 2,
+      "items": [
+        { "title": "Your store breaks", "description": "We find the cause before we change anything.", "link_text": "Maintenance", "link_url": "#" }
+      ]
+    }
+  },
+  "version": "1.0.0"
+}
