@@ -62,10 +62,12 @@
       } else {
           $visibleCount = count($plans);
       }
-      $gridCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3'];
+      // Four-tier pricing is ordinary. Capping at three left the fourth plan
+      // orphaned on a row of its own, which reads as a layout bug.
+      $gridCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3', 'md:grid-cols-2 lg:grid-cols-4'];
     @endphp
 
-    <div class="grid {{ $gridCols[min(max($visibleCount, 1), 3) - 1] ?? 'md:grid-cols-3' }} gap-6 max-w-5xl mx-auto" @if($hasGroups) data-pricing-grid="{{ $toggleId }}" @endif>
+    <div class="grid {{ $gridCols[min(max($visibleCount, 1), 4) - 1] ?? 'md:grid-cols-3' }} gap-6 {{ $visibleCount >= 4 ? 'max-w-7xl' : 'max-w-5xl' }} mx-auto" @if($hasGroups) data-pricing-grid="{{ $toggleId }}" @endif>
       @foreach($plans as $plan)
         @php
           $featured = $plan['featured'] ?? false;
@@ -146,7 +148,7 @@
           grid.querySelectorAll(':scope > div:not([data-billing-group])').forEach(function(){visible++});
           // Update grid columns
           var cols=Math.min(Math.max(visible,1),3);
-          grid.classList.remove('md:grid-cols-1','md:grid-cols-2','md:grid-cols-3');
+          grid.classList.remove('md:grid-cols-1','md:grid-cols-2','md:grid-cols-3','md:grid-cols-4','lg:grid-cols-4');
           grid.classList.add('md:grid-cols-'+cols);
           var announce=document.querySelector('[data-billing-announce="'+tid+'"]');
           if(announce){announce.textContent='Showing '+group+' plans';}
