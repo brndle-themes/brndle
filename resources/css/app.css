@@ -369,6 +369,18 @@ html {
 }
 
 /* Inverse-section primary CTA — light button on dark/gradient hero */
+/* Menu links wrap a padded <span>, so the padding painted a pill while the
+   anchor itself stayed inline at ~19px tall. The hit area is the anchor, not
+   the span, which put every nav link under the 24px minimum target size and
+   far under the 40px portfolio floor. Give the anchor the box. */
+header nav li > a,
+footer nav li > a,
+.brndle-section-header a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+}
+
 /* Telemetry treatment for figures. A stat is data, so it is set in mono with
    tabular numerals and hung on a rule, rather than centred like a slogan.
    System mono stack: sharp on every platform, zero download. */
