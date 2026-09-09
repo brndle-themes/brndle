@@ -373,6 +373,14 @@ html {
   color: #0a0a0a;
 }
 
+/* The outline CTA on a dark or gradient hero. Same root cause as the rule
+   above: theme.json emits an unlayered link color that outranks Tailwind's
+   layered text-white/80 utility, so the button rendered accent-on-dark at
+   1.36:1. The primary button was patched for this; the secondary was not. */
+.brndle-cta-inverse-outline {
+  color: rgba(255, 255, 255, 0.88);
+}
+
 /* Ambient grid pattern — uses accent color at low opacity */
 .ambient-grid {
   background-image:

@@ -49,7 +49,7 @@
           @endif
 
           @if($a['cta_secondary'])
-            <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-medium rounded-xl border focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isInverse ? 'border-white/20 text-white/80 hover:bg-white/5 hover:border-white/30' : 'border-surface-tertiary text-text-secondary hover:bg-surface-secondary' }} transition-all duration-300 motion-reduce:transition-none">
+            <a href="{{ esc_url($a['cta_secondary_url']) }}" class="inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-medium rounded-xl border focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isInverse ? 'brndle-cta-inverse-outline border-white/20 hover:bg-white/5 hover:border-white/30' : 'border-surface-tertiary text-text-secondary hover:bg-surface-secondary' }} transition-all duration-300 motion-reduce:transition-none">
               {{ $a['cta_secondary'] }}
             </a>
           @endif
