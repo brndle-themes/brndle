@@ -30,10 +30,21 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 {{ $colsClass }} gap-10 pb-12 border-b border-surface-tertiary/50">
       {{-- Column 1: Brand + tagline --}}
       <div>
-        <a href="{{ home_url('/') }}" class="flex items-center gap-2.5 mb-4">
+        <a href="{{ home_url('/') }}" class="flex items-center gap-3 mb-4">
           @if(!empty($siteLogo))
-            <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto dark:hidden">
-            <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-8 w-auto hidden dark:block">
+            {{-- A dark-surfaced footer is dark in BOTH colour schemes, so the
+                 usual dark:hidden pair is the wrong test: in light mode it
+                 served the light logo onto a near-black ground. Pick by the
+                 footer's own surface instead. --}}
+            @if($style === 'dark')
+              <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto">
+            @else
+              <img src="{{ esc_url($siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto dark:hidden">
+              <img src="{{ esc_url($siteLogoDark ?: $siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-auto hidden dark:block">
+            @endif
+            @unless($siteLogoIsLockup ?? false)
+              <span class="text-lg font-bold tracking-tight {{ $style === 'dark' ? 'text-white' : 'text-text-primary' }}">{{ $siteName }}</span>
+            @endunless
           @else
             <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <span class="text-on-accent text-sm font-black">{{ mb_substr($siteName, 0, 1) }}</span>
