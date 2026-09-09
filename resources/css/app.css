@@ -369,6 +369,58 @@ html {
 }
 
 /* Inverse-section primary CTA — light button on dark/gradient hero */
+/* Hero readout. A panel of true facts, set as instruments: mono, tabular
+   figures, hairline rows, label small and quiet, value large and confident.
+   This is what fills a hero that has no photograph, instead of decoration. */
+.brndle-hero__readout {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.brndle-hero__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+}
+
+.brndle-hero__row dt {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+.brndle-hero__row dd {
+  margin: 0;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+
+@media (max-width: 1023px) {
+  .brndle-hero__readout { margin-top: 3rem; }
+}
+
+/* Display type. A serif at 80px+ needs LESS optical weight, not more: 700 at
+   that size reads as shouting, and tight tracking meant for a grotesque crowds
+   the serifs. Balanced wrapping keeps the last line from stranding one word. */
+.brndle-hero__title,
+h1, h2 {
+  text-wrap: balance;
+}
+
+.brndle-hero__title {
+  font-synthesis-weight: none;
+}
+
 /* Menu links wrap a padded <span>, so the padding painted a pill while the
    anchor itself stayed inline at ~19px tall. The hit area is the anchor, not
    the span, which put every nav link under the 24px minimum target size and
@@ -411,6 +463,14 @@ footer li > a,
    above: theme.json emits an unlayered link color that outranks Tailwind's
    layered text-white/80 utility, so the button rendered accent-on-dark at
    1.36:1. The primary button was patched for this; the secondary was not. */
+/* The solid CTA on a LIGHT hero. Fifth time this exact cause has bitten: an
+   unlayered theme.json link colour outranks Tailwind's layered text-white, so
+   the button rendered accent-on-near-black at 1.4:1. Any button whose colour
+   comes from a utility needs a plain class here instead. */
+.brndle-cta-onsurface {
+  color: #ffffff;
+}
+
 .brndle-cta-inverse-outline {
   color: rgba(255, 255, 255, 0.88);
 }

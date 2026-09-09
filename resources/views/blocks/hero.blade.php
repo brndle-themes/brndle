@@ -18,8 +18,10 @@
   </div>
 
   <div class="relative z-10 w-full max-w-7xl mx-auto px-6">
-    <div class="{{ $a['image'] ? 'grid md:grid-cols-2 gap-12 items-center' : '' }}">
-      <div class="{{ $a['image'] ? '' : 'max-w-5xl mx-auto text-center' }}">
+    @php($facts = array_values(array_filter($a['facts'] ?? [], fn($f) => is_array($f) && ! empty($f['value']))))
+    @php($hasPanel = empty($a['image']) && ! empty($facts))
+    <div class="{{ $a['image'] ? 'grid md:grid-cols-2 gap-12 items-center' : ($hasPanel ? 'grid lg:grid-cols-[1.15fr_.85fr] gap-14 lg:gap-20 items-center' : '') }}">
+      <div class="{{ $a['image'] ? '' : ($hasPanel ? '' : 'max-w-5xl mx-auto text-center') }}">
         @if($a['eyebrow'])
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm mb-8">
             <span class="relative flex h-2 w-2">
@@ -30,19 +32,19 @@
           </div>
         @endif
 
-        <h1 class="{{ $a['image'] ? 'text-[clamp(2.5rem,5vw,4rem)]' : 'text-[clamp(3rem,8.5vw,6.5rem)]' }} font-bold leading-[1.06] tracking-[-0.03em]">
+        <h1 class="brndle-hero__title {{ $a['image'] ? 'text-[clamp(2.35rem,4.6vw,3.6rem)]' : 'text-[clamp(2.6rem,6vw,4.75rem)]' }} font-semibold leading-[1.08] tracking-[-0.018em]">
           {!! wp_kses_post($a['title']) !!}
         </h1>
 
         @if($a['subtitle'])
-          <p class="mt-6 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-relaxed {{ $isInverse ? 'text-white/70' : 'text-text-secondary' }} {{ $a['image'] ? '' : 'max-w-2xl mx-auto' }}">
+          <p class="mt-6 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-relaxed {{ $isInverse ? 'text-white/70' : 'text-text-secondary' }} {{ $a['image'] ? '' : ($hasPanel ? 'max-w-xl' : 'max-w-2xl mx-auto') }}">
             {{ $a['subtitle'] }}
           </p>
         @endif
 
-        <div class="mt-10 flex flex-wrap items-center gap-4 {{ $a['image'] ? '' : 'justify-center' }}">
+        <div class="mt-10 flex flex-wrap items-center gap-4 {{ $a['image'] || $hasPanel ? '' : 'justify-center' }}">
           @if($a['cta_primary'])
-            <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-semibold rounded-xl focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isInverse ? 'brndle-cta-inverse bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]' : 'bg-surface-inverse text-white hover:opacity-90' }} transition-all duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+            <a href="{{ esc_url($a['cta_primary_url']) }}" class="group inline-flex items-center gap-2 px-7 py-3.5 text-[0.925rem] font-semibold rounded-xl focus:outline-2 focus:outline-offset-2 focus:outline-accent {{ $isInverse ? 'brndle-cta-inverse bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]' : 'brndle-cta-onsurface bg-surface-inverse hover:opacity-90' }} transition-all duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
               {{ $a['cta_primary'] }}
               <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
@@ -55,6 +57,20 @@
           @endif
         </div>
       </div>
+
+      @if($hasPanel)
+        {{-- Readout panel. The facts are the hero's visual: set as instruments
+             in mono with tabular figures, hung on hairlines, rather than
+             decorated. Every value here has to be true. --}}
+        <dl class="brndle-hero__readout">
+          @foreach($facts as $fact)
+            <div class="brndle-hero__row">
+              <dt>{{ $fact['label'] ?? '' }}</dt>
+              <dd>{{ $fact['value'] }}</dd>
+            </div>
+          @endforeach
+        </dl>
+      @endif
 
       @if($a['image'])
         @php($altText = !empty($a['image_alt']) ? $a['image_alt'] : wp_strip_all_tags($a['title'] ?? ''))

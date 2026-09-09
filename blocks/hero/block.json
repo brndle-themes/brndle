@@ -64,6 +64,10 @@
     "logos": {
       "type": "array",
       "default": []
+    },
+    "facts": {
+      "type": "array",
+      "default": []
     }
   },
   "supports": {
@@ -82,14 +86,24 @@
       "cta_primary_url": "#",
       "cta_secondary": "View demo",
       "cta_secondary_url": "#",
-      "variant": "dark"
+      "variant": "dark",
+      "facts": [
+        {
+          "label": "Response",
+          "value": "1 business hour"
+        },
+        {
+          "label": "Care from",
+          "value": "$99 / month"
+        }
+      ]
     }
   },
   "version": "1.0.0",
   "variations": [
     {
       "name": "hero-dark",
-      "title": "Hero — Dark",
+      "title": "Hero \u2014 Dark",
       "description": "Full-width hero on a dark surface.",
       "attributes": {
         "variant": "dark"
@@ -101,7 +115,7 @@
     },
     {
       "name": "hero-light",
-      "title": "Hero — Light",
+      "title": "Hero \u2014 Light",
       "description": "Full-width hero on a light surface.",
       "attributes": {
         "variant": "light"
@@ -112,7 +126,7 @@
     },
     {
       "name": "hero-gradient",
-      "title": "Hero — Gradient",
+      "title": "Hero \u2014 Gradient",
       "description": "Full-width hero with the brand accent gradient.",
       "attributes": {
         "variant": "gradient"
