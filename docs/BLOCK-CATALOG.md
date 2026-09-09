@@ -1,6 +1,6 @@
 # brndle block catalog
 
-**Generated from `blocks/*/block.json` on 2026-09-09. 19 blocks.**
+**Generated from `blocks/*/block.json` on 2026-09-09. 20 blocks.**
 
 Regenerate rather than hand-edit. The point of this file is that nobody has to open a
 block.json to find out what a block accepts, and nobody guesses an attribute name.
@@ -28,6 +28,7 @@ block.json to find out what a block accepts, and nobody guesses an attribute nam
 | `brndle/cta` | CTA Section | yes | - |
 | `brndle/faq` | FAQ Section | yes | - |
 | `brndle/features` | Features Section | yes | - |
+| `brndle/card-grid` | Card Grid | yes | - |
 | `brndle/hero` | Hero Section | yes | hero-dark, hero-light, hero-gradient |
 | `brndle/how-it-works` | How It Works | yes | - |
 | `brndle/lead-form` | Lead Form | yes | - |
@@ -363,3 +364,26 @@ Section wrapper for YouTube, Vimeo, or self-hosted video with optional headline.
 
 **Behaviour.** Facade pattern. Set geometry inline if you script the iframe; scoped CSS will not reach a runtime-created element.
 
+
+### `brndle/card-grid` - Card Grid
+
+A compact grid of linked cards. For short items that do not each deserve a full-width spotlight.
+
+| Attribute | Type | Default |
+|---|---|---|
+| `eyebrow` | string | `""` |
+| `title` | string | `""` |
+| `subtitle` | string | `""` |
+| `columns` | number | `2` |
+| `featureFirst` | boolean | `false` |
+| `items` | array | `[]` |
+| `variant` | string | `"light"` |
+
+Item shapes: `items[]` = `{"title":"...","description":"...","link_text":"...","link_url":"..."}`
+
+**Behaviour.** NEW in 2.3.0. Use this, not Features, for short parallel items such as
+service lanes. Features is a spotlight: it gives each item a full-width alternating row
+and needs a per-item image, so four short items become roughly 2,800px of near-empty
+cards. `featureFirst` promotes card one across the row to give the grid a focal point -
+but only turn it on when the remaining cards still fill their rows. With 4 items and 2
+columns it leaves an orphan on the last row, so 4 items want `featureFirst: false`.

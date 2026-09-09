@@ -33,6 +33,7 @@ class BlockServiceProvider
 
         // v2.3
         'post-feed',
+        'card-grid',
     ];
 
     public function boot(): void
