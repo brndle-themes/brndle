@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.2.1
+Stable tag: 2.3.0
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,12 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.0 - September 2026 =
+
+Headings now use the heading face of the selected font pair. Sites on a pair whose heading and body faces differ will look different after updating.
+
+* Fix      - The heading half of all 8 font pairs never rendered. --font-family-heading was only reachable through the .font-heading utility class, which appears in exactly one template, so every other h1 to h6 across pages, blocks, archives and heroes inherited the body font. Headings now take the pair's heading face, wrapped in :where() so specificity stays at zero and existing overrides still win.
 
 = 2.2.1 - July 2026 =
 
