@@ -374,7 +374,7 @@ html {
    the span, which put every nav link under the 24px minimum target size and
    far under the 40px portfolio floor. Give the anchor the box. */
 header nav li > a,
-footer nav li > a,
+footer li > a,
 .brndle-section-header a {
   display: inline-flex;
   align-items: center;
