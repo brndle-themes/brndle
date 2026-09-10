@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,13 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users — the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.1 - September 2026 =
+
+Two footer fixes. Sites using any footer style other than stacked were dropping their legal menu entirely.
+
+* Fix      - The footer_navigation menu location rendered in the stacked footer style only. Every other style, including the default dark, silently dropped whatever menu was assigned to it, so a site with privacy, terms and refund links wired to a real location shipped none of them and nothing reported the loss. The row now renders in all six styles.
+* Fix      - The dark-mode toggle is fixed in a bottom corner, so it permanently covers the last 64px of the viewport. Scrolled to the end of a page that band is the footer's final row, where the toggle sat on top of the last legal link and took part of its tap target. The footer now reserves the band, only on sites that render a floating toggle.
 
 = 2.3.0 - September 2026 =
 
