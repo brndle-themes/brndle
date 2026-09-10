@@ -15,7 +15,7 @@ git commit -m "ci: add upstream-sync + release workflows"
 git push
 ```
 
-That's it — the workflows pick up automatically.
+That's it - the workflows pick up automatically.
 
 ## What each one does
 
@@ -27,7 +27,7 @@ diff report; subsequent runs comment on the same issue so the timeline
 of drift stays in one place. Closes long-term roadmap §5.
 
 Permissions used: `contents: read`, `issues: write`. The `GITHUB_TOKEN`
-that ships with every Actions run is sufficient — no extra secrets.
+that ships with every Actions run is sufficient - no extra secrets.
 
 ### `release.yml`
 
@@ -39,7 +39,7 @@ new tag.
 
 The release zip itself is still built locally with `bin/release.sh
 1.3.4` and attached to the GitHub Release with `gh release create`. The
-workflow only handles the version-bump + tag — that's the part that
+workflow only handles the version-bump + tag - that's the part that
 benefits from being automated.
 
 Permissions used: `contents: write`. Same `GITHUB_TOKEN`.
@@ -50,5 +50,5 @@ The harness running the agent that authored them flags any write to
 `.github/workflows/*.yml` as "potential workflow injection". Both
 templates have been reviewed for the relevant patterns (no `${{ ... }}`
 of untrusted event payload interpolated into shell, all user inputs
-read via `env:` and quoted) — so the install is safe. They live here
+read via `env:` and quoted) - so the install is safe. They live here
 as a one-`cp`-away artifact rather than in the conversation history.

@@ -1,4 +1,4 @@
-# Brndle Theme — Claude Code Instructions
+# Brndle Theme - Claude Code Instructions
 
 ## What This Is
 
@@ -16,15 +16,15 @@ Enterprise WordPress theme built on Sage/Acorn (Laravel Blade + Tailwind CSS v4 
 ## Architecture
 
 ```
-app/Settings/          — Settings system (Defaults, ColorPalette, FontPairs, Sanitizer, Settings)
-app/Providers/         — Service providers (Theme, Block, Settings)
-app/View/Composers/    — Blade data injection (App, Post, Theme)
-app/Compatibility/     — Plugin compat (Yoast, WooCommerce, WPML)
-app/Onboarding/        — Setup notice + starter content
-blocks/                — block.json definitions (14 blocks)
-blocks/src/            — Block editor JS (React)
-resources/views/       — Blade templates
-admin/src/             — React admin panel (9 tabs)
+app/Settings/          - Settings system (Defaults, ColorPalette, FontPairs, Sanitizer, Settings)
+app/Providers/         - Service providers (Theme, Block, Settings)
+app/View/Composers/    - Blade data injection (App, Post, Theme)
+app/Compatibility/     - Plugin compat (Yoast, WooCommerce, WPML)
+app/Onboarding/        - Setup notice + starter content
+blocks/                - block.json definitions (14 blocks)
+blocks/src/            - Block editor JS (React)
+resources/views/       - Blade templates
+admin/src/             - React admin panel (9 tabs)
 ```
 
 ## Key Patterns
@@ -32,19 +32,19 @@ admin/src/             — React admin panel (9 tabs)
 ### Blade Syntax
 - Use `@php(function())` for single-line PHP calls
 - Use `@php ... @endphp` for multi-line blocks
-- NEVER use `@php function() @endphp` on a single line — it breaks Blade compilation
-- Avoid `@php($expr)` when `$expr` contains `===` or other operators with `=` — the Acorn compiler emits malformed PHP for those (bit us on comparison-table.blade.php). Use the multi-line `@php ... @endphp` block instead
+- NEVER use `@php function() @endphp` on a single line - it breaks Blade compilation
+- Avoid `@php($expr)` when `$expr` contains `===` or other operators with `=` - the Acorn compiler emits malformed PHP for those (bit us on comparison-table.blade.php). Use the multi-line `@php ... @endphp` block instead
 
 ### CSS Colors
 - Use Tailwind theme utility names: `bg-surface-primary`, `text-text-primary`, `text-accent`
-- NEVER use `text-[var(--color-*)]` or `bg-[var(--color-*)]` — Tailwind v4 doesn't generate these
-- For dark sections with `bg-surface-inverse`, use explicit `text-white`, `text-white/60` — NOT `text-text-secondary`
+- NEVER use `text-[var(--color-*)]` or `bg-[var(--color-*)]` - Tailwind v4 doesn't generate these
+- For dark sections with `bg-surface-inverse`, use explicit `text-white`, `text-white/60` - NOT `text-text-secondary`
 
 ### Icons (no emoji as UI affordance)
-- **Editor JSX** (admin / block editor): import from `@wordpress/icons`. Looks native to the WP editor and the dependency-extraction-webpack-plugin tree-shakes per-import (verified — only imported icons end up in the bundle).
+- **Editor JSX** (admin / block editor): import from `@wordpress/icons`. Looks native to the WP editor and the dependency-extraction-webpack-plugin tree-shakes per-import (verified - only imported icons end up in the bundle).
 - **Frontend Blade**: use Lucide via `<x-icon name="kebab-case-name" />`. The component reads from `resources/icons/{name}.svg`, populated at `npm run build` time by `bin/copy-lucide-icons.mjs` from a curated list. Add a new icon: append to the ICONS array in that script, run `npm run icons:copy`, commit the SVG.
 - **Never use emoji** as a UI affordance (stars, arrows, hashes, dots). Emoji rendering varies by OS / browser, breaks visual rhythm, ignores theme colors. Use Lucide.
-- **Never paste raw `<svg>` markup** into Blade templates — go through `<x-icon>` so the design language stays consistent.
+- **Never paste raw `<svg>` markup** into Blade templates - go through `<x-icon>` so the design language stays consistent.
 
 ### Block Development
 - Blocks render server-side via `render_callback` in `BlockServiceProvider`
@@ -107,7 +107,7 @@ rm -rf /Users/varundubey/Local\ Sites/elementor/app/public/wp-content/cache/acor
 
 Or from the theme directory: `rm -rf ../../cache/acorn/framework/views/*.php`
 
-Do NOT delete the parent `cache/acorn/` directory — Acorn needs it to exist.
+Do NOT delete the parent `cache/acorn/` directory - Acorn needs it to exist.
 
 ## Releases
 
@@ -118,7 +118,7 @@ and `Stable tag:` + Changelog in `readme.txt`, commit + merge to `main`, then:
 ./bin/release.sh 1.x.y
 git tag -a v1.x.y origin/main -m "..."
 git push origin v1.x.y
-gh release create v1.x.y brndle-1.x.y.zip --title "v1.x.y — ..." --notes "..."
+gh release create v1.x.y brndle-1.x.y.zip --title "v1.x.y - ..." --notes "..."
 ```
 
 The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
@@ -128,12 +128,12 @@ The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
 
 | Version | Date | Highlights |
 |---------|------|------------|
-| 2.2.1 | 2026-07-26 | **Cards stop requesting `brndle-card`.** 2.2.0 fixed the size registration but templates still asked for `brndle-card` by name, and on any site upgraded from 2.1.0 that name resolves to the 600x400 hard-cropped file already on disk — so cards still rendered cropped on tweakswp.com after deploying 2.2.0. Templates now request `medium_large` (core soft resize, ratio always preserved, present on old and new installs), which fixes it **without** `wp media regenerate`. Reproduced locally by planting stale 600x400 files + metadata: before, the page served `-600x400.webp`; after, `-768x403.webp` with zero `600x400` references. Lesson: changing `add_image_size()` does not change what already exists on disk — never request a size name whose definition has changed. |
-| 2.2.0 | 2026-07-26 | **Featured images stop being cropped.** Content pipeline emits 1200x630 OG cards with text baked in; the theme cropped them twice. `brndle-card` was a 600x400 hard crop (destroyed ~21% of width in the generated file), and every container used a mismatched ratio (`16/10`, `4/3`, `square`, `video`, `21/9`) with `object-cover`. Now: one `--aspect-card: 40 / 21` token in `app.css`, `aspect-card` + `object-contain` on all 21 image containers, `brndle-card` soft-resized to 1200x630. Also fixed the hero-immersive headline rendering invisible (theme.json's unlayered `h1 { color }` beats Tailwind's layered `.text-white` — same bug class as `.brndle-section-dark`, now covered by `.brndle-hero-overlay`). Verified against real 1200x630 content in all 5 archive layouts, 7 section styles, 8 single layouts, search and 404, at 1440px and 390px. **Existing sites need a thumbnail regeneration.** |
+| 2.2.1 | 2026-07-26 | **Cards stop requesting `brndle-card`.** 2.2.0 fixed the size registration but templates still asked for `brndle-card` by name, and on any site upgraded from 2.1.0 that name resolves to the 600x400 hard-cropped file already on disk - so cards still rendered cropped on tweakswp.com after deploying 2.2.0. Templates now request `medium_large` (core soft resize, ratio always preserved, present on old and new installs), which fixes it **without** `wp media regenerate`. Reproduced locally by planting stale 600x400 files + metadata: before, the page served `-600x400.webp`; after, `-768x403.webp` with zero `600x400` references. Lesson: changing `add_image_size()` does not change what already exists on disk - never request a size name whose definition has changed. |
+| 2.2.0 | 2026-07-26 | **Featured images stop being cropped.** Content pipeline emits 1200x630 OG cards with text baked in; the theme cropped them twice. `brndle-card` was a 600x400 hard crop (destroyed ~21% of width in the generated file), and every container used a mismatched ratio (`16/10`, `4/3`, `square`, `video`, `21/9`) with `object-cover`. Now: one `--aspect-card: 40 / 21` token in `app.css`, `aspect-card` + `object-contain` on all 21 image containers, `brndle-card` soft-resized to 1200x630. Also fixed the hero-immersive headline rendering invisible (theme.json's unlayered `h1 { color }` beats Tailwind's layered `.text-white` - same bug class as `.brndle-section-dark`, now covered by `.brndle-hero-overlay`). Verified against real 1200x630 content in all 5 archive layouts, 7 section styles, 8 single layouts, search and 404, at 1440px and 390px. **Existing sites need a thumbnail regeneration.** |
 | 2.1.0 | 2026-05-04 | **Editorial block bundle.** 4 new blocks (code, pull-quote, timeline, tabs-accordion) bring library to 18. apiVersion 3, server-rendered Blade, scoped CSS, lazy view-script enqueue, full WAI-ARIA on interactive surfaces, prefers-reduced-motion safe. Code block lazy-loads highlight.js from CDN only when in viewport. Tabs/accordion is one block with displayMode toggle. Pull-quote has 3 variants registered as block.json variations. Timeline has dot/numbered/lucide icon styles + intersection-observer reveal. AI docs at `.claude/skills/brndle-pages.md` cover all 4. Plan at `plans/2026-05-04-v2.1-editorial-blocks.md`. |
-| 2.0.0 | 2026-05-03 | **Audit baseline.** Yoast/Rank Math Person schema enrichment (theme stops emitting Article/BreadcrumbList/Person — defers to plugin), Brndle-styled comments template + Walker, 404 polish (search + recent posts), search polish (count + topic chips), back-to-top floating button, print stylesheet, last-updated date pill on single posts. Plan at `plans/2026-05-03-theme-audit-roadmap.md` (v2.0 bundle, 8.5h). |
+| 2.0.0 | 2026-05-03 | **Audit baseline.** Yoast/Rank Math Person schema enrichment (theme stops emitting Article/BreadcrumbList/Person - defers to plugin), Brndle-styled comments template + Walker, 404 polish (search + recent posts), search polish (count + topic chips), back-to-top floating button, print stylesheet, last-updated date pill on single posts. Plan at `plans/2026-05-03-theme-audit-roadmap.md` (v2.0 bundle, 8.5h). |
 | 1.5.8 | 2026-05-03 | Admin panel switched to fluid `max-width: 90%` + auto margins (was pixel-capped) so it scales with the viewport |
-| 1.5.7 | 2026-05-03 | Removed silent `array_slice` truncation in 4 of 7 section styles — count slider now honored end-to-end |
+| 1.5.7 | 2026-05-03 | Removed silent `array_slice` truncation in 4 of 7 section styles - count slider now honored end-to-end |
 | 1.5.6 | 2026-05-03 | Ticker scrollbar replaced with overlay arrow buttons (vanilla JS, hides on touch / at scroll boundaries); large-site perf hardening (auto-cats transient cache, thumbnail prime per section, 12-section cap, REST `_fields` trim) |
 | 1.5.5 | 2026-05-03 | Hotfix: `ReferenceError: sections` crashed the admin in 1.5.4. Restored the missing `const sections = ...` declaration |
 | 1.5.4 | 2026-05-03 | Dropped alternating section background tint (read as card-within-card on dark themes); kept dividers + numbered kickers |
@@ -144,12 +144,12 @@ The GitHub repo blocks direct `git push origin main`. Use `gh pr merge --squash
 | 1.4.2 | 2026-05-02 | Wrapped `critical.css` in `@layer base` / `@layer utilities` so Tailwind's `.hidden` properly overrides the preflight `img { display: block }` (fixes the duplicate-logo bug seen on attowp.com) |
 | 1.4.1 | 2026-05-02 | Hotfix: keep `critical.css` in the release zip; layout falls back to render-blocking `app.css` if critical inline can't be read |
 | 1.4.0 | 2026-05-02 | Defaulted `perf_view_transitions` + `perf_critical_css` ON for fresh installs; block attribute migration registry; settings schema metadata; Blade compile dry-run CI; E2E journey test |
-| 1.3.0 | 2026-05-02 | Block quality pass — editor canvas styles, MediaUpload picker, FAQ JSON-LD, hero variations, i18n, lead-form view script, `@wordpress/icons`, wp-scripts v32, comparison-table compile fix |
+| 1.3.0 | 2026-05-02 | Block quality pass - editor canvas styles, MediaUpload picker, FAQ JSON-LD, hero variations, i18n, lead-form view script, `@wordpress/icons`, wp-scripts v32, comparison-table compile fix |
 | 1.2.4 | 2026-04-14 | Logo strip visibility, FAQ focus outline, post nav entity encoding, dark-mode toggle state machine |
 
 ## Upstream tracking (roots/sage)
 
-Brndle is built on Sage / Acorn. Stay aware of upstream — the framework
+Brndle is built on Sage / Acorn. Stay aware of upstream - the framework
 moves and our deps drift.
 
 Run the helper before any framework upgrade work:
@@ -165,18 +165,18 @@ latest Sage release tag and last five commits to `roots/sage`.
 
 | dep | brndle | sage main | upgrade priority |
 |-----|--------|-----------|------------------|
-| `roots/acorn` | `^5.0` | `^6.0` | **High** — Acorn 6 may fix the `@php($expr)===` Blade compiler bug we hit on `comparison-table.blade.php` |
-| `vite` | `^7.0` | `^8.0` | Medium — pulls `laravel-vite-plugin@3` and `@roots/vite-plugin@2` together |
+| `roots/acorn` | `^5.0` | `^6.0` | **High** - Acorn 6 may fix the `@php($expr)===` Blade compiler bug we hit on `comparison-table.blade.php` |
+| `vite` | `^7.0` | `^8.0` | Medium - pulls `laravel-vite-plugin@3` and `@roots/vite-plugin@2` together |
 | `laravel-vite-plugin` | `^2.0` | `^3.0` | (bundled with Vite 8) |
 | `@roots/vite-plugin` | `^1.0` | `^2.0` | (bundled with Vite 8) |
-| PHP | `>=8.2` | `>=8.3` | Low — only raise if Acorn 6 forces it |
+| PHP | `>=8.2` | `>=8.3` | Low - only raise if Acorn 6 forces it |
 
 ### Cadence
 
 - Run `bin/check-upstream.sh` at the start of any framework-touching session
 - Skim the Sage releases page before cutting a brndle minor version
 - A behaviour bug we can't reproduce in isolation may already be fixed
-  upstream — check before going deep
+  upstream - check before going deep
 
 Reference: <https://github.com/roots/sage/releases>
 
@@ -189,7 +189,7 @@ Use `/brndle-pages` skill for creating landing pages and configuring sites.
 Comprehensive AI / scripting guide lives at `docs/AI-USAGE-GUIDE.md`. Covers all
 18 blocks (full attribute reference + decision trees), the REST settings API,
 page templates, and complete worked examples for landing pages and blog posts.
-Read this before authoring content programmatically — it's the canonical
+Read this before authoring content programmatically - it's the canonical
 "how to use Brndle from outside the editor" reference.
 
 The `.claude/skills/brndle-pages.md` skill is the same content as a Claude Code

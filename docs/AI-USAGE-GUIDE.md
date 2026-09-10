@@ -1,6 +1,6 @@
-# Brndle — AI Usage Guide
+# Brndle - AI Usage Guide
 
-**Audience:** AI agents (Claude, GPT, Codex, others) and humans scripting WordPress content. The guide is self-contained — read this once and you can publish blogs, build landing pages, and configure Brndle sites without opening the WordPress block editor.
+**Audience:** AI agents (Claude, GPT, Codex, others) and humans scripting WordPress content. The guide is self-contained - read this once and you can publish blogs, build landing pages, and configure Brndle sites without opening the WordPress block editor.
 
 **Theme version this guide targets:** Brndle 2.1.0 (18 blocks).
 
@@ -8,7 +8,7 @@
 
 ## How content is stored
 
-Brndle pages and posts are standard WordPress content — block markup is stored in `wp_posts.post_content` as HTML comments wrapping each block's serialized JSON attributes. Example:
+Brndle pages and posts are standard WordPress content - block markup is stored in `wp_posts.post_content` as HTML comments wrapping each block's serialized JSON attributes. Example:
 
 ```html
 <!-- wp:brndle/hero {"title":"Build faster","variant":"dark"} /-->
@@ -16,9 +16,9 @@ Brndle pages and posts are standard WordPress content — block markup is stored
 
 Three creation paths are equally valid; pick whichever fits the environment:
 
-1. **WP-CLI** — write the block markup to a file and use `wp post create file.html --post_type=post --post_status=publish`.
-2. **WordPress REST API** — `POST /wp-json/wp/v2/posts` (or `pages`) with `{ "content": "<!-- wp:... --> ...", "status": "publish" }`. Requires authentication.
-3. **PHP / direct DB** — `wp_insert_post([ 'post_content' => '<!-- wp:... -->', 'post_status' => 'publish' ])` inside any theme hook or WP-CLI custom command.
+1. **WP-CLI** - write the block markup to a file and use `wp post create file.html --post_type=post --post_status=publish`.
+2. **WordPress REST API** - `POST /wp-json/wp/v2/posts` (or `pages`) with `{ "content": "<!-- wp:... --> ...", "status": "publish" }`. Requires authentication.
+3. **PHP / direct DB** - `wp_insert_post([ 'post_content' => '<!-- wp:... -->', 'post_status' => 'publish' ])` inside any theme hook or WP-CLI custom command.
 
 There is **no separate API for blocks**. The block markup IS the content.
 
@@ -36,14 +36,14 @@ Use these for product pages, sales pages, and homepages. Full-width sections tha
 |---|---|
 | `brndle/hero` | Above-the-fold hero with title, subtitle, CTA buttons, optional image |
 | `brndle/stats` | Key metrics row ("100 sites", "0 KB JS", etc.) |
-| `brndle/features` | Alternating feature sections — text + image, image + text |
+| `brndle/features` | Alternating feature sections - text + image, image + text |
 | `brndle/testimonials` | Customer testimonial cards with avatar + quote + role |
 | `brndle/pricing` | Pricing table with multiple plans, featured plan highlighted |
-| `brndle/cta` | Call-to-action banner — title + subtitle + 1–2 CTA buttons |
+| `brndle/cta` | Call-to-action banner - title + subtitle + 1-2 CTA buttons |
 | `brndle/faq` | Accordion FAQ section. **Emits `FAQPage` JSON-LD schema for Google rich results.** |
 | `brndle/logos` | Trust logos / client strip |
-| `brndle/content-image-split` | One feature at a time — content on one side, image on the other |
-| `brndle/how-it-works` | Numbered steps — process / onboarding |
+| `brndle/content-image-split` | One feature at a time - content on one side, image on the other |
+| `brndle/how-it-works` | Numbered steps - process / onboarding |
 | `brndle/lead-form` | Inline lead capture with name + email + (optional) message |
 | `brndle/comparison-table` | Free vs Pro vs Enterprise feature comparison |
 | `brndle/team` | Team member cards with avatar + name + role + bio |
@@ -51,24 +51,24 @@ Use these for product pages, sales pages, and homepages. Full-width sections tha
 
 ### Editorial register (4 blocks, v2.1+)
 
-Use these **inside long-form posts and articles**, mixed with `core/paragraph`, `core/heading`, `core/list`, `core/image`. Don't combine with marketing blocks in the same content well — pick one register per page.
+Use these **inside long-form posts and articles**, mixed with `core/paragraph`, `core/heading`, `core/list`, `core/image`. Don't combine with marketing blocks in the same content well - pick one register per page.
 
 | Block | Purpose |
 |---|---|
 | `brndle/code` | Syntax-highlighted code block with copy button + line numbers + caption |
 | `brndle/pull-quote` | Editorial pull quote, 3 variants (bordered-left, centered-large, outset) |
 | `brndle/timeline` | Vertical milestones list with date + title + description |
-| `brndle/tabs-accordion` | Combined block — displayMode toggle picks tab vs accordion presentation |
+| `brndle/tabs-accordion` | Combined block - displayMode toggle picks tab vs accordion presentation |
 
 ---
 
-## Block reference — full attributes
+## Block reference - full attributes
 
 For every block, the JSON below is a complete inserter-equivalent snapshot. Omit any attribute to use its default.
 
 ### Marketing blocks
 
-#### `brndle/hero` — Hero section
+#### `brndle/hero` - Hero section
 
 ```html
 <!-- wp:brndle/hero {
@@ -89,7 +89,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 - `logos`: array of strings (renders as text) OR objects `{"url":"img.png","name":"Co"}` (renders as images)
 - Empty `title` → block doesn't render
 
-#### `brndle/stats` — Metrics row
+#### `brndle/stats` - Metrics row
 
 ```html
 <!-- wp:brndle/stats {
@@ -104,7 +104,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 - `variant`: `dark` | `light`
 
-#### `brndle/features` — Alternating feature sections
+#### `brndle/features` - Alternating feature sections
 
 ```html
 <!-- wp:brndle/features {
@@ -124,10 +124,10 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-- `features[].icon`: Lucide icon name (kebab-case). Must be in the curated set — see `bin/copy-lucide-icons.mjs`.
+- `features[].icon`: Lucide icon name (kebab-case). Must be in the curated set - see `bin/copy-lucide-icons.mjs`.
 - Features alternate left/right automatically based on index.
 
-#### `brndle/testimonials` — Customer testimonials
+#### `brndle/testimonials` - Customer testimonials
 
 ```html
 <!-- wp:brndle/testimonials {
@@ -145,7 +145,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-#### `brndle/pricing` — Pricing table
+#### `brndle/pricing` - Pricing table
 
 ```html
 <!-- wp:brndle/pricing {
@@ -179,7 +179,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-#### `brndle/cta` — Call-to-action banner
+#### `brndle/cta` - Call-to-action banner
 
 ```html
 <!-- wp:brndle/cta {
@@ -195,7 +195,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 - `variant`: `dark` | `light` | `gradient`
 
-#### `brndle/faq` — FAQ accordion (with FAQPage schema)
+#### `brndle/faq` - FAQ accordion (with FAQPage schema)
 
 ```html
 <!-- wp:brndle/faq {
@@ -215,7 +215,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 - **Emits `FAQPage` JSON-LD** for Google rich results. Use this when you want SEO benefit. For plain disclosure UI without schema, use `brndle/tabs-accordion` in accordion mode.
 
-#### `brndle/logos` — Trust logo strip
+#### `brndle/logos` - Trust logo strip
 
 ```html
 <!-- wp:brndle/logos {
@@ -225,7 +225,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-#### `brndle/content-image-split` — Single feature side-by-side
+#### `brndle/content-image-split` - Single feature side-by-side
 
 ```html
 <!-- wp:brndle/content-image-split {
@@ -241,7 +241,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 - `imagePosition`: `left` | `right`
 
-#### `brndle/how-it-works` — Numbered steps
+#### `brndle/how-it-works` - Numbered steps
 
 ```html
 <!-- wp:brndle/how-it-works {
@@ -255,7 +255,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-#### `brndle/lead-form` — Inline lead capture
+#### `brndle/lead-form` - Inline lead capture
 
 ```html
 <!-- wp:brndle/lead-form {
@@ -264,13 +264,13 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
   "submit_text": "Subscribe",
   "form_action": "",
   "show_message_field": false,
-  "success_message": "Thanks — check your inbox."
+  "success_message": "Thanks - check your inbox."
 } /-->
 ```
 
 - Empty `form_action` (default) routes submission through Brndle's REST endpoint (`brndle/v1/forms`). Provide a URL to override.
 
-#### `brndle/comparison-table` — Plan comparison grid
+#### `brndle/comparison-table` - Plan comparison grid
 
 ```html
 <!-- wp:brndle/comparison-table {
@@ -278,13 +278,13 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
   "headers": ["Feature", "Free", "Pro", "Enterprise"],
   "rows": [
     {"feature": "Sites", "values": ["1", "Unlimited", "Unlimited"]},
-    {"feature": "AI page generator", "values": ["—", "✓", "✓"]},
-    {"feature": "Priority support", "values": ["—", "—", "✓"]}
+    {"feature": "AI page generator", "values": ["-", "✓", "✓"]},
+    {"feature": "Priority support", "values": ["-", "-", "✓"]}
   ]
 } /-->
 ```
 
-#### `brndle/team` — Team member cards
+#### `brndle/team` - Team member cards
 
 ```html
 <!-- wp:brndle/team {
@@ -303,7 +303,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-#### `brndle/video-embed` — Embed with poster
+#### `brndle/video-embed` - Embed with poster
 
 ```html
 <!-- wp:brndle/video-embed {
@@ -317,7 +317,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 ### Editorial blocks (v2.1+)
 
-#### `brndle/code` — Syntax-highlighted code
+#### `brndle/code` - Syntax-highlighted code
 
 ```html
 <!-- wp:brndle/code {
@@ -333,13 +333,13 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 - `language` (required for highlighting): `plain` (no highlighting) | `bash` | `css` | `diff` | `dockerfile` | `html` | `js` | `json` | `jsx` | `markdown` | `nginx` | `php` | `python` | `scss` | `sql` | `ts` | `tsx` | `yaml`
 - `showLineNumbers`: server-side rendered line numbers in a left rail
 - `showCopy`: copy-to-clipboard button bottom-right (visible on hover / focus-within)
-- `theme`: `auto` (default — follows page dark mode) | `light` | `dark`
+- `theme`: `auto` (default - follows page dark mode) | `light` | `dark`
 - `caption`: optional one-line attribution under the code (file path / commit / source URL). Limited HTML allowed.
 - **Empty `code` → block doesn't render.**
 - Highlight.js is loaded **lazily** as an ES module from CDN ONLY when a code block approaches the viewport. Pages without code don't pay the JS cost.
 - **Print:** copy button hidden, line numbers hidden, monospace + pre-wrap preserved.
 
-#### `brndle/pull-quote` — Editorial pull quote
+#### `brndle/pull-quote` - Editorial pull quote
 
 ```html
 <!-- wp:brndle/pull-quote {
@@ -351,13 +351,13 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-- `variant`: `bordered-left` (default — accent rule on left, italic 1.5rem) | `centered-large` (decorative open-quote glyph above, 2rem display weight) | `outset` (breaks out of the article column ±80px at lg+)
+- `variant`: `bordered-left` (default - accent rule on left, italic 1.5rem) | `centered-large` (decorative open-quote glyph above, 2rem display weight) | `outset` (breaks out of the article column ±80px at lg+)
 - `accentColor`: `accent` (default) | `text-primary` | `text-tertiary`
 - `cite` + `citeUrl` are both optional. `citeUrl` renders `rel="nofollow noopener"`.
 - **Empty `quote` → block doesn't render.**
 - **Pick the variant:** `bordered-left` for in-flow editorial; `centered-large` for full-width emphasis (use sparingly); `outset` for long-form features.
 
-#### `brndle/timeline` — Vertical milestones
+#### `brndle/timeline` - Vertical milestones
 
 ```html
 <!-- wp:brndle/timeline {
@@ -381,14 +381,14 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 } /-->
 ```
 
-- `iconStyle`: `dot` (small accent circle) | `numbered` (`01`, `02`, `03` …) | `lucide` (per-item icon — only used when this is set)
+- `iconStyle`: `dot` (small accent circle) | `numbered` (`01`, `02`, `03` …) | `lucide` (per-item icon - only used when this is set)
 - `connector`: `solid` (default) | `dashed` | `none`
 - `density`: `comfortable` (default) | `compact` (mobile <640px is forced compact regardless)
 - `items[].icon`: Lucide name. Only used when `iconStyle === "lucide"`. Must be in the curated set.
 - Reveal animation: items fade-in + slide-from-left as they enter the viewport. Disabled under `prefers-reduced-motion`.
 - **Empty `items` → block doesn't render.**
 
-#### `brndle/tabs-accordion` — Tabs OR accordion (combined)
+#### `brndle/tabs-accordion` - Tabs OR accordion (combined)
 
 **Tabs mode:**
 
@@ -414,7 +414,7 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
   "accordionDefault": "first",
   "title": "Common questions",
   "items": [
-    {"label": "Does this emit FAQPage schema?", "content": "No — use <code>brndle/faq</code> if you want FAQ schema."},
+    {"label": "Does this emit FAQPage schema?", "content": "No - use <code>brndle/faq</code> if you want FAQ schema."},
     {"label": "Can I open multiple at once?", "content": "Switch <strong>accordionMode</strong> to <code>multiple</code>."}
   ]
 } /-->
@@ -422,11 +422,11 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 
 - `displayMode`: `tabs` (default) | `accordion`
 - `tabsAlignment` (tabs only): `start` (default) | `center` | `end`
-- `accordionMode` (accordion only): `single` (radio-like — opening one closes others) | `multiple` (any number open)
+- `accordionMode` (accordion only): `single` (radio-like - opening one closes others) | `multiple` (any number open)
 - `accordionDefault` (accordion only): `closed` (default) | `first` | `all` (only meaningful in `multiple` mode)
-- `items[].content`: Limited HTML — `<strong>`, `<em>`, `<a>`, `<br>`, `<code>`. Double-newlines become `<p>` via `wpautop`.
+- `items[].content`: Limited HTML - `<strong>`, `<em>`, `<a>`, `<br>`, `<code>`. Double-newlines become `<p>` via `wpautop`.
 - Mobile (<640px): tabs strip becomes horizontally scrollable with snap.
-- **Never emits `FAQPage` JSON-LD** — that's `brndle/faq`'s exclusive job.
+- **Never emits `FAQPage` JSON-LD** - that's `brndle/faq`'s exclusive job.
 - **Empty `items` → block doesn't render.**
 
 ---
@@ -478,7 +478,7 @@ brndle/timeline           ← if there's a step-by-step
 core/paragraph            ← conclusion
 ```
 
-Don't drop a `brndle/hero` or `brndle/pricing` into a blog post — that's the marketing register. Mixing registers creates a "two themes glued together" feel.
+Don't drop a `brndle/hero` or `brndle/pricing` into a blog post - that's the marketing register. Mixing registers creates a "two themes glued together" feel.
 
 ---
 
@@ -488,16 +488,16 @@ Brndle has 4 page templates. Set via `update_post_meta($id, '_wp_page_template',
 
 | Template | Slug | Use case |
 |---|---|---|
-| **Default** | (none) | Standard page — header + prose content + footer. Best for blog posts, About, Contact, Privacy. |
+| **Default** | (none) | Standard page - header + prose content + footer. Best for blog posts, About, Contact, Privacy. |
 | **Landing Page** | `template-landing.php` | Full-width block sections with header + footer. **Use for marketing landing pages.** |
-| **Full Canvas** | `template-canvas.php` | Zero chrome — no header, no footer, no padding. Pure content. Use for custom creative pages, app-like experiences. |
+| **Full Canvas** | `template-canvas.php` | Zero chrome - no header, no footer, no padding. Pure content. Use for custom creative pages, app-like experiences. |
 | **Transparent Header** | `template-transparent.php` | Header floats over content with transparent bg, turns solid on scroll. Best for pages with dark hero sections. |
 
 ---
 
 ## Site Configuration (REST API)
 
-Brndle exposes a REST API at `/wp-json/brndle/v1/settings`. Authentication is required — application passwords or admin cookies work.
+Brndle exposes a REST API at `/wp-json/brndle/v1/settings`. Authentication is required - application passwords or admin cookies work.
 
 ### Endpoints
 
@@ -556,7 +556,7 @@ curl -X POST 'https://example.com/wp-json/brndle/v1/settings' \
 
 ## Complete worked examples
 
-### Example 1 — SaaS landing page (template-landing)
+### Example 1 - SaaS landing page (template-landing)
 
 Save as `landing.html`, then:
 
@@ -621,7 +621,7 @@ wp post create landing.html \
   "title": "Three steps to ship",
   "items": [
     {"title": "Pick a layout", "description": "8 single-post layouts, 8 header styles, 6 footer styles, 12 color schemes."},
-    {"title": "Drop in blocks", "description": "Hero, stats, features, pricing — all server-rendered."},
+    {"title": "Drop in blocks", "description": "Hero, stats, features, pricing - all server-rendered."},
     {"title": "Publish", "description": "No build step required for end users."}
   ]
 } /-->
@@ -690,7 +690,7 @@ wp post create landing.html \
 } /-->
 ```
 
-### Example 2 — Technical blog post (default template)
+### Example 2 - Technical blog post (default template)
 
 Save as `post.html`, then:
 
@@ -721,7 +721,7 @@ wp post create post.html \
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Highlight.js is loaded as an ES module from a CDN — but only when a <code>.brndle-code</code> element approaches the viewport. The trigger is an IntersectionObserver with a 200px rootMargin so the highlighter has time to load before the user actually sees the code.</p>
+<p>Highlight.js is loaded as an ES module from a CDN - but only when a <code>.brndle-code</code> element approaches the viewport. The trigger is an IntersectionObserver with a 200px rootMargin so the highlighter has time to load before the user actually sees the code.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:brndle/code {
@@ -743,7 +743,7 @@ wp post create post.html \
     {
       "date": "Step 1",
       "title": "The promise is cached",
-      "description": "Calling loadHljs() multiple times returns the same in-flight promise — never two parallel imports for the same CDN URL."
+      "description": "Calling loadHljs() multiple times returns the same in-flight promise - never two parallel imports for the same CDN URL."
     },
     {
       "date": "Step 2",
@@ -777,7 +777,7 @@ wp post create post.html \
     },
     {
       "label": "What about line numbers?",
-      "content": "They're rendered server-side in Blade as a sibling <code>&lt;aside aria-hidden&gt;</code>. The JS controller never touches innerHTML — keeps the surface free of XSS-shape patterns."
+      "content": "They're rendered server-side in Blade as a sibling <code>&lt;aside aria-hidden&gt;</code>. The JS controller never touches innerHTML - keeps the surface free of XSS-shape patterns."
     }
   ]
 } /-->
@@ -787,7 +787,7 @@ wp post create post.html \
 <!-- /wp:paragraph -->
 ```
 
-### Example 3 — Changelog page (default template)
+### Example 3 - Changelog page (default template)
 
 ```html
 <!-- wp:paragraph -->
@@ -811,12 +811,12 @@ wp post create post.html \
     },
     {
       "date": "May 2026",
-      "title": "v1.9.x — Local avatars + mega menus",
+      "title": "v1.9.x - Local avatars + mega menus",
       "description": "Self-hosted avatars, per-user social meta + role, fully-tabbed mega menu, sticky header modes, header search slot."
     },
     {
       "date": "May 2026",
-      "title": "v1.5.x — Blog homepage sections",
+      "title": "v1.5.x - Blog homepage sections",
       "description": "News-portal-style stacked category sections layout when blog is the front page. 7 visual styles."
     }
   ]
@@ -829,9 +829,9 @@ wp post create post.html \
 
 1. **Pick one register per content well.** Marketing blocks (hero, features, pricing) and editorial blocks (code, pull-quote, timeline, tabs-accordion) shouldn't sit in the same article column. Either you're building a landing page (marketing) or you're writing a long-form post (editorial).
 
-2. **Use `brndle/faq` for SEO FAQ.** Use `brndle/tabs-accordion` (accordion mode) for non-SEO disclosure. Don't use `brndle/tabs-accordion` for true FAQ — you'll lose the `FAQPage` schema benefit.
+2. **Use `brndle/faq` for SEO FAQ.** Use `brndle/tabs-accordion` (accordion mode) for non-SEO disclosure. Don't use `brndle/tabs-accordion` for true FAQ - you'll lose the `FAQPage` schema benefit.
 
-3. **Always provide `quote` for pull-quote, `code` for code, `items` for timeline / tabs-accordion / faq.** Empty values cause the block to render nothing — silent failure.
+3. **Always provide `quote` for pull-quote, `code` for code, `items` for timeline / tabs-accordion / faq.** Empty values cause the block to render nothing - silent failure.
 
 4. **Pick the right page template.**
    - Landing pages → `template-landing.php`
@@ -843,17 +843,17 @@ wp post create post.html \
 
 6. **Don't override block CSS by injecting `<style>` tags into post content.** The theme tokens are in `--color-*` variables; touch those at the theme level (admin → Brndle → Colors), not per-page.
 
-7. **Editorial blocks default to the article column width (700px).** Use `align: "wide"` or `align: "full"` to break out — but only for the marketing register. Editorial blocks rarely need to.
+7. **Editorial blocks default to the article column width (700px).** Use `align: "wide"` or `align: "full"` to break out - but only for the marketing register. Editorial blocks rarely need to.
 
 ---
 
 ## What NOT to build with these blocks
 
-- **Multi-step forms** — `brndle/lead-form` is intentionally one-page. For multi-step, use a dedicated form plugin (Gravity Forms, Fluent Forms).
-- **E-commerce product grids** — Brndle isn't WooCommerce-focused. Use WooCommerce blocks for product UI.
-- **Image galleries with lightbox** — use `core/gallery` plus a lightbox plugin. Brndle doesn't ship a lightbox.
-- **Booking widgets / calendars** — out of scope; integrate via a plugin.
-- **Anything that needs JavaScript-driven server data fetching** — Brndle blocks render server-side. Don't try to make them dynamic with client-side fetch loops.
+- **Multi-step forms** - `brndle/lead-form` is intentionally one-page. For multi-step, use a dedicated form plugin (Gravity Forms, Fluent Forms).
+- **E-commerce product grids** - Brndle isn't WooCommerce-focused. Use WooCommerce blocks for product UI.
+- **Image galleries with lightbox** - use `core/gallery` plus a lightbox plugin. Brndle doesn't ship a lightbox.
+- **Booking widgets / calendars** - out of scope; integrate via a plugin.
+- **Anything that needs JavaScript-driven server data fetching** - Brndle blocks render server-side. Don't try to make them dynamic with client-side fetch loops.
 
 ---
 
@@ -875,6 +875,6 @@ For any AI-generated page, sanity-check:
 ## Where to go next
 
 - **Building a new block** → `plans/2026-05-04-v2.1-editorial-blocks.md` shows the v2.1 pattern. Follow the same shape: `block.json` + `blocks/src/{name}.js` (editor) + `resources/views/blocks/{name}.blade.php` (Blade) + `resources/css/blocks/{name}.css` (scoped CSS) + optional `blocks/src/{name}-view.js` (frontend controller).
-- **Changing how an existing block renders** → edit the Blade view in `resources/views/blocks/`. Clear the Acorn view cache: `rm -rf wp-content/cache/acorn/framework/views/*.php` (or just edit a file — cache invalidates by mtime).
+- **Changing how an existing block renders** → edit the Blade view in `resources/views/blocks/`. Clear the Acorn view cache: `rm -rf wp-content/cache/acorn/framework/views/*.php` (or just edit a file - cache invalidates by mtime).
 - **Adding a new theme setting** → `app/Settings/Defaults.php` (add to `all()` + `schema()` + the appropriate type-keys array) → `admin/src/tabs/{Tab}.jsx` (add UI) → `app/View/Composers/Theme.php` (expose to Blade) → run `node bin/check-settings-consistency.mjs` to verify.
 - **Releasing a new version** → bump `style.css` `Version:` + `readme.txt` `Stable tag:` + Changelog → `./bin/release.sh 2.x.y` → `gh release create v2.x.y`. The release script handles the build pipeline.
