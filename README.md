@@ -23,7 +23,7 @@ Built on [Sage](https://roots.io/sage/) + [Acorn](https://roots.io/acorn/) (Lara
 
 ### Landing Page Blocks
 
-14 custom Gutenberg blocks for building landing pages — all server-side rendered, all WP 6.9+ ready (`apiVersion: 3`).
+14 custom Gutenberg blocks for building landing pages - all server-side rendered, all WP 6.9+ ready (`apiVersion: 3`).
 
 | Block | Description |
 |-------|-------------|
@@ -33,12 +33,12 @@ Built on [Sage](https://roots.io/sage/) + [Acorn](https://roots.io/acorn/) (Lara
 | `brndle/content-image-split` | Side-by-side content + media block with media-library picker. |
 | `brndle/how-it-works` | Numbered process steps, horizontal or vertical layout. |
 | `brndle/comparison-table` | Feature comparison grid with optional highlighted column. |
-| `brndle/pricing` | 2–3 column pricing table with featured-plan highlighting. |
+| `brndle/pricing` | 2-3 column pricing table with featured-plan highlighting. |
 | `brndle/testimonials` | Customer testimonial cards with avatars (media picker) and star ratings. |
 | `brndle/team` | Team member cards with photo (media picker), role, bio, social links. |
 | `brndle/logos` | Trust bar with company logos (media picker) or text fallback. |
 | `brndle/video-embed` | YouTube / Vimeo / self-hosted video wrapper. |
-| `brndle/faq` | Accessible accordion FAQ with ARIA attributes — emits `FAQPage` JSON-LD. |
+| `brndle/faq` | Accessible accordion FAQ with ARIA attributes - emits `FAQPage` JSON-LD. |
 | `brndle/cta` | Call-to-action banner with primary / secondary buttons. |
 | `brndle/lead-form` | Email-capture form with REST submission, aria-live status, Mailchimp passthrough. |
 
@@ -46,25 +46,25 @@ Built on [Sage](https://roots.io/sage/) + [Acorn](https://roots.io/acorn/) (Lara
 
 Settings panel at **Brndle** in the WP admin sidebar with tabs:
 
-- **Site Identity** — Logo (light/dark), social links
-- **Colors** — 12 presets + custom accent color
-- **Dark Mode** — Toggle on/off, position, default mode (light/dark/system)
-- **Typography** — 8 font pairs, base size, heading scale (drives `--font-size-base` + `--text-h1`…`--text-h6` ramp)
-- **Header** — 8 styles, CTA button, mobile menu, announcement banner
-- **Footer** — 6 styles, copyright, column menus, social links
-- **Blog Archive** — Layout, posts per page, sidebar, category filter
-- **Single Post** — Layout, progress bar, reading time, author box, related posts, TOC
-- **Performance** — Remove emoji/embed scripts, lazy images, preload fonts
-- **Forms** — Mailchimp passthrough, REST webhook URL, notification email, store / email toggles
+- **Site Identity** - Logo (light/dark), social links
+- **Colors** - 12 presets + custom accent color
+- **Dark Mode** - Toggle on/off, position, default mode (light/dark/system)
+- **Typography** - 8 font pairs, base size, heading scale (drives `--font-size-base` + `--text-h1`…`--text-h6` ramp)
+- **Header** - 8 styles, CTA button, mobile menu, announcement banner
+- **Footer** - 6 styles, copyright, column menus, social links
+- **Blog Archive** - Layout, posts per page, sidebar, category filter
+- **Single Post** - Layout, progress bar, reading time, author box, related posts, TOC
+- **Performance** - Remove emoji/embed scripts, lazy images, preload fonts
+- **Forms** - Mailchimp passthrough, REST webhook URL, notification email, store / email toggles
 
 All settings accessible via REST API at `brndle/v1/settings` (GET/POST/DELETE) with import/export.
 
 ### Plugin Compatibility
 
 Built-in support for:
-- **Yoast SEO / RankMath** — Breadcrumbs, fallback JSON-LD schema
-- **WooCommerce** — Gallery zoom/lightbox/slider, theme-consistent wrappers
-- **WPML / Polylang** — Automatic hreflang tags
+- **Yoast SEO / RankMath** - Breadcrumbs, fallback JSON-LD schema
+- **WooCommerce** - Gallery zoom/lightbox/slider, theme-consistent wrappers
+- **WPML / Polylang** - Automatic hreflang tags
 
 ## Requirements
 
@@ -81,7 +81,7 @@ Built-in support for:
 2. Go to **Appearance → Themes → Add New → Upload Theme**
 3. Upload the zip and activate
 
-No build tools needed — the release zip includes compiled assets.
+No build tools needed - the release zip includes compiled assets.
 
 ### From Source (Development)
 
@@ -150,10 +150,10 @@ brndle/
 ### Key Patterns
 
 - **Blade syntax**: Use `@php(func())` for single-line, `@php ... @endphp` for multi-line
-- **CSS colors**: Use Tailwind theme utilities (`bg-surface-primary`, `text-accent`) — never `text-[var(--color-*)]`
-- **Dark sections**: Use `brndle-section-dark` class — always dark regardless of dark mode toggle
+- **CSS colors**: Use Tailwind theme utilities (`bg-surface-primary`, `text-accent`) - never `text-[var(--color-*)]`
+- **Dark sections**: Use `brndle-section-dark` class - always dark regardless of dark mode toggle
 - **Blocks**: Render via `render_callback` in BlockServiceProvider, views in `resources/views/blocks/`
-- **Settings**: `Settings::get('key', default)` — stored in `wp_options` key `brndle_settings`
+- **Settings**: `Settings::get('key', default)` - stored in `wp_options` key `brndle_settings`
 
 ## Developer Hooks
 
@@ -183,7 +183,7 @@ add_filter('brndle/color_presets', function (array $presets): array {
 
 ## AI Landing Pages
 
-Brndle integrates with [Claude Code](https://claude.ai/claude-code) to generate complete landing pages from a text description. Pages are created as standard WordPress block markup — no lock-in.
+Brndle integrates with [Claude Code](https://claude.ai/claude-code) to generate complete landing pages from a text description. Pages are created as standard WordPress block markup - no lock-in.
 
 ```bash
 # In Claude Code, from the theme directory:
@@ -200,6 +200,6 @@ curl -X POST https://your-site.com/wp-json/wp/v2/pages \
 
 ## License
 
-GPL-2.0-or-later — same license as WordPress.
+GPL-2.0-or-later - same license as WordPress.
 
 Free to use, modify, and distribute. See [LICENSE](LICENSE) for details.

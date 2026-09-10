@@ -128,7 +128,7 @@ Components:
   - "Show view all link" toggle
   - Delete button
 - "Add section" button (appends a new `featured-hero` row with category_id=0)
-- Live preview iframe (optional, v1.6 — skip in 1.5)
+- Live preview iframe (optional, v1.6 - skip in 1.5)
 
 Persistence via existing `brndle/v1/settings` REST endpoint. The sanitizer in `app/Settings/Sanitizer.php` validates the section array.
 
@@ -150,13 +150,13 @@ Persistence via existing `brndle/v1/settings` REST endpoint. The sanitizer in `a
 
 ### Modified files
 
-- `app/Settings/Defaults.php` — add `homepage_sections_enabled`, `homepage_sections` defaults + schema
-- `app/Settings/Sanitizer.php` — sanitize section array, clamp count, validate style enum
-- `resources/views/index.blade.php` — branch into sections when enabled + blog is homepage
-- `admin/src/App.jsx` — register the new tab
-- `style.css` — version bump 1.4.2 → 1.5.0
-- `readme.txt` — changelog entry + Stable tag
-- `CLAUDE.md` — add to "What's Available" + "Recent Changes"
+- `app/Settings/Defaults.php` - add `homepage_sections_enabled`, `homepage_sections` defaults + schema
+- `app/Settings/Sanitizer.php` - sanitize section array, clamp count, validate style enum
+- `resources/views/index.blade.php` - branch into sections when enabled + blog is homepage
+- `admin/src/App.jsx` - register the new tab
+- `style.css` - version bump 1.4.2 → 1.5.0
+- `readme.txt` - changelog entry + Stable tag
+- `CLAUDE.md` - add to "What's Available" + "Recent Changes"
 
 ## Verification
 
@@ -212,7 +212,7 @@ Determined at preview time by querying `wp_term_taxonomy` for the top 4 by `coun
 
 ## Risk notes
 
-- **Old sites with magazine layout active**: completely unaffected — `homepage_sections_enabled` defaults to false, so behavior is identical until the user opts in
+- **Old sites with magazine layout active**: completely unaffected - `homepage_sections_enabled` defaults to false, so behavior is identical until the user opts in
 - **Empty sections**: must skip-render so a misconfigured section does not produce dead whitespace
 - **WP_Query in loop**: each section runs `get_posts()`, which is fine for 4-6 sections but should not be extended past ~10. If we ever need more, batch into a single query partitioned by category in PHP
 - **Admin UI complexity**: drag-drop reorder is the only non-trivial interaction; use `@dnd-kit/core` (already a Brndle admin dep) for consistency with the existing settings UI

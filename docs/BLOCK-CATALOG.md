@@ -280,7 +280,7 @@ Item shapes: `items[]` = `{"value": "98%", "label": "Customer satisfaction"}`
 
 ### `brndle/tabs-accordion` - Tabs / Accordion
 
-One block, two display modes — tabs or accordion — sharing the same data. Full WAI-ARIA tabs and disclosure behaviour.
+One block, two display modes - tabs or accordion - sharing the same data. Full WAI-ARIA tabs and disclosure behaviour.
 
 | Attribute | Type | Default |
 |---|---|---|

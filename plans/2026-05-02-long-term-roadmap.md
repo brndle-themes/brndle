@@ -1,7 +1,7 @@
 # Brndle Long-Term Roadmap
 
 _Written 2026-05-02 after the 1.3.0 / 1.3.1 quality pass shipped. This is a
-forward-looking plan — not a list of bugs to fix this week, but the
+forward-looking plan - not a list of bugs to fix this week, but the
 structural improvements that pay down compounding fragility as brndle scales
 to 100+ client sites._
 
@@ -17,12 +17,12 @@ so child themes that drop the convention still work (the "no-attribute"
 adoptive case).
 
 Examples of this thinking already shipped:
-- `@custom-variant dark (...)` — one declaration replaces 21 lines of
+- `@custom-variant dark (...)` - one declaration replaces 21 lines of
   per-utility `[data-theme="dark"]` workarounds and future-proofs every
   new `dark:foo` utility.
-- `editor.css @import "./app.css"` — one path for editor + frontend
+- `editor.css @import "./app.css"` - one path for editor + frontend
   styling, instead of two parallel enqueue mechanisms.
-- `html { font-size: var(--font-size-base) }` — the rem cascade scales
+- `html { font-size: var(--font-size-base) }` - the rem cascade scales
   globally; we don't have to override per-element.
 
 ## Themes for the next two releases
@@ -32,9 +32,9 @@ Examples of this thinking already shipped:
 The current setup has three sources of truth that have to be kept in
 sync by hand:
 
-  - `app/Settings/Defaults.php` — keys + defaults + type-key lists
-  - `admin/src/tabs/*.jsx` — hand-coded React forms
-  - `app/View/Composers/Theme.php` — Blade variable bridges
+  - `app/Settings/Defaults.php` - keys + defaults + type-key lists
+  - `admin/src/tabs/*.jsx` - hand-coded React forms
+  - `app/View/Composers/Theme.php` - Blade variable bridges
 
 The 1.3.1 audit caught two settings that were saved + emitted but never
 read by any stylesheet (`font_size_base`, `heading_scale`). That hole
@@ -42,7 +42,7 @@ exists because the three sources can drift. The long-term move is to
 make Defaults the single source of truth and generate the rest:
 
   - Add field metadata directly to Defaults (label, control type, range,
-    section) — one entry per setting describes everything needed to
+    section) - one entry per setting describes everything needed to
     render the form, sanitize, expose to Blade.
   - Replace the hand-coded admin tabs with a generic React form that
     iterates the metadata.
@@ -50,7 +50,7 @@ make Defaults the single source of truth and generate the rest:
     into Blade (with a per-key `expose` flag for ones that should/should
     not reach views).
 
-The migration is incremental — keep the existing tabs/composers, add the
+The migration is incremental - keep the existing tabs/composers, add the
 metadata, gradually swap each tab for the generated form once the
 metadata covers it.
 
@@ -73,12 +73,12 @@ The 1.3.1 audit (43-key cross-reference, dead-setting hunt, dark-mode
 variant verification) was manual. None of it would catch a regression in
 1.4.0 unless someone runs the audit again. Long-term:
 
-  - **Settings consistency check** — _**shipped**_ as
+  - **Settings consistency check** - _**shipped**_ as
     `bin/check-settings-consistency.mjs`. Asserts every `Defaults::all()`
     key has matching entries in `Defaults::schema()`, in `admin/src/
     tabs/*.jsx`, and in PHP / Blade consumers. Wired into
     `.github/workflows/main.yml` in 1.3.2.
-  - **Blade compile dry-run** — _**shipped**_ as `bin/check-blade-
+  - **Blade compile dry-run** - _**shipped**_ as `bin/check-blade-
     compile.php`. Compiles every template through Acorn's BladeCompiler,
     then `token_get_all($source, TOKEN_PARSE)` on the output. Caught
     six latent bugs on first run (5 `@media` / `@keyframes` escapes plus
@@ -86,16 +86,16 @@ variant verification) was manual. None of it would catch a regression in
     workflow file install template lives in `bin/github-actions/`
     pending the maintainer's manual `cp` (security hook still blocks
     direct workflow writes).
-  - **Tailwind variant assertion** — _**deferred, not next.**_
+  - **Tailwind variant assertion** - _**deferred, not next.**_
     The original concern is "did Tailwind generate the dark: rule
     under the right selector?" 1.3.2's `@custom-variant dark` change
     fixed the only known failure mode and the rule is asserted at
     runtime by the dark-mode portion of the E2E journey. A
     build-time check would also need to know which utilities the
-    project considers "must compile under the custom variant" —
+    project considers "must compile under the custom variant" -
     that's a shape-of-data question we don't have an answer for yet.
     Revisit when a second `dark:`-style custom variant gets added.
-  - **Visual regression** — _**deferred, not next.**_ Playwright
+  - **Visual regression** - _**deferred, not next.**_ Playwright
     screenshots per block + per layout, diffed against a baseline.
     Real value but real cost: needs a stable rendering host (theme
     test fixtures + seeded content), pixel-tolerance tuning per
@@ -112,7 +112,7 @@ deliberately-deferred layer.
 
 Brndle blocks are SSR (`save: () => null`) so attribute changes don't
 trigger "Invalid block" warnings. The trade-off is that Blade templates
-carry legacy branches forever — `logos.blade.php` accepts both
+carry legacy branches forever - `logos.blade.php` accepts both
 `is_string($logo)` (pre-1.3.0) and `is_array($logo) && isset($logo['url
 '])` (1.3.0+). Two years of additions and the templates become
 unreadable.
@@ -167,11 +167,11 @@ Long-term:
 
 These came up during the audits but aren't priorities yet:
 
-  - Editor canvas dark-mode preview — useful but a feature, not a fix.
+  - Editor canvas dark-mode preview - useful but a feature, not a fix.
     Authors edit in light by convention.
-  - WCAG AA color-contrast audit on every dark surface — needs axe-core
+  - WCAG AA color-contrast audit on every dark surface - needs axe-core
     or Lighthouse tooling pass; tackle when adopting visual regression.
-  - Per-block "follow theme" option — would let blocks inherit the
+  - Per-block "follow theme" option - would let blocks inherit the
     user's dark/light choice instead of being explicitly dark/light.
     Real feature work.
 

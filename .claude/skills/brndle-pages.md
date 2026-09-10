@@ -7,7 +7,7 @@ description: Create landing pages, blog posts, and configure sites for Brndle Wo
 
 Create WordPress pages/posts and configure Brndle theme sites. Content is stored as standard WordPress block markup in `post_content`.
 
-> **Portable / non-Claude-Code version:** the same content as a markdown reference is at `docs/AI-USAGE-GUIDE.md` — use that when working from a context that doesn't load this skill (other AI tools, human scripting reference, plain-text docs).
+> **Portable / non-Claude-Code version:** the same content as a markdown reference is at `docs/AI-USAGE-GUIDE.md` - use that when working from a context that doesn't load this skill (other AI tools, human scripting reference, plain-text docs).
 
 ## How It Works
 
@@ -22,9 +22,9 @@ Brndle has 4 page templates. Set via `update_post_meta($id, '_wp_page_template',
 
 | Template | Slug | Use Case |
 |----------|------|----------|
-| **Default** | (none) | Standard page — header + prose content + footer |
+| **Default** | (none) | Standard page - header + prose content + footer |
 | **Landing Page** | `template-landing` | Full-width block sections with header + footer. Use for marketing/product pages. |
-| **Full Canvas** | `template-canvas` | Zero chrome — no header, no footer, no padding. Pure content. Use for custom creative pages, app-like experiences. |
+| **Full Canvas** | `template-canvas` | Zero chrome - no header, no footer, no padding. Pure content. Use for custom creative pages, app-like experiences. |
 | **Transparent Header** | `template-transparent` | Header floats over content with transparent bg, turns solid on scroll. Use for pages with dark hero sections. |
 
 ## Header Styles (8)
@@ -61,7 +61,7 @@ Set via admin panel or REST API: `footer_style` setting.
 
 Full-width section blocks rendered server-side via Blade + Tailwind.
 
-#### `brndle/hero` — Full-width hero section
+#### `brndle/hero` - Full-width hero section
 ```
 <!-- wp:brndle/hero {"eyebrow":"","title":"","subtitle":"","cta_primary":"","cta_primary_url":"#","cta_secondary":"","cta_secondary_url":"#","image":"","variant":"dark","logos":["Company1","Company2"]} /-->
 ```
@@ -69,51 +69,51 @@ Full-width section blocks rendered server-side via Blade + Tailwind.
 - `logos`: array of strings or `{"url":"img.png","name":"Company"}` objects
 - `image`: URL for product screenshot below hero
 
-#### `brndle/stats` — Key metrics row
+#### `brndle/stats` - Key metrics row
 ```
 <!-- wp:brndle/stats {"items":[{"value":"100","label":"Lighthouse Score"},{"value":"0 KB","label":"JavaScript"}],"variant":"light"} /-->
 ```
 
-#### `brndle/features` — Alternating feature sections
+#### `brndle/features` - Alternating feature sections
 ```
 <!-- wp:brndle/features {"eyebrow":"Features","title":"","subtitle":"","features":[{"title":"","description":"","bullets":["bullet1","bullet2"],"image":"","icon":""}],"variant":"light"} /-->
 ```
 - Features alternate left/right automatically
 
-#### `brndle/testimonials` — Customer testimonial cards
+#### `brndle/testimonials` - Customer testimonial cards
 ```
 <!-- wp:brndle/testimonials {"eyebrow":"Testimonials","title":"","items":[{"quote":"","name":"","role":"","avatar":"","stars":5}]} /-->
 ```
 
-#### `brndle/pricing` — Pricing table
+#### `brndle/pricing` - Pricing table
 ```
 <!-- wp:brndle/pricing {"eyebrow":"Pricing","title":"","subtitle":"","plans":[{"name":"","description":"","price":"$99","period":"/mo","features":["feat1","feat2"],"cta_text":"Get Started","cta_url":"#","featured":false,"badge":""}]} /-->
 ```
 - `featured: true` highlights with dark bg + accent border
 - `badge`: text above featured plan (e.g., "Most Popular")
 
-#### `brndle/cta` — Call-to-action banner
+#### `brndle/cta` - Call-to-action banner
 ```
 <!-- wp:brndle/cta {"title":"","subtitle":"","cta_primary":"","cta_primary_url":"#","cta_secondary":"","cta_secondary_url":"#","variant":"dark"} /-->
 ```
 
-#### `brndle/faq` — Accordion FAQ
+#### `brndle/faq` - Accordion FAQ
 ```
 <!-- wp:brndle/faq {"title":"Frequently asked questions","items":[{"question":"","answer":""}]} /-->
 ```
 
-#### `brndle/logos` — Trust/client logo strip
+#### `brndle/logos` - Trust/client logo strip
 ```
 <!-- wp:brndle/logos {"title":"Trusted by","companies":["Stripe","Vercel","Linear"],"variant":"light"} /-->
 ```
 
 ### Brndle Editorial Blocks (v2.1+)
 
-These four are content-system blocks designed for inline use inside long-form posts and articles. Use them WITHIN core paragraphs / headings — not as full-width landing-page sections (use `brndle/hero`, `brndle/features`, etc. for that).
+These four are content-system blocks designed for inline use inside long-form posts and articles. Use them WITHIN core paragraphs / headings - not as full-width landing-page sections (use `brndle/hero`, `brndle/features`, etc. for that).
 
-**Aesthetic register:** editorial, restrained accent usage, generous typography. Don't combine these with marketing-register section blocks in the same content well — pick one register per page.
+**Aesthetic register:** editorial, restrained accent usage, generous typography. Don't combine these with marketing-register section blocks in the same content well - pick one register per page.
 
-#### `brndle/code` — Syntax-highlighted code block
+#### `brndle/code` - Syntax-highlighted code block
 
 Lazy-loads highlight.js the first time it enters the viewport (never loads on pages without code). Copy button + line numbers + caption + theme override.
 
@@ -122,24 +122,24 @@ Lazy-loads highlight.js the first time it enters the viewport (never loads on pa
 ```
 
 - `language`: `plain` (no highlighting) | `bash` | `css` | `diff` | `dockerfile` | `html` | `js` | `json` | `jsx` | `markdown` | `nginx` | `php` | `python` | `scss` | `sql` | `ts` | `tsx` | `yaml` (18 + plain)
-- `showLineNumbers`: boolean (default `false`) — server-side rendered line numbers
-- `showCopy`: boolean (default `true`) — copy-to-clipboard button bottom-right
+- `showLineNumbers`: boolean (default `false`) - server-side rendered line numbers
+- `showCopy`: boolean (default `true`) - copy-to-clipboard button bottom-right
 - `theme`: `auto` (follows page) | `light` | `dark`
 - `caption`: optional one-line attribution under the code (file path / commit / source URL). Limited HTML allowed.
-- `code`: the raw source. Newlines are preserved. Don't HTML-escape — Blade does.
+- `code`: the raw source. Newlines are preserved. Don't HTML-escape - Blade does.
 - **Empty `code` → block doesn't render.**
 - **Print:** caption shown, copy button + line-number column hidden, monospace + pre-wrap preserved.
 
 **Use when:** technical posts with code samples, changelog entries, configuration examples, CLI snippets.
 
-#### `brndle/pull-quote` — Editorial pull quote (3 variants)
+#### `brndle/pull-quote` - Editorial pull quote (3 variants)
 
 ```
-<!-- wp:brndle/pull-quote {"variant":"bordered-left","accentColor":"accent","quote":"The best designs are the ones you don't notice — until you try to imagine the product without them.","cite":"Brndle design notes","citeUrl":"https://example.com/notes"} /-->
+<!-- wp:brndle/pull-quote {"variant":"bordered-left","accentColor":"accent","quote":"The best designs are the ones you don't notice - until you try to imagine the product without them.","cite":"Brndle design notes","citeUrl":"https://example.com/notes"} /-->
 ```
 
-- `variant`: `bordered-left` (default — accent rule on left, italic 1.5rem) | `centered-large` (decorative open-quote glyph, 2rem display weight, centered) | `outset` (breaks out of the article column ±80px at lg+, falls back to centered on narrow layouts)
-- `accentColor`: `accent` (default) | `text-primary` | `text-tertiary` — controls the bordered-left rule + the centered glyph color
+- `variant`: `bordered-left` (default - accent rule on left, italic 1.5rem) | `centered-large` (decorative open-quote glyph, 2rem display weight, centered) | `outset` (breaks out of the article column ±80px at lg+, falls back to centered on narrow layouts)
+- `accentColor`: `accent` (default) | `text-primary` | `text-tertiary` - controls the bordered-left rule + the centered glyph color
 - `cite`: optional attribution (name, source). Supports inline `<strong>` / `<em>`.
 - `citeUrl`: optional hyperlink on the cite line. Renders `rel="nofollow noopener"`.
 - `align`: `wide` | `full` (block.json supports). `outset` is independent of `align`.
@@ -149,7 +149,7 @@ Lazy-loads highlight.js the first time it enters the viewport (never loads on pa
 
 **Pick the variant:** `bordered-left` for in-flow editorial; `centered-large` for full-width emphasis; `outset` for long-form features that benefit from a visual breakout.
 
-#### `brndle/timeline` — Vertical milestones list
+#### `brndle/timeline` - Vertical milestones list
 
 ```
 <!-- wp:brndle/timeline {"title":"Release history","iconStyle":"numbered","connector":"solid","density":"comfortable","items":[
@@ -164,7 +164,7 @@ Lazy-loads highlight.js the first time it enters the viewport (never loads on pa
 - `connector`: `solid` (default) | `dashed` | `none` (the line between dots)
 - `density`: `comfortable` (2rem gap, default) | `compact` (1rem gap; mobile <640px is forced compact regardless)
 - `items[].date`: short label, rendered above the title in uppercase tracked text
-- `items[].title`: required-ish per item — if present rendered as `<h3>`
+- `items[].title`: required-ish per item - if present rendered as `<h3>`
 - `items[].description`: paragraph below the title
 - `items[].icon`: only used when `iconStyle === 'lucide'`. Must be a Lucide name in the curated set (`bin/copy-lucide-icons.mjs`).
 - **Empty `items` → block doesn't render.**
@@ -172,7 +172,7 @@ Lazy-loads highlight.js the first time it enters the viewport (never loads on pa
 
 **Use when:** changelog pages, "how it works" step-by-step, company history, project roadmap.
 
-#### `brndle/tabs-accordion` — Combined tabs + accordion (one block, two display modes)
+#### `brndle/tabs-accordion` - Combined tabs + accordion (one block, two display modes)
 
 Same data shape (label + content panels). `displayMode` toggle picks tab vs accordion rendering. Full WAI-ARIA Tabs pattern (←/→/Home/End/Tab) for tabs; Disclosure pattern for accordion.
 
@@ -189,13 +189,13 @@ Same data shape (label + content panels). `displayMode` toggle picks tab vs acco
 ```
 <!-- wp:brndle/tabs-accordion {"displayMode":"accordion","accordionMode":"single","accordionDefault":"first","title":"Common questions","items":[
   {"label":"Does this emit FAQPage schema?","content":"No. The dedicated <code>brndle/faq</code> block owns FAQPage. This block is a neutral disclosure pattern."},
-  {"label":"Can I open multiple at once?","content":"Yes — switch <strong>accordionMode</strong> to <code>multiple</code>."}
+  {"label":"Can I open multiple at once?","content":"Yes - switch <strong>accordionMode</strong> to <code>multiple</code>."}
 ]} /-->
 ```
 
 - `displayMode`: `tabs` (default) | `accordion`
 - `tabsAlignment` (tabs only): `start` (default) | `center` | `end`
-- `accordionMode` (accordion only): `single` (default — opening one closes the others, radio-like) | `multiple` (any number open at once)
+- `accordionMode` (accordion only): `single` (default - opening one closes the others, radio-like) | `multiple` (any number open at once)
 - `accordionDefault` (accordion only): `closed` (default) | `first` (first item open) | `all` (only meaningful in multiple mode)
 - `items[].label`: required tab/accordion label
 - `items[].content`: panel content. Limited HTML allowed: `<strong>`, `<em>`, `<a>`, `<br>`, `<code>`. `wpautop` runs server-side so double-newlines become paragraphs.
@@ -386,11 +386,11 @@ update_post_meta($id, '_wp_page_template', 'template-landing');
 ## Content Rules
 
 1. JSON in block comments: use `\"key\":\"value\"` (escaped quotes)
-2. **No raw HTML** in JSON attribute values — breaks block parser
+2. **No raw HTML** in JSON attribute values - breaks block parser
 3. Self-closing blocks: `<!-- wp:name {...} /-->`
 4. Container blocks: `<!-- wp:name -->...<!-- /wp:name -->`
 5. Double newline between blocks
-6. Straight quotes only (`"`) — no curly/smart quotes
+6. Straight quotes only (`"`) - no curly/smart quotes
 7. Set `_wp_page_template` meta for non-default templates
 
 ## Typical Page Structures
@@ -454,11 +454,11 @@ Quote / Code (optional)
 
 ### Read/Write Settings
 ```
-GET  /wp-json/brndle/v1/settings         — read all
-POST /wp-json/brndle/v1/settings         — save (merge)
-DELETE /wp-json/brndle/v1/settings       — reset to defaults
-GET  /wp-json/brndle/v1/settings/export  — export JSON
-POST /wp-json/brndle/v1/settings/import  — import JSON
+GET  /wp-json/brndle/v1/settings         - read all
+POST /wp-json/brndle/v1/settings         - save (merge)
+DELETE /wp-json/brndle/v1/settings       - reset to defaults
+GET  /wp-json/brndle/v1/settings/export  - export JSON
+POST /wp-json/brndle/v1/settings/import  - import JSON
 ```
 
 ### All Setting Keys
