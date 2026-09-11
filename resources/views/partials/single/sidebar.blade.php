@@ -134,6 +134,10 @@
         <div class="max-w-[700px] mx-auto px-6 mt-10">
     @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
   </div>
+
+        {{-- Extension point: bottom of the sticky single-post sidebar.
+             For site-specific widgets - related products, offers, newsletter. --}}
+        @php(do_action('brndle_single_sidebar'))
       </div>
     </aside>
 
