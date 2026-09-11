@@ -61,6 +61,24 @@
           @endif
         </a>
         <p class="text-sm text-text-tertiary leading-relaxed">{{ get_bloginfo('description', 'display') }}</p>
+
+        {{-- Closing call to action. The brand column is otherwise a logo and a
+             tagline above a column-height of empty space, and the footer is
+             the last thing a reader sees after deciding. Renders only when a
+             label and URL are set, so nothing changes for a site that has not
+             configured one. --}}
+        @if($footerCtaLabel && $footerCtaUrl)
+          <a href="{{ esc_url($footerCtaUrl) }}"
+             class="mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold
+                    {{ $style === 'dark' ? 'bg-white text-surface-inverse hover:bg-white/90' : 'bg-accent text-on-accent hover:opacity-90' }}
+                    transition-colors">
+            {{ $footerCtaLabel }}
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          @if($footerCtaNote)
+            <p class="mt-2 text-xs text-text-tertiary">{{ $footerCtaNote }}</p>
+          @endif
+        @endif
       </div>
 
       {{-- Column 2: Footer Col 1 --}}

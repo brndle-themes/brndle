@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.6
+Stable tag: 2.3.7
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,10 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.7 - September 2026 =
+
+* New      - Optional closing call to action in the footer's brand column, set with footer_cta_label, footer_cta_url and footer_cta_note. In the columns and dark footer styles that column held a logo and a tagline above a column-height of empty space, and the footer is the last thing a reader sees after deciding whether to get in touch. Renders only when a label and URL are both set, so a site that configures neither is byte-identical to 2.3.6.
 
 = 2.3.6 - September 2026 =
 
