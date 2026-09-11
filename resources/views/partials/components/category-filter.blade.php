@@ -1,8 +1,22 @@
 @php
-  $categories = get_transient('brndle_top_categories');
+  // WP's fallback category is never a useful public filter - it says nothing
+  // about the posts in it, and on a site with uncategorised content it can
+  // rank high enough by count to take a slot from a real topic.
+  $excluded = array_values(array_filter(array_map('intval',
+      (array) apply_filters('brndle_category_filter_exclude', [(int) get_option('default_category')])
+  )));
+
+  $cacheKey = 'brndle_top_categories_' . md5(implode(',', $excluded));
+  $categories = get_transient($cacheKey);
   if ($categories === false) {
-      $categories = get_categories(['hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC', 'number' => 8]);
-      set_transient('brndle_top_categories', $categories, HOUR_IN_SECONDS);
+      $categories = get_categories([
+          'hide_empty' => true,
+          'orderby'    => 'count',
+          'order'      => 'DESC',
+          'number'     => 8,
+          'exclude'    => $excluded,
+      ]);
+      set_transient($cacheKey, $categories, HOUR_IN_SECONDS);
   }
   $currentCat = is_category() ? get_queried_object_id() : 0;
   $blogUrl = get_post_type_archive_link('post') ?: home_url('/');

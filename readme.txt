@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.10
+Stable tag: 2.3.11
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,11 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.11 - September 2026 =
+
+* Improve  - The posts page now takes its meta description from its own page excerpt or content instead of the site tagline. A blog landing page was describing the business rather than the blog, on the one page where a searcher is deciding whether the writing is worth reading.
+* Fix      - The category filter no longer offers WordPress's fallback category. "Uncategorized" says nothing about the posts in it, and on a site with uncategorised content it can rank high enough by count to take a slot from a real topic. Filter brndle_category_filter_exclude to change what is hidden.
 
 = 2.3.10 - September 2026 =
 
