@@ -78,6 +78,12 @@ class Theme extends Composer
             'footerColumns' => (int) Settings::get('footer_columns', 3),
             'footerCopyright' => $copyright,
             'footerShowSocial' => (bool) Settings::get('footer_show_social', true),
+            // Optional closing call to action in the footer's brand column.
+            // Empty by default, so a site that sets neither renders exactly
+            // what it rendered before.
+            'footerCtaLabel' => (string) Settings::get('footer_cta_label', ''),
+            'footerCtaUrl' => (string) Settings::get('footer_cta_url', ''),
+            'footerCtaNote' => (string) Settings::get('footer_cta_note', ''),
 
             // Archive
             'archiveLayout' => apply_filters('brndle/archive_layout', Settings::get('archive_layout', 'grid')),
