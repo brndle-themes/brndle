@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.8
+Stable tag: 2.3.9
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,10 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.9 - September 2026 =
+
+* Fix      - Plain text on a Landing Page template rendered with no container at all: flush to the viewport edge, no gutter, no spacing, headings sitting directly on the paragraph above. The template renders the_content() for pages built from full-width section blocks, each of which carries its own container, so anything that was not such a block got nothing. Paragraphs, headings, lists, tables and rules now get a reading column; sections and aligned blocks stay full width. Most visible on text pages such as privacy, terms and refund policies.
 
 = 2.3.8 - September 2026 =
 
