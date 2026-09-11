@@ -44,7 +44,7 @@
       @php($avatarSize = $compact ? 48 : 96)
       {!! get_avatar($authorId, $avatarSize, '', $authorName, [
         'class' => ($compact ? 'rounded-xl' : 'rounded-2xl') . ' ring-1 ring-surface-tertiary',
-        'extra_attr' => sprintf('width="%1\$d" height="%1\$d" loading="lazy" decoding="async"', $avatarSize),
+        'extra_attr' => 'width="' . $avatarSize . '" height="' . $avatarSize . '" loading="lazy" decoding="async"',
       ]) !!}
     </div>
 

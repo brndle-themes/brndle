@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.5
+Stable tag: 2.3.6
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,10 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.6 - September 2026 =
+
+* Fix      - 2.3.5 shipped a fatal in the author box: an escaped dollar sign in a sprintf format string reached PHP as an invalid specifier, so every single post threw a critical error. Update straight to 2.3.6; do not run 2.3.5.
 
 = 2.3.5 - September 2026 =
 
