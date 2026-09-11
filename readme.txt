@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.7
+Stable tag: 2.3.8
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,10 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.8 - September 2026 =
+
+* New      - brndle_before_footer fires between the page content and the footer, in both the app and landing layouts. For full-width bands - cross-promo, newsletter, trust marks - that belong above the footer rather than inside it. Hooking brndle_footer_end for that purpose pushes the footer's own copyright, trademark notice and legal links into the middle of the footer, and that row belongs last.
 
 = 2.3.7 - September 2026 =
 
