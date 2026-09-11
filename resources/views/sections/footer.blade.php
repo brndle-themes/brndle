@@ -495,5 +495,9 @@
       @endif
     </div>
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 @endif

@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,14 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.3 - September 2026 =
+
+Two extension points, so site-specific content stops needing template edits.
+
+* New      - brndle_footer_end fires at the end of the site footer, after the columns. For cross-promo bands, network links, anything a particular site needs there.
+* New      - brndle_single_sidebar fires at the bottom of the sticky sidebar on the sidebar single-post layout. For related products, offers, a newsletter box.
+* Dev      - Both hooks take no arguments and fire inside the existing markup, so a callback only has to echo. Nothing renders when nothing is hooked, and output is unchanged for sites that hook neither.
 
 = 2.3.2 - September 2026 =
 
