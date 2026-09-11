@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.9
+Stable tag: 2.3.10
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,10 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.10 - September 2026 =
+
+* Fix      - The code, pull-quote, tabs-accordion and timeline blocks rendered flush to both viewport edges on a phone. They share a wrapper that set a max-width and vertical margin but never a horizontal gutter, and a max-width does nothing once the screen is narrower than the max. They now carry the same gutter every section-based block has. Most visible on an accordion, where every row and its chevron sat hard against the screen edges.
 
 = 2.3.9 - September 2026 =
 
