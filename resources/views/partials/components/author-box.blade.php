@@ -15,6 +15,11 @@
     _brndle_website     — personal website URL
 --}}
 @php
+  // 'compact' is for a narrow column (the single-post sidebar is 280px).
+  // The default layout puts a 96px avatar beside the name, which leaves too
+  // little room there for the name to sit on one line.
+  $compact = ($variant ?? 'default') === 'compact';
+
   $authorId = (int) get_the_author_meta('ID');
   $authorName = get_the_author();
   $authorBio = get_the_author_meta('description');
@@ -30,22 +35,26 @@
   ]);
 @endphp
 
-<aside class="brndle-author-box mt-12 p-6 sm:p-8 rounded-2xl bg-surface-secondary border border-surface-tertiary">
-  <div class="flex items-start gap-5">
+<aside class="brndle-author-box {{ $compact ? 'p-4 rounded-xl' : 'mt-12 p-6 sm:p-8 rounded-2xl' }} bg-surface-secondary border border-surface-tertiary">
+  <div class="flex items-start {{ $compact ? 'gap-3' : 'gap-5' }}">
     {{-- Avatar — picks up the local avatar via the LocalAvatar filter on
          get_avatar / pre_get_avatar_data. Explicit width / height attrs
          prevent CLS while the image loads. --}}
     <div class="shrink-0">
-      {!! get_avatar($authorId, 96, '', $authorName, ['class' => 'rounded-2xl ring-1 ring-surface-tertiary', 'extra_attr' => 'width="96" height="96" loading="lazy" decoding="async"']) !!}
+      @php($avatarSize = $compact ? 48 : 96)
+      {!! get_avatar($authorId, $avatarSize, '', $authorName, [
+        'class' => ($compact ? 'rounded-xl' : 'rounded-2xl') . ' ring-1 ring-surface-tertiary',
+        'extra_attr' => sprintf('width="%1\$d" height="%1\$d" loading="lazy" decoding="async"', $avatarSize),
+      ]) !!}
     </div>
 
     <div class="min-w-0 flex-1">
       <div class="flex items-baseline gap-2 flex-wrap">
-        <a href="{{ esc_url($authorPostsUrl) }}" class="text-lg font-bold text-text-primary hover:text-accent transition-colors">
+        <a href="{{ esc_url($authorPostsUrl) }}" class="{{ $compact ? 'text-sm font-semibold' : 'text-lg font-bold' }} text-text-primary hover:text-accent transition-colors">
           {{ $authorName }}
         </a>
         @if($authorRole)
-          <span class="text-sm text-text-tertiary">&middot; {{ $authorRole }}</span>
+          <span class="{{ $compact ? 'text-xs' : 'text-sm' }} text-text-tertiary">&middot; {{ $authorRole }}</span>
         @endif
       </div>
 
@@ -54,12 +63,12 @@
              strong, em). Render via wp_kses_post so authors can keep
              rich-text bios without exposing XSS. The wpautop converts
              double newlines into paragraph breaks for legacy bios. --}}
-        <div class="brndle-author-bio mt-2 text-sm text-text-secondary leading-relaxed">
+        <div class="brndle-author-bio mt-2 {{ $compact ? 'text-xs line-clamp-3' : 'text-sm' }} text-text-secondary leading-relaxed">
           {!! wp_kses_post(wpautop($authorBio)) !!}
         </div>
       @endif
 
-      <div class="mt-4 flex items-center gap-4 flex-wrap">
+      <div class="{{ $compact ? 'mt-2 gap-x-3 gap-y-2' : 'mt-4 gap-4' }} flex items-center flex-wrap">
         @if($postCount > 0)
           <a href="{{ esc_url($authorPostsUrl) }}" class="text-xs font-semibold text-accent hover:text-accent/80 inline-flex items-center gap-1">
             {{ sprintf(_n('%d post', '%d posts', $postCount, 'brndle'), $postCount) }}
@@ -75,7 +84,7 @@
                    target="_blank"
                    rel="noopener me"
                    aria-label="{{ esc_attr($authorName . ' on ' . ucfirst($key)) }}"
-                   class="inline-flex items-center justify-center w-8 h-8 rounded-md text-text-tertiary hover:text-accent hover:bg-surface-tertiary transition-colors">
+                   class="inline-flex items-center justify-center {{ $compact ? 'w-7 h-7' : 'w-8 h-8' }} rounded-md text-text-tertiary hover:text-accent hover:bg-surface-tertiary transition-colors">
                   @switch($key)
                     @case('twitter')
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>

@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.4
+Stable tag: 2.3.5
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,11 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.5 - September 2026 =
+
+* Improve  - The author box now takes a compact variant for narrow columns. The default layout sets a 96px avatar beside the name, which works at full width and leaves roughly 160px in a 280px sidebar, so the author name and the post count each wrapped onto two lines. Compact uses a 48px avatar, smaller type, a clamped bio and tighter spacing. The full-width placement is unchanged.
+* Fix      - The sidebar single-post layout wrapped its author box in the content column's max-w-[700px] mx-auto px-6. Inside a 280px aside that width is meaningless and the padding cost 48px of the space the name needed. Removed.
 
 = 2.3.4 - September 2026 =
 

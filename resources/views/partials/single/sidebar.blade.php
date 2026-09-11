@@ -130,10 +130,10 @@
         {{-- TOC --}}
         @includeWhen($singleShowToc, 'partials.components.table-of-contents')
 
-        {{-- Author box --}}
-        <div class="max-w-[700px] mx-auto px-6 mt-10">
-    @includeWhen($singleShowAuthorBox, 'partials.components.author-box')
-  </div>
+        {{-- Author box. No content-column wrapper: max-w-[700px] mx-auto px-6
+             is meaningless inside a 280px aside and only costs 48px of the
+             width the name needs. --}}
+        @includeWhen($singleShowAuthorBox, 'partials.components.author-box', ['variant' => 'compact'])
 
         {{-- Extension point: bottom of the sticky single-post sidebar.
              For site-specific widgets - related products, offers, newsletter. --}}
