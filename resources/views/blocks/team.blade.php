@@ -1,12 +1,13 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $members = $a['members'] ?? [];
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $cols = $a['columns'] ?? '3';
   $gridClass = ['2' => 'sm:grid-cols-2', '3' => 'sm:grid-cols-2 lg:grid-cols-3', '4' => 'sm:grid-cols-2 lg:grid-cols-4'][$cols] ?? 'sm:grid-cols-2 lg:grid-cols-3';
 @endphp
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <div class="max-w-2xl mx-auto text-center mb-16 reveal">

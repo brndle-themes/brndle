@@ -10,6 +10,7 @@
 --}}
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
 
   $categoryId = (int) ($a['categoryId'] ?? 0);
   $category   = $categoryId > 0 ? get_category($categoryId) : null;
@@ -64,7 +65,7 @@
   {{-- On the blog front page the parent .brndle-homepage-sections wrapper supplies
        the container. Placed inside a page there is no parent, so the rail rendered
        flush against the viewport edge while every other section sat in max-w-7xl. --}}
-  <div class="brndle-post-feed-outer max-w-7xl mx-auto px-6 py-16 md:py-20">
+  <div class="brndle-post-feed-outer max-w-7xl mx-auto px-6 py-16 md:py-20"@if($anchor !== '') id="{{ $anchor }}"@endif>
     <div class="brndle-homepage-section brndle-post-feed" data-section-style="{{ $style }}">
     @include('partials.sections-styles.' . $style, [
       'sectionCategory'    => $category,

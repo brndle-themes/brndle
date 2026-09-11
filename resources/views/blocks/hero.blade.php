@@ -1,5 +1,6 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $variant = $a['variant'] ?? 'dark';
   $isDark = $variant === 'dark';
   $isGradient = $variant === 'gradient';
@@ -9,7 +10,7 @@
   $isInverse = $isDark || $isGradient;
 @endphp
 
-<section class="relative min-h-[34rem] md:min-h-[38rem] py-24 md:py-28 flex items-center overflow-hidden {{ $sectionClass }} noise">
+<section class="relative min-h-[34rem] md:min-h-[38rem] py-24 md:py-28 flex items-center overflow-hidden {{ $sectionClass }} noise"@if($anchor !== '') id="{{ $anchor }}"@endif>
   {{-- Ambient --}}
   <div class="absolute inset-0 overflow-hidden">
     <div class="absolute inset-0 ambient-grid bg-[size:64px_64px]"></div>

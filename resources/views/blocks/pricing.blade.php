@@ -1,5 +1,6 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $plans = $a['plans'] ?? [];
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $hasGroups = false;
@@ -14,7 +15,7 @@
   $toggleId = 'pricing-toggle-' . wp_unique_id();
 @endphp
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-secondary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-secondary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     <div class="max-w-3xl mx-auto text-center mb-16 reveal">
       @if($a['eyebrow'])

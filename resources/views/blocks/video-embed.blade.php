@@ -1,5 +1,6 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $isDark = ($a['variant'] ?? 'dark') === 'dark';
   $videoUrl = $a['video_url'] ?? '';
   $videoType = $a['video_type'] ?? 'youtube';
@@ -31,7 +32,7 @@
   $aspectClass = ['16/9' => 'aspect-video', '4/3' => 'aspect-[4/3]', '1/1' => 'aspect-square', '21/9' => 'aspect-[21/9]'][$a['aspect_ratio'] ?? '16/9'] ?? 'aspect-video';
 @endphp
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="{{ $maxWidthClass }} mx-auto px-6">
     @if($a['title'])
       <div class="max-w-2xl mx-auto text-center mb-12 reveal">

@@ -1,5 +1,6 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $fields = $a['fields'] ?? [];
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $isAccent = ($a['variant'] ?? 'light') === 'accent';
@@ -12,7 +13,7 @@
     : 'bg-surface-primary border-surface-tertiary text-text-primary placeholder-text-tertiary';
 @endphp
 
-<section class="py-24 md:py-32 {{ $sectionClass }}">
+<section class="py-24 md:py-32 {{ $sectionClass }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     <div class="{{ $isSplit ? 'grid lg:grid-cols-2 gap-12 lg:gap-20 items-center' : 'max-w-2xl mx-auto text-center' }}">
       <div class="reveal {{ $isSplit ? '' : 'mb-10' }}">

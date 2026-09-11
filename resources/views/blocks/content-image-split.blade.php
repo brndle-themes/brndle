@@ -1,6 +1,7 @@
 @php($a = $attributes)
+@php($anchor = (string) ($a['anchor'] ?? ''))
 
-<section class="py-24 md:py-32 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-primary' }}">
+<section class="py-24 md:py-32 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid {{ $a['image'] ? 'lg:grid-cols-2' : '' }} gap-12 lg:gap-20 items-center {{ ($a['image_position'] ?? 'right') === 'left' ? 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]' : '' }}">
       <div class="reveal">

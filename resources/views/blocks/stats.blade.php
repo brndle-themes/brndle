@@ -1,6 +1,7 @@
 @php($a = $attributes)
+@php($anchor = (string) ($a['anchor'] ?? ''))
 
-<section class="py-16 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-primary border-y border-surface-tertiary' }}">
+<section class="py-16 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-primary border-y border-surface-tertiary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     @php($items = $a['items'] ?? [])
     @php($statCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3', 'md:grid-cols-4'])
