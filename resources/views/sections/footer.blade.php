@@ -20,6 +20,12 @@
 
     @include('partials.footer-legal')
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 
 {{-- ============================================================
@@ -150,6 +156,12 @@
       @endif
     </div>
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 
 {{-- ============================================================
@@ -210,6 +222,12 @@
       @endif
     </div>
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 
 {{-- ============================================================
@@ -359,6 +377,12 @@
       </div>
     </div>
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 
 {{-- ============================================================
@@ -435,6 +459,12 @@
       {!! $footerCopyright !!}
     </p>
   </div>
+  {{-- Extension point: last thing inside the footer, after the columns.
+       Site-specific content (cross-promo bands, network links) hooks here
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
+  @php(do_action('brndle_footer_end'))
 </footer>
 
 {{-- ============================================================
@@ -497,7 +527,9 @@
   </div>
   {{-- Extension point: last thing inside the footer, after the columns.
        Site-specific content (cross-promo bands, network links) hooks here
-       rather than being patched into this template. --}}
+       rather than being patched into this template. Present in EVERY footer
+       style - a hook that fires in one style only is the same bug 2.3.1 fixed
+       for the legal row. --}}
   @php(do_action('brndle_footer_end'))
 </footer>
 @endif
