@@ -28,7 +28,12 @@
     $extraClass  = (string) ($extraClass ?? '');
     $attrs       = (array)  ($attrs ?? []);
 
-    $classes = ['brndle-' . $blockSlug];
+    // px-6 matches the gutter every section-based block carries. Without it
+    // these four blocks (code, pull-quote, tabs-accordion, timeline) render
+    // flush to the viewport edge on a phone, because the wrapper only ever
+    // set margin-block - a max-width alone does nothing once the screen is
+    // narrower than the max.
+    $classes = ['brndle-' . $blockSlug, 'px-6'];
     if ($align === 'wide') {
         $classes[] = 'alignwide';
     } elseif ($align === 'full') {
