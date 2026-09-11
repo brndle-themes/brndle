@@ -130,6 +130,20 @@ class PageMetaServiceProvider
                 $plain = wp_strip_all_tags(strip_shortcodes($post->post_content), true);
                 $description = trim(preg_replace('/\s+/', ' ', $plain));
             }
+        } elseif (is_home() && ! is_front_page() && (int) get_option('page_for_posts')) {
+            // The posts page is a real, editable page. Its excerpt describes
+            // the blog; the site tagline describes the site, which is why a
+            // blog landing page kept inheriting a line about the business.
+            $blogPage = get_post((int) get_option('page_for_posts'));
+
+            if ($blogPage instanceof \WP_Post) {
+                $description = has_excerpt($blogPage) ? get_the_excerpt($blogPage) : '';
+
+                if ($description === '' && ! empty($blogPage->post_content)) {
+                    $plain = wp_strip_all_tags(strip_shortcodes($blogPage->post_content), true);
+                    $description = trim(preg_replace('/\s+/', ' ', $plain));
+                }
+            }
         } elseif (is_home() || is_front_page()) {
             $description = get_bloginfo('description', 'display');
         } elseif (is_category() || is_tag() || is_tax()) {
