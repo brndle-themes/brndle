@@ -1,9 +1,10 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $isDark = ($a['variant'] ?? 'light') === 'dark';
 @endphp
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <div class="max-w-3xl mx-auto text-center mb-16 reveal">

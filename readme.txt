@@ -2,7 +2,7 @@
 Contributors: brndlethemes
 Tags: blog, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready
 Tested up to: 6.8
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 Requires at least: 6.6
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -35,6 +35,12 @@ Brndle is a free, open-source WordPress theme for agencies. One theme, unlimited
 No build tools required for end users - the release zip ships compiled assets.
 
 == Changelog ==
+
+= 2.3.2 - September 2026 =
+
+Block anchors work. Every section block advertised the setting and 16 of the 20 quietly discarded it.
+
+* Fix      - Sixteen blocks declared anchor support in block.json but never rendered the id, so an anchor typed into the block's Advanced panel produced nothing and every in-page link pointing at it scrolled nowhere. Affected card-grid, comparison-table, content-image-split, cta, faq, features, hero, how-it-works, lead-form, logos, post-feed, pricing, stats, team, testimonials and video-embed. The four blocks already using the shared block wrapper were never affected.
 
 = 2.3.1 - September 2026 =
 

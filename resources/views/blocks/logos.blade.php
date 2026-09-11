@@ -1,6 +1,7 @@
 @php($a = $attributes)
+@php($anchor = (string) ($a['anchor'] ?? ''))
 
-<section class="py-12 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-secondary border-y border-surface-tertiary' }}">
+<section class="py-12 {{ ($a['variant'] ?? 'light') === 'dark' ? 'brndle-section-dark' : 'bg-surface-secondary border-y border-surface-tertiary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <p class="text-[11px] font-semibold uppercase tracking-[0.2em] {{ ($a['variant'] ?? 'light') === 'dark' ? 'text-white/50' : 'text-text-tertiary' }} text-center mb-8">{{ $a['title'] }}</p>

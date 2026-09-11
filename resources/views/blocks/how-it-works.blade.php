@@ -1,12 +1,13 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $steps = $a['steps'] ?? [];
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $isVertical = ($a['layout'] ?? 'horizontal') === 'vertical';
   $stepCols = ['md:grid-cols-1', 'md:grid-cols-2', 'md:grid-cols-3', 'md:grid-cols-4'];
 @endphp
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-secondary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-secondary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-7xl mx-auto px-6">
     @if($a['title'])
       <div class="max-w-3xl mx-auto text-center mb-16 reveal">

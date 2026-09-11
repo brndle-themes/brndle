@@ -1,5 +1,6 @@
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $isDark = ($a['variant'] ?? 'light') === 'dark';
   $faqItems = array_values(array_filter(
     $a['items'] ?? [],
@@ -28,7 +29,7 @@
   <script type="application/ld+json">{!! wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 @endif
 
-<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}">
+<section class="py-24 md:py-32 {{ $isDark ? 'brndle-section-dark' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
   <div class="max-w-3xl mx-auto px-6">
     @if($a['title'])
       <div class="text-center mb-16 reveal">

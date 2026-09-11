@@ -11,6 +11,7 @@
 --}}
 @php
   $a = $attributes;
+  $anchor = (string) ($a['anchor'] ?? '');
   $isDark = ($a['variant'] ?? 'light') === 'dark';
 
   $items = array_values(array_filter(
@@ -25,7 +26,7 @@
 @endphp
 
 @if (! empty($items))
-  <section class="py-20 md:py-28 {{ $isDark ? 'brndle-section-dark bg-surface-inverse text-white' : 'bg-surface-primary' }}">
+  <section class="py-20 md:py-28 {{ $isDark ? 'brndle-section-dark bg-surface-inverse text-white' : 'bg-surface-primary' }}"@if($anchor !== '') id="{{ $anchor }}"@endif>
     <div class="max-w-7xl mx-auto px-6">
 
       @if (! empty($a['eyebrow']) || ! empty($a['title']) || ! empty($a['subtitle']))
