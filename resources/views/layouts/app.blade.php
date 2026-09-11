@@ -113,6 +113,12 @@
       @endif
 
       @unless($hideFooter ?? false)
+        {{-- Extension point: full-width strip between the page content and
+             the footer. For site-specific bands - cross-promo, newsletter,
+             trust marks - that should sit above the footer rather than inside
+             it, so the footer keeps its own shape and its legal row stays
+             last. --}}
+        @php(do_action('brndle_before_footer'))
         @include('sections.footer')
       @endunless
     </div>
