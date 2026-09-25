@@ -124,6 +124,7 @@ class AttributeMigrations
                     $col['label'] = (string) $col['name'];
                     $col['sublabel'] = (string) ($col['sublabel'] ?? $col['price'] ?? '');
                 }
+
                 return $col;
             }, array_values($attrs['columns']));
         }
@@ -132,9 +133,11 @@ class AttributeMigrations
                 if (is_array($row) && ! isset($row['feature']) && isset($row['label'])) {
                     $row['feature'] = (string) $row['label'];
                 }
+
                 return $row;
             }, array_values($attrs['rows']));
         }
+
         return $attrs;
     }
 
@@ -152,6 +155,7 @@ class AttributeMigrations
         foreach ($migrations as $migration) {
             $attrs = $migration($attrs);
         }
+
         return $attrs;
     }
 }
