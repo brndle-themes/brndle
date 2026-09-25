@@ -11,13 +11,52 @@ import {
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 
+/**
+ * The editor's view of saved data, in the current shape. Mirrors
+ * AttributeMigrations::comparisonTableShapes() (which runs at render): content
+ * written from older docs stored columns as strings or { name, price }, a blank
+ * corner column, or rows keyed `label`. The first edit saves the current shape.
+ */
+const normalizeTable = ( attributes ) => {
+	let columns = attributes.columns || [];
+	let highlight = attributes.highlight_column ?? -1;
+	if ( ! columns.length && Array.isArray( attributes.headers ) ) {
+		columns = attributes.headers.slice( 1 );
+	}
+	const rows = ( attributes.rows || [] ).map( ( row ) =>
+		row && row.feature === undefined && row.label !== undefined
+			? { ...row, feature: String( row.label ) }
+			: row
+	);
+	const valueCount = Math.max( 0, ...rows.map( ( row ) => ( row?.values || [] ).length ) );
+	if ( columns[ 0 ] === '' && columns.length === valueCount + 1 ) {
+		columns = columns.slice( 1 );
+		if ( highlight > 0 ) highlight -= 1;
+		else if ( highlight === 0 ) highlight = -1;
+	}
+	columns = columns.map( ( col ) => {
+		if ( typeof col === 'string' || typeof col === 'number' ) {
+			return { label: String( col ), sublabel: '' };
+		}
+		if ( col && col.label === undefined && col.name !== undefined ) {
+			return { ...col, label: String( col.name ), sublabel: String( col.sublabel ?? col.price ?? '' ) };
+		}
+		return col;
+	} );
+	return { columns, rows, highlight };
+};
+
 registerBlockType( 'brndle/comparison-table', {
 	icon: table,
 
 	edit: ( { attributes, setAttributes } ) => {
 		const blockProps = useBlockProps();
-		const columns = attributes.columns || [];
-		const rows = attributes.rows || [];
+		const { columns, rows, highlight } = normalizeTable( attributes );
+		// Table edits always save the whole normalized table, so a partial
+		// update never leaves old-shape data beside new (e.g. a shifted
+		// highlight with unshifted columns).
+		const setTable = ( patch ) =>
+			setAttributes( { columns, rows, highlight_column: highlight, ...patch } );
 
 		// --- Column helpers ---
 		const addColumn = () => {
@@ -28,7 +67,7 @@ registerBlockType( 'brndle/comparison-table', {
 				...row,
 				values: [ ...( row.values || [] ), false ],
 			} ) );
-			setAttributes( { columns: newColumns, rows: newRows } );
+			setTable( { columns: newColumns, rows: newRows } );
 		};
 
 		const removeColumn = ( ci ) => {
@@ -38,17 +77,17 @@ registerBlockType( 'brndle/comparison-table', {
 				values: ( row.values || [] ).filter( ( _, i ) => i !== ci ),
 			} ) );
 			// Adjust highlight_column if needed
-			let hl = attributes.highlight_column;
+			let hl = highlight;
 			if ( hl === ci ) hl = -1;
 			else if ( hl > ci ) hl = hl - 1;
-			setAttributes( { columns: newColumns, rows: newRows, highlight_column: hl } );
+			setTable( { columns: newColumns, rows: newRows, highlight_column: hl } );
 		};
 
 		const updateColumn = ( ci, field, value ) => {
 			const newColumns = columns.map( ( col, i ) =>
 				i === ci ? { ...col, [ field ]: value } : col
 			);
-			setAttributes( { columns: newColumns } );
+			setTable( { columns: newColumns } );
 		};
 
 		// --- Row helpers ---
@@ -57,18 +96,18 @@ registerBlockType( 'brndle/comparison-table', {
 				feature: '',
 				values: columns.map( () => false ),
 			};
-			setAttributes( { rows: [ ...rows, newRow ] } );
+			setTable( { rows: [ ...rows, newRow ] } );
 		};
 
 		const removeRow = ( ri ) => {
-			setAttributes( { rows: rows.filter( ( _, i ) => i !== ri ) } );
+			setTable( { rows: rows.filter( ( _, i ) => i !== ri ) } );
 		};
 
 		const updateRowFeature = ( ri, value ) => {
 			const newRows = rows.map( ( row, i ) =>
 				i === ri ? { ...row, feature: value } : row
 			);
-			setAttributes( { rows: newRows } );
+			setTable( { rows: newRows } );
 		};
 
 		// Encode a cell's SelectControl value to the stored type
@@ -90,7 +129,7 @@ registerBlockType( 'brndle/comparison-table', {
 				} );
 				return { ...row, values: newValues };
 			} );
-			setAttributes( { rows: newRows } );
+			setTable( { rows: newRows } );
 		};
 
 		return (
@@ -230,11 +269,11 @@ registerBlockType( 'brndle/comparison-table', {
 					<PanelBody title={ __( 'Settings', 'brndle' ) } initialOpen={ false }>
 						<NumberControl
 							label={ __( 'Highlight column (0-based, -1 = none)', 'brndle' ) }
-							value={ attributes.highlight_column }
+							value={ highlight }
 							min={ -1 }
 							max={ columns.length - 1 }
 							onChange={ ( v ) =>
-								setAttributes( { highlight_column: parseInt( v, 10 ) } )
+								setTable( { highlight_column: parseInt( v, 10 ) } )
 							}
 						/>
 						<SelectControl

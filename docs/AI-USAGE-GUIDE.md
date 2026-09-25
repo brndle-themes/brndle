@@ -275,11 +275,12 @@ For every block, the JSON below is a complete inserter-equivalent snapshot. Omit
 ```html
 <!-- wp:brndle/comparison-table {
   "title": "Compare plans",
-  "headers": ["Feature", "Free", "Pro", "Enterprise"],
+  "columns": [{"label": "Free"}, {"label": "Pro", "sublabel": "$19/mo"}, {"label": "Enterprise"}],
+  "highlight_column": 1,
   "rows": [
     {"feature": "Sites", "values": ["1", "Unlimited", "Unlimited"]},
-    {"feature": "AI page generator", "values": ["-", "✓", "✓"]},
-    {"feature": "Priority support", "values": ["-", "-", "✓"]}
+    {"feature": "AI page generator", "values": [false, true, true]},
+    {"feature": "Priority support", "values": [false, false, true]}
   ]
 } /-->
 ```
