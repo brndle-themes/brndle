@@ -75,7 +75,7 @@ Feature comparison grid with checkmark/x columns and optional highlighted plan c
 | `highlight_column` | number | `-1` |
 | `variant` | string | `"light"` |
 
-Item shapes: `columns[]` = `{"name": "Starter", "price": "$19"}`; `rows[]` = `{"feature": "Sites", "values": ["1", "10"]}`
+Item shapes: `columns[]` = `{"label": "Starter", "sublabel": "$19"}`; `rows[]` = `{"feature": "Sites", "values": ["1", "10"]}`. A value is `true` (check), `false` (cross) or text, one per column. `highlight_column` is the 0-based index into `columns` (-1 for none). Older shapes (columns as strings or `{name, price}`, a blank first "corner" column, a `headers` list, rows keyed `label`) are upgraded at render by `AttributeMigrations`.
 
 **Behaviour.** `columns` + `rows` + `highlight_column`. Good for us-vs-alternatives; do not use it to dump a spec sheet.
 
